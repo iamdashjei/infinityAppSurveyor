@@ -47,11 +47,11 @@ export class LoginPage {
               .then(function (result) {
                 // User signed in successfully.
                 console.log(result.user);
-                alert("Going to dashboardpage");
-              //  this.navCtrl.push(DashboardPage);
+
+                this.navCtrl.push(DashboardPage);
                 // ...
               }).catch(function (error) {
-              //  alert("Confirmation Code is not matched. Please Try Again.");
+                alert("Confirmation Code is not matched. Please Try Again.");
               });
             }
           }

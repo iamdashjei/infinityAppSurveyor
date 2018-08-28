@@ -1,0 +1,137 @@
+<!-- Generated template for the AccordionComponent component -->
+<!-- Main Form -->
+<ion-card>
+  <ion-card-header (click)="toggleAccordion()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #genForms>
+    <ion-item>
+      <ion-label color="primary" floating>Date Of Survey</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Surveyor Name</ion-label>
+      <ion-input clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Name of Customer</ion-label>
+      <ion-input clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Post Code</ion-label>
+      <ion-input clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Address of Installation</ion-label>
+      <ion-input clearInput></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Customer Type</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="HHCRO">HHCRO</ion-option>
+        <ion-option value="CERO">CERO</ion-option>
+        <ion-option value="CERO Rural">CERO Rural</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Property Type</ion-label>
+      <ion-select [(ngModel)]="propertyType">
+        <ion-option value="House">House</ion-option>
+        <ion-option value="Bungalow">Bungalow</ion-option>
+        <ion-option value="Flat">Flat</ion-option>
+        <ion-option value="Maisonnette">Maisonnette</ion-option>
+        <ion-option value="Singel Park Home">Single park Home</ion-option>
+        <ion-option value="Double Park Home">Double Park Home</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- If Property Type equals to house or bungalow  -->
+    <ion-item>
+      <ion-label color="primary" stacked>Property Type 1</ion-label>
+      <ion-select [(ngModel)]="propertyType1">
+        <ion-option value="Detached">Detached</ion-option>
+        <ion-option value="Semi">Semi</ion-option>
+        <ion-option value="Mid Terrace">Mid Terrace</ion-option>
+        <ion-option value="End Terrace">End Terrace</ion-option>
+      </ion-select>
+    </ion-item>
+
+      <!-- If Property Type equals to flat or maissonette  -->
+    <ion-item>
+      <ion-label color="primary" stacked>Property Type 2</ion-label>
+      <ion-select [(ngModel)]="propertyType2">
+        <ion-option value="<= 2 External walls"><= 2 External walls</ion-option>
+        <ion-option value=">=3 External Wall">>=3 External Wall</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Bedrooms  -->
+    <ion-item>
+      <ion-label color="primary" stacked>Bed Rooms</ion-label>
+      <ion-select [(ngModel)]="bedrooms" #C (ngModelChange)="setKey('Bedrooms', C.value)">
+        <ion-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" value="{{ number }}">{{ number }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Tenure  -->
+    <ion-item>
+      <ion-label color="primary" stacked>Tenure</ion-label>
+      <ion-select [(ngModel)]="tenure">
+        <ion-option value="Private Owner">Private Owner</ion-option>
+        <ion-option value="Private Tenant">Private Tenant</ion-option>
+        <ion-option value="Social Housing Tenant">Social Housing Tenant</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Heating Source  -->
+    <ion-item>
+      <ion-label color="primary" stacked>What is the pre-main heating source?</ion-label>
+      <ion-select [(ngModel)]="heatingSource">
+
+        <ion-option value="Gas Boiler">Gas Boiler</ion-option>
+        <ion-option value="Electric Storage">Electric storage</ion-option>
+        <ion-option value="Oil Boiler">Oil Boiler</ion-option>
+        <ion-option value="LPG Boiler">LPG Boiler</ion-option>
+        <ion-option value="Solid Fossil Fuel Boiler">Solid Fossil Fuel Boiler</ion-option>
+        <ion-option value="Electric Boiler">Electric Boiler</ion-option>
+        <ion-option value="Gas Room Heaters">Gas Room Heaters</ion-option>
+        <ion-option value="Solid Fuel Room Heaters">Solid Fuel Room Heaters</ion-option>
+        <ion-option value="Electric Room Heaters">Electric Room Heaters</ion-option>
+        <ion-option value="Gas Fire with back boiler">Gas Fire with Back Boiler</ion-option>
+        <ion-option value="Gas Back Boiler to Radiators">Gas Back Boiler to Radiators</ion-option>
+        <ion-option value="Other">Other</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Other -->
+    <ion-item>
+     <ion-label color="primary" stacked>Other (Specify if other)</ion-label>
+     <ion-input clearInput></ion-input>
+   </ion-item>
+
+   <!-- Notes -->
+   <ion-item>
+    <ion-label color="primary" stacked>Notes</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+
+  <!-- Images Drawing -->
+  <ion-item>
+   <ion-label color="primary" stacked>Images Drawing</ion-label>
+   <ion-input type="file" multiple></ion-input>
+ </ion-item>
+  </ion-card-content>
+</ion-card>

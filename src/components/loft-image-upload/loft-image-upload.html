@@ -1,0 +1,175 @@
+<!-- Generated template for the AccordionLoftComponent component -->
+<ion-card>
+  <ion-card-header (click)="toggleAccordionLoftSurveyor()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #loftsurveyorForms>
+
+   <ion-grid>
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressUBILLoft.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressUBILLoft.percentage+'%'}">
+               {{progressUBILLoft.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">UBIL</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'UBIL')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesUBILLoft" (click)="uploadLoftSurveyor('UBIL')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressCustomerSignature.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressCustomerSignature.percentage+'%'}">
+               {{progressCustomerSignature.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">Customer Signature</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'CustomerSignature')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesCustomerSignature" (click)="uploadLoftSurveyor('CustSignature')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressEPOP.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressEPOP.percentage+'%'}">
+               {{progressEPOP.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">External Photo of Property</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'EPOP')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesEPOP" (click)="uploadLoftSurveyor('EPOP')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressFloorPlan.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressFloorPlan.percentage+'%'}">
+               {{progressFloorPlan.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">Floor Plan</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'FloorPlan')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesFloorPlan" (click)="uploadLoftSurveyor('Floor Plan')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressTenancyAgreement.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressTenancyAgreement.percentage+'%'}">
+               {{progressTenancyAgreement.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">Tenancy Agreement</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'Tenancy Agreement')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesTenancyAgreement" (click)="uploadLoftSurveyor('Tenancy Agreement')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+
+     <ion-row>
+       <ion-col>
+         <div class="progress" style="width:300px">
+           <div class="progress-bar progress-bar-info progress-bar-striped"
+             role="progressbar" attr.aria-valuenow="{{progressLandLordPerm.percentage}}"
+               aria-valuemin="0" aria-valuemax="100"
+               [ngStyle]="{width:progressLandLordPerm.percentage+'%'}">
+               {{progressLandLordPerm.percentage}}%
+             </div>
+         </div>
+       </ion-col>
+       <ion-col>
+        <ion-label color="danger">Not yet Uploaded</ion-label>
+       </ion-col>
+       <ion-col>
+         <ion-label color="primary">Landlord Permission</ion-label>
+       </ion-col>
+
+       <ion-col>
+         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'LandlordPerm')"/></ion-label>
+
+         <button ion-button class="primary" [disabled]="!selectedFilesLandlordPerm" (click)="uploadLoftSurveyor('Landlord Permission')">Upload</button>
+
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+
+  </ion-card-content>
+</ion-card>

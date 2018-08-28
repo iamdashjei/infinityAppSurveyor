@@ -1,0 +1,55 @@
+<!--
+  Generated template for the SurveyorFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <button ion-button icon-only menuToggle>
+     <ion-icon name="menu"></ion-icon>
+   </button>
+
+    <ion-title>Surveyor Form</ion-title>
+
+    <ion-buttons end>
+     <button id="notification-button" ion-button clear>
+   <ion-icon name="notifications">
+     <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+   </ion-icon>
+    </button>
+   </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label start>[Status Or Progress]</ion-label>
+          <ion-label end>[Duration]</ion-label>
+        </ion-item>
+
+      </ion-card-content>
+  </ion-card>
+  <accordion title="Main Form (Surveyor)"> Main Form (Surveyor) </accordion>
+  <image-upload-surveyor title="Surveyor Image Upload">Surveyor Image Upload</image-upload-surveyor>
+  <accordion-loft title="Loft Insulation Measures" *ngIf="isViewed('loft')">Loft Insulation Measures</accordion-loft>
+  <accordion-boiler title="Boiler Replacement Measures" *ngIf="isViewed('boiler')">Boiler Replacement Measures</accordion-boiler>
+  <accordion-esh title="Electric Storage Heater Replacement Measures" *ngIf="isViewed('esh')">Electric Storage Heater Replacement Measures</accordion-esh>
+  <esh-upload-surveyor title="Electric Storage Heater Replacement Measures Image Uploads" *ngIf="isViewed('esh')">Electric Storage Heater Replacement Measures Image Uploads</esh-upload-surveyor>
+  <accordion-esh-boiler title="Electric Storage Heater and Boiler Replacement Measures" *ngIf="isViewed('esh_boiler')">Electric Storage Heater and Boiler Replacement Measures</accordion-esh-boiler>
+  <accordion-cavity-solid-wall title="Cavity and Solid Wall Insulation" *ngIf="isViewed('cav_solidwall')">Cavity and Solid Wall Insulation</accordion-cavity-solid-wall>
+
+  <image-upload title="Cavity and Solid Insulation Uploads" *ngIf="isViewed('cav_solidwall')">Cavity and Solid Wall Insulation Uploads</image-upload>
+  <cavity-wall-component-upload title="Cavity and Solid Wall Insulation Image Uploads" *ngIf="isViewed('cav_solidwall')">Cavity and Solid Wall Insulation Image Uploads</cavity-wall-component-upload>
+  <boiler-image-upload title="Boiler Image Upload" *ngIf="isViewed('boiler')">Boiler Image Upload</boiler-image-upload>
+  <loft-image-upload title="Loft Insulation Measures Image Upload" *ngIf="isViewed('loft')">Loft Insulation Measures Image Upload</loft-image-upload>
+  <button ion-button full outline (click)="openSignatureModel()" padding>
+    Signature
+  </button>
+  <div><img [src]="signatureImage" *ngIf="signatureImage" /></div>
+</ion-content>

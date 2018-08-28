@@ -1,0 +1,41 @@
+<!-- Generated template for the AccordionComponent component -->
+<ion-card>
+  <ion-card-header (click)="toggleAccordionESHBoiler()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #eshboilerForms>
+    <ion-item>
+      <ion-label color="primary" stacked>What fuel is the new heating system using?</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Will the new system heat the entire (100%) property?</ion-label>
+      <ion-select [(ngModel)]="newSystemHeatBool">
+        <ion-option value="Yes">Yes</ion-option>
+        <ion-option value="No">No</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- If the answer is no -->
+    <ion-item>
+      <ion-label color="primary" stacked>Unrounded POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Rounded POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+    <!-- End of the (no) condition -->
+
+  </ion-card-content>
+</ion-card>

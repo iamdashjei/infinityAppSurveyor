@@ -1,0 +1,207 @@
+<!-- Generated template for the AccordionComponent component -->
+<ion-card>
+  <ion-card-header (click)="toggleAccordionCavitySolidWall()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #cavitysolidwallForms>
+    <ion-item>
+      <ion-label color="primary" stacked>CWI only – Are the walls already partially insulated?</ion-label>
+      <ion-select [(ngModel)]="cwiOnly">
+        <ion-option value="Yes">Yes</ion-option>
+        <ion-option value="No">No</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item-divider>Property Section</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>Property Section 1 (eg, main property, extension, front walls etc)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Property Section 2 (eg, main property, extension, front walls etc)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Property Section 3 (eg, main property, extension, front walls etc)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Property Section 4 (eg, main property, extension, front walls etc)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Property Section 5 (eg, main property, extension, front walls etc)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item-divider>Wall Construction</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>Wall Construction 1</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Wall Construction 2</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Wall Construction 3</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Wall Construction 4</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Wall Construction 5</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item-divider>M2 of Insulation to be installed CWI</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed CWI 1</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed CWI 2</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed CWI 3</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed CWI 4</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed CWI 5</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item-divider>M2 of Insulation to be installed SWI</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed SWI 1</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed SWI 2</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed SWI 3</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed SWI 4</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>M2 of insulation to be installed SWI 5</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item-divider>Total Wall Areas</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>Total Wall Areas A</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Total Wall Areas B</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Total Wall Areas C</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Total Wall Areas SWI D</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item-divider>POPT</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary" stacked>Unrounded CWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Unrounded SWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Unrounded SWI POPT (type 2)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Rounded CWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Rounded SWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Rounded SWI POPT (type 2)</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+
+
+    <ion-item-divider></ion-item-divider>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Approximate build year or age band, & reasoning</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Are you proposing to insulate any cavity party walls?</ion-label>
+      <ion-select [(ngModel)]="insulateCavParWalls">
+        <ion-option value="Yes">Yes</ion-option>
+        <ion-option value="No">No</ion-option>
+        <ion-option value="No">Not Applicable</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Unrounded PWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Rounded PWI POPT</ion-label>
+      <ion-input clearInput> </ion-input>
+    </ion-item>
+  </ion-card-content>
+</ion-card>

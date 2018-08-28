@@ -1,17 +1,37 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import firebase from 'firebase';
-import { HomePage } from '../pages/home/home';
+
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { LoginPage } from '../pages/login/login';
+import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
+
+import { Subject } from 'rxjs';
+import { AppState } from './app.global';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { tap } from 'rxjs/operators';
+
+import firebase from 'firebase';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'LoginPage';
+  // rootPage:any = 'LoginPage';
+  rootPage:any = DashboardPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  activePage = new Subject();
+  pages: Array<{ title: string, component: any, active: boolean, icon: string}>;
+  rightMenuItems: Array<{ icon: string, active: boolean }>;
+  state: any;
+
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              public global: AppState,
+              public menuCtrl: MenuController
+            ) {
 
     const firebaseConfig = {
       apiKey: "AIzaSyC6m-aOof-E-s1AyM0GfgJARfaLHYECRDI",
@@ -22,14 +42,42 @@ export class MyApp {
       messagingSenderId: "918580267251"
     };
     firebase.initializeApp(firebaseConfig);
+    this.initializeApp();
 
+    this.rightMenuItems = [
+      { icon: 'home', active: true },
+      { icon: 'alarm', active: false },
+      { icon: 'analytics', active: false },
+      { icon: 'archive', active: false },
+      { icon: 'basket', active: false },
+      { icon: 'body', active: false },
+      { icon: 'bookmarks', active: false },
+      { icon: 'camera', active: false },
+      { icon: 'beer', active: false },
+      { icon: 'power', active: false },
+    ];
 
+    this.pages = [
+      { title: 'Dashboard', component: DashboardPage, active: true, icon: 'home'},
+      { title: 'Entry Forms', component: SurveyorFormPage, active: false, icon: 'archive'},
+      { title: 'Settings', component: DashboardPage, active: false, icon: 'map' },
+    ];
 
+    this.activePage.subscribe((selectedPage: any) => {
+        this.pages.map(page => {
+          page.active = page.title === selectedPage.title;
+      });
+    });
+  }
+
+  initializeApp(){
     platform.ready().then(() => {
+      this.global.set('theme', '');
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.menuCtrl.enable(false, 'right');
     });
   }
 }
