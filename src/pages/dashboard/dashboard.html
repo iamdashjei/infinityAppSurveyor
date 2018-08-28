@@ -6,13 +6,87 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Dashboard</ion-title>
-  </ion-navbar>
+  <ion-navbar color="secondary">
+
+   <ion-buttons left>
+     <button ion-button icon-only menuToggle="left">
+       <ion-icon name="menu"></ion-icon>
+     </button>
+   </ion-buttons>
+
+   <ion-title>Dashboard</ion-title>
+
+   <ion-buttons end>
+     <button id="notification-button" ion-button clear>
+   <ion-icon name="notifications">
+     <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+   </ion-icon>
+    </button>
+   </ion-buttons>
+
+   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+    <ion-card>
+      <ion-card-header>
+        Welcome Surveyor!
+      </ion-card-header>
+      <ion-card-content>
+        Reminders here
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Leads Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas> </canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Leads Completed -->
+    <ion-list padding-bottom>
+      <ion-list-header class="sectionCompleted">
+        <ion-icon name="checkmark-circle-outline" start></ion-icon>
+        &nbsp; Completed
+      </ion-list-header>
+      <ion-item>No Leads completed yet.</ion-item>
+
+    </ion-list>
+  <!-- In progress -->
+   <ion-list padding-bottom>
+     <ion-list-header class="sectionInProgress">
+       <ion-icon name="book" start></ion-icon>
+       &nbsp; In Progress (1/1)
+
+     </ion-list-header>
+     <!-- *ngFor="let l of leads" -->
+     <ion-item *ngFor="let l of leads">
+         <ion-thumbnail item-left>
+          <img src="assets/imgs/orange-send-file-64.png">
+        </ion-thumbnail>
+        <!-- <h2>{{c.name}}</h2> -->
+        <h4>{{l.lead_fname}}</h4>
+        <p clear item-right>{{ l.created_at | timeAgo }}</p>
+        <progress-bar [progress]="loadProgress()"></progress-bar>
+
+      </ion-item>
+
+   </ion-list>
+
+  <!-- Added Leads -->
+   <ion-list padding-bottom>
+     <ion-list-header class="sectionAdded">
+       <ion-icon name="clipboard" start></ion-icon>
+       &nbsp; Added Leads
+     </ion-list-header>
+     <ion-item>No Added yet.</ion-item>
+
+   </ion-list>
 
 </ion-content>

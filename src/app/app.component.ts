@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +18,7 @@ import firebase from 'firebase';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   // rootPage:any = 'LoginPage';
   rootPage:any = DashboardPage;
 
@@ -26,9 +27,9 @@ export class MyApp {
   rightMenuItems: Array<{ icon: string, active: boolean }>;
   state: any;
 
-  constructor(platform: Platform,
-              statusBar: StatusBar,
-              splashScreen: SplashScreen,
+  constructor(public platform: Platform,
+              public statusBar: StatusBar,
+              public splashScreen: SplashScreen,
               public global: AppState,
               public menuCtrl: MenuController
             ) {
@@ -42,7 +43,15 @@ export class MyApp {
       messagingSenderId: "918580267251"
     };
     firebase.initializeApp(firebaseConfig);
-    this.initializeApp();
+    platform.ready().then(() => {
+      this.global.set('theme', '');
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+      this.menuCtrl.enable(false, 'right');
+
+    });
 
     this.rightMenuItems = [
       { icon: 'home', active: true },
@@ -70,14 +79,13 @@ export class MyApp {
     });
   }
 
-  initializeApp(){
-    platform.ready().then(() => {
-      this.global.set('theme', '');
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-      this.menuCtrl.enable(false, 'right');
-    });
+  openPage(page) {
+    this.nav.setRoot(page.component);
+    this.activePage.next(page);
+  }
+
+  rightMenuClick(item) {
+    this.rightMenuItems.map(menuItem => menuItem.active = false);
+    item.active = true;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -14,6 +14,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
+
+    @ViewChild('doughnutCanvas') doughnutCanvas;
+
+    doughnutChart: any;
+    badgeNumber: number;
+    leads: any;
+    errorMessage: string;
+
+    // Dashboard Custom Menu
+    MENU = {
+      DEFAULT: 'menu-components',
+      MATERIAL: 'menu-material',
+      AVATAR: 'menu-avatar',
+      DARK: 'menu-dark',
+      RIGHT: 'menu-right',
+    };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
