@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input} from '@angular/core';
+import { Component, ViewChild, Renderer, Input} from '@angular/core';
 
 /**
  * Generated class for the AccordionEshComponent component.
@@ -19,12 +19,12 @@ export class AccordionEshComponent {
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.eshFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
   }
 
-  
+
   // Toggle Form For ESH
   toggleAccordionESH() {
     if(this.accordionExpanded){

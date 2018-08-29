@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input } from '@angular/core';
+import { Component, ViewChild, Renderer, Input } from '@angular/core';
 
 /**
  * Generated class for the AccordionBoilerComponent component.
@@ -10,7 +10,7 @@ import { Component, ViewChild, OnInit, Renderer, Input } from '@angular/core';
   selector: 'accordion-boiler',
   templateUrl: 'accordion-boiler.html'
 })
-export class AccordionBoilerComponent implements OnInit {
+export class AccordionBoilerComponent {
   accordionExpanded = false;
 
   @ViewChild("boilerForms") boilerFormContent: any;
@@ -19,7 +19,7 @@ export class AccordionBoilerComponent implements OnInit {
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer) { }
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.boilerFormContent.nativeElement);
     this.renderer.setElementStyle(this.boilerFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
   }

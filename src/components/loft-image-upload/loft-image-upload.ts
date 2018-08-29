@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -13,7 +13,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   selector: 'loft-image-upload',
   templateUrl: 'loft-image-upload.html'
 })
-export class LoftImageUploadComponent implements OnInit{
+export class LoftImageUploadComponent {
 
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
     @ViewChild("loftsurveyorForms") loftsurveyorFormContent: any;
@@ -50,7 +50,7 @@ export class LoftImageUploadComponent implements OnInit{
 
     constructor(public renderer: Renderer, private uploadService: UploadFileServiceProvider) {}
 
-    ngOnInit(){
+    ionViewDidLoad(){
       console.log(this.loftsurveyorFormContent.nativeElement);
       this.renderer.setElementStyle(this.loftsurveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
     }
@@ -69,7 +69,7 @@ export class LoftImageUploadComponent implements OnInit{
     }
 
     selectFileLoftSurveyor(event, targetFile: string){
-    
+
       if(targetFile == 'UBIL'){
         this.selectedFilesUBILLoft = event.target.files;
       } else if (targetFile == 'CustomerSignature') {

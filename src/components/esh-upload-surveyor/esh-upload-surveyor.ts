@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -13,7 +13,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   selector: 'esh-upload-surveyor',
   templateUrl: 'esh-upload-surveyor.html'
 })
-export class EshUploadSurveyorComponent implements OnInit {
+export class EshUploadSurveyorComponent {
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   @ViewChild("eshsurveyorForms") eshsurveyorFormContent: any;
@@ -31,7 +31,7 @@ export class EshUploadSurveyorComponent implements OnInit {
 
   constructor(public renderer: Renderer,  private uploadService: UploadFileServiceProvider) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.eshsurveyorFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshsurveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }

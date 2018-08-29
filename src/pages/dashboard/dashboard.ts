@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
+import { Chart } from 'chart.js';
+import { RestProvider } from '../../providers/rest/rest';
+import { Badge } from '@ionic-native/badge';
 /**
  * Generated class for the DashboardPage page.
  *
@@ -31,11 +33,67 @@ export class DashboardPage {
       RIGHT: 'menu-right',
     };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public menuCtrl: MenuController, private badge: Badge, public rest: RestProvider) {
+      this.menuCtrl.enable(true, 'menu-material');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+
+          type: 'doughnut',
+          data: {
+              labels: ["In Progress", "Completed", "Added Leads"],
+              datasets: [{
+                  label: '# of Leads',
+                  data: [12, 19, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)'
+                  ],
+                  hoverBackgroundColor: [
+                      "#FF6384",
+                      "#36A2EB",
+                      "#FFCE56"
+                  ]
+              }]
+          }
+
+      });
+
+      this.getLeads();
   }
 
+  // Get Leads from the CRM
+  getLeads() {
+   this.rest.getLeads()
+      .subscribe(
+        leads => this.leads = leads,
+        error =>  this.errorMessage = <any>error);
+   }
+
+   loadProgress() {
+     return 90;
+   }
+
+  // Set Badge Count
+  setBadges(badgeNumber: number) {
+    console.log("Set Badges " + badgeNumber);
+    this.badge.set(badgeNumber);
+  }
+
+  // Get Badge Count
+  getBadges() {
+    this.badge.get();
+  }
+
+  // Increase Badge Count
+  increaseBadges(badgeNumber: number) {
+      this.badge.increase(badgeNumber);
+  }
+
+  // Clear Badges
+  clearBadges(){
+    this.badge.clear();
+  }
 }

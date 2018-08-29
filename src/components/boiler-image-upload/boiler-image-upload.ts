@@ -12,7 +12,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   selector: 'boiler-image-upload',
   templateUrl: 'boiler-image-upload.html'
 })
-export class BoilerImageUploadComponent implements OnInit {
+export class BoilerImageUploadComponent {
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   @ViewChild("boilersurveyorForms") boilersurveyorFormContent: any;
@@ -31,7 +31,7 @@ export class BoilerImageUploadComponent implements OnInit {
 
   constructor(public renderer: Renderer, private uploadService: UploadFileServiceProvider) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.boilersurveyorFormContent.nativeElement);
     this.renderer.setElementStyle(this.boilersurveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }

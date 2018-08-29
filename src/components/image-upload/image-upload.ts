@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 
@@ -14,7 +14,7 @@ import { FileUpload } from '../../providers/upload-file-service/fileupload';
   selector: 'image-upload',
   templateUrl: 'image-upload.html'
 })
-export class ImageUploadComponent implements OnInit{
+export class ImageUploadComponent {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   progress: {percentage: number} = {percentage: 0};
@@ -28,7 +28,7 @@ export class ImageUploadComponent implements OnInit{
 
   constructor(public renderer: Renderer,  private uploadService: UploadFileServiceProvider) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.imageuploadFormContent.nativeElement);
     this.renderer.setElementStyle(this.imageuploadFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -12,7 +12,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   selector: 'cavity-wall-component-upload',
   templateUrl: 'cavity-wall-component-upload.html'
 })
-export class CavityWallComponentUploadComponent implements OnInit{
+export class CavityWallComponentUploadComponent {
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   @ViewChild("cwsurveyorForms") cwsurveyorFormContent: any;
@@ -30,11 +30,11 @@ export class CavityWallComponentUploadComponent implements OnInit{
 
   constructor(public renderer: Renderer, private uploadService: UploadFileServiceProvider) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.cwsurveyorFormContent.nativeElement);
     this.renderer.setElementStyle(this.cwsurveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }
-  
+
   toggleAccordionCWSurveyor() {
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.cwsurveyorFormContent.nativeElement, "max-height", "0px");

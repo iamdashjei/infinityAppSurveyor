@@ -1,4 +1,4 @@
-import { Component,  ViewChild, OnInit, Renderer, Input } from '@angular/core';
+import { Component,  ViewChild, Renderer, Input } from '@angular/core';
 
 /**
  * Generated class for the AccordionLoftComponent component.
@@ -10,7 +10,7 @@ import { Component,  ViewChild, OnInit, Renderer, Input } from '@angular/core';
   selector: 'accordion-loft',
   templateUrl: 'accordion-loft.html'
 })
-export class AccordionLoftComponent implements OnInit{
+export class AccordionLoftComponent {
   accordionExpanded = false;
   @ViewChild("loftForms") loftFormContent: any;
   @Input('title') title: string;
@@ -19,7 +19,7 @@ export class AccordionLoftComponent implements OnInit{
 
   constructor(public renderer: Renderer) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.loftFormContent.nativeElement);
     this.renderer.setElementStyle(this.loftFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }

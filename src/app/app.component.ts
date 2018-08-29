@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login';
@@ -31,7 +32,9 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public global: AppState,
-              public menuCtrl: MenuController
+              public menuCtrl: MenuController,
+              public fcm: FcmProvider,
+              private push: Push
             ) {
 
     const firebaseConfig = {
@@ -50,6 +53,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.menuCtrl.enable(false, 'right');
+
+      this.pushSetup();
+
 
     });
 
@@ -87,5 +93,25 @@ export class MyApp {
   rightMenuClick(item) {
     this.rightMenuItems.map(menuItem => menuItem.active = false);
     item.active = true;
+  }
+
+  pushSetup(){
+    const options: PushOptions = {
+      android: {
+        senderID: '918580267251'
+      },
+      ios: {
+           alert: 'true',
+           badge: true,
+           sound: 'false'
+      }
+    };
+
+    const pushObject: PushObject = this.push.init(options);
+    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+
+    pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+
+    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
   }
 }

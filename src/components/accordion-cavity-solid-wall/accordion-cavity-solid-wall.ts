@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 
 /**
  * Generated class for the AccordionCavitySolidWallComponent component.
@@ -20,7 +20,7 @@ export class AccordionCavitySolidWallComponent {
 
   constructor(public renderer: Renderer) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.cavitysolidwallContent.nativeElement);
     this.renderer.setElementStyle(this.cavitysolidwallContent.nativeElement, "webkitTransition", "max-height 3000ms, padding 500ms");
   }

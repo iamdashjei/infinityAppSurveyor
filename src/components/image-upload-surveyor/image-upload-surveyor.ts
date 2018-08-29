@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
   selector: 'image-upload-surveyor',
   templateUrl: 'image-upload-surveyor.html'
 })
-export class ImageUploadSurveyorComponent implements OnInit{
+export class ImageUploadSurveyorComponent {
 
   @ViewChild(SignaturePad) signaturePad: SignaturePad;
   @ViewChild("surveyorForms") surveyorFormContent: any;
@@ -38,7 +38,7 @@ export class ImageUploadSurveyorComponent implements OnInit{
 
   constructor(public renderer: Renderer,  private uploadService: UploadFileServiceProvider, private storage: Storage) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.surveyorFormContent.nativeElement);
     this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
   }

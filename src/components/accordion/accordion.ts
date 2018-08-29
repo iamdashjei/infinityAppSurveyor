@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
+import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
 /**
@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage';
   selector: 'accordion',
   templateUrl: 'accordion.html'
 })
-export class AccordionComponent  implements OnInit{
+export class AccordionComponent {
   accordionExpanded = false;
 
   @ViewChild("genForms") genFormContent: any;
@@ -21,7 +21,7 @@ export class AccordionComponent  implements OnInit{
 
   constructor(public renderer: Renderer, private storage: Storage) {}
 
-  ngOnInit(){
+  ionViewDidLoad(){
     console.log(this.genFormContent.nativeElement);
     this.renderer.setElementStyle(this.genFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
   }
