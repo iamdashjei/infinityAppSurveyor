@@ -107,28 +107,24 @@ export class DashboardPage {
     });
     let options = new RequestOptions({ headers: headers });
 
-    alert(data);
-    // return new Promise((resolve, reject) => {
-    //   this.http.post('https://app.infinityenergyorganisation.co.uk/app/api/add-otpcodes', data, options)
-    //   .toPromise()
-    //   .then((response) =>
-    //   {
-    //     console.log('API Response : ', response.json());
-    //     resolve(response.json());
-    //   })
-    //   .catch((error) =>
-    //   {
-    //     console.error('API Error : ', error.status);
-    //     console.error('API Error : ', JSON.stringify(error));
-    //     reject(error.json());
-    //   });
-    // });
+
+    return new Promise((resolve, reject) => {
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/add-otpcodes', data, options)
+      .toPromise()
+      .then((response) =>
+      {
+        console.log('API Response : ', response.json());
+        resolve(response.json());
+      })
+      .catch((error) =>
+      {
+        console.error('API Error : ', error.status);
+        console.error('API Error : ', JSON.stringify(error));
+        reject(error.json());
+      });
+    });
   }
 
-  // createItem(newItem){
-  //   let i = { 'otp_code': newItem.value, 'otp_date' : '2018-08-31', 'otp_user_id' : '1'};
-  //   this.rest.create(i);
-  // }
 
   getOtpCodesList(){
     this.rest.getOtpCodes().then(data => {
