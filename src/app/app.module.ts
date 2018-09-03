@@ -37,6 +37,7 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { RestProvider } from '../providers/rest/rest';
 import { UploadFileServiceProvider } from '../providers/upload-file-service/upload-file-service';
+import { DatasourceProvider } from '../providers/datasource/datasource';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { UploadFileServiceProvider } from '../providers/upload-file-service/uplo
     IonicModule.forRoot(MyApp),
     SignaturePadModule, // Signature Pad (E-Signature)
     IonicStorageModule.forRoot() // Ionic Storage Local (Phone)
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -86,6 +88,8 @@ import { UploadFileServiceProvider } from '../providers/upload-file-service/uplo
     UploadFileServiceProvider,
     RestProvider,
     AuthServiceProvider,
+    DatasourceProvider,
+    DatasourceProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
