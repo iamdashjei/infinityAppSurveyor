@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { RequestOptions } from '@angular/http';
+import {Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/toPromise';
 /*
   Generated class for the RestProvider provider.
 
@@ -11,13 +12,13 @@ import { RequestOptions } from '@angular/http';
 */
 @Injectable()
 export class RestProvider {
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello RestProvider Provider');
   }
 
   getOtpCodes(){
     return new Promise(resolve => {
-      this.http.get('http://app.infinityenergyorganisation.co.uk/app/api/get-otpcodes').subscribe(data => {
+      this.http.get('http://app.infinityenergyorganisation.co.uk/v1/app/api/get-otpcodes').subscribe(data => {
         resolve(data);
       }, err => {
         console.log(err);
@@ -27,28 +28,38 @@ export class RestProvider {
   }
 
   createOtpCodes() {
-      let headers= new HttpHeaders();
+    let headers = new Headers(
+    {
+      'Content-Type' : 'application/json'
+    });
 
-     headers.append('Content-type','application/json');
-      let postData = {
-              "name": "Customer004",
-              "email": "customer004@email.com",
-              "tel": "0000252525"
-      }
+    let data = JSON.stringify({
+      otp_code: '3465465465',
+      otp_date: '2018-08-01',
+      otp_user_id: '1'
+    });
+    let options = new RequestOptions({ headers: headers });
 
 
-      return new Promise(resolve => {
-      this.http.post('http://app.infinityenergyorganisation.co.uk/app/api/add-otpcodes',JSON.stringify(postData) , {headers: headers}).subscribe(res => {
-        resolve(res);
-
-      }, (err) => {
-       console.log(err);
+    return new Promise((resolve, reject) => {
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/add-otpcodes', data, options)
+      .toPromise()
+      .then((response) =>
+      {
+        console.log('API Response : ', response.json());
+        resolve(response.json());
+      })
+      .catch((error) =>
+      {
+        console.error('API Error : ', error.status);
+        console.error('API Error : ', JSON.stringify(error));
+        reject(error.json());
       });
     });
   }
 
 
-  
+
 
 
 }

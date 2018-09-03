@@ -79,52 +79,16 @@ export class DashboardPage {
   }
 
   saveOtpCode(){
-    let otp_code = '5522312';
-    let otp_date = '2018-08-31';
-    let otp_user_id = '1';
-    let data = {'otp_code': otp_code, 'otp_date': otp_date, 'otp_user_id': otp_user_id} ;
 
-    // this.rest.createOtpCodes().then((result) => {
-    //   console.log(result);
-    //
-    // }, (err) => {
-    //   console.log(err);
-    //
-    // });
-    alert(JSON.stringify(data));
+    this.rest.createOtpCodes().then((result) => {
+      console.log(result);
+
+    }, (err) => {
+      console.log(err);
+
+    });
+  
   }
-
-  testThisPost(){
-    let headers = new Headers(
-    {
-      'Content-Type' : 'application/json'
-    });
-
-    let data = JSON.stringify({
-      otp_code: '3465465465',
-      otp_date: '2018-08-01',
-      otp_user_id: '1'
-    });
-    let options = new RequestOptions({ headers: headers });
-
-
-    return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/add-otpcodes', data, options)
-      .toPromise()
-      .then((response) =>
-      {
-        console.log('API Response : ', response.json());
-        resolve(response.json());
-      })
-      .catch((error) =>
-      {
-        console.error('API Error : ', error.status);
-        console.error('API Error : ', JSON.stringify(error));
-        reject(error.json());
-      });
-    });
-  }
-
 
   getOtpCodesList(){
     this.rest.getOtpCodes().then(data => {
