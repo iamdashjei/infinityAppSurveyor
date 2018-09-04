@@ -20,8 +20,8 @@ import firebase from 'firebase';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  // rootPage:any = 'LoginPage';
-  rootPage:any = DashboardPage;
+   rootPage:any = 'LoginPage';
+
 
   activePage = new Subject();
   pages: Array<{ title: string, component: any, active: boolean, icon: string}>;
@@ -37,12 +37,12 @@ export class MyApp {
           ) {
 
     const firebaseConfig = {
-      apiKey: "AIzaSyC6m-aOof-E-s1AyM0GfgJARfaLHYECRDI",
-      authDomain: "infinityapp-fe5c6.firebaseapp.com",
-      databaseURL: "https://infinityapp-fe5c6.firebaseio.com",
-      projectId: "infinityapp-fe5c6",
-      storageBucket: "infinityapp-fe5c6.appspot.com",
-      messagingSenderId: "918580267251"
+          apiKey: "AIzaSyC6m-aOof-E-s1AyM0GfgJARfaLHYECRDI",
+          authDomain: "infinityapp-fe5c6.firebaseapp.com",
+          databaseURL: "https://infinityapp-fe5c6.firebaseio.com",
+          projectId: "infinityapp-fe5c6",
+          storageBucket: "infinityapp-fe5c6.appspot.com",
+          messagingSenderId: "918580267251"
     };
     firebase.initializeApp(firebaseConfig);
     platform.ready().then(() => {

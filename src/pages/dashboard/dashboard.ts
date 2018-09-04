@@ -5,9 +5,8 @@ import { RestProvider } from '../../providers/rest/rest';
 import { DatasourceProvider } from '../../providers/datasource/datasource';
 import { Badge } from '@ionic-native/badge';
 
-import {Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/toPromise';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -26,7 +25,9 @@ export class DashboardPage {
 
     doughnutChart: any;
     badgeNumber: number;
-    leads: any;
+    leadsNew: any;
+    leadsInProgress: any;
+    leadsCompleted: any;
     errorMessage: string;
     codes: any;
 
@@ -44,7 +45,7 @@ export class DashboardPage {
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               private badge: Badge,
-              public http: Http,
+              public storage: Storage,
               public rest: RestProvider,
               public datasource: DatasourceProvider) {
       this.menuCtrl.enable(true, 'menu-material');
@@ -75,7 +76,8 @@ export class DashboardPage {
 
       });
 
-      this.getOtpCodesList();
+    //  this.getOtpCodesList();
+      this.getLeadsAssigned();
   }
 
   saveOtpCode(){
@@ -87,7 +89,26 @@ export class DashboardPage {
       console.log(err);
 
     });
-  
+
+  }
+
+  getLeadsAssigned(){
+    this.storage.get("user_id").then((val) => {
+
+      this.rest.fetchLeadAssigned(val).then((result) => {
+
+        this.leadsNew = result['New Leads'];
+        this.leadsInProgress = result['In Progress'];
+        this.leadsCompleted = result['Completed'];
+
+        //console.log("All Leads: " +   JSON.stringify(this.leadsNew));
+      }, (err) => {
+        console.log(err);
+
+      });
+    });
+
+
   }
 
   getOtpCodesList(){

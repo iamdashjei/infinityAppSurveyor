@@ -47,7 +47,6 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     SignaturePage,
     DashboardPage,
     SurveyorFormPage,
-    LoginPage,
     TimeAgoPipe,
     AccordionComponent,
     ImageUploadSurveyorComponent,
@@ -72,7 +71,6 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     SignaturePage,
     DashboardPage,
     SurveyorFormPage,
-    LoginPage,
   ],
   providers: [
     StatusBar,

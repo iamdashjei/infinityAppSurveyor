@@ -34,7 +34,7 @@
     "angularfire2": "^5.0.0-rc.12",
     "chart.js": "^2.7.2",
     "cordova": "^8.0.0",
-    "cordova-android": "6.2.2",
+    "cordova-android": "7.0.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-fcm-plus": "git+https://github.com/guyromb/cordova-plugin-fcm-plus.git",

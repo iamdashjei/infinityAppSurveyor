@@ -39,10 +39,10 @@
 
       </ion-card-content>
 
-      <ion-card-content>
+      <!-- <ion-card-content>
 
          <button  ion-button (click)="saveOtpCode()">Add</button>
-      </ion-card-content>
+      </ion-card-content> -->
     </ion-card>
 
     <ion-card>
@@ -60,17 +60,35 @@
         <ion-icon name="checkmark-circle-outline" start></ion-icon>
         &nbsp; Completed
       </ion-list-header>
-      <ion-item>No Leads completed yet.</ion-item>
+      <ion-item *ngFor="let l of leadsCompleted">
+          <ion-thumbnail item-left>
+           <img src="assets/imgs/orange-send-file-64.png">
+         </ion-thumbnail>
+
+         <h4>{{l.c_campaign_name}}</h4>
+         <p clear item-right>{{ l.created_at | timeAgo }}</p>
+
+
+       </ion-item>
 
     </ion-list>
   <!-- In progress -->
    <ion-list padding-bottom>
      <ion-list-header class="sectionInProgress">
        <ion-icon name="book" start></ion-icon>
-       &nbsp; In Progress (1/1)
+       &nbsp; In Progress
 
      </ion-list-header>
+     <ion-item *ngFor="let l of leadsInProgress">
+         <ion-thumbnail item-left>
+          <img src="assets/imgs/orange-send-file-64.png">
+        </ion-thumbnail>
 
+        <h4>{{l.c_campaign_name}}</h4>
+        <p clear item-right>{{ l.created_at | timeAgo }}</p>
+
+
+      </ion-item>
         <!-- <progress-bar [progress]="loadProgress()"></progress-bar> -->
 
    </ion-list>
@@ -81,7 +99,16 @@
        <ion-icon name="clipboard" start></ion-icon>
        &nbsp; Added Leads
      </ion-list-header>
-     <ion-item>No Added yet.</ion-item>
+     <ion-item *ngFor="let l of leadsNew">
+         <ion-thumbnail item-left>
+          <img src="assets/imgs/orange-send-file-64.png">
+        </ion-thumbnail>
+
+        <h4>{{l.c_campaign_name}}</h4>
+        <p clear item-right>{{ l.created_at | timeAgo }}</p>
+
+
+      </ion-item>
 
    </ion-list>
 

@@ -3,6 +3,7 @@ import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import firebase from 'firebase';
 
 import { DashboardPage } from '../dashboard/dashboard';
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,7 +21,7 @@ export class LoginPage {
   public recaptchaVerifier:firebase.auth.RecaptchaVerifier; // For captcha verification
   public email: any;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public rest: RestProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,41 +29,55 @@ export class LoginPage {
   }
 
   login(phoneNumber: number) {
-    const appVerifier = this.recaptchaVerifier;
-    const phoneNumberString = "+" + phoneNumber;
-    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-      .then( confirmationResult => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        let prompt = this.alertCtrl.create({
-        title: 'Enter the Confirmation code',
-        inputs: [{ name: 'confirmationCode', placeholder: 'Confirmation Code' }],
-        buttons: [
-          { text: 'Cancel',
-            handler: data => { console.log('Cancel clicked'); }
-          },
-          { text: 'Send',
-            handler: data => {
-              confirmationResult.confirm(data.confirmationCode)
-              .then(function (result) {
-                // User signed in successfully.
-                console.log(result.user);
+    let phoneNumberTest = '639051583899';
+      this.rest.fetchUserByPhoneNumber(phoneNumberTest).then((result) => {
+        console.log(result);
+        this.openDashboard();
+      }, (err) => {
+        console.log(err);
 
-                this.navCtrl.push(DashboardPage);
-                // ...
-              }).catch(function (error) {
-                alert("Confirmation Code is not matched. Please Try Again.");
-              });
-            }
-          }
-        ]
       });
-      prompt.present();
-    })
-    .catch(function (error) {
-      console.error("SMS not sent", error);
-    });
 
+    // const appVerifier = this.recaptchaVerifier;
+    // const phoneNumberString = "+" + phoneNumber;
+    // firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+    //   .then( confirmationResult => {
+    //     // SMS sent. Prompt user to type the code from the message, then sign the
+    //     // user in with confirmationResult.confirm(code).
+    //     let prompt = this.alertCtrl.create({
+    //     title: 'Enter the Confirmation code',
+    //     inputs: [{ name: 'confirmationCode', placeholder: 'Confirmation Code' }],
+    //     buttons: [
+    //       { text: 'Cancel',
+    //         handler: data => { console.log('Cancel clicked'); }
+    //       },
+    //       { text: 'Send',
+    //         handler: data => {
+    //           confirmationResult.confirm(data.confirmationCode)
+    //           .then(function (result) {
+    //             // User signed in successfully.
+    //             console.log(result.user);
+    //
+    //             alert("Signed In Successfully");
+    //             this.openDashboard();
+    //             // ...
+    //           }).catch(function (error) {
+    //             // User couldn't sign in (bad verification code?)
+    //             // ...
+    //           });
+    //         }
+    //       }
+    //     ]
+    //   });
+    //   prompt.present();
+    // })
+    // .catch(function (error) {
+    //   console.error("SMS not sent", error);
+    // });
+  }
+
+  openDashboard(){
+    this.navCtrl.setRoot(DashboardPage);
   }
 
 }
