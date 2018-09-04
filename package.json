@@ -20,6 +20,8 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@firebase/database": "^0.3.4",
+    "@firebase/storage": "^0.2.3",
     "@ionic-native/badge": "^4.12.0",
     "@ionic-native/camera": "^4.12.0",
     "@ionic-native/card-io": "^4.12.0",
@@ -35,6 +37,7 @@
     "chart.js": "^2.7.2",
     "cordova": "^8.0.0",
     "cordova-android": "7.0.0",
+    "cordova-plugin-badge": "git+https://github.com/katzer/cordova-plugin-badge.git",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-fcm-plus": "git+https://github.com/guyromb/cordova-plugin-fcm-plus.git",
@@ -65,7 +68,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-fcm": {}
+      "cordova-plugin-fcm": {},
+      "cordova-plugin-badge": {}
     },
     "platforms": [
       "android"

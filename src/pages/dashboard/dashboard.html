@@ -32,10 +32,12 @@
 
     <ion-card>
       <ion-card-header>
-        Welcome Surveyor!
+        Welcome {{ surveyorName }} !
       </ion-card-header>
       <ion-card-content>
-        Reminders here
+        [Reminders here]
+
+
 
       </ion-card-content>
 
@@ -80,6 +82,7 @@
 
      </ion-list-header>
      <ion-item *ngFor="let l of leadsInProgress">
+          <ion-item (click)="openLeads(l.lead_slug, l.c_campaign_name)">
          <ion-thumbnail item-left>
           <img src="assets/imgs/orange-send-file-64.png">
         </ion-thumbnail>
@@ -87,7 +90,7 @@
         <h4>{{l.c_campaign_name}}</h4>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
 
-
+          </ion-item>
       </ion-item>
         <!-- <progress-bar [progress]="loadProgress()"></progress-bar> -->
 
@@ -99,16 +102,19 @@
        <ion-icon name="clipboard" start></ion-icon>
        &nbsp; Added Leads
      </ion-list-header>
-     <ion-item *ngFor="let l of leadsNew">
+
+         <ion-item *ngFor="let l of leadsNew">
+           <ion-item>
          <ion-thumbnail item-left>
           <img src="assets/imgs/orange-send-file-64.png">
         </ion-thumbnail>
 
         <h4>{{l.c_campaign_name}}</h4>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
+          </ion-item>
+       </ion-item>
 
 
-      </ion-item>
 
    </ion-list>
 

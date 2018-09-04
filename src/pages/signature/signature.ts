@@ -45,13 +45,14 @@ export class SignaturePage {
 
    // Signature Draw cancel
    drawCancel() {
-     this.navCtrl.push(SurveyorFormPage);
+     this.navCtrl.setRoot(SurveyorFormPage);
    }
 
    // Signature Draw Complete
     drawComplete() {
      this.signatureImage = this.signaturePad.toDataURL();
      this.navCtrl.push(SurveyorFormPage, {signatureImage: this.signatureImage});
+
    }
 
    // Signature Draw Clear

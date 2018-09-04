@@ -1,8 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase';
-import { Platform } from 'ionic-angular';
-// import { AngularFirestore } from 'angularfire2/firestore';
 
 /*
   Generated class for the FcmProvider provider.
@@ -13,11 +10,8 @@ import { Platform } from 'ionic-angular';
 @Injectable()
 export class FcmProvider {
 
-  constructor(
-    public firebaseNative: Firebase,
-    // public afs: AngularFirestore,
-    private platform: Platform
-  ) {}
-
+  constructor(public http: HttpClient) {
+    console.log('Hello FcmProvider Provider');
+  }
 
 }

@@ -15,6 +15,8 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class RestProvider {
   public keyVal: any;
+  surveyorName: string;
+  surveyorEmail: string;
   public headers = new Headers(
   {
     'Content-Type' : 'application/json'
@@ -104,6 +106,7 @@ export class RestProvider {
         let id = obj['id'];
 
         this.setKey("user_id", id[0].id);
+        this.setKey("user_name", id[0].name);
       })
       .catch((error) =>
       {
@@ -131,7 +134,22 @@ export class RestProvider {
      });
   }
 
+  getSurveyorName(){
+    console.log("getting surveyor name");
+    return this.surveyorName;
+  }
 
+  getSurveyorEmail(){
+    console.log("getting surveyor email");
+    return this.surveyorEmail;
+  }
+
+  isCurrentUserActive(): boolean {
+    if(this.surveyorName){
+      return true;
+    }
+    return false;
+  }
 
 
 

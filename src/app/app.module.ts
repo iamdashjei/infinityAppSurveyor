@@ -33,12 +33,12 @@ import { ImageUploadSurveyorComponent } from '../components/image-upload-surveyo
 import { AccordionLoftComponent } from '../components/accordion-loft/accordion-loft';
 import { LoftImageUploadComponent } from '../components/loft-image-upload/loft-image-upload';
 
-import { FcmProvider } from '../providers/fcm/fcm';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { RestProvider } from '../providers/rest/rest';
 import { UploadFileServiceProvider } from '../providers/upload-file-service/upload-file-service';
 import { DatasourceProvider } from '../providers/datasource/datasource';
-
+import { FIREBASE_CONFIG } from './firebase.config.ts';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @NgModule({
   declarations: [
@@ -46,12 +46,7 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     HomePage,
     SignaturePage,
     DashboardPage,
-    SurveyorFormPage,
-    TimeAgoPipe,
-    AccordionComponent,
-    ImageUploadSurveyorComponent,
-    AccordionLoftComponent,
-    LoftImageUploadComponent
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -59,6 +54,7 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     HttpClientModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG.firebase),
     IonicModule.forRoot(MyApp),
     SignaturePadModule, // Signature Pad (E-Signature)
     IonicStorageModule.forRoot() // Ionic Storage Local (Phone)
@@ -70,7 +66,7 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     HomePage,
     SignaturePage,
     DashboardPage,
-    SurveyorFormPage,
+    
   ],
   providers: [
     StatusBar,
@@ -81,13 +77,12 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
     Badge,
     Push,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FcmProvider,
     Firebase,
     UploadFileServiceProvider,
     RestProvider,
     AuthServiceProvider,
     DatasourceProvider,
-    DatasourceProvider,
+    FcmProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

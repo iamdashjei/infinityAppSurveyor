@@ -3,6 +3,7 @@ import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Storage } from '@ionic/storage';
 
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login';
@@ -10,10 +11,13 @@ import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
 
 import { Subject } from 'rxjs';
 import { AppState } from './app.global';
-import { FcmProvider } from '../providers/fcm/fcm';
 import { tap } from 'rxjs/operators';
 
 import firebase from 'firebase';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+
+import { RestProvider } from '../providers/rest/rest';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,13 +31,16 @@ export class MyApp {
   pages: Array<{ title: string, component: any, active: boolean, icon: string}>;
   rightMenuItems: Array<{ icon: string, active: boolean }>;
   state: any;
+  user_name: string;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public global: AppState,
               public menuCtrl: MenuController,
-              public fcm: FcmProvider
+              public afs: AngularFirestoreModule,
+              public storage: Storage,
+              public rest: RestProvider
           ) {
 
     const firebaseConfig = {
@@ -45,6 +52,7 @@ export class MyApp {
           messagingSenderId: "918580267251"
     };
     firebase.initializeApp(firebaseConfig);
+
     platform.ready().then(() => {
       this.global.set('theme', '');
       // Okay, so the platform is ready and our plugins are available.
@@ -77,11 +85,13 @@ export class MyApp {
     this.activePage.subscribe((selectedPage: any) => {
         this.pages.map(page => {
           page.active = page.title === selectedPage.title;
+
       });
     });
   }
 
   openPage(page) {
+
     this.nav.setRoot(page.component);
     this.activePage.next(page);
   }
@@ -90,5 +100,13 @@ export class MyApp {
     this.rightMenuItems.map(menuItem => menuItem.active = false);
     item.active = true;
   }
+
+
+
+
+
+
+
+
 
 }

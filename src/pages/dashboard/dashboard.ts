@@ -7,6 +7,7 @@ import { Badge } from '@ionic-native/badge';
 
 import { Storage } from '@ionic/storage';
 
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -30,7 +31,8 @@ export class DashboardPage {
     leadsCompleted: any;
     errorMessage: string;
     codes: any;
-
+    surveyorName: string;
+    surveyorEmail: string;
 
 
     // Dashboard Custom Menu
@@ -108,6 +110,18 @@ export class DashboardPage {
       });
     });
 
+    this.storage.get("user_name").then((val) => {
+
+      this.surveyorName = val;
+
+    });
+
+    this.storage.get("user_email").then((val) => {
+
+      this.surveyorEmail = val;
+
+    });
+
 
   }
 
@@ -138,4 +152,15 @@ export class DashboardPage {
   clearBadges(){
     this.badge.clear();
   }
+
+  openLeads(lead_slug, campaign_name){
+
+
+    this.navCtrl.setRoot('SurveyorFormPage', {
+      lead_slug: lead_slug,
+      campaignValue: campaign_name
+    });
+  }
+
+
 }

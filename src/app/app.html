@@ -61,8 +61,8 @@
         <!--material-design-background-->
         <img class="user-avatar round" style="height:90px;max-width:90px;" [src]="chosenPicture || placeholder" onerror="this.src='assets/imgs/avatar/girl-avatar.png'"
         />
-        <p class="name">Full Name here</p>
-        <p class="e-mail">infinityenergyorganisation.co.uk</p>
+        <p class="name">{{ user_name }}</p>
+        <p class="e-mail">{{ user_email }}</p>
       </div>
       <ion-list no-lines>
         <button menuClose="left" ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)">
