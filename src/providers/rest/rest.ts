@@ -19,6 +19,8 @@ export class RestProvider {
   surveyorEmail: string;
   public headers = new Headers(
   {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
     'Content-Type' : 'application/json'
   });
 
@@ -85,19 +87,14 @@ export class RestProvider {
   }
 
   fetchUserByPhoneNumber(phoneNumber, token){
-    let request_headers = new Headers(
-    {
-      'Content-Type' : 'application/json'
-    });
 
-    let request_options = new RequestOptions({ headers: request_headers });
     let data = JSON.stringify({
       phone: phoneNumber,
       device_token: token
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByPhoneNumber', data, request_options)
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByPhoneNumber', data, this.options)
       .toPromise()
       .then((response) =>
       {

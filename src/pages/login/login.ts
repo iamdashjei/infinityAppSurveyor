@@ -31,19 +31,18 @@ export class LoginPage {
   token: string = "";
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public rest: RestProvider, public storage: Storage) {
-     FCMPlugin.subscribeToTopic('all');
+    // FCMPlugin.subscribeToTopic('all');
 
   }
 
 
   ionViewDidLoad() {
     // this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    FCMPlugin.getToken(
-      (token) => {
-        console.log("Device Token: " + token);
-        this.token = token;
-        this.getOtpCodesList();
-    });
+    // FCMPlugin.getToken(
+    //   (token) => {
+    //     console.log("Device Token: " + token);
+    //     this.token = token;
+    // });
   }
 
   login(phoneNumber: number) {
@@ -145,11 +144,16 @@ export class LoginPage {
     return false;
   }
 
-  getOtpCodesList(){
-    this.rest.getOtpCodes().then(data => {
+  saveOtpCode(){
 
-      console.log(data);
+    this.rest.createOtpCodes().then((result) => {
+      console.log(result);
+
+    }, (err) => {
+      console.log(err);
+
     });
+
   }
 
 
