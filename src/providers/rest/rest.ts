@@ -84,7 +84,7 @@ export class RestProvider {
     });
   }
 
-  fetchUserByPhoneNumber(phoneNumber){
+  fetchUserByPhoneNumber(phoneNumber, token){
     let request_headers = new Headers(
     {
       'Content-Type' : 'application/json'
@@ -92,7 +92,8 @@ export class RestProvider {
 
     let request_options = new RequestOptions({ headers: request_headers });
     let data = JSON.stringify({
-      phone: phoneNumber
+      phone: phoneNumber,
+      device_token: token
     });
 
     return new Promise((resolve, reject) => {

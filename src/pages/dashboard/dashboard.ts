@@ -6,10 +6,9 @@ import { DatasourceProvider } from '../../providers/datasource/datasource';
 import { Badge } from '@ionic-native/badge';
 
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
 
-
-/**
- * Generated class for the DashboardPage page.
+/* Generated class for the DashboardPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -51,7 +50,7 @@ export class DashboardPage {
               public rest: RestProvider,
               public datasource: DatasourceProvider) {
       this.menuCtrl.enable(true, 'menu-material');
-
+    
   }
 
   ionViewDidLoad() {
@@ -78,8 +77,9 @@ export class DashboardPage {
 
       });
 
-    //  this.getOtpCodesList();
+
       this.getLeadsAssigned();
+
   }
 
   saveOtpCode(){
@@ -154,12 +154,19 @@ export class DashboardPage {
   }
 
   openLeads(lead_slug, campaign_name){
-
-
     this.navCtrl.setRoot('SurveyorFormPage', {
       lead_slug: lead_slug,
       campaignValue: campaign_name
     });
+  }
+
+  isleadsCompletedHaveValue(){
+    if(this.leadsCompleted != 'undefined'){
+
+      return false;
+    }
+    return true;
+
   }
 
 

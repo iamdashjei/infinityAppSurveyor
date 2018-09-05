@@ -63,15 +63,20 @@
         &nbsp; Completed
       </ion-list-header>
       <ion-item *ngFor="let l of leadsCompleted">
+          <ion-item>
           <ion-thumbnail item-left>
            <img src="assets/imgs/orange-send-file-64.png">
          </ion-thumbnail>
 
          <h4>{{l.c_campaign_name}}</h4>
          <p clear item-right>{{ l.created_at | timeAgo }}</p>
-
-
        </ion-item>
+
+      </ion-item>
+
+      <!-- <ion-item *ngIf="isleadsCompletedHaveValue()">
+        No Leads Completed.
+      </ion-item> -->
 
     </ion-list>
   <!-- In progress -->

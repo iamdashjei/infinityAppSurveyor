@@ -23,18 +23,19 @@
   </ion-row>
 
 <div class="login-box">
-<div id="recaptcha-container"></div>
+<!-- <div id="recaptcha-container"></div> -->
       <ion-row>
         <ion-col>
-          <!-- <ion-header>Sign in to our Infinity App</ion-header> -->
+
           <ion-list center>
 
-            <ion-item>
+            <ion-item *ngIf="isPhoneNumberSubmit()">
               <ion-label stacked> Mobile Number </ion-label>
               <ion-input type="number" [(ngModel)]="phoneNumber"></ion-input>
             </ion-item>
-            <ion-item>
-
+            <ion-item *ngIf="isCodeVerified()">
+              <ion-label stacked> Enter Verification Code </ion-label>
+              <ion-input type="text" placeholder="Enter OTP" [(ngModel)]="code"></ion-input>
             </ion-item>
 
         </ion-list>
@@ -43,13 +44,19 @@
 
     <ion-row>
         <ion-col class="signup-col" >
-            <button ion-button block class="submit-btn" (click)="login(phoneNumber)">Sign In</button>
+            <button ion-button block (click)="PhoneVerification()" *ngIf="isCodeVerified()"> Verify This phone number </button>
+            <button ion-button block (click)="send(phoneNumber)" *ngIf="isPhoneNumberSubmit()"> Sign In </button>
+            <!-- <button ion-button block class="submit-btn" (click)="login(phoneNumber)">Sign In</button> -->
         </ion-col>
     </ion-row>
+    </div>
 
 
 
-</div>
+
+
+
+
 
 
 </ion-content>
