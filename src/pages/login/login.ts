@@ -97,6 +97,7 @@ export class LoginPage {
 
 
   send(phoneNumber: number){
+
     // let testNumber = '639051583899';
     // this.rest.fetchUserByPhoneNumber(testNumber, this.token).then((result) => {
     //         console.log(result);
@@ -105,9 +106,9 @@ export class LoginPage {
     //         console.log(err);
     //
     //   });
-
+    // const phoneNumberString = "+" + phoneNumber;
     // (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
-    // //  alert("SMS Sent Successfully");
+    //   alert("SMS Sent Successfully");
     //   console.log(credential);
     //
     //   this.verificationId = credential.verificationId;
@@ -115,6 +116,15 @@ export class LoginPage {
     // }, (error) => {
     //   console.error(error);
     // });
+
+    this.rest.fetchTestUserPhone(this.phoneNumber, this.token).then((result) => {
+            console.log(result);
+          //  this.navCtrl.setRoot(DashboardPage);
+    }, (err) => {
+            console.log(err);
+
+      });
+  
   }
 
   PhoneVerification(){
@@ -123,7 +133,14 @@ export class LoginPage {
     // firebase.auth().signInWithCredential(signInCredential).then((info) => {
     //   console.log(info);
     //
-
+    //   this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+    //           console.log(result);
+    //           this.navCtrl.setRoot(DashboardPage);
+    //   }, (err) => {
+    //           console.log(err);
+    //
+    //     });
+    //   this.navCtrl.setRoot(DashboardPage);
     //
     // }, (error) => {
     //   console.log(error);
@@ -144,17 +161,7 @@ export class LoginPage {
     return false;
   }
 
-  saveOtpCode(){
 
-    this.rest.createOtpCodes().then((result) => {
-      console.log(result);
-
-    }, (err) => {
-      console.log(err);
-
-    });
-
-  }
 
 
 
