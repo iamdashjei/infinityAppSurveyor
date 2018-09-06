@@ -1,5 +1,7 @@
 import { Component, ViewChild, Renderer, Input} from '@angular/core';
 
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+
 /**
  * Generated class for the AccordionEshComponent component.
  *
@@ -16,8 +18,23 @@ export class AccordionEshComponent {
   @ViewChild("eshForms") eshFormContent: any;
   @Input('title') title: string;
 
+  eshSlimline: any;
+  eshFanAssisted: any;
+  eshHighHeatRetention: any;
+  eshInstalledQualifyingSlimline: any;
+  eshInstalledNonQualifyingSlimline: any;
+  eshInstalledQualifyingFanAsst: any;
+  estInstalledNonQualifyingFanAsst: any;
+  eshInstalledQualHighHeatRet: any;
+  eshInstalledNonQualHighHeatRet: any;
+  eshQeshRepairSlimline: any;
+  eshQeshRepairFanAsst: any;
+  eshQeshRepairHighHeatRet: any;
+
+
+
   icon: string = "arrow-forward";
-  constructor(public renderer: Renderer) {}
+  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) {}
 
   ionViewDidLoad(){
     console.log(this.eshFormContent.nativeElement);
@@ -37,6 +54,24 @@ export class AccordionEshComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+  }
+
+  saveEsh(){
+    const data = {
+      eshSlimline: this.eshSlimline,
+      eshFanAssisted:this.eshFanAssisted,
+      eshHighHeatRetention: this.eshHighHeatRetention,
+      eshInstalledQualifyingSlimline: this.eshInstalledQualifyingSlimline,
+      eshInstalledNonQualifyingSlimline: this.eshInstalledNonQualifyingSlimline,
+      eshInstalledQualifyingFanAsst: this.eshInstalledQualifyingFanAsst,
+      estInstalledNonQualifyingFanAsst: this.estInstalledNonQualifyingFanAsst,
+      eshInstalledQualHighHeatRet: this.eshInstalledQualHighHeatRet,
+      eshInstalledNonQualHighHeatRet: this.eshInstalledNonQualHighHeatRet,
+      eshQeshRepairSlimline: this.eshQeshRepairSlimline,
+      eshQeshRepairFanAsst: this.eshQeshRepairFanAsst,
+      eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet
+    };
+    this.sharedObject.setSharedEshObject(data);
   }
 
 }

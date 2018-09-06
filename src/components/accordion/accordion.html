@@ -19,27 +19,27 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Surveyor Name</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="surveyorName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Name of Customer</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="nameOfCustomer"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Post Code</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="postCode"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Address of Installation</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="addressInstall"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Customer Type</ion-label>
-      <ion-select [(ngModel)]="gender">
+      <ion-select [(ngModel)]="custType">
         <ion-option value="HHCRO">HHCRO</ion-option>
         <ion-option value="CERO">CERO</ion-option>
         <ion-option value="CERO Rural">CERO Rural</ion-option>
@@ -119,19 +119,23 @@
     <!-- Other -->
     <ion-item>
      <ion-label color="primary" stacked>Other (Specify if other)</ion-label>
-     <ion-input clearInput></ion-input>
+     <ion-input clearInput [(ngModel)]="other"></ion-input>
    </ion-item>
 
    <!-- Notes -->
    <ion-item>
     <ion-label color="primary" stacked>Notes</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea [(ngModel)]="notes"></ion-textarea>
   </ion-item>
 
   <!-- Images Drawing -->
   <ion-item>
    <ion-label color="primary" stacked>Images Drawing</ion-label>
-   <ion-input type="file" multiple></ion-input>
+   <ion-input type="file" multiple [(ngModel)]="drawing"></ion-input>
  </ion-item>
+
+ <ion-item>
+  <button ion-button (click)="saveMainForm()"> Save </button>
+</ion-item>
   </ion-card-content>
 </ion-card>

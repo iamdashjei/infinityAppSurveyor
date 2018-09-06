@@ -39,6 +39,7 @@ import { UploadFileServiceProvider } from '../providers/upload-file-service/uplo
 import { DatasourceProvider } from '../providers/datasource/datasource';
 import { FIREBASE_CONFIG } from './firebase.config.ts';
 import { FcmProvider } from '../providers/fcm/fcm';
+import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sharedobjectservice';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { FcmProvider } from '../providers/fcm/fcm';
     AuthServiceProvider,
     DatasourceProvider,
     FcmProvider,
+    SharedobjectserviceProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

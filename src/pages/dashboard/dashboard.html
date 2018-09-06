@@ -68,7 +68,7 @@
            <img src="assets/imgs/orange-send-file-64.png">
          </ion-thumbnail>
 
-         <h4>{{l.c_campaign_name}}</h4>
+         <h5>{{l.c_campaign_name}}</h5>
          <p clear item-right>{{ l.created_at | timeAgo }}</p>
        </ion-item>
 
@@ -92,7 +92,7 @@
           <img src="assets/imgs/orange-send-file-64.png">
         </ion-thumbnail>
 
-        <h4>{{l.c_campaign_name}}</h4>
+        <h5>{{l.c_campaign_name}}</h5>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
 
           </ion-item>
@@ -116,6 +116,8 @@
 
         <h4>{{l.c_campaign_name}}</h4>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
+        <button ion-button (click)="updateLeads(l.lead_slug, 'Accept')"> Accept </button>
+        <button ion-button (click)="updateLeads(l.lead_slug, 'Decline')"> Decline </button>
           </ion-item>
        </ion-item>
 

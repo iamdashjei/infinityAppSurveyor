@@ -14,71 +14,74 @@
   <ion-card-content #eshForms>
 
     <ion-item>
-      <ion-label color="primary" stacked>Pre-existing ESH: Slimline</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-label color="primary" stacked >Pre-existing ESH: Slimline</ion-label>
+      <ion-input clearInput [(ngModel)]="eshSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Pre-existing ESH: Fan Assisted</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshFanAssisted"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Pre-existing ESH: High heat retention</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshHighHeatRetention"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 Slimline</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshInstalledQualifyingSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 Slimline</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshInstalledNonQualifyingSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 Fan assisted</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshInstalledQualifyingFanAsst"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 Fan assisted</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="estInstalledNonQualifyingFanAsst"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 High heat retention</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshInstalledQualHighHeatRet"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 High heat retention</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshInstalledNonQualHighHeatRet"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>QESH repair: Slimline</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshQeshRepairSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>QESH repair:Fan Assisted</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshQeshRepairFanAsst"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>QESH repair :High heat retention</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshQeshRepairHighHeatRet"> </ion-input>
     </ion-item>
 
+    <ion-item>
+        <button ion-button (click)="saveEsh()"> Save </button>
+    </ion-item>
 
   </ion-card-content>
 </ion-card>

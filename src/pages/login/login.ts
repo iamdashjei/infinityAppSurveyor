@@ -38,11 +38,11 @@ export class LoginPage {
 
   ionViewDidLoad() {
     // this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    // FCMPlugin.getToken(
-    //   (token) => {
-    //     console.log("Device Token: " + token);
-    //     this.token = token;
-    // });
+    FCMPlugin.getToken(
+      (token) => {
+        console.log("Device Token: " + token);
+        this.token = token;
+    });
   }
 
   login(phoneNumber: number) {
@@ -98,53 +98,39 @@ export class LoginPage {
 
   send(phoneNumber: number){
 
-    // let testNumber = '639051583899';
-    // this.rest.fetchUserByPhoneNumber(testNumber, this.token).then((result) => {
-    //         console.log(result);
-    //         this.navCtrl.setRoot(DashboardPage);
-    // }, (err) => {
-    //         console.log(err);
-    //
-    //   });
-    // const phoneNumberString = "+" + phoneNumber;
-    // (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
-    //   alert("SMS Sent Successfully");
-    //   console.log(credential);
-    //
-    //   this.verificationId = credential.verificationId;
-    //
-    // }, (error) => {
-    //   console.error(error);
-    // });
 
-    this.rest.fetchTestUserPhone(this.phoneNumber, this.token).then((result) => {
-            console.log(result);
-          //  this.navCtrl.setRoot(DashboardPage);
-    }, (err) => {
-            console.log(err);
+     const phoneNumberString = "+" + phoneNumber;
+    (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
+      alert("SMS Sent Successfully");
+      console.log(credential);
+    
+      this.verificationId = credential.verificationId;
 
-      });
-  
+    }, (error) => {
+      console.error(error);
+    });
+
+
   }
 
+
   PhoneVerification(){
-    // let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
-    //
-    // firebase.auth().signInWithCredential(signInCredential).then((info) => {
-    //   console.log(info);
-    //
-    //   this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
-    //           console.log(result);
-    //           this.navCtrl.setRoot(DashboardPage);
-    //   }, (err) => {
-    //           console.log(err);
-    //
-    //     });
-    //   this.navCtrl.setRoot(DashboardPage);
-    //
-    // }, (error) => {
-    //   console.log(error);
-    // });
+    let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
+
+    firebase.auth().signInWithCredential(signInCredential).then((info) => {
+      console.log(info);
+
+      this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+              console.log(result);
+              this.navCtrl.setRoot(DashboardPage);
+      }, (err) => {
+              console.log(err);
+
+        });
+
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   isPhoneNumberSubmit(){

@@ -1,5 +1,7 @@
 import { Component, ViewChild, Renderer, Input } from '@angular/core';
 
+
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 /**
  * Generated class for the AccordionEshBoilerComponent component.
  *
@@ -12,12 +14,17 @@ import { Component, ViewChild, Renderer, Input } from '@angular/core';
 })
 export class AccordionEshBoilerComponent {
   accordionExpanded = false;
+  newHeatingSystemUsing: any;
+  newSystemHeatBool: any;
+  eshUnroundedPOPT: any;
+  eshRoundedPOPT: any;
 
+  eshData: any;
   @ViewChild("eshboilerForms") eshboilerFormContent: any;
   @Input('title') title: string;
 
   icon: string = "arrow-forward";
-  constructor(public renderer: Renderer) {}
+  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) {}
 
   ionViewDidLoad(){
     console.log(this.eshboilerFormContent.nativeElement);
@@ -37,5 +44,20 @@ export class AccordionEshBoilerComponent {
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
+
+  saveEshBoiler(){
+
+    const dataFromEshForm = {
+      newHeatingSystemUsing: this.newHeatingSystemUsing,
+      newSystemHeatBool: this.newSystemHeatBool,
+      eshUnroundedPOPT: this.eshUnroundedPOPT,
+      eshRoundedPOPT: this.eshRoundedPOPT
+    };
+
+
+    this.sharedObject.setSharedEshBoilerObject(dataFromEshForm);
+  }
+
+
 
 }

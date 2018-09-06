@@ -53,6 +53,16 @@ export class MyApp {
     };
     firebase.initializeApp(firebaseConfig);
 
+    FCMPlugin.onNotification(function(data){
+    if(data.wasTapped){
+      //Notification was received on device tray and tapped by the user.
+    //  navCtrl.setRoot(DashboardPage);
+    }else{
+      //Notification was received in foreground. Maybe the user needs to be notified.
+      alert( JSON.stringify(data) );
+      }
+    });
+
     platform.ready().then(() => {
       this.global.set('theme', '');
       // Okay, so the platform is ready and our plugins are available.

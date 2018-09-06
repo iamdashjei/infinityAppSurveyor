@@ -14,7 +14,7 @@
   <ion-card-content #eshboilerForms>
     <ion-item>
       <ion-label color="primary" stacked>What fuel is the new heating system using?</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="newHeatingSystemUsing"> </ion-input>
     </ion-item>
 
     <ion-item>
@@ -28,12 +28,16 @@
     <!-- If the answer is no -->
     <ion-item>
       <ion-label color="primary" stacked>Unrounded POPT</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshUnroundedPOPT"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Rounded POPT</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="eshRoundedPOPT"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button (click)="saveEshBoiler()"> Save </button>
     </ion-item>
     <!-- End of the (no) condition -->
 

@@ -1,6 +1,8 @@
 import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
+
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 /**
  * Generated class for the AccordionComponent component.
  *
@@ -13,13 +15,29 @@ import { Storage } from '@ionic/storage';
 })
 export class AccordionComponent {
   accordionExpanded = false;
+  // Main Form
+  myDate: any;
+  surveyorName: any;
+  nameOfCustomer: any;
+  postCode: any;
+  addressInstall: any;
+  custType: any;
+  propertyType: any;
+  propertyType1: any;
+  propertyType2: any;
+  bedrooms: any;
+  tenure: any;
+  heatingSource: any;
+  other: any;
+  notes: any;
+  drawing: any;
 
   @ViewChild("genForms") genFormContent: any;
   @Input('title') title: string;
 
   icon: string = "arrow-forward";
 
-  constructor(public renderer: Renderer, private storage: Storage) {}
+  constructor(public renderer: Renderer, private storage: Storage, public sharedObject: SharedobjectserviceProvider) {}
 
   ionViewDidLoad(){
     console.log(this.genFormContent.nativeElement);
@@ -55,6 +73,29 @@ export class AccordionComponent {
 
   prompt() {
     console.log("Bedroom Dropdown");
+  }
+
+  saveMainForm(){
+    const dataMainForm = {
+      myDate: this.myDate,
+      surveyorName: this.surveyorName,
+      nameOfCustomer: this.nameOfCustomer,
+      postCode: this.postCode,
+      addressInstall: this.addressInstall,
+      custType: this.custType,
+      propertyType: this.propertyType,
+      propertyType1: this.propertyType1,
+      propertyType2: this.propertyType2,
+      bedrooms: this.bedrooms,
+      tenure: this.tenure,
+      heatingSource: this.heatingSource,
+      other: this.other,
+      notes: this.notes,
+      drawing: this.drawing
+    };
+
+
+    this.sharedObject.setSharedMainForm(dataMainForm);
   }
 
 

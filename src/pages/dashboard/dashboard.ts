@@ -3,6 +3,7 @@ import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { RestProvider } from '../../providers/rest/rest';
 import { DatasourceProvider } from '../../providers/datasource/datasource';
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { Badge } from '@ionic-native/badge';
 
 import { Storage } from '@ionic/storage';
@@ -32,6 +33,7 @@ export class DashboardPage {
     codes: any;
     surveyorName: string;
     surveyorEmail: string;
+    user_id: any;
 
 
     // Dashboard Custom Menu
@@ -48,9 +50,10 @@ export class DashboardPage {
               private badge: Badge,
               public storage: Storage,
               public rest: RestProvider,
+              public sharedObject: SharedobjectserviceProvider,
               public datasource: DatasourceProvider) {
       this.menuCtrl.enable(true, 'menu-material');
-    
+
   }
 
   ionViewDidLoad() {
@@ -96,19 +99,21 @@ export class DashboardPage {
 
   getLeadsAssigned(){
     this.storage.get("user_id").then((val) => {
-
+      this.user_id = val;
       this.rest.fetchLeadAssigned(val).then((result) => {
 
         this.leadsNew = result['New Leads'];
         this.leadsInProgress = result['In Progress'];
         this.leadsCompleted = result['Completed'];
 
-        //console.log("All Leads: " +   JSON.stringify(this.leadsNew));
+        console.log("All Leads: " +   JSON.stringify(this.leadsNew));
       }, (err) => {
         console.log(err);
 
       });
     });
+
+
 
     this.storage.get("user_name").then((val) => {
 
@@ -154,10 +159,12 @@ export class DashboardPage {
   }
 
   openLeads(lead_slug, campaign_name){
-    this.navCtrl.setRoot('SurveyorFormPage', {
+    this.navCtrl.push('SurveyorFormPage', {
       lead_slug: lead_slug,
       campaignValue: campaign_name
     });
+
+    this.sharedObject.setSharedCampaignMeasure(campaign_name);
   }
 
   isleadsCompletedHaveValue(){
@@ -166,6 +173,18 @@ export class DashboardPage {
       return false;
     }
     return true;
+
+  }
+
+  updateLeads(lead_slug, remarks){
+    this.rest.updateLeadsFromActionBtn(lead_slug, this.user_id, 'In Progress', remarks).then((result) => {
+      console.log(result);
+      this.getLeadsAssigned();
+
+    }, (err) => {
+      console.log(err);
+
+    });
 
   }
 
