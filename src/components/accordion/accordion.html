@@ -15,26 +15,31 @@
   <ion-card-content #genForms>
     <ion-item>
       <ion-label color="primary" floating>Date Of Survey</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="myDate"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Surveyor Name</ion-label>
-      <ion-input clearInput [(ngModel)]="surveyorName"></ion-input>
+      <ion-input clearInput [(ngModel)]="surveyorName" value="{{ surveyorName }}"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Name of Customer</ion-label>
-      <ion-input clearInput [(ngModel)]="nameOfCustomer"></ion-input>
+      <ion-input clearInput [(ngModel)]="nameOfCustomer" value="{{ nameOfCustomer }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>Date Of Birth</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="myDOB"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Post Code</ion-label>
-      <ion-input clearInput [(ngModel)]="postCode"></ion-input>
+      <ion-input clearInput [(ngModel)]="postCode" value="{{ postCode }}"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Address of Installation</ion-label>
-      <ion-input clearInput [(ngModel)]="addressInstall"></ion-input>
+      <ion-input clearInput [(ngModel)]="addressInstall" value="{{ addressInstall }}"></ion-input>
     </ion-item>
 
     <ion-item>

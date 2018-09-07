@@ -1,5 +1,7 @@
 import { Component, ViewChild, Renderer, Input } from '@angular/core';
 
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+
 /**
  * Generated class for the AccordionBoilerComponent component.
  *
@@ -17,7 +19,20 @@ export class AccordionBoilerComponent {
   @Input('title') title: string;
 
   icon: string = "arrow-forward";
-  constructor(public renderer: Renderer) { }
+  mainWallConstType: any;
+  preExistHeatControls: any;
+  boilerRecordFaults: any;
+  heatControlsCurrent: any;
+  numberNormalRadiators: any;
+  numberTowelRadiators: any;
+  numberTRVs: any;
+  boierRepairNoPreExtHeat: any;
+  boierReplaceNoPreExtHeat: any;
+  boierRepairNoPreExtHeatNonQlfy: any;
+  boierReplaceNoPreExtHeatNonQlfy: any;
+  boilerHeatingControls: any;
+
+  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) { }
 
   ionViewDidLoad(){
     console.log(this.boilerFormContent.nativeElement);
@@ -36,6 +51,26 @@ export class AccordionBoilerComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+  }
+
+  saveBoiler(){
+    const data = {
+      mainWallConstType: this.mainWallConstType,
+      preExistHeatControls: this.preExistHeatControls,
+      boilerRecordFaults: this.boilerRecordFaults,
+      heatControlsCurrent: this.heatControlsCurrent,
+      numberNormalRadiators: this.numberNormalRadiators,
+      numberTowelRadiators: this.numberTowelRadiators,
+      numberTRVs: this.numberTRVs,
+      boierRepairNoPreExtHeat: this.boierRepairNoPreExtHeat,
+      boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat,
+      boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy,
+      boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy,
+      boilerHeatingControls: this.boilerHeatingControls
+    };
+
+    this.sharedObject.setSharedBoilerObject(data);
+    alert("Saved Successfully!");
   }
 
 }

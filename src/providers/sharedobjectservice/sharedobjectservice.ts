@@ -18,11 +18,19 @@ export class SharedobjectserviceProvider {
   sharedCavityWallObject: any;
   sharedSolidWallObject: any;
 
+  // Lead Object by Status
+  sharedNewLeadsObject: any;
+  sharedInProgressObject: any;
+  sharedCompletedObject: any;
+
   // Main Form
   sharedMainFormObject: any;
 
   // Current Campaign Measure
   sharedCampaignMeasure: string;
+
+  // User ID
+  userId: any;
 
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
@@ -101,6 +109,40 @@ export class SharedobjectserviceProvider {
     return this.sharedCampaignMeasure;
   }
 
+  // Set User Id upon login
+  setSharedUserId(sharedValue){
+    this.userId = sharedValue;
+  }
 
+  getSharedUserId(){
+    return this.userId;
+  }
+
+  // Set New Leads Object
+  setSharedNewLeadsObject(sharedValue){
+   this.sharedNewLeadsObject = sharedValue;
+  }
+
+  getSharedNewLeadsObject(){
+    return this.sharedNewLeadsObject;
+  }
+
+  // Set In Progress Leads Object
+  setSharedInProgressObject(sharedValue){
+   this.sharedInProgressObject = sharedValue;
+  }
+
+  getSharedInProgressObject(){
+    return this.sharedInProgressObject;
+  }
+
+  // Set In Progress Leads Object
+  setSharedCompletedObject(sharedValue){
+   this.sharedCompletedObject = sharedValue;
+  }
+
+  getSharedCompletedObject(){
+    return this.sharedCompletedObject;
+  }
 
 }

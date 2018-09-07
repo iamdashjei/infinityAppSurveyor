@@ -76,8 +76,9 @@ export class AccordionComponent {
   }
 
   saveMainForm(){
+    let date = new Date(this.myDate);
     const dataMainForm = {
-      myDate: this.myDate,
+      myDate: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
       surveyorName: this.surveyorName,
       nameOfCustomer: this.nameOfCustomer,
       postCode: this.postCode,
@@ -96,6 +97,7 @@ export class AccordionComponent {
 
 
     this.sharedObject.setSharedMainForm(dataMainForm);
+    alert("Saved Successfully!");
   }
 
 

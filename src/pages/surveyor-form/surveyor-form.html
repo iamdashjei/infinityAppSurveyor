@@ -48,12 +48,12 @@
   <cavity-wall-component-upload title="Cavity and Solid Wall Insulation Image Uploads" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation Image Uploads</cavity-wall-component-upload>
   <boiler-image-upload title="Boiler Image Upload" *ngIf="isViewedBoiler()">Boiler Image Upload</boiler-image-upload>
   <loft-image-upload title="Loft Insulation Measures Image Upload" *ngIf="isViewedLoft()">Loft Insulation Measures Image Upload</loft-image-upload>
-  <button ion-button block outline (click)="openSignatureModel()" padding>
+  <button ion-button full outline (click)="openSignatureModel()" padding>
     Signature
   </button>
   <div><img [src]="signatureImage" *ngIf="signatureImage" /></div>
 
-  <button ion-button (click)="savedObject()" padding>
+  <button ion-button full (click)="savedObject()" padding>
     Get Saved Objects
   </button>
 </ion-content>

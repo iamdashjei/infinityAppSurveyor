@@ -22,10 +22,16 @@ export class SurveyorFormPage{
   public signatureImage: any;
   campaignMeasureView: any;
   lead_slug: any;
+  lead_info: any;
 
   eshData: any;
   mainFormData: any;
   eshBoilerData: any;
+  loftData: any;
+  boilerData: any;
+  solidWallData: any;
+  cavityWallData: any;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

@@ -16,12 +16,12 @@
     <!-- Property Section Main -->
     <ion-item>
       <ion-label color="primary" stacked>Property Section Main</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="loftPropSectionMain"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Roof Type</ion-label>
-      <ion-select [(ngModel)]="rooftype">
+      <ion-select [(ngModel)]="loftRooftype">
         <ion-option value="Flat">Flat</ion-option>
         <ion-option value="Pitched">Pitched</ion-option>
         <ion-option value="RIR">RIR</ion-option>
@@ -30,12 +30,12 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Roof Area</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="loftRoofArea"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Type of Installation</ion-label>
-      <ion-select [(ngModel)]="typeofinstall">
+      <ion-select [(ngModel)]="loftTypeofinstall">
         <ion-option value="<=100mm"><=100mm</ion-option>
         <ion-option value=">100mm">>100mm</ion-option>
         <ion-option value="RIRI">RIRI</ion-option>
@@ -44,7 +44,7 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Type of Installation Value</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="loftTypeInstallValue"></ion-input>
     </ion-item>
     <!-- End of Property Section Main -->
 
@@ -52,12 +52,12 @@
     <ion-item-divider>Property Section Ext 1</ion-item-divider>
       <ion-item>
       <ion-label color="primary" stacked>Property Section Ext 1</ion-label>
-      <ion-input clearInput></ion-input>
+      <ion-input clearInput [(ngModel)]="loftPropSectionExt1"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Roof Type (Property Section Ext 1)</ion-label>
-        <ion-select [(ngModel)]="rooftypePropExt1">
+        <ion-select [(ngModel)]="loftRooftypePropExt1">
           <ion-option value="Flat">Flat</ion-option>
           <ion-option value="Pitched">Pitched</ion-option>
           <ion-option value="RIR">RIR</ion-option>
@@ -66,12 +66,12 @@
 
       <ion-item>
         <ion-label color="primary" stacked>Roof Area (Property Section Ext 1)</ion-label>
-        <ion-input clearInput></ion-input>
+        <ion-input clearInput [(ngModel)]="loftRoofAreaPSExt1"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Type of Installation (Property Section Ext 1)</ion-label>
-        <ion-select [(ngModel)]="typeofinstallPropExt1">
+        <ion-select [(ngModel)]="loftTypeofinstallPropExt1">
           <ion-option value="<=100mm"><=100mm</ion-option>
           <ion-option value=">100mm">>100mm</ion-option>
           <ion-option value="RIRI">RIRI</ion-option>
@@ -80,7 +80,7 @@
 
       <ion-item>
         <ion-label color="primary" stacked>Type of Installation Value (Property Section Ext 1)</ion-label>
-        <ion-input clearInput></ion-input>
+        <ion-input clearInput [(ngModel)]="loftTypeOfInstallValuePSExt1"></ion-input>
       </ion-item>
       <!-- End of Property Fields -->
 
@@ -88,12 +88,12 @@
       <ion-item-divider>Property Section Ext 2</ion-item-divider>
         <ion-item>
         <ion-label color="primary" stacked>Property Section Ext 2</ion-label>
-        <ion-input clearInput></ion-input>
+        <ion-input clearInput [(ngModel)]="loftPropExt2"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label color="primary" stacked>Roof Type (Property Section Ext 2)</ion-label>
-          <ion-select [(ngModel)]="rooftypePropExt2">
+          <ion-select [(ngModel)]="loftRooftypePropExt2">
             <ion-option value="Flat">Flat</ion-option>
             <ion-option value="Pitched">Pitched</ion-option>
             <ion-option value="RIR">RIR</ion-option>
@@ -102,12 +102,12 @@
 
         <ion-item>
           <ion-label color="primary" stacked>Roof Area (Property Section Ext 2)</ion-label>
-          <ion-input clearInput></ion-input>
+          <ion-input clearInput [(ngModel)]="loftRoofAreaPropExt2"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label color="primary" stacked>Type of Installation (Property Section Ext 2)</ion-label>
-          <ion-select [(ngModel)]="typeofinstallPropExt2">
+          <ion-select [(ngModel)]="loftTypeofinstallPropExt2">
             <ion-option value="<=100mm"><=100mm</ion-option>
             <ion-option value=">100mm">>100mm</ion-option>
             <ion-option value="RIRI">RIRI</ion-option>
@@ -116,7 +116,7 @@
 
         <ion-item>
           <ion-label color="primary" stacked>Type of Installation Value (Property Section Ext 2)</ion-label>
-          <ion-input clearInput></ion-input>
+          <ion-input clearInput [(ngModel)]="loftTypeofinstallValuePropExt2"></ion-input>
         </ion-item>
         <!-- End of Property Section Ext 2 Fields -->
 
@@ -124,12 +124,12 @@
         <ion-item-divider>Property Section Ext 3</ion-item-divider>
           <ion-item>
           <ion-label color="primary" stacked>Property Section Ext 3</ion-label>
-          <ion-input clearInput></ion-input>
+          <ion-input clearInput [(ngModel)]="loftPropSecExt3"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label color="primary" stacked>Roof Type (Property Section Ext 3)</ion-label>
-            <ion-select [(ngModel)]="rooftypePropExt3">
+            <ion-select [(ngModel)]="loftRooftypePropExt3">
               <ion-option value="Flat">Flat</ion-option>
               <ion-option value="Pitched">Pitched</ion-option>
               <ion-option value="RIR">RIR</ion-option>
@@ -138,12 +138,12 @@
 
           <ion-item>
             <ion-label color="primary" stacked>Roof Area (Property Section Ext 3)</ion-label>
-            <ion-input clearInput></ion-input>
+            <ion-input clearInput [(ngModel)]="loftRoofAreaExt3"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label color="primary" stacked>Type of Installation (Property Section Ext 3)</ion-label>
-            <ion-select [(ngModel)]="typeofinstallPropExt3">
+            <ion-select [(ngModel)]="loftTypeOfInstallPropSecExt3">
               <ion-option value="<=100mm"><=100mm</ion-option>
               <ion-option value=">100mm">>100mm</ion-option>
               <ion-option value="RIRI">RIRI</ion-option>
@@ -152,7 +152,7 @@
 
           <ion-item>
             <ion-label color="primary" stacked>Type of Installation Value (Property Section Ext 3)</ion-label>
-            <ion-input clearInput></ion-input>
+            <ion-input clearInput [(ngModel)]="loftTypeOfInstallValuePropExt3"></ion-input>
           </ion-item>
           <!-- End of Property Section Ext3 Fields -->
 
@@ -160,12 +160,12 @@
           <ion-item-divider>Property Section Ext 4</ion-item-divider>
             <ion-item>
             <ion-label color="primary" stacked>Property Section Ext 4</ion-label>
-            <ion-input clearInput></ion-input>
+            <ion-input clearInput [(ngModel)]="loftPropSecExt4"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Roof Type (Property Section Ext 4)</ion-label>
-              <ion-select [(ngModel)]="rooftypePropExt4">
+              <ion-select [(ngModel)]="loftRooftypePropExt4">
                 <ion-option value="Flat">Flat</ion-option>
                 <ion-option value="Pitched">Pitched</ion-option>
                 <ion-option value="RIR">RIR</ion-option>
@@ -174,12 +174,12 @@
 
             <ion-item>
               <ion-label color="primary" stacked>Roof Area (Property Section Ext 4)</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftRoofAreaPropExt4"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Type of Installation (Property Section Ext 4)</ion-label>
-              <ion-select [(ngModel)]="typeofinstallPropExt4">
+              <ion-select [(ngModel)]="loftTypeofinstallPropExt4">
                 <ion-option value="<=100mm"><=100mm</ion-option>
                 <ion-option value=">100mm">>100mm</ion-option>
                 <ion-option value="RIRI">RIRI</ion-option>
@@ -188,7 +188,7 @@
 
             <ion-item>
               <ion-label color="primary" stacked>Type of Installation Value (Property Section Ext 4)</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTypeofinstallValuePropExt4"></ion-input>
             </ion-item>
             <!-- End of Property Section Ext4 Fields -->
 
@@ -196,73 +196,73 @@
             <ion-item-divider>Total Roof Area</ion-item-divider>
             <ion-item>
               <ion-label color="primary" stacked>Total Roof Area A</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaA"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Total Roof Area B</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaB"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Total Roof Area C</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaC"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Total Roof Area D</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaD"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Total Roof Area E</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaE"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label color="primary" stacked>Total Roof Area E</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-label color="primary" stacked>Total Roof Area F</ion-label>
+              <ion-input clearInput [(ngModel)]="loftTotalRoofAreaF"></ion-input>
             </ion-item>
 
             <!-- Computation for the below fieldset -->
             <ion-item>
               <ion-label color="primary" stacked>Unrounded <= 100mm POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftUnroundedLess100POPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Unrounded > 100mm POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftUnroundedMore100POPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Unrounded FRI POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftUnroundedFRIPOPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Rounded <= 100mm POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftRoundedLess100POPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Rounded > 100mm POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftRoundedMore100POPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Rounded  FRI POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftRoundedFRIPOPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>Rounded  RIRI POPT</ion-label>
-              <ion-input clearInput></ion-input>
+              <ion-input clearInput [(ngModel)]="loftRoundedRIRIPOPT"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label color="primary" stacked>If Room in roof insulation, will you be insulating the residual area?</ion-label>
-              <ion-select [(ngModel)]="ifRoomInRoofIns">
+              <ion-select [(ngModel)]="loftIfRoomInRoofIns">
                 <ion-option value="Yes">Yes</ion-option>
                 <ion-option value="No">No</ion-option>
               </ion-select>

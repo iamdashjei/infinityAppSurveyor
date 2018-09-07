@@ -30,7 +30,7 @@
 
     <ion-item>
       <ion-label color="primary" stacked>If applicable, please record fault(s)</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="boilerRecordFaults"> </ion-input>
     </ion-item>
 
     <ion-item>
@@ -43,45 +43,47 @@
 
     <ion-item>
       <ion-label color="primary" stacked>Existing number of Normal Radiators</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="numberNormalRadiators"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Existing number of Towel Radiators</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="numberTowelRadiators"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Existing number of TRV's</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="numberTRVs"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Boiler REPAIR no pre-existing heating controls</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="boierRepairNoPreExtHeat"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Boiler REPLACE no pre-existing heating controls</ion-label>
-      <ion-input clearInput> </ion-input>
+      <ion-input clearInput [(ngModel)]="boierReplaceNoPreExtHeat"> </ion-input>
     </ion-item>
 
     <ion-item-divider>Non-qualifying Boiler</ion-item-divider>
       <ion-item>
         <ion-label color="primary" stacked>Boiler REPAIR no pre-existing heating controls</ion-label>
-        <ion-input clearInput> </ion-input>
+        <ion-input clearInpu [(ngModel)]="boierRepairNoPreExtHeatNonQlfy"> </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Boiler REPLACE no pre-existing heating controls</ion-label>
-        <ion-input clearInput> </ion-input>
+        <ion-input clearInput [(ngModel)]="boierReplaceNoPreExtHeatNonQlfy"> </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label color="primary" stacked>Heating Controls</ion-label>
-        <ion-input clearInput> </ion-input>
+        <ion-input clearInput [(ngModel)]="boilerHeatingControls"> </ion-input>
       </ion-item>
-
+      <ion-item>
+          <button ion-button (click)="saveBoiler()"> Save Boiler Measurements </button>
+      </ion-item>
 
   </ion-card-content>
 </ion-card>

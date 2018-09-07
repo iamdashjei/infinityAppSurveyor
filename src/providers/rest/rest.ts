@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
 import { Storage } from '@ionic/storage';
+
+import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobjectservice';
 /*
   Generated class for the RestProvider provider.
 
@@ -26,11 +28,7 @@ export class RestProvider {
 
   public options = new RequestOptions({ headers: this.headers });
 
-
-
-
-
-  constructor(public http: Http, private storage: Storage) {
+  constructor(public http: Http, private storage: Storage, public sharedObject: SharedobjectserviceProvider) {
     console.log('Hello RestProvider Provider');
   }
 
@@ -45,14 +43,14 @@ export class RestProvider {
 
   }
 
-  createOtpCodes() {
+  createOtpCodes(otp_code, otp_user_id, otp_date) {
     let data = JSON.stringify({
-      otp_code: '3465465465',
-      otp_date: '2018-08-01',
-      otp_user_id: '1'
+      otp_code: otp_code,
+      otp_date: otp_date,
+      otp_user_id: otp_user_id
     });
 
-    return new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
       this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/add-otpcodes', data, this.options)
       .toPromise()
       .then((response) =>
@@ -69,10 +67,28 @@ export class RestProvider {
     });
   }
 
+  fetchLeadBySlug(lead_slug){
+    let data = JSON.stringify({ lead_slug });
+
+    return new Promise((resolve, reject) => {
+       this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-leadsBySlug', data, this.options)
+       .toPromise()
+       .then((response) =>
+       {
+         console.log('API Response : ', response.json());
+         resolve(response.json());
+       })
+       .catch((error) =>
+       {
+         console.error('API Error : ', error.status);
+         console.error('API Error : ', JSON.stringify(error));
+         reject(error.json());
+       });
+     });
+  }
+
   fetchLeadAssigned(id){
-    let data = JSON.stringify({
-      otp_user_id: id
-    });
+    let data = JSON.stringify({ otp_user_id: id });
 
     return new Promise((resolve, reject) => {
       this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByLead', data, this.options)
@@ -93,10 +109,7 @@ export class RestProvider {
 
   fetchUserByPhoneNumber(phoneNumber, token){
 
-    let data = JSON.stringify({
-      phone: phoneNumber,
-      device_token: token
-    });
+    let data = JSON.stringify({ phone: phoneNumber, device_token: token });
 
     return new Promise((resolve, reject) => {
       this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByPhoneNumber', data, this.options)
@@ -110,6 +123,8 @@ export class RestProvider {
 
         this.setKey("user_id", id[0].id);
         this.setKey("user_name", id[0].name);
+
+        this.sharedObject.setSharedUserId(id[0].id);
       })
       .catch((error) =>
       {
@@ -148,11 +163,12 @@ export class RestProvider {
   updateLeadData(lead_slug, additional_fields, notes, postCode, addressInstall, nameOfCustomer){
     let data = JSON.stringify({
       lead_slug: lead_slug,
-      additional_fields: ""+additional_fields,
+      additional_fields: JSON.stringify(additional_fields),
       notes: notes,
       postCode: postCode,
       addressInstall: addressInstall,
-      nameOfCustomer: nameOfCustomer
+      nameOfCustomer: nameOfCustomer,
+      user_id: this.sharedObject.getSharedUserId()
     });
 
     return new Promise((resolve, reject) => {

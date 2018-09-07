@@ -56,6 +56,8 @@ export class AccordionEshBoilerComponent {
 
 
     this.sharedObject.setSharedEshBoilerObject(dataFromEshForm);
+
+    alert("Saved Successfully!");
   }
 
 

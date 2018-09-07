@@ -87,13 +87,13 @@ export class DashboardPage {
 
   saveOtpCode(){
 
-    this.rest.createOtpCodes().then((result) => {
-      console.log(result);
-
-    }, (err) => {
-      console.log(err);
-
-    });
+    // this.rest.createOtpCodes().then((result) => {
+    //   console.log(result);
+    //
+    // }, (err) => {
+    //   console.log(err);
+    //
+    // });
 
   }
 
@@ -112,7 +112,6 @@ export class DashboardPage {
 
       });
     });
-
 
 
     this.storage.get("user_name").then((val) => {

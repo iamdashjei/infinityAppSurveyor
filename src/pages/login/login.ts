@@ -29,6 +29,7 @@ export class LoginPage {
   phoneNumber: string;
   verifiedPhoneNumber: string;
   token: string = "";
+  userId: any;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public rest: RestProvider, public storage: Storage) {
     // FCMPlugin.subscribeToTopic('all');
@@ -43,94 +44,55 @@ export class LoginPage {
         console.log("Device Token: " + token);
         this.token = token;
     });
+      this.storage.get("user_id").then((val) => {
+        this.userId = val;
+      });
+    if(this.userId){
+      this.navCtrl.setRoot(DashboardPage);
+    }
   }
-
-  login(phoneNumber: number) {
-
-
-
-    // const appVerifier = this.recaptchaVerifier;
-    // const phoneNumberString = "+" + phoneNumber;
-    // firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
-    //   .then( confirmationResult => {
-    //     // SMS sent. Prompt user to type the code from the message, then sign the
-    //     // user in with confirmationResult.confirm(code).
-    //     let prompt = this.alertCtrl.create({
-    //     title: 'Enter the Confirmation code',
-    //     inputs: [{ name: 'confirmationCode', placeholder: 'Confirmation Code' }],
-    //     buttons: [
-    //       { text: 'Cancel',
-    //         handler: data => { console.log('Cancel clicked'); }
-    //       },
-    //       { text: 'Send',
-    //         handler: data => {
-    //           confirmationResult.confirm(data.confirmationCode)
-    //           .then(function (result) {
-    //             // User signed in successfully.
-    //             //  console.log(result.user);
-    //
-    //
-    //             // this.rest.fetchUserByPhoneNumber(phoneNumber).then((result) => {
-    //             //   console.log(result);
-    //             //   this.openDashboard();
-    //             // }, (err) => {
-    //             //   console.log(err);
-    //             //
-    //             // });
-    //             // ...
-    //           }).catch(function (error) {
-    //             // User couldn't sign in (bad verification code?)
-    //             // ...
-    //           });
-    //         }
-    //       }
-    //     ]
-    //   });
-    //   prompt.present();
-    // })
-    // .catch(function (error) {
-    //   console.error("SMS not sent", error);
-    // });
-
-  }
-
-
 
   send(phoneNumber: number){
+    this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+            console.log(result);
+            this.navCtrl.setRoot(DashboardPage);
+    }, (err) => {
+            console.log(err);
 
-
-     const phoneNumberString = "+" + phoneNumber;
-    (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
-      alert("SMS Sent Successfully");
-      console.log(credential);
-    
-      this.verificationId = credential.verificationId;
-
-    }, (error) => {
-      console.error(error);
-    });
+      });
+    //
+    //  const phoneNumberString = "+" + phoneNumber;
+    // (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
+    //   alert("SMS Sent Successfully");
+    //   console.log(credential);
+    //
+    //   this.verificationId = credential.verificationId;
+    //
+    // }, (error) => {
+    //   console.error(error);
+    // });
 
 
   }
 
 
   PhoneVerification(){
-    let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
-
-    firebase.auth().signInWithCredential(signInCredential).then((info) => {
-      console.log(info);
-
-      this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
-              console.log(result);
-              this.navCtrl.setRoot(DashboardPage);
-      }, (err) => {
-              console.log(err);
-
-        });
-
-    }, (error) => {
-      console.log(error);
-    });
+    // let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
+    //
+    // firebase.auth().signInWithCredential(signInCredential).then((info) => {
+    //   console.log(info);
+    //
+    //   this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+    //           console.log(result);
+    //           this.navCtrl.setRoot(DashboardPage);
+    //   }, (err) => {
+    //           console.log(err);
+    //
+    //     });
+    //
+    // }, (error) => {
+    //   console.log(error);
+    // });
   }
 
   isPhoneNumberSubmit(){

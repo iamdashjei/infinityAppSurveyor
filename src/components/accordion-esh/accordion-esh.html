@@ -31,37 +31,37 @@
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 Slimline</ion-label>
-      <ion-input clearInput [(ngModel)]="eshInstalledQualifyingSlimline"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="eshInstalledQualifyingSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 Slimline</ion-label>
-      <ion-input clearInput [(ngModel)]="eshInstalledNonQualifyingSlimline"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="eshInstalledNonQualifyingSlimline"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 Fan assisted</ion-label>
-      <ion-input clearInput [(ngModel)]="eshInstalledQualifyingFanAsst"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="eshInstalledQualifyingFanAsst"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 Fan assisted</ion-label>
-      <ion-input clearInput [(ngModel)]="estInstalledNonQualifyingFanAsst"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="estInstalledNonQualifyingFanAsst"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Qualifying
 High heat retention</ion-label>
-      <ion-input clearInput [(ngModel)]="eshInstalledQualHighHeatRet"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="eshInstalledQualHighHeatRet"> </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Number of ESH being installed: Non-Qualifying
 High heat retention</ion-label>
-      <ion-input clearInput [(ngModel)]="eshInstalledNonQualHighHeatRet"> </ion-input>
+      <ion-input type="number" clearInput [(ngModel)]="eshInstalledNonQualHighHeatRet"> </ion-input>
     </ion-item>
 
     <ion-item>
@@ -80,7 +80,7 @@ High heat retention</ion-label>
     </ion-item>
 
     <ion-item>
-        <button ion-button (click)="saveEsh()"> Save </button>
+        <button ion-button (click)="saveEsh()"> Save ESH Measurements </button>
     </ion-item>
 
   </ion-card-content>

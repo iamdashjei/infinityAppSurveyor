@@ -72,6 +72,8 @@ export class AccordionEshComponent {
       eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet
     };
     this.sharedObject.setSharedEshObject(data);
+
+    alert("Saved Successfully!");
   }
 
 }
