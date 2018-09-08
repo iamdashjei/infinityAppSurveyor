@@ -188,6 +188,10 @@ export class RestProvider {
     });
   }
 
+  fileUpload(){
+
+  }
+
 
 
   // Set Key For Specific Data

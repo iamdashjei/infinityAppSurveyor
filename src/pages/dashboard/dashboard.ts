@@ -1,13 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, LoadingController, ToastController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { RestProvider } from '../../providers/rest/rest';
 import { DatasourceProvider } from '../../providers/datasource/datasource';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { Badge } from '@ionic-native/badge';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
+
+import { ImagePicker } from '@ionic-native/image-picker';
 
 /* Generated class for the DashboardPage page.
  *
@@ -24,6 +28,8 @@ export class DashboardPage {
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
 
+     protected uploadFinished = false;
+
     doughnutChart: any;
     badgeNumber: number;
     leadsNew: any;
@@ -35,7 +41,10 @@ export class DashboardPage {
     surveyorEmail: string;
     user_id: any;
 
+    images: any[] = [];
 
+    imageURI:any;
+    imageFileName:any;
     // Dashboard Custom Menu
     MENU = {
       DEFAULT: 'menu-components',
@@ -50,6 +59,9 @@ export class DashboardPage {
               private badge: Badge,
               public storage: Storage,
               public rest: RestProvider,
+              public imagePicker: ImagePicker,
+              public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider,
               public datasource: DatasourceProvider) {
       this.menuCtrl.enable(true, 'menu-material');
@@ -186,6 +198,76 @@ export class DashboardPage {
     });
 
   }
+
+
+  getPictures(){
+    this.imagePicker.getPictures({
+    }).then( results =>{
+      console.log(results);
+      for(let i=0; i < results.length;i++){
+        this.images.push(results[i]);
+        console.log("Images: " + results[i]);
+      };
+    });
+  }
+
+  getImage() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.imageURI = imageData;
+    }, (err) => {
+      console.log(err);
+      this.presentToast(err);
+    });
+  }
+
+  uploadFile() {
+    let loader = this.loadingCtrl.create({
+      content: "Uploading..."
+    });
+    loader.present();
+    const fileTransfer: FileTransferObject = this.transfer.create();
+
+    let options: FileUploadOptions = {
+      fileKey: 'ionicfile',
+      fileName: 'ionicfile',
+      chunkedMode: false,
+      mimeType: "image/jpeg",
+      headers: {}
+    }
+
+    fileTransfer.upload(this.imageURI, 'http://192.168.0.7:8080/api/uploadImage', options)
+      .then((data) => {
+      console.log(data+" Uploaded Successfully");
+      this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
+      loader.dismiss();
+      this.presentToast("Image uploaded successfully");
+    }, (err) => {
+      console.log(err);
+      loader.dismiss();
+      this.presentToast(err);
+    });
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
 
 
 }

@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var cordova: any;
 
 @IonicPage()
 @Component({
