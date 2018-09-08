@@ -241,7 +241,7 @@ export class DashboardPage {
       headers: {}
     }
 
-    fileTransfer.upload(this.imageURI, 'http://192.168.0.7:8080/api/uploadImage', options)
+    fileTransfer.upload(this.imageURI, 'http://192.168.56.1:8080/assets/uploadImage', options)
       .then((data) => {
       console.log(data+" Uploaded Successfully");
       this.imageFileName = "http://192.168.0.7:8080/static/images/ionicfile.jpg"
