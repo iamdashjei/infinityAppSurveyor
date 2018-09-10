@@ -12,6 +12,7 @@ import { Push } from '@ionic-native/push';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Base64 } from '@ionic-native/base64';
 
 import { MyApp } from './app.component';
 import { AppState } from './app.global';
@@ -84,6 +85,7 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     FileTransferObject,
     File,
     ImagePicker,
+    Base64,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Firebase,
     UploadFileServiceProvider,

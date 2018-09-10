@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController } from 'ionic-angular';
 import firebase from 'firebase';
-
 import { RestProvider } from '../../providers/rest/rest';
-
 import { DashboardPage } from '../dashboard/dashboard';
-
 import { Storage } from '@ionic/storage';
 /**
  * Generated class for the LoginPage page.
@@ -30,9 +27,16 @@ export class LoginPage {
   phoneNumber: string;
   verifiedPhoneNumber: string;
   token: string = "";
-  userId: any;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public rest: RestProvider, public storage: Storage) {
+  regData = { avatar: ''};
+  imgPreview = 'assets/imgs/avatar/marty-avatar.png';
+
+  constructor(public navCtrl: NavController,
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController,
+              public rest: RestProvider,
+              public storage: Storage
+            ){
     // FCMPlugin.subscribeToTopic('all');
 
   }
@@ -45,12 +49,7 @@ export class LoginPage {
         console.log("Device Token: " + token);
         this.token = token;
     });
-      this.storage.get("user_id").then((val) => {
-        this.userId = val;
-      });
-    if(this.userId){
-      this.navCtrl.setRoot(DashboardPage);
-    }
+
   }
 
   send(phoneNumber: number){
@@ -108,6 +107,19 @@ export class LoginPage {
       return true;
     }
     return false;
+  }
+
+
+  presentLoadingDefault() {
+  let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+
+  loading.present();
+
+  setTimeout(() => {
+    loading.dismiss();
+  }, 100000);
   }
 
 

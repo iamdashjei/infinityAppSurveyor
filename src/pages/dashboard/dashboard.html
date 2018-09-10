@@ -33,24 +33,17 @@
     <ion-card>
       <ion-card-header>
         Welcome {{ surveyorName }} !
+
       </ion-card-header>
       <ion-card-content>
         [Reminders here]
-        <!-- <button ion-button (click)="getPictures()">Get Pictures</button>
-        <div *ngFor="let image of images">
-        <img src="{{image}}"/>
-        </div> -->
+    
 
         <ion-item>
-          <p>{{imageURI}}</p>
-          <button ion-button color="secondary" (click)="getImage()">Get Image</button>
-        </ion-item>
-        <ion-item>
-          <h4>Image Preview</h4>
-          <img src="{{imageFileName}}" *ngIf="imageFileName" alt="Ionic File" width="300" />
-        </ion-item>
-        <ion-item>
-          <button ion-button (click)="uploadFile()">Upload</button>
+          <!-- <button ion-button (click)="openGallery()"> Open Gallery </button>
+          <button ion-button (click)="uploadImage()"> Upload Image </button>
+          <img [src]="base64Image"/> -->
+
         </ion-item>
 
       </ion-card-content>

@@ -32,6 +32,9 @@ export class SharedobjectserviceProvider {
   // User ID
   userId: any;
 
+  // Lead Slug
+  sharedLeadSlug: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -143,6 +146,15 @@ export class SharedobjectserviceProvider {
 
   getSharedCompletedObject(){
     return this.sharedCompletedObject;
+  }
+
+  // Set Slug on Selected Campaign Measure
+  setSharedSlugSelectedCM(sharedValue){
+    this.sharedLeadSlug = sharedValue;
+  }
+
+  getSharedSlugSelectedCM(){
+    return this.sharedLeadSlug;
   }
 
 }

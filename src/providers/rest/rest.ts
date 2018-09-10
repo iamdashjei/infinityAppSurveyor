@@ -188,8 +188,14 @@ export class RestProvider {
     });
   }
 
-  fileUpload(){
+  fileUpload(fileBase64, type, tag){
+    let data = JSON.stringify({
+      image: fileBase64,
+      type: type,
+      tag: tag
+    });
 
+    this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-esh', data);
   }
 
 
@@ -226,6 +232,24 @@ export class RestProvider {
       return true;
     }
     return false;
+  }
+
+  returnablePromise(url, data){
+    return new Promise((resolve, reject) => {
+      this.http.post(url, data, this.options)
+      .toPromise()
+      .then((response) =>
+      {
+        console.log('API Response: ', response.json());
+        resolve(response.json());
+      })
+      .catch((error) =>
+      {
+        console.error('API Error : ', error.status);
+        console.error('API Error : ', JSON.stringify(error));
+        reject(error.json());
+      });
+    });
   }
 
 
