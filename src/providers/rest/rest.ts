@@ -192,10 +192,21 @@ export class RestProvider {
     let data = JSON.stringify({
       image: fileBase64,
       type: type,
-      tag: tag
+      tag: tag,
+      lead_slug: sharedObject.getSharedSlugSelectedCM();
     });
 
     this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-esh', data);
+  }
+
+  fileUploadMainForm(fileBase64, type, tag){
+    let data = JSON.stringify({
+      image: fileBase64,
+      type: type,
+      tag: tag,
+      lead_slug: sharedObject.getSharedSlugSelectedCM();
+    });
+      this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
   }
 
 

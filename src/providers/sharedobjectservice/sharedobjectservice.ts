@@ -35,6 +35,9 @@ export class SharedobjectserviceProvider {
   // Lead Slug
   sharedLeadSlug: any;
 
+  // Cust name
+  sharedCustName: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -155,6 +158,14 @@ export class SharedobjectserviceProvider {
 
   getSharedSlugSelectedCM(){
     return this.sharedLeadSlug;
+  }
+
+  setSharedCustName(sharedValue){
+    this.sharedCustName = sharedValue;
+  }
+
+  getSharedCustName(){
+    return this.sharedCustName;
   }
 
 }

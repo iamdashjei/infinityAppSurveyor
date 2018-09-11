@@ -28,9 +28,10 @@ import { LoftImageUploadComponent } from '../../components/loft-image-upload/lof
     CavityWallComponentUploadComponent,
     BoilerImageUploadComponent,
     LoftImageUploadComponent
+
   ],
   imports: [
-    IonicPageModule.forChild(SurveyorFormPage),
-  ],
+    IonicPageModule.forChild(SurveyorFormPage)
+  ]
 })
 export class SurveyorFormPageModule {}

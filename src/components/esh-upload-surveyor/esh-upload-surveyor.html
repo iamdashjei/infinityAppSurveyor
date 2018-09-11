@@ -30,7 +30,7 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">UBIL</ion-label>
-         <img [src]="{{ base64ImageUBIL }}" width="80" height="80"/>
+         <img [src]="base64ImageUBIL" width="80" height="80" *ngIf="base64ImageUBIL"/>
        </ion-col>
 
        <ion-col>
@@ -60,6 +60,7 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Customer Signature Specimen</ion-label>
+         <img [src]="base64ImageCustSignature" width="80" height="80" *ngIf="base64ImageCustSignature"/>
        </ion-col>
 
        <ion-col>
@@ -85,6 +86,7 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary"> Floor Plan</ion-label>
+         <img [src]="base64ImageFloorPlan" width="80" height="80" *ngIf="base64ImageFloorPlan"/>
        </ion-col>
 
        <ion-col>
@@ -110,6 +112,7 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary"> Tenancy Agreement</ion-label>
+         <img [src]="base64ImageTenancyAgreement" width="80" height="80" *ngIf="base64ImageTenancyAgreement"/>
        </ion-col>
 
        <ion-col>
@@ -135,6 +138,7 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Landlord Permission</ion-label>
+         <img [src]="base64ImageLandLordPerm" width="80" height="80" *ngIf="base64ImageLandLordPerm"/>
        </ion-col>
 
        <ion-col>

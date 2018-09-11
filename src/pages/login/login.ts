@@ -53,46 +53,46 @@ export class LoginPage {
   }
 
   send(phoneNumber: number){
-    this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
-            console.log(result);
-            this.navCtrl.setRoot(DashboardPage);
-    }, (err) => {
-            console.log(err);
+    // this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+    //         console.log(result);
+    //         this.navCtrl.setRoot(DashboardPage);
+    // }, (err) => {
+    //         console.log(err);
+    //
+    //   });
 
-      });
-    //
-    //  const phoneNumberString = "+" + phoneNumber;
-    // (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
-    //   alert("SMS Sent Successfully");
-    //   console.log(credential);
-    //
-    //   this.verificationId = credential.verificationId;
-    //
-    // }, (error) => {
-    //   console.error(error);
-    // });
+     const phoneNumberString = "+" + phoneNumber;
+    (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
+      alert("SMS Sent Successfully");
+      console.log(credential);
+
+      this.verificationId = credential.verificationId;
+
+    }, (error) => {
+      console.error(error);
+    });
 
 
   }
 
 
   PhoneVerification(){
-    // let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
-    //
-    // firebase.auth().signInWithCredential(signInCredential).then((info) => {
-    //   console.log(info);
-    //
-    //   this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
-    //           console.log(result);
-    //           this.navCtrl.setRoot(DashboardPage);
-    //   }, (err) => {
-    //           console.log(err);
-    //
-    //     });
-    //
-    // }, (error) => {
-    //   console.log(error);
-    // });
+    let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.code);
+
+    firebase.auth().signInWithCredential(signInCredential).then((info) => {
+      console.log(info);
+
+      this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
+              console.log(result);
+              this.navCtrl.setRoot(DashboardPage);
+      }, (err) => {
+              console.log(err);
+
+        });
+
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   isPhoneNumberSubmit(){

@@ -37,7 +37,7 @@
       </ion-card-header>
       <ion-card-content>
         [Reminders here]
-    
+
 
         <ion-item>
           <!-- <button ion-button (click)="openGallery()"> Open Gallery </button>
@@ -94,7 +94,7 @@
 
      </ion-list-header>
      <ion-item *ngFor="let l of leadsInProgress">
-          <ion-item (click)="openLeads(l.lead_slug, l.c_campaign_name, leadsInProgress)">
+          <ion-item (click)="openLeads(l.lead_slug, l.c_campaign_name, leadsInProgress, l.created_at, l.name_of_customer)">
          <ion-thumbnail item-left>
           <img src="assets/imgs/orange-send-file-64.png">
         </ion-thumbnail>

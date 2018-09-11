@@ -23,6 +23,8 @@ export class SurveyorFormPage{
   campaignMeasureView: any;
   lead_slug: any;
   lead_info: any;
+  leadCreatedDate: any;
+  leadCustName: any;
 
   eshData: any;
   mainFormData: any;
@@ -42,6 +44,11 @@ export class SurveyorFormPage{
     this.signatureImage = navParams.get('signatureImage');
     this.campaignMeasureView = navParams.get('campaignValue');
     this.lead_slug = navParams.get('lead_slug');
+    this.leadCreatedDate = navParams.get('leadCreatedDate');
+    this.leadCustName = navParams.get('leadCustName');
+
+    sharedObject.setSharedSlugSelectedCM(this.lead_slug);
+    sharedObject.setSharedCustName(this.leadCustName);
 
   }
 
@@ -154,8 +161,6 @@ export class SurveyorFormPage{
 
 
   }
-
-
 
 
 

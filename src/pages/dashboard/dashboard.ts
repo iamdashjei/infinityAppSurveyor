@@ -171,10 +171,12 @@ export class DashboardPage {
     this.badge.clear();
   }
 
-  openLeads(lead_slug, campaign_name){
+  openLeads(lead_slug, campaign_name, leadItem, leadCreatedDate, leadCustName){
     this.navCtrl.push('SurveyorFormPage', {
       lead_slug: lead_slug,
-      campaignValue: campaign_name
+      campaignValue: campaign_name,
+      leadCreatedDate: leadCreatedDate,
+      leadCustName: leadCustName
     });
 
     this.sharedObject.setSharedCampaignMeasure(campaign_name);
