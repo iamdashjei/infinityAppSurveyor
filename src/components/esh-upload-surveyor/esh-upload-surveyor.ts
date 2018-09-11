@@ -23,7 +23,27 @@ export class EshUploadSurveyorComponent {
 
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
-  progress: {percentage: number} = {percentage: 0};
+
+  progressUBIL: {percentage: number} = {percentage: 0};
+  progressUBILStatus: string = "Not yet completed";
+  colorUBIL: string = "danger";
+
+  progressCustSig: {percentage: number} = {percentage: 0};
+  progressCustSigStatus: string = "Not yet completed";
+  colorCustSig: string = "danger";
+
+  progressFloorPlan: {percentage: number} = {percentage: 0};
+  progressFloorPlanStatus: string = "Not yet completed";
+  colorFloorPlan: string = "danger";
+
+  progressTenancyAgrmt: {percentage: number} = {percentage: 0};
+  progressTenancyAgrmtStatus: string = "Not yet completed";
+  colorTenancyAgrmt: string = "danger";
+
+  progressLandlordPerm: {percentage: number} = {percentage: 0};
+  progressLandlordPermStatus: string = "Not yet completed";
+  colorLandlordPerm: string = "danger";
+
   data = false;
   accordionExpanded = false;
   signature = '';
@@ -61,16 +81,12 @@ export class EshUploadSurveyorComponent {
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
-
-    selectFileEshSurveyor(event){
-          this.selectedFiles = event.target.files;
-    }
-
-    uploadEshSurveyor(){
-      const file = this.selectedFiles.item(0);
-      this.currentFileUpload = new FileUpload(file);
-      this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-    }
+    //
+    // selectFileEshSurveyor(event){
+    //       this.selectedFiles = event.target.files;
+    // }
+    //
+    //
 
 
     openGallery(tag) {
@@ -83,12 +99,20 @@ export class EshUploadSurveyorComponent {
       }
 
       this.camera.getPicture(options).then((imageData) => {
+      console.log("This tag: " + tag);
 
-        tag == 'UBIL' ? this.base64ImageUBIL = 'data:image/jpeg;base64,' + imageData : this.base64ImageUBIL = '';
-        tag == 'CustSignature' ? this.base64ImageCustSignature = 'data:image/jpeg;base64,' + imageData : this.base64ImageCustSignature = '';
-        tag == 'FloorPlan' ? this.base64ImageFloorPlan = 'data:image/jpeg;base64,' + imageData : this.base64ImageFloorPlan = '';
-        tag == 'TenancyAgreement' ? this.base64ImageTenancyAgreement = 'data:image/jpeg;base64,' + imageData : this.base64ImageTenancyAgreement = '';
-        tag == 'LandLordPerm' ? this.base64ImageLandLordPerm = 'data:image/jpeg;base64,' + imageData : this.base64ImageLandLordPerm ='';
+        if( tag == 'UBIL'){
+           this.base64ImageUBIL = 'data:image/jpeg;base64,' + imageData;
+        } else if(tag == 'CustSignature'){
+          this.base64ImageCustSignature = 'data:image/jpeg;base64,' + imageData;
+        } else if(tag == 'FloorPlan'){
+          this.base64ImageFloorPlan = 'data:image/jpeg;base64,' + imageData;
+        } else if(tag == 'TenancyAgreement'){
+          this.base64ImageTenancyAgreement = 'data:image/jpeg;base64,' + imageData;
+        } else if(tag == 'LandLordPerm'){
+          this.base64ImageLandLordPerm = 'data:image/jpeg;base64,' + imageData;
+        }
+
 
       }, (err) => {
         console.log(err);
@@ -97,18 +121,62 @@ export class EshUploadSurveyorComponent {
     }
 
     uploadImage(tag){
+      console.log("Upload Image: " + tag)
       if(tag == 'UBIL'){
           this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
+          this.progressUploads(tag);
       } else if ( tag == 'CustSignature'){
            this.rest.fileUpload(this.base64ImageCustSignature, 'Image', tag);
+           this.progressUploads(tag);
       } else if ( tag == 'FloorPlan') {
           this.rest.fileUpload(this.base64ImageFloorPlan, 'Image', tag);
+          this.progressUploads(tag);
       } else if ( tag == 'TenancyAgreement') {
           this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
+          this.progressUploads(tag);
       } else if ( tag == 'LandLordPerm') {
           this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
+          this.progressUploads(tag);
       }
 
 
+    }
+
+    progressUploads(tag){
+      for(var i = 0; i <= 100; i+=10){
+
+        if(tag == 'UBIL'){
+          this.progressUBIL.percentage = i;
+          if(i == 100){
+            this.progressUBILStatus = "Completed";
+            this.colorUBIL = "secondary";
+          }
+        } else if ( tag == 'CustSignature'){
+          this.progressCustSig.percentage = i;
+          if(i == 100){
+            this.progressCustSigStatus = "Completed";
+            this.colorCustSig = "secondary";
+          }
+        } else if ( tag == 'FloorPlan') {
+          this.progressFloorPlan.percentage = i;
+          if(i == 100){
+            this.progressFloorPlanStatus = "Completed";
+            this.colorFloorPlan = "secondary";
+          }
+        } else if ( tag == 'TenancyAgreement') {
+          this.progressTenancyAgrmt.percentage = i;
+          if(i == 100){
+            this.progressTenancyAgrmtStatus = "Completed";
+            this.colorTenancyAgrmt = "secondary";
+          }
+        } else if ( tag == 'LandLordPerm') {
+          this.progressLandlordPerm.percentage = i;
+          if(i == 100){
+            this.progressLandlordPermStatus = "Completed";
+            this.colorLandlordPerm = "secondary";
+          }
+        }
+
+      }
     }
 }
