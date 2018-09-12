@@ -153,7 +153,7 @@ export class ImageUploadSurveyorComponent {
 
   ionViewDidLoad(){
     console.log(this.surveyorFormContent.nativeElement);
-    this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
+    this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "webkitTransition", "max-height 3600ms, padding 500ms");
   }
 
   toggleAccordionSurveyor() {
@@ -161,7 +161,7 @@ export class ImageUploadSurveyorComponent {
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "3200px");
+      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "3600px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "13px 16px");
     }
 
@@ -213,46 +213,67 @@ export class ImageUploadSurveyorComponent {
 
       if( tag == 'Kitchen'){
          this.base64ImageKitchen = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'DinningRoom'){
         this.base64ImageDinningRoom = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'LivingRoom'){
         this.base64ImageLivingRoom = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Hallway'){
         this.base64ImageHallway = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'LandingUpstairs'){
         this.base64ImageLandingUpstairs = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'FrontElevation'){
         this.base64ImageFrontElevation = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'LeftElevation'){
         this.base64ImageLeftElevation = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'RearElevation'){
         this.base64ImageRearElevation = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'SideElevation'){
         this.base64ImageSideElevation = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Utility'){
         this.base64ImageUtility = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'HeatingSource'){
         this.base64ImageHeatingSource = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'BathRoom'){
         this.base64ImageBathRoom = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'AiringCupboard'){
         this.base64ImageAiringCupboard = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Conservatory'){
         this.base64ImageConservatory = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Other'){
         this.base64ImageOther = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Stairs'){
         this.base64ImageStairs = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Garage'){
         this.base64ImageGarage = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'WallThickness'){
         this.base64ImageWallThickness = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'FusedSpur'){
         this.base64ImageFusedSpur = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'RoomStat'){
         this.base64ImageRoomStat = 'data:image/jpeg;base64,' + imageData;
+
       } else if(tag == 'Programmer'){
         this.base64ImageProgrammer = 'data:image/jpeg;base64,' + imageData;
+
       }
 
 
@@ -266,67 +287,88 @@ export class ImageUploadSurveyorComponent {
   uploadImage(tag){
     console.log("Upload Image: " + tag)
     if(tag == 'Kitchen'){
-        this.rest.fileUploadMainForm(this.base64ImageKitchen, 'Image', tag);
+        this.storage.set("kitchen", this.base64ImageKitchen);
+        //this.rest.fileUploadMainForm(this.base64ImageKitchen, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'DinningRoom'){
-         this.rest.fileUploadMainForm(this.base64ImageDinningRoom, 'Image', tag);
+         this.storage.set("dinningroom", this.base64ImageDinningRoom);
+         //this.rest.fileUploadMainForm(this.base64ImageDinningRoom, 'Image', tag);
          this.progressUploads(tag);
     } else if ( tag == 'LivingRoom') {
-        this.rest.fileUploadMainForm(this.base64ImageLivingRoom, 'Image', tag);
+        this.storage.set("livingroom", this.base64ImageLivingRoom);
+        //this.rest.fileUploadMainForm(this.base64ImageLivingRoom, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Hallway') {
-        this.rest.fileUploadMainForm(this.base64ImageLandingUpstairs, 'Image', tag);
+        this.storage.set("hallway", this.base64ImageHallway);
+        //this.rest.fileUploadMainForm(this.base64ImageLandingUpstairs, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'LandingUpstairs') {
-        this.rest.fileUploadMainForm(this.base64ImageFrontElevation, 'Image', tag);
+        this.storage.set("landingupstair", this.base64ImageLandingUpstairs);
+        //this.rest.fileUploadMainForm(this.base64ImageFrontElevation, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'FrontElevation') {
-        this.rest.fileUploadMainForm(this.base64ImageLeftElevation, 'Image', tag);
+        this.storage.set("frontelevation", this.base64ImageFrontElevation);
+        //this.rest.fileUploadMainForm(this.base64ImageLeftElevation, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'LeftElevation') {
-        this.rest.fileUploadMainForm(this.base64ImageRearElevation, 'Image', tag);
+        this.storage.set("leftelevation", this.base64ImageLeftElevation);
+        //this.rest.fileUploadMainForm(this.base64ImageRearElevation, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'RearElevation') {
-        this.rest.fileUploadMainForm(this.base64ImageSideElevation, 'Image', tag);
+        this.storage.set("rearelevation", this.base64ImageRearElevation);
+        //this.rest.fileUploadMainForm(this.base64ImageSideElevation, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'SideElevation') {
-        this.rest.fileUploadMainForm(this.base64ImageUtility, 'Image', tag);
+        this.storage.set("sideelevation", this.base64ImageSideElevation);
+        //this.rest.fileUploadMainForm(this.base64ImageUtility, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Utility') {
-        this.rest.fileUploadMainForm(this.base64ImageHeatingSource, 'Image', tag);
+        this.storage.set("utility", this.base64ImageUtility);
+        //this.rest.fileUploadMainForm(this.base64ImageHeatingSource, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'HeatingSource') {
-        this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
+        this.storage.set("heatingsource", this.base64ImageHeatingSource);
+        //this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'AiringCupboard') {
-        this.rest.fileUploadMainForm(this.base64ImageAiringCupboard, 'Image', tag);
+        this.storage.set("airingcupboard", this.base64ImageAiringCupboard);
+        //this.rest.fileUploadMainForm(this.base64ImageAiringCupboard, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Conservatory') {
-        this.rest.fileUploadMainForm(this.base64ImageConservatory, 'Image', tag);
+        this.storage.set("conservatory", this.base64ImageConservatory);
+        //this.rest.fileUploadMainForm(this.base64ImageConservatory, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Other') {
-        this.rest.fileUploadMainForm(this.base64ImageOther, 'Image', tag);
+        this.storage.set("other", this.base64ImageOther);
+        //this.rest.fileUploadMainForm(this.base64ImageOther, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Stairs') {
-        this.rest.fileUploadMainForm(this.base64ImageStairs, 'Image', tag);
+        this.storage.set("stairs", this.base64ImageStairs);
+        //this.rest.fileUploadMainForm(this.base64ImageStairs, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Garage') {
-        this.rest.fileUploadMainForm(this.base64ImageGarage, 'Image', tag);
+        this.storage.set("garage", this.base64ImageGarage);
+        //this.rest.fileUploadMainForm(this.base64ImageGarage, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'WallThickness') {
-        this.rest.fileUploadMainForm(this.base64ImageWallThickness, 'Image', tag);
+        this.storage.set("wallthickness", this.base64ImageWallThickness);
+        //this.rest.fileUploadMainForm(this.base64ImageWallThickness, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'FusedSpur') {
-        this.rest.fileUploadMainForm(this.base64ImageFusedSpur, 'Image', tag);
+        this.storage.set("fusedspur", this.base64ImageFusedSpur);
+        //this.rest.fileUploadMainForm(this.base64ImageFusedSpur, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'RoomStat') {
-        this.rest.fileUploadMainForm(this.base64ImageRoomStat, 'Image', tag);
+        this.storage.set("roomstat", this.base64ImageRoomStat);
+        //this.rest.fileUploadMainForm(this.base64ImageRoomStat, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'Programmer') {
-        this.rest.fileUploadMainForm(this.base64ImageProgrammer, 'Image', tag);
+        this.storage.set("programmer", this.base64ImageProgrammer);
+        //this.rest.fileUploadMainForm(this.base64ImageProgrammer, 'Image', tag);
         this.progressUploads(tag);
     } else if ( tag == 'BathRoom') {
-        this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
+        this.storage.set("bathroom", this.base64ImageBathRoom);
+        //this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
         this.progressUploads(tag);
     }
 

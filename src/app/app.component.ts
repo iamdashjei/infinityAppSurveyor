@@ -24,7 +24,7 @@ import { RestProvider } from '../providers/rest/rest';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-   rootPage:any = 'LoginPage';
+   rootPage:any;
 
 
   activePage = new Subject();
@@ -32,6 +32,7 @@ export class MyApp {
   rightMenuItems: Array<{ icon: string, active: boolean }>;
   state: any;
   user_name: string;
+  token: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -51,10 +52,17 @@ export class MyApp {
           storageBucket: "infinityapp-fe5c6.appspot.com",
           messagingSenderId: "918580267251"
     };
+    this.isLoggedIn();
     firebase.initializeApp(firebaseConfig);
+    FCMPlugin.getToken(
+      (token) => {
+        console.log("Device Token: " + token);
+        this.token = token;
+    });
 
     FCMPlugin.onNotification(function(data){
     if(data.wasTapped){
+      this.isLoggedIn();
       //Notification was received on device tray and tapped by the user.
     //  navCtrl.setRoot(DashboardPage);
     }else{
@@ -62,6 +70,8 @@ export class MyApp {
       alert( JSON.stringify(data) );
       }
     });
+
+
 
     platform.ready().then(() => {
       this.global.set('theme', '');
@@ -111,9 +121,26 @@ export class MyApp {
     item.active = true;
   }
 
+  isLoggedIn(){
 
+    this.storage.ready().then(() => {
 
+      this.storage.get('SurveyorPhone').then((phone) => {
+          this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
+                  console.log(result);
+                  this.rootPage = DashboardPage;
+                  //this.navCtrl.setRoot(DashboardPage);
+          }, (err) => {
+                  console.log(err);
+                  this.rootPage = 'LoginPage';
+            });
 
+      }, (err) => {
+        this.rootPage = 'LoginPage';
+      });
+
+    });
+  }
 
 
 

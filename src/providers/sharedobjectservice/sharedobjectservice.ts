@@ -38,6 +38,9 @@ export class SharedobjectserviceProvider {
   // Cust name
   sharedCustName: any;
 
+  // Submit Objects
+  sharedSubmitObjects: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -160,12 +163,22 @@ export class SharedobjectserviceProvider {
     return this.sharedLeadSlug;
   }
 
+  // Set Customer Name
   setSharedCustName(sharedValue){
     this.sharedCustName = sharedValue;
   }
 
   getSharedCustName(){
     return this.sharedCustName;
+  }
+
+  // Set Submit Data
+  setSharedSubmitObject(sharedValue){
+    this.sharedSubmitObjects = sharedValue;
+  }
+
+  getSharedSubmitObject(){
+    return this.sharedSubmitObjects;
   }
 
 }

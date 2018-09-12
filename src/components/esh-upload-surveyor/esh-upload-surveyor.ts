@@ -4,7 +4,7 @@ import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { RestProvider } from '../../providers/rest/rest';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the EshUploadSurveyorComponent component.
  *
@@ -60,6 +60,7 @@ export class EshUploadSurveyorComponent {
   constructor(public renderer: Renderer,
               private uploadService: UploadFileServiceProvider,
               public rest: RestProvider,
+              public storage: Storage,
               private camera: Camera
    ) {}
 
@@ -123,19 +124,24 @@ export class EshUploadSurveyorComponent {
     uploadImage(tag){
       console.log("Upload Image: " + tag)
       if(tag == 'UBIL'){
-          this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
+          this.storage.set("eshUBIL", this.base64ImageUBIL);
+          //this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'CustSignature'){
-           this.rest.fileUpload(this.base64ImageCustSignature, 'Image', tag);
+           this.storage.set("eshCustSignature", this.base64ImageCustSignature);
+           //this.rest.fileUpload(this.base64ImageCustSignature, 'Image', tag);
            this.progressUploads(tag);
       } else if ( tag == 'FloorPlan') {
-          this.rest.fileUpload(this.base64ImageFloorPlan, 'Image', tag);
+           this.storage.set("eshFloorPlan", this.base64ImageFloorPlan);
+          //this.rest.fileUpload(this.base64ImageFloorPlan, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'TenancyAgreement') {
-          this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
+          this.storage.set("eshTenancyAgreement", this.base64ImageTenancyAgreement);
+          //this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'LandLordPerm') {
-          this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
+          this.storage.set("eshLandLordPerm", this.base64ImageLandLordPerm);
+          //this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
           this.progressUploads(tag);
       }
 

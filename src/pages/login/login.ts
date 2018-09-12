@@ -28,6 +28,7 @@ export class LoginPage {
   verifiedPhoneNumber: string;
   token: string = "";
 
+
   regData = { avatar: ''};
   imgPreview = 'assets/imgs/avatar/marty-avatar.png';
 
@@ -43,23 +44,31 @@ export class LoginPage {
 
 
   ionViewDidLoad() {
-    // this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
     FCMPlugin.getToken(
       (token) => {
         console.log("Device Token: " + token);
         this.token = token;
     });
+    this.storage.ready().then(() => {
+
+      this.storage.get('SurveyorPhone').then((phone) => {
+          this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
+                  console.log(result);
+                  this.navCtrl.setRoot(DashboardPage);
+          }, (err) => {
+                  console.log(err);
+
+            });
+
+      });
+
+    });
 
   }
 
   send(phoneNumber: number){
-    // this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
-    //         console.log(result);
-    //         this.navCtrl.setRoot(DashboardPage);
-    // }, (err) => {
-    //         console.log(err);
-    //
-    //   });
+
+
 
      const phoneNumberString = "+" + phoneNumber;
     (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
@@ -81,9 +90,12 @@ export class LoginPage {
 
     firebase.auth().signInWithCredential(signInCredential).then((info) => {
       console.log(info);
-
+      this.storage.set("otp_code", this.code);
+      this.storage.set("SurveyorPhone", this.phoneNumber);
       this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
               console.log(result);
+
+              this.presentLoadingDefault();
               this.navCtrl.setRoot(DashboardPage);
       }, (err) => {
               console.log(err);
@@ -92,6 +104,7 @@ export class LoginPage {
 
     }, (error) => {
       console.log(error);
+
     });
   }
 
@@ -112,14 +125,14 @@ export class LoginPage {
 
   presentLoadingDefault() {
   let loading = this.loadingCtrl.create({
-    content: 'Please wait...'
+    content: 'Logging in...'
   });
 
   loading.present();
 
   setTimeout(() => {
     loading.dismiss();
-  }, 100000);
+  }, 10000);
   }
 
 

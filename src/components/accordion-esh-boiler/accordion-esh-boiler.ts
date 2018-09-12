@@ -1,6 +1,6 @@
 import { Component, ViewChild, Renderer, Input } from '@angular/core';
 
-
+import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 /**
  * Generated class for the AccordionEshBoilerComponent component.
@@ -24,7 +24,9 @@ export class AccordionEshBoilerComponent {
   @Input('title') title: string;
 
   icon: string = "arrow-forward";
-  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) {}
+  constructor(public renderer: Renderer,
+              public sharedObject: SharedobjectserviceProvider,
+              public storage: Storage) {}
 
   ionViewDidLoad(){
     console.log(this.eshboilerFormContent.nativeElement);
@@ -56,7 +58,7 @@ export class AccordionEshBoilerComponent {
 
 
     this.sharedObject.setSharedEshBoilerObject(dataFromEshForm);
-
+    this.storage.set("EshFormData", dataFromEshForm);
     alert("Saved Successfully!");
   }
 

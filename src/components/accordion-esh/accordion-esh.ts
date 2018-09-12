@@ -1,5 +1,5 @@
 import { Component, ViewChild, Renderer, Input} from '@angular/core';
-
+import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 
 /**
@@ -34,7 +34,9 @@ export class AccordionEshComponent {
 
 
   icon: string = "arrow-forward";
-  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) {}
+  constructor(public renderer: Renderer,
+              public storage: Storage,
+              public sharedObject: SharedobjectserviceProvider) {}
 
   ionViewDidLoad(){
     console.log(this.eshFormContent.nativeElement);
@@ -72,7 +74,7 @@ export class AccordionEshComponent {
       eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet
     };
     this.sharedObject.setSharedEshObject(data);
-
+    this.storage.set("EshBoilFormData", data);
     alert("Saved Successfully!");
   }
 

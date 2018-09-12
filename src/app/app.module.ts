@@ -62,7 +62,9 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     AngularFireModule.initializeApp(FIREBASE_CONFIG.firebase),
     IonicModule.forRoot(MyApp),
     SignaturePadModule, // Signature Pad (E-Signature)
-    IonicStorageModule.forRoot() // Ionic Storage Local (Phone)
+    IonicStorageModule.forRoot({
+      name: '_appdb', driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }) // Ionic Storage Local (Phone)
 
   ],
   bootstrap: [IonicApp],

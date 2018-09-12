@@ -53,7 +53,7 @@
      </ion-row> -->
 
 
-       <ion-row *ngFor="let item of forLoopArray(bedroom); let i = index">
+       <!-- <ion-row *ngFor="let item of forLoopArray(bedroom); let i = index">
        <ion-col>
          <div class="progress" style="width:300px">
            <div class="progress-bar progress-bar-info progress-bar-striped"
@@ -69,11 +69,11 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary" >Bedroom - {{ i + 1 }}</ion-label>
-       </ion-col>
+       </ion-col> -->
 
        <ion-col>
-         <button ion-button (click)="openGallery('UBIL')"> Choose File </button>
-         <button ion-button (click)="uploadImage('UBIL')"> Upload Image </button>
+         <button ion-button (click)="openGallery('Bedroom')"> Choose File </button>
+         <button ion-button (click)="uploadImage('Bedroom')"> Upload Image </button>
 
        </ion-col>
       </ion-row>

@@ -123,6 +123,9 @@ export class RestProvider {
 
         this.setKey("user_id", id[0].id);
         this.setKey("user_name", id[0].name);
+        this.storage.set("email", id[0].email);
+        this.storage.set("position", id[0].position);
+        this.storage.set("address", id[0].address);
 
         this.sharedObject.setSharedUserId(id[0].id);
       })
@@ -193,7 +196,7 @@ export class RestProvider {
       image: fileBase64,
       type: type,
       tag: tag,
-      lead_slug: sharedObject.getSharedSlugSelectedCM();
+      lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });
 
     this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-esh', data);
@@ -204,7 +207,7 @@ export class RestProvider {
       image: fileBase64,
       type: type,
       tag: tag,
-      lead_slug: sharedObject.getSharedSlugSelectedCM();
+      lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });
       this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
   }

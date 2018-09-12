@@ -92,5 +92,6 @@
     </plugin>
     <plugin name="com-badrit-base64" spec="^0.2.0" />
     <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
+    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <engine name="android" spec="7.0.0" />
 </widget>

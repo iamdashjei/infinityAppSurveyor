@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { SignaturePage } from '../signature/signature';
-
+import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { RestProvider} from '../../providers/rest/rest';
 
@@ -38,6 +38,7 @@ export class SurveyorFormPage{
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public modalController: ModalController,
+              public storage: Storage,
               public sharedObject: SharedobjectserviceProvider,
               public rest: RestProvider)
      {
@@ -135,21 +136,33 @@ export class SurveyorFormPage{
       newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing,
       newSystemHeatBool: this.eshBoilerData.newSystemHeatBool,
       eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT,
-      eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT
+      eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT ,
+      preExttESHSlimline: this.eshData.eshSlimline,
+      preExtEshFanAsst: this.eshData.eshFanAssisted,
+      preExtEshHighHeatRet: this.eshData.eshHighHeatRetention,
+      numberOfEshInstalledQlfySL: this.eshData.eshInstalledQualifyingSlimline,
+      numberOfEshInstalledNQlfySL:this.eshData.eshInstalledNonQualifyingSlimline,
+      numberOfEshInstalledQlfyFA: this.eshData.eshInstalledQualifyingFanAsst,
+      numberOfEshInstalledNQlfyFA: this.eshData.estInstalledNonQualifyingFanAsst,
+      numberOfEshInstalledQlfyHHR: this.eshData.eshInstalledQualHighHeatRet,
+      numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet,
+      qeshRepSL: this.eshData.eshQeshRepairSlimline,
+      qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet,
+      qeshFA: this.eshQeshRepairFanAsst.eshQeshRepairFanAsst
     };
 
 
-    this.rest.updateLeadData(this.lead_slug,saveData,
-      this.mainFormData.notes,
-      this.mainFormData.postCode,
-      this.mainFormData.addressInstall,
-    this.mainFormData.nameOfCustomer).then((result) => {
-            console.log(result);
-          //  this.navCtrl.setRoot(DashboardPage);
-    }, (err) => {
-            console.log(err);
-
-      });
+    // this.rest.updateLeadData(this.lead_slug,saveData,
+    //   this.mainFormData.notes,
+    //   this.mainFormData.postCode,
+    //   this.mainFormData.addressInstall,
+    // this.mainFormData.nameOfCustomer).then((result) => {
+    //         console.log(result);
+    //       //  this.navCtrl.setRoot(DashboardPage);
+    // }, (err) => {
+    //         console.log(err);
+    //
+    //   });
 
     //console.log(JSON.stringify(this.eshData));
     //console.log(JSON.stringify(this.mainFormData));
@@ -158,8 +171,29 @@ export class SurveyorFormPage{
     console.log(this.mainFormData.postCode);
     console.log(this.mainFormData.addressInstall);
     console.log(JSON.stringify(saveData));
+    this.storage.forEach( (value, key, index) => {
+	     console.log("This is the value", value);
+	     console.log("from the key", key);
+	     console.log("Index is", index);
+     });
 
+  }
+  this.sharedObject.setSharedSubmitObject(saveData);
 
+  submitObject(){
+    const submitData = this.sharedObject.getSharedSubmitObject();
+    this.rest.updateLeadData(this.lead_slug,submitData,
+      this.submitData.notes,
+      this.submitData.postCode,
+      this.submitData.addressInstall,
+    this.submitData.nameOfCustomer).then((result) => {
+            console.log(result);
+            alert("Successfully Submitted!");
+          this.navCtrl.setRoot(DashboardPage);
+    }, (err) => {
+            console.log(err);
+
+      });
   }
 
 
