@@ -14,12 +14,17 @@
     <ion-title>Surveyor Form</ion-title>
 
     <ion-buttons end>
+      <button ion-button (click)="savedObject()" > Save Lead </button>
+      <button ion-button (click)="submitObject()" > Submit </button>
      <button id="notification-button" ion-button clear>
    <ion-icon name="notifications">
      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
    </ion-icon>
     </button>
+
    </ion-buttons>
+
+
   </ion-navbar>
 
 </ion-header>
@@ -33,13 +38,7 @@
           <ion-label >Duration: {{ leadCreatedDate }}</ion-label>
 
         </ion-item>
-        <ion-item>
-          <button ion-button (click)="savedObject()"> Save Lead </button>
-        </ion-item>
 
-        <ion-item>
-          <button ion-button (click)="submitObject()"> Submit </button>
-        </ion-item>
 
       </ion-card-content>
   </ion-card>

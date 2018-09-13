@@ -68,6 +68,7 @@ export class MyApp {
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
       alert( JSON.stringify(data) );
+      this.isLoggedIn();
       }
     });
 

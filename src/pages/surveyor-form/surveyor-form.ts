@@ -72,6 +72,7 @@ export class SurveyorFormPage{
     this.leadCreatedDate = navParams.get('leadCreatedDate');
     this.leadCustName = navParams.get('leadCustName');
 
+    sharedObject.setSharedSelectedLeadObject(navParams.get('leadItem'));
     sharedObject.setSharedSlugSelectedCM(this.lead_slug);
     sharedObject.setSharedCustName(this.leadCustName);
 
@@ -324,7 +325,7 @@ export class SurveyorFormPage{
 
 
   submitObject(){
-  
+
     const submitData = this.sharedObject.getSharedSubmitObject();
     this.rest.updateLeadData(this.lead_slug,submitData,
       submitData.notes,
@@ -334,7 +335,7 @@ export class SurveyorFormPage{
             console.log(result);
 
           this.saveImageObject();
-          this.navCtrl.setRoot(DashboardPage);
+          //this.navCtrl.setRoot(DashboardPage);
           alert("Successfully Submitted!");
     }, (err) => {
             console.log(err);

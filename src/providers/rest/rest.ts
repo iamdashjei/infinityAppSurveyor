@@ -143,7 +143,7 @@ export class RestProvider {
       lead_slug: lead_slug,
       otp_user_id: id,
       status: status,
-      remarks: remarks,
+      remarks: remarks
     });
 
     return new Promise((resolve, reject) => {

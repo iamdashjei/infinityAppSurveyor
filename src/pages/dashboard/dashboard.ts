@@ -111,6 +111,11 @@ export class DashboardPage {
 
   }
 
+  //ionViewWillEnter(){}
+  ionViewDidEnter(){
+    this.getLeadsAssigned();
+  }
+
   getLeadsAssigned(){
     this.storage.get("user_id").then((val) => {
       this.user_id = val;
@@ -176,7 +181,8 @@ export class DashboardPage {
       lead_slug: lead_slug,
       campaignValue: campaign_name,
       leadCreatedDate: leadCreatedDate,
-      leadCustName: leadCustName
+      leadCustName: leadCustName,
+      leadItem: leadItem
     });
 
     this.sharedObject.setSharedCampaignMeasure(campaign_name);

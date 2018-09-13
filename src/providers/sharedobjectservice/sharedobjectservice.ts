@@ -41,6 +41,8 @@ export class SharedobjectserviceProvider {
   // Submit Objects
   sharedSubmitObjects: any;
 
+  sharedSelectedLeadObject: any;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -180,5 +182,15 @@ export class SharedobjectserviceProvider {
   getSharedSubmitObject(){
     return this.sharedSubmitObjects;
   }
+
+  // Set Selected Lead
+  setSharedSelectedLeadObject(sharedValue){
+    this.sharedSelectedLeadObject = sharedValue;
+  }
+
+  getSharedSelectedLeadObject(){
+    return this.sharedSelectedLeadObject;
+  }
+
 
 }

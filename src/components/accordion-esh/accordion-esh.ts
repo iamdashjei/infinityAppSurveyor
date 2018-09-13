@@ -31,14 +31,19 @@ export class AccordionEshComponent {
   eshQeshRepairFanAsst: any;
   eshQeshRepairHighHeatRet: any;
 
+  eshData: any;
 
 
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer,
               public storage: Storage,
-              public sharedObject: SharedobjectserviceProvider) {}
+              public sharedObject: SharedobjectserviceProvider) {
+
+
+              }
 
   ionViewDidLoad(){
+
     console.log(this.eshFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
   }
@@ -56,7 +61,29 @@ export class AccordionEshComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+
+    this.eshData = this.sharedObject.getSharedSelectedLeadObject();
+    const data = JSON.parse(this.eshData["additional_fields"]);
+
+
+
+    this.eshSlimline = data.preExttESHSlimline;
+    this.eshFanAssisted = data.preExtEshFanAsst;
+    this.eshHighHeatRetention = data.preExtEshHighHeatRet;
+    this.eshInstalledQualifyingSlimline = data.numberOfEshInstalledQlfySL;
+    this.eshInstalledNonQualifyingSlimline = data.numberOfEshInstalledNQlfySL;
+    this.eshInstalledQualifyingFanAsst = data.numberOfEshInstalledQlfyFA;
+    this.estInstalledNonQualifyingFanAsst = data.numberOfEshInstalledNQlfyFA;
+    this.eshInstalledQualHighHeatRet = data.numberOfEshInstalledQlfyHHR;
+    this.eshInstalledNonQualHighHeatRet = data.numberOfEshInstalledNQlfyHHR;
+    this.eshQeshRepairSlimline = data.qeshRepSL;
+    this.eshQeshRepairFanAsst = data.qeshFA;
+    this.eshQeshRepairHighHeatRet = data.qeshRepHHR;
+
+
   }
+
+
 
   saveEsh(){
     const data = {

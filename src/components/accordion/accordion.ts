@@ -32,6 +32,8 @@ export class AccordionComponent {
   notes: any;
   drawing: any;
 
+  mainFormData: any;
+
   @ViewChild("genForms") genFormContent: any;
   @Input('title') title: string;
 
@@ -56,6 +58,27 @@ export class AccordionComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+
+
+    this.mainFormData = this.sharedObject.getSharedSelectedLeadObject();
+    this.mainFormData = JSON.parse(this.mainFormData["additional_fields"]);
+    console.log(JSON.stringify(this.mainFormData.date_of_survey));
+    var date = new Date(this.mainFormData.date_of_survey);
+    this.myDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+    console.log(JSON.stringify(this.myDate));
+    this.surveyorName = this.mainFormData.surveyor_name;
+    this.nameOfCustomer = this.mainFormData.name_of_customer;
+    this.postCode =  this.mainFormData.postCode;
+    this.addressInstall = this.mainFormData.addressInstall;
+    this.custType = this.mainFormData.customer_type;
+    this.propertyType = this.mainFormData.property_type;
+    this.propertyType1 =  this.mainFormData.property_type1;
+    this.propertyType2 = this.mainFormData.property_type2;
+    this.bedrooms = this.mainFormData.bedrooms;
+    this.tenure = this.mainFormData.tenure;
+    this.heatingSource = this.mainFormData.heating_source;
+    this.other = this.mainFormData.other;
+    this.notes = this.mainFormData.notes;
   }
 
   // Set Key For Specific Data
