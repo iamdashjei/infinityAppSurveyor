@@ -34,6 +34,30 @@ export class SurveyorFormPage{
   solidWallData: any;
   cavityWallData: any;
 
+  kitchen: any;
+  dinningroom: any;
+  livingroom: any;
+  hallway: any;
+  landingupstair: any;
+  frontelevation: any;
+  leftelevation: any;
+  rearelevation: any;
+  sideelevation: any;
+  utility: any;
+  heatingsource: any;
+  airingcupboard: any;
+  conservatory: any;
+  other: any;
+  garage: any;
+  wallthickness: any;
+  fusedspur: any;
+  roomstat: any;
+  programmer: any;
+  bathroom: any;
+  kitchenImg: any;
+  stairs: any;
+
+  img: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -114,6 +138,121 @@ export class SurveyorFormPage{
     }
   }
 
+  savedImagesEsh(){
+    this.storage.get('kitchen').then((kitchen) => {
+        this.kitchen = kitchen;
+    });
+
+    this.storage.get('dinningroom').then((dinningroom) => {
+        this.dinningroom = dinningroom;
+    });
+
+    this.storage.get('livingroom').then((livingroom) => {
+        this.livingroom = livingroom;
+    });
+
+    this.storage.get('hallway').then((hallway) => {
+        this.hallway = hallway;
+    });
+
+    this.storage.get('landingupstair').then((landingupstair) => {
+        this.landingupstair = landingupstair;
+    });
+
+    this.storage.get('frontelevation').then((frontelevation) => {
+        this.frontelevation = frontelevation;
+    });
+
+    this.storage.get('leftelevation').then((leftelevation) => {
+        this.leftelevation = leftelevation;
+    });
+
+    this.storage.get('rearelevation').then((rearelevation) => {
+        this.rearelevation = rearelevation;
+    });
+
+    this.storage.get('sideelevation').then((sideelevation) => {
+        this.sideelevation = sideelevation;
+    });
+
+    this.storage.get('utility').then((utility) => {
+        this.utility = utility;
+    });
+
+    this.storage.get('heatingsource').then((heatingsource) => {
+        this.heatingsource = heatingsource;
+    });
+
+    this.storage.get('airingcupboard').then((airingcupboard) => {
+        this.airingcupboard = airingcupboard;
+    });
+
+    this.storage.get('conservatory').then((conservatory) => {
+        this.conservatory = conservatory;
+    });
+
+    this.storage.get('other').then((other) => {
+        this.other = other;
+    });
+
+    this.storage.get('garage').then((garage) => {
+        this.garage = garage;
+    });
+
+    this.storage.get('wallthickness').then((wallthickness) => {
+        this.wallthickness = wallthickness;
+    });
+
+    this.storage.get('fusedspur').then((fusedspur) => {
+        this.fusedspur = fusedspur;
+    });
+
+    this.storage.get('roomstat').then((roomstat) => {
+        this.roomstat = roomstat;
+    });
+
+    this.storage.get('programmer').then((programmer) => {
+        this.programmer = programmer;
+    });
+
+    this.storage.get('bathroom').then((bathroom) => {
+        this.bathroom = bathroom;
+    });
+
+
+    this.storage.get('stairs').then((stairs) => {
+        this.stairs = stairs;
+    });
+
+  }
+
+  saveImageObject(){
+    const imgObj = {
+    kitchen: this.kitchen,
+    diningroom:  this.dinningroom,
+    livingroom:  this.livingroom,
+    hallway:  this.hallway,
+    landingupstair:  this.landingupstair,
+    frontelevation: this.frontelevation,
+    leftelevation:  this.leftelevation,
+    rearelevation: this.rearelevation,
+    sideelevation: this.sideelevation,
+    utility:  this.utility,
+    airingcupboard: this.airingcupboard,
+    conservatory: this.conservatory,
+    other:  this.other,
+    garage:  this.garage,
+    wallthickness:  this.wallthickness,
+    fusedspur:  this.fusedspur,
+    roomstat:  this.roomstat,
+    programmer: this.programmer,
+    bathroom:  this.bathroom,
+    stairs: this.stairs
+   };
+
+     this.rest.fileUploadMainForm('Image', imgObj);
+  }
+
   savedObject(){
     this.eshData = this.sharedObject.getSharedEshObject();
     this.mainFormData = this.sharedObject.getSharedMainForm();
@@ -125,6 +264,9 @@ export class SurveyorFormPage{
       property_type: this.mainFormData.propertyType,
       property_type1: this.mainFormData.propertyType1,
       property_type2: this.mainFormData.propertyType2,
+      addressInstall: this.mainFormData.addressInstall,
+      notes: this.mainFormData.notes,
+      postCode: this.mainFormData.postCode,
       bedrooms: this.mainFormData.bedrooms,
       tenure: this.mainFormData.tenure,
       heating_source: this.mainFormData.heatingSource,
@@ -148,10 +290,11 @@ export class SurveyorFormPage{
       numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet,
       qeshRepSL: this.eshData.eshQeshRepairSlimline,
       qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet,
-      qeshFA: this.eshQeshRepairFanAsst.eshQeshRepairFanAsst
+      qeshFA: this.eshData.eshQeshRepairFanAsst
     };
 
-
+    this.sharedObject.setSharedSubmitObject(saveData);
+    this.savedImagesEsh();
     // this.rest.updateLeadData(this.lead_slug,saveData,
     //   this.mainFormData.notes,
     //   this.mainFormData.postCode,
@@ -167,29 +310,32 @@ export class SurveyorFormPage{
     //console.log(JSON.stringify(this.eshData));
     //console.log(JSON.stringify(this.mainFormData));
     //console.log(JSON.stringify(this.eshBoilerData));
-    console.log(this.mainFormData.notes);
-    console.log(this.mainFormData.postCode);
-    console.log(this.mainFormData.addressInstall);
-    console.log(JSON.stringify(saveData));
-    this.storage.forEach( (value, key, index) => {
-	     console.log("This is the value", value);
-	     console.log("from the key", key);
-	     console.log("Index is", index);
-     });
+    // console.log(this.mainFormData.notes);
+    // console.log(this.mainFormData.postCode);
+    // console.log(this.mainFormData.addressInstall);
+    // console.log(JSON.stringify(saveData));
+    // this.storage.forEach( (value, key, index) => {
+	  //    console.log("This is the value", value);
+	  //    console.log("from the key", key);
+	  //    console.log("Index is", index);
+    //  });
 
   }
-  this.sharedObject.setSharedSubmitObject(saveData);
+
 
   submitObject(){
+  
     const submitData = this.sharedObject.getSharedSubmitObject();
     this.rest.updateLeadData(this.lead_slug,submitData,
-      this.submitData.notes,
-      this.submitData.postCode,
-      this.submitData.addressInstall,
-    this.submitData.nameOfCustomer).then((result) => {
+      submitData.notes,
+      submitData.postCode,
+      submitData.addressInstall,
+      submitData.name_of_customer).then((result) => {
             console.log(result);
-            alert("Successfully Submitted!");
+
+          this.saveImageObject();
           this.navCtrl.setRoot(DashboardPage);
+          alert("Successfully Submitted!");
     }, (err) => {
             console.log(err);
 
