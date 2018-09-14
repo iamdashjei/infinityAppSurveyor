@@ -45,6 +45,14 @@ export class AccordionEshBoilerComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+
+    let data = this.sharedObject.getSharedSelectedLeadObject();
+    data = JSON.parse(data["additional_fields"]);
+    this.newHeatingSystemUsing =  data.newHeatingSystemUsing;
+    this.newSystemHeatBool = data.newSystemHeatBool;
+    this.eshUnroundedPOPT = data.eshUnroundedPOPT;
+    this.eshRoundedPOPT = data.eshRoundedPOPT;
+
   }
 
   saveEshBoiler(){

@@ -13,6 +13,7 @@ import { EshUploadSurveyorComponent } from '../../components/esh-upload-surveyor
 import { CavityWallComponentUploadComponent } from '../../components/cavity-wall-component-upload/cavity-wall-component-upload';
 import { BoilerImageUploadComponent } from '../../components/boiler-image-upload/boiler-image-upload';
 import { LoftImageUploadComponent } from '../../components/loft-image-upload/loft-image-upload';
+
 @NgModule({
   declarations: [
     SurveyorFormPage,

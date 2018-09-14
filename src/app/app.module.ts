@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -51,7 +51,13 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     HomePage,
     SignaturePage,
     DashboardPage,
-    TimeAgoPipe
+    TimeAgoPipe,
+    SurveyorFormPage,
+    AccordionComponent,
+    ImageUploadSurveyorComponent,
+    AccordionLoftComponent,
+    LoftImageUploadComponent
+
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,7 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     HomePage,
     SignaturePage,
     DashboardPage,
-
+    SurveyorFormPage,
   ],
   providers: [
     StatusBar,
@@ -97,6 +103,6 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     FcmProvider,
     SharedobjectserviceProvider,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })
 export class AppModule {}

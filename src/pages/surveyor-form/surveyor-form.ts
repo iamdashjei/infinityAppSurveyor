@@ -57,6 +57,10 @@ export class SurveyorFormPage{
   kitchenImg: any;
   stairs: any;
 
+  ubil: any;
+  tenancyAgreement: any;
+  landlordPerm: any;
+
   img: any;
 
   constructor(public navCtrl: NavController,
@@ -71,7 +75,7 @@ export class SurveyorFormPage{
     this.lead_slug = navParams.get('lead_slug');
     this.leadCreatedDate = navParams.get('leadCreatedDate');
     this.leadCustName = navParams.get('leadCustName');
-
+    // this.signatureImage = navParams.get('signatureImage');
     sharedObject.setSharedSelectedLeadObject(navParams.get('leadItem'));
     sharedObject.setSharedSlugSelectedCM(this.lead_slug);
     sharedObject.setSharedCustName(this.leadCustName);
@@ -225,6 +229,18 @@ export class SurveyorFormPage{
         this.stairs = stairs;
     });
 
+    this.storage.get('eshUBIL').then((ubil) => {
+        this.ubil = ubil;
+    });
+
+    this.storage.get('eshTenancyAgreement').then((tenancyAgreement) => {
+        this.tenancyAgreement = tenancyAgreement;
+    });
+
+    this.storage.get('eshLandLordPerm').then((landlordPerm) => {
+        this.landlordPerm = landlordPerm;
+    });
+
   }
 
   saveImageObject(){
@@ -248,7 +264,10 @@ export class SurveyorFormPage{
     roomstat:  this.roomstat,
     programmer: this.programmer,
     bathroom:  this.bathroom,
-    stairs: this.stairs
+    stairs: this.stairs,
+    ubil: this.ubil,
+    landlordPerm: this.landlordPerm,
+    tenancyAgreement: this.tenancyAgreement
    };
 
      this.rest.fileUploadMainForm('Image', imgObj);
@@ -296,17 +315,7 @@ export class SurveyorFormPage{
 
     this.sharedObject.setSharedSubmitObject(saveData);
     this.savedImagesEsh();
-    // this.rest.updateLeadData(this.lead_slug,saveData,
-    //   this.mainFormData.notes,
-    //   this.mainFormData.postCode,
-    //   this.mainFormData.addressInstall,
-    // this.mainFormData.nameOfCustomer).then((result) => {
-    //         console.log(result);
-    //       //  this.navCtrl.setRoot(DashboardPage);
-    // }, (err) => {
-    //         console.log(err);
-    //
-    //   });
+
 
     //console.log(JSON.stringify(this.eshData));
     //console.log(JSON.stringify(this.mainFormData));
