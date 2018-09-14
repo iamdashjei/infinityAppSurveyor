@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { SignaturePage } from '../signature/signature';
 import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { RestProvider} from '../../providers/rest/rest';
-
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { DashboardPage } from '../dashboard/dashboard';
+import { NotificationPage } from '../notification/notification';
 /**
- * Generated class for the SurveyorFormPage page.
+ * Generated class for the SurveyorPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,11 +16,21 @@ import { DashboardPage } from '../dashboard/dashboard';
 
 @IonicPage()
 @Component({
-  selector: 'page-surveyor-form',
-  templateUrl: 'surveyor-form.html',
+  selector: 'page-surveyor',
+  templateUrl: 'surveyor.html',
 })
-export class SurveyorFormPage{
-  public signatureImage: any;
+export class SurveyorPage {
+  public signatureImage : any;
+  @ViewChild(SignaturePad) public signaturePad : SignaturePad;
+  public signaturePadOptions : Object = {
+    'minWidth': 2,
+    'canvasWidth': 100,
+    'canvasHeight': 100
+  }
+  accordionExpanded = false;
+  @ViewChild("signatureForm") signatureForms: any;
+  icon: string = "arrow-forward";
+  
   campaignMeasureView: any;
   lead_slug: any;
   lead_info: any;
@@ -65,6 +76,7 @@ export class SurveyorFormPage{
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public renderer: Renderer,
               public modalController: ModalController,
               public storage: Storage,
               public sharedObject: SharedobjectserviceProvider,
@@ -75,17 +87,35 @@ export class SurveyorFormPage{
     this.lead_slug = navParams.get('lead_slug');
     this.leadCreatedDate = navParams.get('leadCreatedDate');
     this.leadCustName = navParams.get('leadCustName');
-    // this.signatureImage = navParams.get('signatureImage');
+
     sharedObject.setSharedSelectedLeadObject(navParams.get('leadItem'));
     sharedObject.setSharedSlugSelectedCM(this.lead_slug);
     sharedObject.setSharedCustName(this.leadCustName);
 
   }
 
+  ionViewDidLoad(){
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+  }
+
+  // Toggle List for Signatures
+  toggleSignatures() {
+    if(this.accordionExpanded){
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "padding", "0px 16px");
+    } else {
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "padding", "13px 16px");
+    }
+
+    this.accordionExpanded = !this.accordionExpanded;
+    this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+  }
+
   // For Signature Drawpad
   openSignatureModel(){
     setTimeout(() => {
-       let modal = this.modalController.create(SignaturePage);
+       let modal = this.modalController.create(NotificationPage);
     modal.present();
     }, 300);
   }
@@ -325,9 +355,9 @@ export class SurveyorFormPage{
     // console.log(this.mainFormData.addressInstall);
     // console.log(JSON.stringify(saveData));
     // this.storage.forEach( (value, key, index) => {
-	  //    console.log("This is the value", value);
-	  //    console.log("from the key", key);
-	  //    console.log("Index is", index);
+    //    console.log("This is the value", value);
+    //    console.log("from the key", key);
+    //    console.log("Index is", index);
     //  });
 
   }
@@ -352,6 +382,39 @@ export class SurveyorFormPage{
       });
   }
 
+  canvasResize() {
+    let canvas = document.querySelector('canvas');
+    this
+      .signaturePad
+      .set('minWidth', 1);
+      console.log(canvas.offsetWidth);
+    this
+      .signaturePad
+      .set('canvasWidth', canvas.offsetWidth);
+
+    this
+      .signaturePad
+      .set('canvasHeight', canvas.offsetHeight);
+  }
+
+
+   ngAfterViewInit() {
+     console.log("Reset Model Screen");
+      this
+      .signaturePad
+      .clear();
+      this.canvasResize();
+   }
+
+   drawComplete() {
+     this.signatureImage = this.signaturePad.toDataURL();
+  }
+
+  drawClear() {
+    this
+      .signaturePad
+      .clear();
+  }
 
 
 }

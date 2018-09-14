@@ -22,6 +22,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login';
 import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
 import { SignaturePage } from '../pages/signature/signature';
+import { SignaturesPage } from '../pages/signatures/signatures';
+import { SurveyorPage } from '../pages/surveyor/surveyor';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,8 +35,16 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AccordionComponent } from '../components/accordion/accordion';
-import { ImageUploadSurveyorComponent } from '../components/image-upload-surveyor/image-upload-surveyor';
 import { AccordionLoftComponent } from '../components/accordion-loft/accordion-loft';
+import { AccordionBoilerComponent } from '../components/accordion-boiler/accordion-boiler';
+import { AccordionEshComponent } from '../components/accordion-esh/accordion-esh';
+import { AccordionEshBoilerComponent } from '../components/accordion-esh-boiler/accordion-esh-boiler';
+import { AccordionCavitySolidWallComponent } from '../components/accordion-cavity-solid-wall/accordion-cavity-solid-wall';
+import { ImageUploadComponent } from '../components/image-upload/image-upload';
+import { ImageUploadSurveyorComponent }  from '../components/image-upload-surveyor/image-upload-surveyor';
+import { EshUploadSurveyorComponent } from '../components/esh-upload-surveyor/esh-upload-surveyor';
+import { CavityWallComponentUploadComponent } from '../components/cavity-wall-component-upload/cavity-wall-component-upload';
+import { BoilerImageUploadComponent } from '../components/boiler-image-upload/boiler-image-upload';
 import { LoftImageUploadComponent } from '../components/loft-image-upload/loft-image-upload';
 
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
@@ -44,19 +54,29 @@ import { DatasourceProvider } from '../providers/datasource/datasource';
 import { FIREBASE_CONFIG } from './firebase.config.ts';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sharedobjectservice';
-
+import { NotificationPage } from '../pages/notification/notification';
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    SignaturePage,
     DashboardPage,
     TimeAgoPipe,
-    SurveyorFormPage,
+    SignaturePage,
+    SignaturesPage,
+    NotificationPage,
+    SurveyorPage,
     AccordionComponent,
-    ImageUploadSurveyorComponent,
     AccordionLoftComponent,
-    LoftImageUploadComponent
+    AccordionBoilerComponent,
+    AccordionEshComponent,
+    AccordionEshBoilerComponent,
+    AccordionCavitySolidWallComponent,
+    ImageUploadComponent,
+    ImageUploadSurveyorComponent,
+    EshUploadSurveyorComponent,
+    CavityWallComponentUploadComponent,
+    BoilerImageUploadComponent,
+    LoftImageUploadComponent,
 
   ],
   imports: [
@@ -77,9 +97,12 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
   entryComponents: [
     MyApp,
     HomePage,
-    SignaturePage,
     DashboardPage,
-    SurveyorFormPage,
+    SignaturePage,
+    SignaturesPage,
+    NotificationPage,
+    SurveyorPage,
+    AccordionComponent,
   ],
   providers: [
     StatusBar,
@@ -103,6 +126,6 @@ import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sh
     FcmProvider,
     SharedobjectserviceProvider,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {}

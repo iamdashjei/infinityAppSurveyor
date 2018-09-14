@@ -13,6 +13,7 @@ import firebase from 'firebase';
 
 import { ImagePicker } from '@ionic-native/image-picker';
 
+import { SurveyorPage } from '../surveyor/surveyor';
 /* Generated class for the DashboardPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -177,7 +178,7 @@ export class DashboardPage {
   }
 
   openLeads(lead_slug, campaign_name, leadItem, leadCreatedDate, leadCustName){
-    this.navCtrl.push('SurveyorFormPage', {
+    this.navCtrl.push(SurveyorPage, {
       lead_slug: lead_slug,
       campaignValue: campaign_name,
       leadCreatedDate: leadCreatedDate,

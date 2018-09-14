@@ -8,6 +8,9 @@ import { Storage } from '@ionic/storage';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login';
 import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
+import { NotificationPage } from '../pages/notification/notification';
+import { SurveyorPage } from '../pages/surveyor/surveyor';
+import { SignaturePage } from '../pages/signature/signature';
 
 import { Subject } from 'rxjs';
 import { AppState } from './app.global';
@@ -18,6 +21,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 
 import { RestProvider } from '../providers/rest/rest';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -129,6 +133,8 @@ export class MyApp {
       this.storage.get('SurveyorPhone').then((phone) => {
           this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
                   console.log(result);
+                  //this.rootPage = NotificationPage;
+                  //this.rootPage = SurveyorPage;
                   this.rootPage = DashboardPage;
                   //this.navCtrl.setRoot(DashboardPage);
           }, (err) => {

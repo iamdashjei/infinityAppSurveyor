@@ -1,7 +1,7 @@
 import { Component,  ViewChild  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {SignaturePad} from 'angular2-signaturepad/signature-pad';
-
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { NotificationPage } from '../notification/notification';
 /**
  * Generated class for the SignaturePage page.
  *
@@ -29,9 +29,6 @@ export class SignaturePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignaturePage');
-  }
 
   canvasResize() {
     let canvas = document.querySelector('canvas');
@@ -66,13 +63,8 @@ export class SignaturePage {
   }
 
    drawComplete() {
-
-    this.signatureImage = this
-      .signaturePad
-      .toDataURL();
-
-    console.log(this.signatureImage);
-      this.navCtrl.pop();
+     this.signatureImage = this.signaturePad.toDataURL();
+        this.navCtrl.push(NotificationPage, {signatureImage: this.signatureImage});
   }
 
   drawClear() {

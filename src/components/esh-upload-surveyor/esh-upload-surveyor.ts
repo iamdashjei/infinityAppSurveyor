@@ -1,10 +1,11 @@
 import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
-import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { RestProvider } from '../../providers/rest/rest';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
+import { SignaturesPage } from '../../pages/signatures/signatures';
+import {  NavController, NavParams } from 'ionic-angular';
 /**
  * Generated class for the EshUploadSurveyorComponent component.
  *
@@ -17,7 +18,7 @@ import { Storage } from '@ionic/storage';
 })
 export class EshUploadSurveyorComponent {
 
-  @ViewChild(SignaturePad) signaturePad: SignaturePad;
+
   @ViewChild("eshsurveyorForms") eshsurveyorFormContent: any;
   @Input('title') title: string;
 
@@ -60,6 +61,7 @@ export class EshUploadSurveyorComponent {
   constructor(public renderer: Renderer,
               private uploadService: UploadFileServiceProvider,
               public rest: RestProvider,
+              public navCtrl: NavController,
               public storage: Storage,
               private camera: Camera
    ) {}
@@ -88,7 +90,10 @@ export class EshUploadSurveyorComponent {
     // }
     //
     //
-
+    // For Signature Drawpad
+    openSignatureModel(){
+       this.navCtrl.push(SignaturesPage);
+    }
 
     openGallery(tag) {
       const options: CameraOptions = {

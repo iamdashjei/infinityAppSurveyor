@@ -17,22 +17,21 @@ import { LoftImageUploadComponent } from '../../components/loft-image-upload/lof
 @NgModule({
   declarations: [
     SurveyorFormPage,
-    AccordionComponent,
-    AccordionLoftComponent,
-    AccordionBoilerComponent,
-    AccordionEshComponent,
-    AccordionEshBoilerComponent,
-    AccordionCavitySolidWallComponent,
-    ImageUploadComponent,
-    ImageUploadSurveyorComponent,
-    EshUploadSurveyorComponent,
-    CavityWallComponentUploadComponent,
-    BoilerImageUploadComponent,
-    LoftImageUploadComponent
-
+    // AccordionComponent,
+    // AccordionLoftComponent,
+    // AccordionBoilerComponent,
+    // AccordionEshComponent,
+    // AccordionEshBoilerComponent,
+    // AccordionCavitySolidWallComponent,
+    // ImageUploadComponent,
+    // ImageUploadSurveyorComponent,
+    // EshUploadSurveyorComponent,
+    // CavityWallComponentUploadComponent,
+    // BoilerImageUploadComponent,
+    // LoftImageUploadComponent
   ],
   imports: [
     IonicPageModule.forChild(SurveyorFormPage)
-  ]
+  ],
 })
 export class SurveyorFormPageModule {}
