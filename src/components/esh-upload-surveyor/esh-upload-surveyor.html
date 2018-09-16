@@ -48,58 +48,6 @@
        <ion-col>
          <div class="progress" style="width:300px">
            <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressCustSig.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressCustSig.percentage+'%'}">
-               {{progressCustSig.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="{{ colorCustSig }}">{{ progressCustSigStatus }}</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary">Customer Signature Specimen</ion-label>
-         <img [src]="base64ImageCustSignature" width="80" height="80" *ngIf="base64ImageCustSignature"/>
-       </ion-col>
-
-       <ion-col>
-         <button ion-button (click)="openSignatureModel()"> Choose File </button>
-         <button ion-button (click)="uploadImage('CustSignature')"> Upload Image </button>
-
-       </ion-col>
-     </ion-row>
-
-     <ion-row>
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressFloorPlan.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressFloorPlan.percentage+'%'}">
-               {{progressFloorPlan.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="{{ colorFloorPlan }}">{{ progressFloorPlanStatus }}</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary"> Floor Plan</ion-label>
-         <img [src]="base64ImageFloorPlan" width="80" height="80" *ngIf="base64ImageFloorPlan"/>
-       </ion-col>
-
-       <ion-col>
-         <button ion-button (click)="openGallery('FloorPlan')"> Choose File </button>
-         <button ion-button (click)="uploadImage('FloorPlan')"> Upload Image </button>
-
-       </ion-col>
-     </ion-row>
-
-     <ion-row>
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
              role="progressbar" attr.aria-valuenow="{{progressTenancyAgrmt.percentage}}"
                aria-valuemin="0" aria-valuemax="100"
                [ngStyle]="{width:progressTenancyAgrmt.percentage+'%'}">
