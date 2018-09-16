@@ -65,7 +65,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('TenancyAgreement')"> Choose File </button>
-         <button ion-button (click)="uploadImage('TenancyAgreement')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="base64ImageTenancyAgreement"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -91,7 +91,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('LandLordPerm')"> Choose File </button>
-         <button ion-button (click)="uploadImage('LandLordPerm')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="base64ImageLandLordPerm"> Upload Image </button>
 
        </ion-col>
      </ion-row>

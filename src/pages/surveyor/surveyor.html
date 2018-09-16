@@ -80,7 +80,7 @@
   </ion-card>
 
 
-  <ion-card>
+  <!-- <ion-card>
   <ion-card-header (click)="toggleCustSignatures()">
     <ion-list>
       <ion-item color="primary">
@@ -105,5 +105,17 @@
     </ion-row>
   </ion-grid>
   </ion-card-content>
-  </ion-card>
+  </ion-card> -->
+
+  <signature-pad [options]="signaturePadOptions2"  id="signatureCanvas2" #imageCanvas></signature-pad>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button full color="light" (click)="drawClear2()">Clear</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button full color="secondary" (click)="drawComplete2()">Done</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

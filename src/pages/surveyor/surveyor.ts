@@ -23,7 +23,7 @@ export class SurveyorPage {
   public signatureImage : any;
   public custSignatureImage: any;
   @ViewChild(SignaturePad) public signaturePad : SignaturePad;
-  @ViewChild(SignaturePad) public signaturePad2 : SignaturePad;
+  @ViewChild('imageCanvas') public signaturePad2 : SignaturePad;
   public signaturePadOptions : Object = {
     'minWidth': 2,
     'canvasWidth': 100,
@@ -96,7 +96,6 @@ export class SurveyorPage {
               public sharedObject: SharedobjectserviceProvider,
               public rest: RestProvider)
      {
-    this.signatureImage = navParams.get('signatureImage');
     this.campaignMeasureView = navParams.get('campaignValue');
     this.lead_slug = navParams.get('lead_slug');
     this.leadCreatedDate = navParams.get('leadCreatedDate');
@@ -340,6 +339,7 @@ export class SurveyorPage {
    };
 
      this.rest.fileUploadMainForm('Image', imgObj);
+
   }
 
   savedObject(){
@@ -414,7 +414,7 @@ export class SurveyorPage {
 
           this.saveImageObject();
           //this.navCtrl.setRoot(DashboardPage);
-          alert("Successfully Submitted!");
+
     }, (err) => {
             console.log(err);
 
@@ -461,9 +461,8 @@ export class SurveyorPage {
    }
 
    drawComplete() {
-     this.signatureImage = 'data:image/jpeg;base64,' + this.signaturePad.toDataURL();
-     this.storage.set("FloorPlan", this.signatureImage);
-     alert("Floor Plan Saved Successfully." + this.signaturePad.toDataURL());
+     this.storage.set("FloorPlan", this.signaturePad.toDataURL());
+     alert("Floor Plan Saved Successfully.");
   }
 
   drawClear() {
@@ -473,15 +472,18 @@ export class SurveyorPage {
   }
 
   drawComplete2() {
-    this.custSignatureImage = 'data:image/jpeg;base64,' + this.signaturePad2.toDataURL();
-    this.storage.set("CustSign", this.custSignatureImage);
-    alert("Signature Complete." + this.signaturePad2.toDataURL());
+    this.storage.set("CustSign",  this.signaturePad2.toDataURL());
+    alert("Signature Complete.");
  }
 
  drawClear2() {
    this
      .signaturePad2
      .clear();
+ }
+
+ openSignatureForCust(){
+   this.navCtrl.push(SignaturePage);
  }
 
 

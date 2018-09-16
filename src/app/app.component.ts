@@ -71,7 +71,8 @@ export class MyApp {
     //  navCtrl.setRoot(DashboardPage);
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
-      alert( JSON.stringify(data) );
+      alert("You have new leads");
+      location.reload();
       this.isLoggedIn();
       }
     });

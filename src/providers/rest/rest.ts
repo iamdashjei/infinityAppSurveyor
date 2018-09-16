@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { LoadingController, NavController } from 'ionic-angular';
+
 import {Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
@@ -8,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
 import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobjectservice';
+
 /*
   Generated class for the RestProvider provider.
 
@@ -17,6 +20,7 @@ import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobject
 @Injectable()
 export class RestProvider {
   public keyVal: any;
+  public loading;
   surveyorName: string;
   surveyorEmail: string;
   public headers = new Headers(
@@ -28,7 +32,15 @@ export class RestProvider {
 
   public options = new RequestOptions({ headers: this.headers });
 
-  constructor(public http: Http, private storage: Storage, public sharedObject: SharedobjectserviceProvider) {
+  constructor(public http: Http,
+              private storage: Storage,
+              public navCtrl: NavController,
+              public sharedObject: SharedobjectserviceProvider,
+              public loadingCtrl: LoadingController
+              ) {
+                this.loading = loadingCtrl.create({
+                  content: 'Please wait...'
+                  });
     console.log('Hello RestProvider Provider');
   }
 
@@ -208,6 +220,7 @@ export class RestProvider {
       imgObj: imgObj,
       lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });
+    this.loading.present();
       this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
   }
 
@@ -255,6 +268,9 @@ export class RestProvider {
       {
         console.log('API Response: ', response.json());
         resolve(response.json());
+        this.loading.dismiss();
+         alert("Successfully Submitted!");
+         this.navCtrl.push();
       })
       .catch((error) =>
       {
