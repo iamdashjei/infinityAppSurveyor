@@ -36,7 +36,7 @@
        <ion-col>
 
          <button ion-button (click)="openGallery('UBIL')"> Choose File </button>
-         <button ion-button (click)="uploadImage('UBIL')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('UBIL')" *ngIf="base64ImageUBIL"> Upload Image </button>
          <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
 
          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->

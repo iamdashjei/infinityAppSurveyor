@@ -222,6 +222,10 @@ export class SurveyorPage {
     }
   }
 
+  savedImagesBoiler(){
+    
+  }
+
   savedImagesEsh(){
     this.storage.get('kitchen').then((kitchen) => {
         this.kitchen = kitchen;
@@ -513,13 +517,13 @@ export class SurveyorPage {
   drawComplete2() {
     this.storage.set("CustSign",  this.signaturePad2.toDataURL());
     alert("Signature Complete.");
- }
+   }
 
  drawClear2() {
    this
      .signaturePad2
      .clear();
- }
+  }
 
 
 }

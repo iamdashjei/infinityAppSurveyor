@@ -100,7 +100,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Kitchen')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Kitchen')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Kitchen')" *ngIf="base64ImageKitchen"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -126,7 +126,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('DinningRoom')"> Choose File </button>
-         <button ion-button (click)="uploadImage('DinningRoom')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="base64ImageDinningRoom"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -152,7 +152,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('LivingRoom')"> Choose File </button>
-         <button ion-button (click)="uploadImage('LivingRoom')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="base64ImageLivingRoom"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -178,7 +178,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Hallway')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Hallway')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Hallway')" *ngIf="base64ImageHallway"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -204,7 +204,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('LandingUpstairs')"> Choose File </button>
-         <button ion-button (click)="uploadImage('LandingUpstairs')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="base64ImageLandingUpstairs"> Upload Image </button>
        </ion-col>
      </ion-row>
 
@@ -229,7 +229,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('FrontElevation')"> Choose File </button>
-         <button ion-button (click)="uploadImage('FrontElevation')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="base64ImageFrontElevation"> Upload Image </button>
        </ion-col>
      </ion-row>
 
@@ -254,7 +254,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('LeftElevation')"> Choose File </button>
-         <button ion-button (click)="uploadImage('LeftElevation')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="base64ImageLeftElevation"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -280,7 +280,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('RearElevation')"> Choose File </button>
-         <button ion-button (click)="uploadImage('RearElevation')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RearElevation')" *ngIf="base64ImageRearElevation"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -306,7 +306,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('SideElevation')"> Choose File </button>
-         <button ion-button (click)="uploadImage('SideElevation')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('SideElevation')" *ngIf="base64ImageSideElevation"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -332,7 +332,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Utility')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Utility')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Utility')" *ngIf="base64ImageUtility"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -358,7 +358,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('HeatingSource')"> Choose File </button>
-         <button ion-button (click)="uploadImage('HeatingSource')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="base64ImageHeatingSource"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -384,7 +384,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('BathRoom')"> Choose File </button>
-         <button ion-button (click)="uploadImage('BathRoom')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('BathRoom')" *ngIf="base64ImageBathRoom"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -410,7 +410,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('AiringCupboard')"> Choose File </button>
-         <button ion-button (click)="uploadImage('AiringCupboard')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="base64ImageAiringCupboard"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -436,7 +436,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Conservatory')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Conservatory')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Conservatory')" *ngIf="base64ImageConservatory"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -462,7 +462,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Other')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Other')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Other')" *ngIf="base64ImageOther"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -488,7 +488,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Stairs')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Stairs')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Stairs')" *ngIf="base64ImageStairs"> Upload Image </button>
        </ion-col>
      </ion-row>
 
@@ -513,7 +513,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Garage')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Garage')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Garage')" *ngIf="base64ImageGarage"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -539,7 +539,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('WallThickness')"> Choose File </button>
-         <button ion-button (click)="uploadImage('WallThickness')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('WallThickness')" *ngIf="base64ImageWallThickness"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -565,7 +565,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('FusedSpur')"> Choose File </button>
-         <button ion-button (click)="uploadImage('FusedSpur')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FusedSpur')" *ngIf="base64ImageFusedSpur"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -591,7 +591,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('RoomStat')"> Choose File </button>
-         <button ion-button (click)="uploadImage('RoomStat')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RoomStat')" *ngIf="base64ImageRoomStat"> Upload Image </button>
 
        </ion-col>
      </ion-row>
@@ -617,7 +617,7 @@
 
        <ion-col>
          <button ion-button (click)="openGallery('Programmer')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Programmer')"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Programmer')" *ngIf="base64ImageProgrammer"> Upload Image </button>
 
        </ion-col>
      </ion-row>

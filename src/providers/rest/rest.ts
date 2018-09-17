@@ -225,7 +225,7 @@ export class RestProvider {
       lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });
     this.loading.present();
-      this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
+    this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
   }
 
 
@@ -274,7 +274,7 @@ export class RestProvider {
         resolve(response.json());
         this.loading.dismiss();
          alert("Successfully Submitted!");
-        // this.navCtrl.push(DashboardPage);
+         this.navCtrl.push(DashboardPage);
       })
       .catch((error) =>
       {
