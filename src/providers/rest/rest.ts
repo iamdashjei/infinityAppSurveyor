@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { LoadingController, NavController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 import {Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
@@ -10,7 +10,6 @@ import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
 import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobjectservice';
-
 /*
   Generated class for the RestProvider provider.
 
@@ -21,6 +20,7 @@ import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobject
 export class RestProvider {
   public keyVal: any;
   public loading;
+  public loadingLogIn;
   surveyorName: string;
   surveyorEmail: string;
   public headers = new Headers(
@@ -34,12 +34,15 @@ export class RestProvider {
 
   constructor(public http: Http,
               private storage: Storage,
-              public navCtrl: NavController,
               public sharedObject: SharedobjectserviceProvider,
               public loadingCtrl: LoadingController
               ) {
                 this.loading = loadingCtrl.create({
-                  content: 'Please wait...'
+                  content: 'Uploading to CRM...'
+                  });
+
+                this.loadingLogIn = loadingCtrl.create({
+                  content: 'Logging in...'
                   });
     console.log('Hello RestProvider Provider');
   }
@@ -122,7 +125,7 @@ export class RestProvider {
   fetchUserByPhoneNumber(phoneNumber, token){
 
     let data = JSON.stringify({ phone: phoneNumber, device_token: token });
-
+    this.loadingLogIn.present();
     return new Promise((resolve, reject) => {
       this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/get-userByPhoneNumber', data, this.options)
       .toPromise()
@@ -140,6 +143,7 @@ export class RestProvider {
         this.storage.set("address", id[0].address);
 
         this.sharedObject.setSharedUserId(id[0].id);
+          this.loadingLogIn.dismiss();
       })
       .catch((error) =>
       {
@@ -270,7 +274,7 @@ export class RestProvider {
         resolve(response.json());
         this.loading.dismiss();
          alert("Successfully Submitted!");
-         this.navCtrl.push();
+        // this.navCtrl.push(DashboardPage);
       })
       .catch((error) =>
       {

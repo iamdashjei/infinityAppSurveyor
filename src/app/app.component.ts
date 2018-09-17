@@ -71,6 +71,7 @@ export class MyApp {
     //  navCtrl.setRoot(DashboardPage);
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
+
       alert("You have new leads");
       location.reload();
       this.isLoggedIn();
@@ -132,16 +133,20 @@ export class MyApp {
     this.storage.ready().then(() => {
 
       this.storage.get('SurveyorPhone').then((phone) => {
-          this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
-                  console.log(result);
-                  //this.rootPage = NotificationPage;
-                  //this.rootPage = SurveyorPage;
-                  this.rootPage = DashboardPage;
-                  //this.navCtrl.setRoot(DashboardPage);
-          }, (err) => {
-                  console.log(err);
-                  this.rootPage = 'LoginPage';
-            });
+          if(phone != null){
+            this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
+                    console.log(result);
+                    //this.rootPage = NotificationPage;
+                    //this.rootPage = SurveyorPage;
+                    this.rootPage = DashboardPage;
+                    //this.navCtrl.setRoot(DashboardPage);
+            }, (err) => {
+                    console.log(err);
+                    this.rootPage = 'LoginPage';
+              });
+          } else{
+            this.rootPage = 'LoginPage';
+          }
 
       }, (err) => {
         this.rootPage = 'LoginPage';

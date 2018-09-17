@@ -49,20 +49,20 @@ export class LoginPage {
         console.log("Device Token: " + token);
         this.token = token;
     });
-    this.storage.ready().then(() => {
-
-      this.storage.get('SurveyorPhone').then((phone) => {
-          this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
-                  console.log(result);
-                  this.navCtrl.setRoot(DashboardPage);
-          }, (err) => {
-                  console.log(err);
-
-            });
-
-      });
-
-    });
+    // this.storage.ready().then(() => {
+    //
+    //   this.storage.get('SurveyorPhone').then((phone) => {
+    //       this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
+    //               console.log(result);
+    //               this.navCtrl.setRoot(DashboardPage);
+    //       }, (err) => {
+    //               console.log(err);
+    //
+    //         });
+    //
+    //   });
+    //
+    // });
 
   }
 
@@ -95,7 +95,7 @@ export class LoginPage {
       this.rest.fetchUserByPhoneNumber(this.phoneNumber, this.token).then((result) => {
               console.log(result);
 
-              this.presentLoadingDefault();
+
               this.navCtrl.setRoot(DashboardPage);
       }, (err) => {
               console.log(err);
@@ -122,18 +122,6 @@ export class LoginPage {
     return false;
   }
 
-
-  presentLoadingDefault() {
-  let loading = this.loadingCtrl.create({
-    content: 'Logging in...'
-  });
-
-  loading.present();
-
-  setTimeout(() => {
-    loading.dismiss();
-  }, 10000);
-  }
 
 
 

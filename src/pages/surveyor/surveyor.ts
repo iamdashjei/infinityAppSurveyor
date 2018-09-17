@@ -105,6 +105,34 @@ export class SurveyorPage {
     sharedObject.setSharedSlugSelectedCM(this.lead_slug);
     sharedObject.setSharedCustName(this.leadCustName);
 
+    if(this.campaignMeasureView === 'JUNE LOFT'){
+               storage.set("loft", true);
+
+    } else if(this.campaignMeasureView === 'Boiler July 2018' ||
+              this.campaignMeasureView === 'Boiler April 2018' ||
+              this.campaignMeasureView === 'INFINITY BOILER MARCH' ||
+              this.campaignMeasureView === 'JUNE BOILER') {
+              storage.set("boiler", true);
+
+    } else if(this.campaignMeasureView === 'CAVITY July 2018' ||
+              this.campaignMeasureView === 'Cavity Wall April 2018' ||
+              this.campaignMeasureView === 'INFINITY CAVITY MARCH' ||
+              this.campaignMeasureView === 'JUNE CAVITY WALL'){
+              this.storage.set("cavitywall", true);
+
+    } else if(this.campaignMeasureView === 'JUNE ESH' ||
+              this.campaignMeasureView === 'ESH July 2018' ||
+              this.campaignMeasureView === 'ESH April 2018' ||
+              this.campaignMeasureView === 'INFINITY ESH MARCH'){
+              this.storage.set("esh", true);
+
+    } else if(this.campaignMeasureView === 'INFINITY SOLID WALL' ||
+              this.campaignMeasureView === 'SOLID July 2018' ||
+              this.campaignMeasureView === 'JUNE SOLID WALL' ) {
+              this.storage.set("solidwall", true);
+    }
+
+
   }
 
   ionViewDidLoad(){
@@ -140,14 +168,6 @@ export class SurveyorPage {
     this.icon2 = this.icon2 == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
-  // For Signature Drawpad
-  openSignatureModel(){
-    setTimeout(() => {
-       let modal = this.modalController.create(NotificationPage);
-    modal.present();
-    }, 300);
-  }
-
   // View Restriction for Forms. etc.
   isViewedLoft(){
     if (this.campaignMeasureView === 'JUNE LOFT'){
@@ -165,6 +185,7 @@ export class SurveyorPage {
    } else if (this.campaignMeasureView === 'JUNE BOILER'){
      return true;
    }
+
   }
 
   isViewedCavityWall(){
@@ -343,9 +364,27 @@ export class SurveyorPage {
   }
 
   savedObject(){
-    this.eshData = this.sharedObject.getSharedEshObject();
+
     this.mainFormData = this.sharedObject.getSharedMainForm();
-    this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
+
+
+    if(this.sharedObject.getSharedBoilerObject()){
+      this.boilerData = this.sharedObject.getSharedBoilerObject();
+
+    } else if(this.sharedObject.getSharedCavityWallObject()){
+      this.cavityWallData = this.sharedObject.getSharedCavityWallObject();
+
+    } else if(this.sharedObject.getSharedLoftObject()){
+      this.loftData = this.sharedObject.getSharedLoftObject();
+
+    } else if(this.sharedObject.getSharedSolidWallObject()) {
+      this.solidWallData = this.sharedObject.getSharedSolidWallObject();
+
+    } else if(this.sharedObject.getSharedEshObject()) {
+      this.eshData = this.sharedObject.getSharedEshObject();
+      this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
+
+    }
 
 
     const saveData = {
@@ -440,7 +479,7 @@ export class SurveyorPage {
     let canvas = document.querySelector('canvas');
     this
       .signaturePad2
-      .set('minWidth2', 2);
+      .set('minWidth2', 1);
       console.log(canvas.offsetWidth);
     this
       .signaturePad2
@@ -480,10 +519,6 @@ export class SurveyorPage {
    this
      .signaturePad2
      .clear();
- }
-
- openSignatureForCust(){
-   this.navCtrl.push(SignaturePage);
  }
 
 

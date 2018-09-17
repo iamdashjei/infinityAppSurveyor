@@ -44,6 +44,7 @@ export class AccordionComponent {
   ionViewDidLoad(){
     console.log(this.genFormContent.nativeElement);
     this.renderer.setElementStyle(this.genFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+      this.mainFormData = this.sharedObject.getSharedSelectedLeadObject();
   }
 
   // Toggle Accordion setting max height and padding when toggled
@@ -60,11 +61,11 @@ export class AccordionComponent {
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
 
 
-    this.mainFormData = this.sharedObject.getSharedSelectedLeadObject();
+
     this.mainFormData = JSON.parse(this.mainFormData["additional_fields"]);
     console.log(JSON.stringify(this.mainFormData.date_of_survey));
     var date = new Date(this.mainFormData.date_of_survey);
-    this.myDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+    //this.myDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
     console.log(JSON.stringify(this.myDate));
     this.surveyorName = this.mainFormData.surveyor_name;
     this.nameOfCustomer = this.mainFormData.name_of_customer;
