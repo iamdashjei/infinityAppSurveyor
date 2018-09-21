@@ -68,8 +68,6 @@ export class LoginPage {
 
   send(phoneNumber: number){
 
-
-
      const phoneNumberString = "+" + phoneNumber;
     (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumberString, 60, (credential) => {
       alert("SMS Sent Successfully");
@@ -121,10 +119,5 @@ export class LoginPage {
     }
     return false;
   }
-
-
-
-
-
 
 }

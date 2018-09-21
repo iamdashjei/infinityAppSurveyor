@@ -7,6 +7,8 @@ import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice
 import { Badge } from '@ionic-native/badge';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Sim } from '@ionic-native/sim';
+
 
 import { Storage } from '@ionic/storage';
 import firebase from 'firebase';
@@ -14,6 +16,7 @@ import firebase from 'firebase';
 import { ImagePicker } from '@ionic-native/image-picker';
 
 import { SurveyorPage } from '../surveyor/surveyor';
+
 /* Generated class for the DashboardPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -29,7 +32,7 @@ export class DashboardPage {
 
     @ViewChild('doughnutCanvas') doughnutCanvas;
 
-     protected uploadFinished = false;
+    protected uploadFinished = false;
 
     doughnutChart: any;
     badgeNumber: number;
@@ -61,6 +64,7 @@ export class DashboardPage {
               public storage: Storage,
               public rest: RestProvider,
               private camera: Camera,
+              public sim: Sim,
               private transfer: FileTransfer,
               public imagePicker: ImagePicker,
               public loadingCtrl: LoadingController,
@@ -94,6 +98,11 @@ export class DashboardPage {
           }
 
       });
+
+      this.sim.getSimInfo().then(
+        (info) => console.log('Sim info: '+ JSON.stringify(info)),
+        (err) => console.log('Unable to get sim info: ', err)
+      );
 
 
       this.getLeadsAssigned();
@@ -178,6 +187,7 @@ export class DashboardPage {
   }
 
   openLeads(lead_slug, campaign_name, leadItem, leadCreatedDate, leadCustName){
+    this.sharedObject.setSharedCampaignMeasure(campaign_name);
     this.navCtrl.push(SurveyorPage, {
       lead_slug: lead_slug,
       campaignValue: campaign_name,
@@ -186,7 +196,7 @@ export class DashboardPage {
       leadItem: leadItem
     });
 
-    this.sharedObject.setSharedCampaignMeasure(campaign_name);
+
   }
 
   isleadsCompletedHaveValue(){

@@ -163,7 +163,7 @@ export class RestProvider {
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-LeadsBySurveyor', data, this.options)
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-LeadsByInstaller', data, this.options)
       .toPromise()
       .then((response) =>
       {
@@ -274,7 +274,7 @@ export class RestProvider {
         resolve(response.json());
         this.loading.dismiss();
          alert("Successfully Submitted!");
-         this.navCtrl.push(DashboardPage);
+        // this.navCtrl.push(DashboardPage);
       })
       .catch((error) =>
       {
@@ -284,10 +284,5 @@ export class RestProvider {
       });
     });
   }
-
-
-
-
-
 
 }

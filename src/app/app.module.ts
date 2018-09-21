@@ -13,6 +13,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
+import { Sim } from '@ionic-native/sim';
 
 import { MyApp } from './app.component';
 import { AppState } from './app.global';
@@ -55,6 +56,8 @@ import { FIREBASE_CONFIG } from './firebase.config.ts';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { SharedobjectserviceProvider } from '../providers/sharedobjectservice/sharedobjectservice';
 import { NotificationPage } from '../pages/notification/notification';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -117,6 +120,7 @@ import { NotificationPage } from '../pages/notification/notification';
     File,
     ImagePicker,
     Base64,
+    Sim,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Firebase,
     UploadFileServiceProvider,
