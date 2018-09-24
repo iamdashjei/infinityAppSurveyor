@@ -223,7 +223,7 @@ export class SurveyorPage {
   }
 
   savedImagesBoiler(){
-    
+
   }
 
   savedImagesEsh(){
