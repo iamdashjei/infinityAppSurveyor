@@ -48,6 +48,8 @@ export class DashboardPage {
 
     images: any[] = [];
 
+    listSubmitted: any = [];
+
 
     // Dashboard Custom Menu
     MENU = {
@@ -104,7 +106,12 @@ export class DashboardPage {
         (err) => console.log('Unable to get sim info: ', err)
       );
 
-
+      this.listSubmitted = [];
+      this.storage.forEach( (value, key, index) => {
+       
+        console.log("from the key", key);
+        this.listSubmitted.push(key);
+      });
       this.getLeadsAssigned();
 
   }
@@ -232,6 +239,20 @@ export class DashboardPage {
     });
   }
 
+  isSubmit(lead_slug){
+    if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") === -1){
+      return true;
+    } else {
+      return false;
+    } 
+  }
 
+  isSubmit2(lead_slug){
+    if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") !== -1){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

@@ -99,7 +99,10 @@
           <img src="assets/imgs/orange-send-file-64.png">
         </ion-thumbnail>
 
-        <h5>{{l.c_campaign_name}}</h5>
+        <p>{{l.c_campaign_name}}</p>
+        <p>{{l.lead_slug}}</p>
+        <label style="color: red;" *ngIf="isSubmit(l.lead_slug)">Not Submitted</label>
+        <label style="color: green;" *ngIf="isSubmit2(l.lead_slug)">Submitted</label>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
 
           </ion-item>
