@@ -3,6 +3,7 @@ import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the AccordionComponent component.
  *
@@ -17,6 +18,7 @@ export class AccordionComponent {
   accordionExpanded = false;
   // Main Form
   myDate: any;
+  myDOB: any;
   surveyorName: any;
   nameOfCustomer: any;
   postCode: any;
@@ -39,12 +41,44 @@ export class AccordionComponent {
 
   icon: string = "arrow-forward";
 
-  constructor(public renderer: Renderer, private storage: Storage, public sharedObject: SharedobjectserviceProvider) {}
+  constructor(public renderer: Renderer, 
+              private storage: Storage, 
+              public toastCtrl: ToastController,
+              public sharedObject: SharedobjectserviceProvider) {}
 
   ionViewDidLoad(){
     console.log(this.genFormContent.nativeElement);
     this.renderer.setElementStyle(this.genFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
-      this.mainFormData = this.sharedObject.getSharedSelectedLeadObject();
+     
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_genForm").then((formData) => {
+        if(formData != null){
+          this.mainFormData = formData;
+          this.myDate = this.mainFormData.myDate;
+          this.myDOB = this.mainFormData.myDOB;
+          this.surveyorName = this.mainFormData.surveyorName;
+          this.nameOfCustomer = this.mainFormData.nameOfCustomer;
+          this.postCode =  this.mainFormData.postCode;
+          this.addressInstall = this.mainFormData.addressInstall;
+          this.custType = this.mainFormData.custType;
+          this.propertyType = this.mainFormData.propertyType;
+          this.propertyType1 =  this.mainFormData.propertyType1;
+          this.propertyType2 = this.mainFormData.propertyType2;
+          this.bedrooms = this.mainFormData.bedrooms;
+          this.tenure = this.mainFormData.tenure;
+          this.heatingSource = this.mainFormData.heatingSource;
+          this.other = this.mainFormData.other;
+          this.notes = this.mainFormData.notes;
+          this.drawing = this.mainFormData.drawing;
+        }
+    });
+
+          
   }
 
   // Toggle Accordion setting max height and padding when toggled
@@ -59,27 +93,6 @@ export class AccordionComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
-
-
-
-    this.mainFormData = JSON.parse(this.mainFormData["additional_fields"]);
-    console.log(JSON.stringify(this.mainFormData.date_of_survey));
-    var date = new Date(this.mainFormData.date_of_survey);
-    //this.myDate = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-    console.log(JSON.stringify(this.myDate));
-    this.surveyorName = this.mainFormData.surveyor_name;
-    this.nameOfCustomer = this.mainFormData.name_of_customer;
-    this.postCode =  this.mainFormData.postCode;
-    this.addressInstall = this.mainFormData.addressInstall;
-    this.custType = this.mainFormData.customer_type;
-    this.propertyType = this.mainFormData.property_type;
-    this.propertyType1 =  this.mainFormData.property_type1;
-    this.propertyType2 = this.mainFormData.property_type2;
-    this.bedrooms = this.mainFormData.bedrooms;
-    this.tenure = this.mainFormData.tenure;
-    this.heatingSource = this.mainFormData.heating_source;
-    this.other = this.mainFormData.other;
-    this.notes = this.mainFormData.notes;
   }
 
   // Set Key For Specific Data
@@ -100,9 +113,9 @@ export class AccordionComponent {
   }
 
   saveMainForm(){
-    let date = new Date(this.myDate);
     const dataMainForm = {
-      myDate: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
+      myDate: this.myDate,
+      myDOB: this.myDOB,
       surveyorName: this.surveyorName,
       nameOfCustomer: this.nameOfCustomer,
       postCode: this.postCode,
@@ -121,8 +134,22 @@ export class AccordionComponent {
 
 
     this.sharedObject.setSharedMainForm(dataMainForm);
-    alert("Saved Successfully!");
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_genForm", dataMainForm);
+    this.presentToastMainForm();
+    this.toggleAccordion();
   }
 
-
+  presentToastMainForm(){
+    let toast = this.toastCtrl.create({
+      message: 'Saved Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
 }

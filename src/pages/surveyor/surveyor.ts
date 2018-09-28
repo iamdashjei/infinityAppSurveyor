@@ -1,12 +1,9 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { SignaturePage } from '../signature/signature';
+import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { RestProvider} from '../../providers/rest/rest';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import { DashboardPage } from '../dashboard/dashboard';
-import { NotificationPage } from '../notification/notification';
 /**
  * Generated class for the SurveyorPage page.
  *
@@ -22,8 +19,13 @@ import { NotificationPage } from '../notification/notification';
 export class SurveyorPage {
   public signatureImage : any;
   public custSignatureImage: any;
-  @ViewChild(SignaturePad) public signaturePad : SignaturePad;
-  @ViewChild('imageCanvas') public signaturePad2 : SignaturePad;
+
+  @ViewChild(SignaturePad) public signaturePadFloorPlan : SignaturePad;
+  @ViewChild('floorPlan2') public signaturePadFloorPlan2 : SignaturePad;
+  @ViewChild('floorPlan3') public signaturePadFloorPlan3 : SignaturePad;
+  @ViewChild('declaration') public signaturePadDeclaration: SignaturePad;
+  @ViewChild('imageCanvas') public signaturePadEngSign : SignaturePad;
+  
   public signaturePadOptions : Object = {
     'minWidth': 2,
     'canvasWidth': 100,
@@ -31,17 +33,45 @@ export class SurveyorPage {
   }
 
   public signaturePadOptions2 : Object = {
-    'minWidth2': 2,
-    'canvasWidth2': 300,
-    'canvasHeight2': 300
+    'minWidth': 2,
+    'canvasWidth': 100,
+    'canvasHeight': 100
+  }
+
+  public signaturePadOptions3 : Object = {
+    'minWidth': 2,
+    'canvasWidth': 300,
+    'canvasHeight': 300
+  }
+
+  public signaturePadOptionDeclaration : Object = {
+    'minWidth': 2,
+    'canvasWidth': 300,
+    'canvasHeight': 300
+  }
+
+  public signaturePadOptionEngSign : Object = {
+    'minWidth': 2,
+    'canvasWidth': 300,
+    'canvasHeight': 300
   }
 
   accordionExpanded = false;
-  accordionExpandedCustSign = false;
+  accordionExpandedFloorPlan2 = false;
+  accordionExpandedFloorPlan3 = false;
+  accordionExpandedDeclaration = false;
+
   @ViewChild("signatureForm") signatureForms: any;
-  @ViewChild("custsignatureForm") custsignatureForms: any;
+  @ViewChild("signatureForm2") signatureForms2: any;
+  @ViewChild("signatureForm3") signatureForms3: any;
+
+  @ViewChild("declarationForm") declaractionForm: any;
+
   icon: string = "arrow-forward";
   icon2: string = "arrow-forward";
+  icon3: string = "arrow-forward";
+  icon4: string = "arrow-forward";
+  
 
   campaignMeasureView: any;
   lead_slug: any;
@@ -57,6 +87,7 @@ export class SurveyorPage {
   solidWallData: any;
   cavityWallData: any;
 
+  bedroom: any;
   kitchen: any;
   dinningroom: any;
   livingroom: any;
@@ -85,6 +116,11 @@ export class SurveyorPage {
   landlordPerm: any;
   custSign: any;
   floorPlan: any;
+  floorPlan2: any;
+  floorPlan3: any;
+  engSign: any;
+
+  customerAgreement: any;
 
   img: any;
 
@@ -93,6 +129,7 @@ export class SurveyorPage {
               public renderer: Renderer,
               public modalController: ModalController,
               public storage: Storage,
+              public toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider,
               public rest: RestProvider)
      {
@@ -137,8 +174,13 @@ export class SurveyorPage {
 
   ionViewDidLoad(){
       this.renderer.setElementStyle(this.signatureForms.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
-      this.renderer.setElementStyle(this.custsignatureForms.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+     
+    
   }
+
 
   // Toggle List for Signatures Floor Plan
   toggleSignatures() {
@@ -155,17 +197,43 @@ export class SurveyorPage {
   }
 
   // Toggle List for Signatures
-  toggleCustSignatures() {
-    if(this.accordionExpandedCustSign){
-      this.renderer.setElementStyle(this.custsignatureForms.nativeElement, "max-height", "0px");
-      this.renderer.setElementStyle(this.custsignatureForms.nativeElement, "padding", "0px 16px");
+  toggleFloorPlan2() {
+    if(this.accordionExpandedFloorPlan2){
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.custsignatureForms.nativeElement, "max-height", "1200px");
-      this.renderer.setElementStyle(this.custsignatureForms.nativeElement, "padding", "13px 16px");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "padding", "13px 16px");
     }
 
-    this.accordionExpandedCustSign = !this.accordionExpandedCustSign;
+    this.accordionExpandedFloorPlan2 = !this.accordionExpandedFloorPlan2;
     this.icon2 = this.icon2 == "arrow-forward" ? "arrow-down" : "arrow-forward";
+  }
+
+  toggleFloorPlan3(){
+    if(this.accordionExpandedFloorPlan3){
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "padding", "0px 16px");
+    } else {
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "padding", "13px 16px");
+    }
+
+    this.accordionExpandedFloorPlan3 = !this.accordionExpandedFloorPlan3;
+    this.icon3 = this.icon3 == "arrow-forward" ? "arrow-down" : "arrow-forward";
+  }
+
+  toggleDeclaration(){
+    if(this.accordionExpandedDeclaration){
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "max-height", "0px");
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "padding", "0px 16px");
+    } else {
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "padding", "13px 16px");
+    }
+
+    this.accordionExpandedDeclaration = !this.accordionExpandedDeclaration;
+    this.icon4 = this.icon4 == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
   // View Restriction for Forms. etc.
@@ -227,6 +295,11 @@ export class SurveyorPage {
   }
 
   savedImagesEsh(){
+
+    // this.storage.get('bedroom').then((bedroom) => {
+    //   this.bedroom = bedroom;
+    // });
+
     this.storage.get('kitchen').then((kitchen) => {
         this.kitchen = kitchen;
     });
@@ -324,12 +397,24 @@ export class SurveyorPage {
         this.landlordPerm = landlordPerm;
     });
 
-    this.storage.get('CustSign').then((custSign) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_declaration').then((custSign) => {
         this.custSign = custSign;
     });
 
-    this.storage.get('FloorPlan').then((floorPlan) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_FloorPlan').then((floorPlan) => {
         this.floorPlan = floorPlan;
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_FloorPlan2').then((floorPlan2) => {
+      this.floorPlan2 = floorPlan2;
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_FloorPlan3').then((floorPlan3) => {
+      this.floorPlan3 = floorPlan3;
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_engSign').then((engSign) => {
+      this.engSign = engSign;
     });
 
   }
@@ -466,64 +551,101 @@ export class SurveyorPage {
 
   canvasResize() {
     let canvas = document.querySelector('canvas');
-    this
-      .signaturePad
-      .set('minWidth', 1);
-      console.log(canvas.offsetWidth);
-    this
-      .signaturePad
-      .set('canvasWidth', canvas.offsetWidth);
+    this.signaturePadFloorPlan.set('minWidth', 1);
+    this.signaturePadFloorPlan.set('canvasWidth', canvas.offsetWidth);
+    this.signaturePadFloorPlan.set('canvasHeight', canvas.offsetHeight);
 
-    this
-      .signaturePad
-      .set('canvasHeight', canvas.offsetHeight);
+    this.signaturePadFloorPlan2.set('minWidth', 1);
+    this.signaturePadFloorPlan2.set('canvasWidth', canvas.offsetWidth);
+    this.signaturePadFloorPlan2.set('canvasHeight', canvas.offsetHeight);
+
+    this.signaturePadFloorPlan3.set('minWidth', 1);
+    this.signaturePadFloorPlan3.set('canvasWidth', canvas.offsetWidth);
+    this.signaturePadFloorPlan3.set('canvasHeight', canvas.offsetHeight);
+
+    this.signaturePadDeclaration.set('minWidth', 1);
+    this.signaturePadDeclaration.set('canvasWidth', 800);
+    this.signaturePadDeclaration.set('canvasHeight', 200);
+
+    this.signaturePadEngSign.set('minWidth', 1);
+    this.signaturePadEngSign.set('canvasWidth', 800);
+    this.signaturePadEngSign.set('canvasHeight', 200);
   }
 
-  canvasResize2() {
-    let canvas = document.querySelector('canvas');
-    this
-      .signaturePad2
-      .set('minWidth2', 1);
-      console.log(canvas.offsetWidth);
-    this
-      .signaturePad2
-      .set('canvasWidth2', canvas.offsetWidth);
-
-    this
-      .signaturePad2
-      .set('canvasHeight2', canvas.offsetHeight);
-  }
+ 
 
 
    ngAfterViewInit() {
      console.log("Reset Model Screen");
-      this.signaturePad.clear();
-      this.signaturePad2.clear();
-      this.canvasResize();
-      this.canvasResize2();
+     this.signaturePadFloorPlan.clear();
+     this.signaturePadFloorPlan2.clear();
+     this.signaturePadFloorPlan3.clear();
+     this.signaturePadDeclaration.clear();
+     this.signaturePadEngSign.clear();
+     this.canvasResize();
    }
 
-   drawComplete() {
-     this.storage.set("FloorPlan", this.signaturePad.toDataURL());
-     alert("Floor Plan Saved Successfully.");
+   drawComplete(tag) {
+     //this.storage.set("FloorPlan", this.signaturePad.toDataURL());
+     if(tag == 'floorPlan'){
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_FloorPlan", this.signaturePadFloorPlan.toDataURL());
+      this.presentToast("Floor Plan");
+      this.toggleSignatures();
+      this.toggleFloorPlan2();
+    } else if (tag == 'floorPlan2') {
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_FloorPlan2", this.signaturePadFloorPlan2.toDataURL());
+      this.presentToast("Floor Plan II");
+      this.toggleFloorPlan2();
+      this.toggleFloorPlan3();
+    } else if (tag == 'floorPlan3') {
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_FloorPlan3", this.signaturePadFloorPlan3.toDataURL());
+      this.presentToast("Floor Plan III");
+      this.toggleFloorPlan3();
+      this.toggleDeclaration();
+     
+    } else if (tag == 'declaration') {
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_declaration", this.signaturePadDeclaration.toDataURL());
+      this.presentToast("Declaration");
+      this.toggleDeclaration();
+     
+    } else if (tag == 'engSign') {
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_engSign", this.signaturePadEngSign.toDataURL());
+      this.presentToast("Engineer Signature");
+      
+    }
+     
   }
 
-  drawClear() {
-    this
-      .signaturePad
-      .clear();
+  drawClear(tag) {
+    if(tag == 'floorPlan'){
+      this.signaturePadFloorPlan.clear();
+    } else if (tag == 'floorPlan2') {
+      this.signaturePadFloorPlan2.clear();
+    } else if (tag == 'floorPlan3') {
+      this.signaturePadFloorPlan3.clear();
+    } else if (tag == 'declaration') {
+      this.signaturePadDeclaration.clear();
+    } else if (tag == 'engSign') {
+      this.signaturePadEngSign.clear();
+    }
+    
   }
 
-  drawComplete2() {
-    this.storage.set("CustSign",  this.signaturePad2.toDataURL());
-    alert("Signature Complete.");
-   }
-
- drawClear2() {
-   this
-     .signaturePad2
-     .clear();
+  presentToast(tag){
+    let toast = this.toastCtrl.create({
+      message: 'Saved ' + tag + ' Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 
 }
+
+

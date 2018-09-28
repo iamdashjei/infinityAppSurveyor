@@ -2,6 +2,7 @@ import { Component, ViewChild, Renderer, Input } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { ToastController } from 'ionic-angular';
 /**
  * Generated class for the AccordionEshBoilerComponent component.
  *
@@ -25,12 +26,39 @@ export class AccordionEshBoilerComponent {
 
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer,
+              public toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider,
-              public storage: Storage) {}
+              public storage: Storage) {
+
+                
+              }
 
   ionViewDidLoad(){
     console.log(this.eshboilerFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshboilerFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    // if(this.sharedObject.getSharedSelectedLeadObject()){
+    //   let data = this.sharedObject.getSharedSelectedLeadObject();
+    //   data = JSON.parse(data["additional_fields"]);
+    //   this.newHeatingSystemUsing =  data.newHeatingSystemUsing;
+    //   this.newSystemHeatBool = data.newSystemHeatBool;
+    //   this.eshUnroundedPOPT = data.eshUnroundedPOPT;
+    //   this.eshRoundedPOPT = data.eshRoundedPOPT;
+    // }
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_EshFormData").then((formData) => {
+      if(formData != null){
+        let data = formData;
+        this.newHeatingSystemUsing =  data.newHeatingSystemUsing;
+        this.newSystemHeatBool = data.newSystemHeatBool;
+        this.eshUnroundedPOPT = data.eshUnroundedPOPT;
+        this.eshRoundedPOPT = data.eshRoundedPOPT;
+      }
+    });
   }
 
   // Toggle Form for ESH - Boiler
@@ -46,12 +74,8 @@ export class AccordionEshBoilerComponent {
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
 
-    let data = this.sharedObject.getSharedSelectedLeadObject();
-    data = JSON.parse(data["additional_fields"]);
-    this.newHeatingSystemUsing =  data.newHeatingSystemUsing;
-    this.newSystemHeatBool = data.newSystemHeatBool;
-    this.eshUnroundedPOPT = data.eshUnroundedPOPT;
-    this.eshRoundedPOPT = data.eshRoundedPOPT;
+    
+    
 
   }
 
@@ -66,8 +90,23 @@ export class AccordionEshBoilerComponent {
 
 
     this.sharedObject.setSharedEshBoilerObject(dataFromEshForm);
-    this.storage.set("EshFormData", dataFromEshForm);
-    alert("Saved Successfully!");
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_EshFormData", dataFromEshForm);
+    this.presentEshBoiler();
+    this.toggleAccordionESHBoiler();
+  }
+
+  presentEshBoiler(){
+    let toast = this.toastCtrl.create({
+      message: 'Saved Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 

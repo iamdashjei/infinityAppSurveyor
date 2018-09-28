@@ -1,6 +1,7 @@
 import { Component, ViewChild, Renderer, Input} from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the AccordionEshComponent component.
@@ -37,6 +38,7 @@ export class AccordionEshComponent {
   icon: string = "arrow-forward";
   constructor(public renderer: Renderer,
               public storage: Storage,
+              public toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider) {
 
 
@@ -48,6 +50,25 @@ export class AccordionEshComponent {
     this.renderer.setElementStyle(this.eshFormContent.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_EshMainFormData").then((formData) => {
+      let data = formData;
+      this.eshSlimline = data.eshSlimline;
+      this.eshFanAssisted = data.eshFanAssisted;
+      this.eshHighHeatRetention = data.eshHighHeatRetention;
+      this.eshInstalledQualifyingSlimline = data.eshInstalledQualifyingSlimline;
+      this.eshInstalledNonQualifyingSlimline = data.eshInstalledNonQualifyingSlimline;
+      this.eshInstalledQualifyingFanAsst = data.eshInstalledQualifyingFanAsst;
+      this.estInstalledNonQualifyingFanAsst = data.estInstalledNonQualifyingFanAsst;
+      this.eshInstalledQualHighHeatRet = data.eshInstalledQualHighHeatRet;
+      this.eshInstalledNonQualHighHeatRet = data.eshInstalledNonQualHighHeatRet;
+      this.eshQeshRepairSlimline = data.eshQeshRepairSlimline;
+      this.eshQeshRepairFanAsst = data.eshQeshRepairFanAsst;
+      this.eshQeshRepairHighHeatRet = data.eshQeshRepairHighHeatRet;
+    });
+  }
 
   // Toggle Form For ESH
   toggleAccordionESH() {
@@ -61,24 +82,6 @@ export class AccordionEshComponent {
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
-
-    this.eshData = this.sharedObject.getSharedSelectedLeadObject();
-    const data = JSON.parse(this.eshData["additional_fields"]);
-
-
-
-    this.eshSlimline = data.preExttESHSlimline;
-    this.eshFanAssisted = data.preExtEshFanAsst;
-    this.eshHighHeatRetention = data.preExtEshHighHeatRet;
-    this.eshInstalledQualifyingSlimline = data.numberOfEshInstalledQlfySL;
-    this.eshInstalledNonQualifyingSlimline = data.numberOfEshInstalledNQlfySL;
-    this.eshInstalledQualifyingFanAsst = data.numberOfEshInstalledQlfyFA;
-    this.estInstalledNonQualifyingFanAsst = data.numberOfEshInstalledNQlfyFA;
-    this.eshInstalledQualHighHeatRet = data.numberOfEshInstalledQlfyHHR;
-    this.eshInstalledNonQualHighHeatRet = data.numberOfEshInstalledNQlfyHHR;
-    this.eshQeshRepairSlimline = data.qeshRepSL;
-    this.eshQeshRepairFanAsst = data.qeshFA;
-    this.eshQeshRepairHighHeatRet = data.qeshRepHHR;
 
 
   }
@@ -101,8 +104,23 @@ export class AccordionEshComponent {
       eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet
     };
     this.sharedObject.setSharedEshObject(data);
-    this.storage.set("EshBoilFormData", data);
-    alert("Saved Successfully!");
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_EshMainFormData", data);
+    this.presentToast();
+    this.toggleAccordionESH();
+  }
+
+  presentToast(){
+    let toast = this.toastCtrl.create({
+      message: 'Saved Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }
