@@ -6,6 +6,10 @@ import { Storage } from '@ionic/storage';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { RestProvider } from '../../providers/rest/rest';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { ModalController } from 'ionic-angular';
+import { UploadedImagesComponent } from '../uploaded-images/uploaded-images';
+
 /**
  * Generated class for the ImageUploadSurveyorComponent component.
  *
@@ -36,92 +40,114 @@ export class ImageUploadSurveyorComponent {
    signature = '';
    isDrawing = false;
    bedroom: any;
+   numberOfBedroom: any = [];
 
-
+   bedroomImages: any = [];
    progressBedroom: {percentage: number} = {percentage: 0};
    progressBedroomStatus: string = "Not yet uploaded";
    colorBedroom: string = "danger";
 
+   kitchenImages: any = [];
    progressKitchen: {percentage: number} = {percentage: 0};
    progressKitchenStatus: string = "Not yet uploaded";
    colorKitchen: string = "danger";
 
+   diningRoomImages: any = [];
    progressDinningRoom: {percentage: number} = {percentage: 0};
    progressDinningRoomStatus: string = "Not yet uploaded";
    colorDinningRoom: string = "danger";
 
+   livingRoomImages: any = [];
    progressLivingRoom: {percentage: number} = {percentage: 0};
    progressLivingRoomStatus: string = "Not yet uploaded";
    colorLivingRoom: string = "danger";
 
+   hallwayImages: any = [];
    progressHallway: {percentage: number} = {percentage: 0};
    progressHallwayStatus: string = "Not yet uploaded";
    colorHallway: string = "danger";
 
+   landingUpstairsImages: any = [];
    progressLandingUpstairs: {percentage: number} = {percentage: 0};
    progressLandingUpstairsStatus: string = "Not yet uploaded";
    colorLandingUpstairs: string = "danger";
 
+   frontElevationImages: any = [];
    progressFrontElevation: {percentage: number} = {percentage: 0};
    progressFrontElevationStatus: string = "Not yet uploaded";
    colorFrontElevation: string = "danger";
 
+   leftElevationImages: any = [];
    progressLeftElevation: {percentage: number} = {percentage: 0};
    progressLeftElevationStatus: string = "Not yet uploaded";
    colorLeftElevation: string = "danger";
 
+   rearElevationImages: any = [];
    progressRearElevation: {percentage: number} = {percentage: 0};
    progressRearElevationStatus: string = "Not yet uploaded";
    colorRearElevation: string = "danger";
 
+   sideElevationImages: any = [];
    progressSideElevation: {percentage: number} = {percentage: 0};
    progressSideElevationStatus: string = "Not yet uploaded";
    colorSideElevation: string = "danger";
 
+   utilityImages: any = [];
    progressUtility: {percentage: number} = {percentage: 0};
    progressUtilityStatus: string = "Not yet uploaded";
    colorUtility: string = "danger";
 
+   heatingSourceImages: any = [];
    progressHeatingSource: {percentage: number} = {percentage: 0};
    progressHeatingSourceStatus: string = "Not yet uploaded";
    colorHeatingSource: string = "danger";
 
+   bathRoomImages: any = [];
    progressBathRoom: {percentage: number} = {percentage: 0};
    progressBathRoomStatus: string = "Not yet uploaded";
    colorBathRoom: string = "danger";
 
+   cupboardImages: any = [];
    progressAiringCupboard: {percentage: number} = {percentage: 0};
    progressAiringCupboardStatus: string = "Not yet uploaded";
    colorAiringCupboard: string = "danger";
 
+   conservatoryImages: any = [];
    progressConservatory: {percentage: number} = {percentage: 0};
    progressConservatoryStatus: string = "Not yet uploaded";
    colorConservatory: string = "danger";
 
+   othersImages: any = [];
    progressOther: {percentage: number} = {percentage: 0};
    progressOtherStatus: string = "Not yet uploaded";
    colorOther: string = "danger";
 
+   stairsImages: any = [];
    progressStairs: {percentage: number} = {percentage: 0};
    progressStairsStatus: string = "Not yet uploaded";
    colorStairs: string = "danger";
 
+   garageImages: any = [];
    progressGarage: {percentage: number} = {percentage: 0};
    progressGarageStatus: string = "Not yet uploaded";
    colorGarage: string = "danger";
 
+   wallthicknessImages: any = [];
    progressWallThickness: {percentage: number} = {percentage: 0};
    progressWallThicknessStatus: string = "Not yet uploaded";
    colorWallThickness: string = "danger";
 
+   fusedSpurImages: any = [];
    progressFusedSpur: {percentage: number} = {percentage: 0};
    progressFusedSpurStatus: string = "Not yet uploaded";
    colorFusedSpur: string = "danger";
 
+   roomStatImages: any = [];
    progressRoomStat: {percentage: number} = {percentage: 0};
    progressRoomStatStatus: string = "Not yet uploaded";
    colorRoomStat: string = "danger";
 
+   programmerImages: any = [];
    progressProgrammer: {percentage: number} = {percentage: 0};
    progressProgrammerStatus: string = "Not yet uploaded";
    colorProgrammer: string = "danger";
@@ -152,10 +178,12 @@ export class ImageUploadSurveyorComponent {
   icon: string = "arrow-forward";
 
   constructor(public renderer: Renderer,
+              public imagePicker: ImagePicker,
               private uploadService: UploadFileServiceProvider,
               private storage: Storage,
               public sharedObject: SharedobjectserviceProvider,
               public rest: RestProvider,
+              public modalCtrl: ModalController,
               private camera: Camera
             ) {}
 
@@ -168,9 +196,19 @@ export class ImageUploadSurveyorComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     //this.storage.get().then(() => {});
+    
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom").then((bedroom) => {
+      if(bedroom != null){
+        this.bedroomImages = bedroom;
+        this.progressBedroom.percentage = 100;
+        this.progressBedroomStatus = "Completed";
+        this.colorBedroom = "secondary";
+      }
+    });
+
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_kitchen").then((kitchen) => {
       if(kitchen != null){
-        this.base64ImageKitchen = kitchen;
+        this.kitchenImages = kitchen;
         this.progressKitchen.percentage = 100;
         this.progressKitchenStatus = "Completed";
         this.colorKitchen = "secondary";
@@ -179,7 +217,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_dinningroom").then((dinningroom) => {
       if(dinningroom != null){
-        this.base64ImageDinningRoom = dinningroom;
+        this.diningRoomImages = dinningroom;
         this.progressDinningRoom.percentage = 100;
         this.progressDinningRoomStatus = "Completed";
         this.colorDinningRoom = "secondary";
@@ -188,7 +226,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_livingroom").then((livingroom) => {
       if(livingroom != null){
-        this.base64ImageLivingRoom = livingroom;
+        this.livingRoomImages = livingroom;
         this.progressLivingRoom.percentage = 100;
         this.progressLivingRoomStatus = "Completed";
         this.colorLivingRoom = "secondary";
@@ -197,7 +235,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_hallway").then((hallway) => {
       if(hallway != null){
-        this.base64ImageHallway = hallway;
+        this.hallwayImages = hallway;
         this.progressHallway.percentage = 100;
         this.progressHallwayStatus = "Completed";
         this.colorHallway = "secondary";
@@ -206,7 +244,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_landingupstair").then((landingupstair) => {
       if(landingupstair != null){
-        this.base64ImageLandingUpstairs = landingupstair;
+        this.landingUpstairsImages = landingupstair;
         this.progressLandingUpstairs.percentage = 100;
         this.progressLandingUpstairsStatus = "Completed";
         this.colorLandingUpstairs = "secondary";
@@ -215,7 +253,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_frontelevation").then((frontelevation) => {
       if(frontelevation != null){
-        this.base64ImageFrontElevation = frontelevation;
+        this.frontElevationImages = frontelevation;
         this.progressFrontElevation.percentage = 100;
         this.progressFrontElevationStatus = "Completed";
         this.colorFrontElevation = "secondary";
@@ -224,7 +262,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_leftelevation").then((leftelevation) => {
       if(leftelevation != null){
-        this.base64ImageLeftElevation = leftelevation;
+        this.leftElevationImages = leftelevation;
         this.progressLeftElevation.percentage = 100;
         this.progressLeftElevationStatus = "Completed";
         this.colorLeftElevation = "secondary";
@@ -233,7 +271,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_rearelevation").then((rearelevation) => {
       if(rearelevation != null){
-        this.base64ImageRearElevation = rearelevation;
+        this.rearElevationImages = rearelevation;
         this.progressRearElevation.percentage = 100;
         this.progressRearElevationStatus = "Completed";
         this.colorRearElevation = "secondary";
@@ -242,7 +280,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_sideelevation").then((sideelevation) => {
       if(sideelevation != null){
-        this.base64ImageSideElevation = sideelevation;
+        this.sideElevationImages = sideelevation;
         this.progressSideElevation.percentage = 100;
         this.progressSideElevationStatus = "Completed";
         this.colorSideElevation = "secondary";
@@ -251,7 +289,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_utility").then((utility) => {
       if(utility != null){
-        this.base64ImageUtility = utility;
+        this.utilityImages = utility;
         this.progressUtility.percentage = 100;
         this.progressUtilityStatus = "Completed";
         this.colorUtility = "secondary";
@@ -260,7 +298,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_heatingsource").then((heatingsource) => {
       if(heatingsource != null){
-        this.base64ImageHeatingSource = heatingsource;
+        this.heatingSourceImages = heatingsource;
         this.progressHeatingSource.percentage = 100;
         this.progressHeatingSourceStatus = "Completed";
         this.colorHeatingSource = "secondary";
@@ -269,7 +307,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_airingcupboard").then((airingcupboard) => {
       if(airingcupboard != null){
-        this.base64ImageAiringCupboard = airingcupboard;
+        this.cupboardImages = airingcupboard;
         this.progressAiringCupboard.percentage = 100;
         this.progressAiringCupboardStatus = "Completed";
         this.colorAiringCupboard = "secondary";
@@ -278,7 +316,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_conservatory").then((conservatory) => {
       if(conservatory != null){
-        this.base64ImageConservatory = conservatory;
+        this.conservatoryImages = conservatory;
         this.progressConservatory.percentage = 100;
         this.progressConservatoryStatus = "Completed";
         this.colorConservatory = "secondary";
@@ -287,7 +325,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_other").then((other) => {
       if(other != null){
-        this.base64ImageOther = other;
+        this.othersImages = other;
         this.progressOther.percentage = 100;
         this.progressOtherStatus = "Completed";
         this.colorOther = "secondary";
@@ -296,7 +334,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_garage").then((garage) => {
       if(garage != null){
-        this.base64ImageGarage = garage;
+        this.garageImages = garage;
         this.progressGarage.percentage = 100;
         this.progressGarageStatus = "Completed";
         this.colorGarage = "secondary";
@@ -305,7 +343,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_wallthickness").then((wallthickness) => {
       if(wallthickness != null){
-        this.base64ImageWallThickness = wallthickness;
+        this.wallthicknessImages = wallthickness;
         this.progressWallThickness.percentage = 100;
         this.progressWallThicknessStatus = "Completed";
         this.colorWallThickness = "secondary";
@@ -314,7 +352,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_fusedspur").then((fusedspur) => {
       if(fusedspur != null){
-        this.base64ImageFusedSpur = fusedspur;
+        this.fusedSpurImages = fusedspur;
         this.progressFusedSpur.percentage = 100;
         this.progressFusedSpurStatus = "Completed";
         this.colorFusedSpur = "secondary";
@@ -323,7 +361,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_roomstat").then((roomstat) => {
       if(roomstat != null){
-        this.base64ImageRoomStat = roomstat;
+        this.roomStatImages = roomstat;
         this.progressRoomStat.percentage = 100;
         this.progressRoomStatStatus = "Completed";
         this.colorRoomStat = "secondary";
@@ -332,7 +370,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_programmer").then((programmer) => {
       if(programmer != null){
-        this.base64ImageProgrammer = programmer;
+        this.programmerImages = programmer;
         this.progressProgrammer.percentage = 100;
         this.progressProgrammerStatus = "Completed";
         this.colorProgrammer = "secondary";
@@ -341,7 +379,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_bathroom").then((bathroom) => {
       if(bathroom != null){
-        this.base64ImageBathRoom = bathroom;
+        this.bathRoomImages = bathroom;
         this.progressBathRoom.percentage = 100;
         this.progressBathRoomStatus = "Completed";
         this.colorBathRoom = "secondary";
@@ -350,7 +388,7 @@ export class ImageUploadSurveyorComponent {
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_stairs").then((stairs) => {
       if(stairs != null){
-        this.base64ImageStairs = stairs;
+        this.stairsImages = stairs;
         this.progressStairs.percentage = 100;
         this.progressStairsStatus = "Completed";
         this.colorStairs = "secondary";
@@ -360,17 +398,22 @@ export class ImageUploadSurveyorComponent {
   }
 
   toggleAccordionSurveyor() {
+    this.numberOfBedroom = [];
+    for(let i = 1; i <= this.sharedObject.getSharedSelectedBedrooms(); i++){
+      this.numberOfBedroom.push(i);
+      console.log("Number of Bedrooms => " + this.numberOfBedroom);
+    }
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "3600px");
+      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "5200px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "13px 16px");
     }
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
-    this.getKey('Bedrooms');
+  
 
   }
 
@@ -413,68 +456,71 @@ export class ImageUploadSurveyorComponent {
     this.camera.getPicture(cameraOptions).then((imageData) => {
       // base64Image = 'data:image/jpeg;base64,' + imageData;
 
-      if( tag == 'Kitchen'){
-        this.base64ImageKitchen = 'data:image/jpeg;base64,' + imageData;
+      if( tag == 'Bedroom'){
+        this.bedroomImages.push('data:image/jpeg;base64,' + imageData);
+
+     } else if(tag == 'Kitchen'){
+       this.kitchenImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'DinningRoom'){
-       this.base64ImageDinningRoom = 'data:image/jpeg;base64,' + imageData;
+       this.diningRoomImages.push('data:image/jpeg;base64,' + imageData);
 
-     } else if(tag == 'LivingRoom'){
-       this.base64ImageLivingRoom = 'data:image/jpeg;base64,' + imageData;
+    }  else if(tag == 'LivingRoom'){
+       this.livingRoomImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Hallway'){
-       this.base64ImageHallway = 'data:image/jpeg;base64,' + imageData;
+       this.hallwayImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'LandingUpstairs'){
-       this.base64ImageLandingUpstairs = 'data:image/jpeg;base64,' + imageData;
+       this.landingUpstairsImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'FrontElevation'){
-       this.base64ImageFrontElevation = 'data:image/jpeg;base64,' + imageData;
+       this.frontElevationImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'LeftElevation'){
-       this.base64ImageLeftElevation = 'data:image/jpeg;base64,' + imageData;
+       this.leftElevationImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'RearElevation'){
-       this.base64ImageRearElevation = 'data:image/jpeg;base64,' + imageData;
+       this.rearElevationImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'SideElevation'){
-       this.base64ImageSideElevation = 'data:image/jpeg;base64,' + imageData;
+       this.sideElevationImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Utility'){
-       this.base64ImageUtility = 'data:image/jpeg;base64,' + imageData;
+       this.utilityImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'HeatingSource'){
-       this.base64ImageHeatingSource = 'data:image/jpeg;base64,' + imageData;
+       this.heatingSourceImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'BathRoom'){
-       this.base64ImageBathRoom = 'data:image/jpeg;base64,' + imageData;
+       this.bathRoomImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'AiringCupboard'){
-       this.base64ImageAiringCupboard = 'data:image/jpeg;base64,' + imageData;
+       this.cupboardImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Conservatory'){
-       this.base64ImageConservatory = 'data:image/jpeg;base64,' + imageData;
+       this.conservatoryImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Other'){
-       this.base64ImageOther = 'data:image/jpeg;base64,' + imageData;
+       this.othersImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Stairs'){
-       this.base64ImageStairs = 'data:image/jpeg;base64,' + imageData;
+       this.stairsImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Garage'){
-       this.base64ImageGarage = 'data:image/jpeg;base64,' + imageData;
+       this.garageImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'WallThickness'){
-       this.base64ImageWallThickness = 'data:image/jpeg;base64,' + imageData;
+       this.wallthicknessImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'FusedSpur'){
-       this.base64ImageFusedSpur = 'data:image/jpeg;base64,' + imageData;
+       this.fusedSpurImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'RoomStat'){
-       this.base64ImageRoomStat = 'data:image/jpeg;base64,' + imageData;
+       this.roomStatImages.push('data:image/jpeg;base64,' + imageData);
 
      } else if(tag == 'Programmer'){
-       this.base64ImageProgrammer = 'data:image/jpeg;base64,' + imageData;
+       this.programmerImages.push('data:image/jpeg;base64,' + imageData);
 
      }
     }, (err) => {
@@ -483,175 +529,225 @@ export class ImageUploadSurveyorComponent {
   }
 
   openGallery(tag) {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-    console.log("This tag: " + tag);
-
-      if( tag == 'Kitchen'){
-         this.base64ImageKitchen = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'DinningRoom'){
-        this.base64ImageDinningRoom = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'LivingRoom'){
-        this.base64ImageLivingRoom = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Hallway'){
-        this.base64ImageHallway = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'LandingUpstairs'){
-        this.base64ImageLandingUpstairs = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'FrontElevation'){
-        this.base64ImageFrontElevation = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'LeftElevation'){
-        this.base64ImageLeftElevation = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'RearElevation'){
-        this.base64ImageRearElevation = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'SideElevation'){
-        this.base64ImageSideElevation = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Utility'){
-        this.base64ImageUtility = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'HeatingSource'){
-        this.base64ImageHeatingSource = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'BathRoom'){
-        this.base64ImageBathRoom = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'AiringCupboard'){
-        this.base64ImageAiringCupboard = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Conservatory'){
-        this.base64ImageConservatory = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Other'){
-        this.base64ImageOther = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Stairs'){
-        this.base64ImageStairs = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Garage'){
-        this.base64ImageGarage = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'WallThickness'){
-        this.base64ImageWallThickness = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'FusedSpur'){
-        this.base64ImageFusedSpur = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'RoomStat'){
-        this.base64ImageRoomStat = 'data:image/jpeg;base64,' + imageData;
-
-      } else if(tag == 'Programmer'){
-        this.base64ImageProgrammer = 'data:image/jpeg;base64,' + imageData;
-
+    
+    const options = {
+      maximumImagesCount: 5,
+      quality: 50,
+      width: 512,
+      height: 512,
+      outputType: 1
       }
 
+    this.imagePicker.getPictures(options).then( imageData =>{
+      console.log(imageData);
+      
+      if( tag == 'Bedroom'){
+        //this.base64ImageBedroom = 'data:image/jpeg;base64,' + imageData;
+        for(let i=0; i < imageData.length;i++){
+          this.bedroomImages.push('data:image/jpeg;base64,' + imageData[i]);
+        };
 
-    }, (err) => {
-      console.log(err);
+     } else if(tag == 'Kitchen'){
+        for(let i=0; i < imageData.length;i++){
+        this.kitchenImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
 
+     } else if(tag == 'DinningRoom'){
+        for(let i=0; i < imageData.length;i++){
+        this.diningRoomImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+    } else if(tag == 'LivingRoom'){
+       for(let i=0; i < imageData.length;i++){
+        this.livingRoomImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Hallway'){
+        for(let i=0; i < imageData.length;i++){
+        this.hallwayImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'LandingUpstairs'){
+        for(let i=0; i < imageData.length;i++){
+        this.landingUpstairsImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'FrontElevation'){
+        for(let i=0; i < imageData.length;i++){
+        this.frontElevationImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'LeftElevation'){
+        for(let i=0; i < imageData.length;i++){
+        this.leftElevationImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'RearElevation'){
+        for(let i=0; i < imageData.length;i++){
+        this.rearElevationImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'SideElevation'){
+        for(let i=0; i < imageData.length;i++){
+        this.sideElevationImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Utility'){
+        for(let i=0; i < imageData.length;i++){
+        this.utilityImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'HeatingSource'){
+        for(let i=0; i < imageData.length;i++){
+        this.heatingSourceImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'BathRoom'){
+        for(let i=0; i < imageData.length;i++){
+        this.bathRoomImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'AiringCupboard'){
+        for(let i=0; i < imageData.length;i++){
+        this.cupboardImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Conservatory'){
+        for(let i=0; i < imageData.length;i++){
+        this.conservatoryImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Other'){
+        for(let i=0; i < imageData.length;i++){
+        this.othersImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Stairs'){
+        for(let i=0; i < imageData.length;i++){
+        this.stairsImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Garage'){
+        for(let i=0; i < imageData.length;i++){
+        this.garageImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'WallThickness'){
+        for(let i=0; i < imageData.length;i++){
+        this.wallthicknessImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'FusedSpur'){
+        for(let i=0; i < imageData.length;i++){
+        this.fusedSpurImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'RoomStat'){
+        for(let i=0; i < imageData.length;i++){
+        this.roomStatImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     } else if(tag == 'Programmer'){
+        for(let i=0; i < imageData.length;i++){
+        this.programmerImages.push('data:image/jpeg;base64,' + imageData[i]);
+      };
+
+     }
+     
     });
+
+    
   }
 
 
   uploadImage(tag){
     console.log("Upload Image: " + tag)
-    if(tag == 'Kitchen'){
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_kitchen", this.base64ImageKitchen);
-        //this.rest.fileUploadMainForm(this.base64ImageKitchen, 'Image', tag);
+    if(tag == 'Bedroom'){
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom", this.bedroomImages);
         this.progressUploads(tag);
+
+    } else if ( tag == 'Kitchen'){
+      this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_kitchen", this.kitchenImages);
+      this.progressUploads(tag);
+
     } else if ( tag == 'DinningRoom'){
-         this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_dinningroom", this.base64ImageDinningRoom);
-         //this.rest.fileUploadMainForm(this.base64ImageDinningRoom, 'Image', tag);
+         this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_dinningroom", this.diningRoomImages);
          this.progressUploads(tag);
+
     } else if ( tag == 'LivingRoom') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_livingroom", this.base64ImageLivingRoom);
-        //this.rest.fileUploadMainForm(this.base64ImageLivingRoom, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_livingroom", this.livingRoomImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Hallway') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_hallway", this.base64ImageHallway);
-        //this.rest.fileUploadMainForm(this.base64ImageLandingUpstairs, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_hallway", this.hallwayImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'LandingUpstairs') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_landingupstair", this.base64ImageLandingUpstairs);
-        //this.rest.fileUploadMainForm(this.base64ImageFrontElevation, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_landingupstair", this.landingUpstairsImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'FrontElevation') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_frontelevation", this.base64ImageFrontElevation);
-        //this.rest.fileUploadMainForm(this.base64ImageLeftElevation, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_frontelevation", this.frontElevationImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'LeftElevation') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_leftelevation", this.base64ImageLeftElevation);
-        //this.rest.fileUploadMainForm(this.base64ImageRearElevation, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_leftelevation", this.leftElevationImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'RearElevation') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_rearelevation", this.base64ImageRearElevation);
-        //this.rest.fileUploadMainForm(this.base64ImageSideElevation, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_rearelevation", this.rearElevationImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'SideElevation') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_sideelevation", this.base64ImageSideElevation);
-        //this.rest.fileUploadMainForm(this.base64ImageUtility, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_sideelevation", this.sideElevationImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Utility') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_utility", this.base64ImageUtility);
-        //this.rest.fileUploadMainForm(this.base64ImageHeatingSource, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_utility", this.utilityImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'HeatingSource') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_heatingsource", this.base64ImageHeatingSource);
-        //this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_heatingsource", this.heatingSourceImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'AiringCupboard') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_airingcupboard", this.base64ImageAiringCupboard);
-        //this.rest.fileUploadMainForm(this.base64ImageAiringCupboard, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_airingcupboard", this.cupboardImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Conservatory') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_conservatory", this.base64ImageConservatory);
-        //this.rest.fileUploadMainForm(this.base64ImageConservatory, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_conservatory", this.conservatoryImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Other') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_other", this.base64ImageOther);
-        //this.rest.fileUploadMainForm(this.base64ImageOther, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_other", this.othersImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Stairs') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_stairs", this.base64ImageStairs);
-        //this.rest.fileUploadMainForm(this.base64ImageStairs, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_stairs", this.stairsImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Garage') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_garage", this.base64ImageGarage);
-        //this.rest.fileUploadMainForm(this.base64ImageGarage, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_garage", this.garageImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'WallThickness') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_wallthickness", this.base64ImageWallThickness);
-        //this.rest.fileUploadMainForm(this.base64ImageWallThickness, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_wallthickness", this.wallthicknessImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'FusedSpur') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_fusedspur", this.base64ImageFusedSpur);
-        //this.rest.fileUploadMainForm(this.base64ImageFusedSpur, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_fusedspur", this.fusedSpurImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'RoomStat') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_roomstat", this.base64ImageRoomStat);
-        //this.rest.fileUploadMainForm(this.base64ImageRoomStat, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_roomstat", this.roomStatImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'Programmer') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_programmer", this.base64ImageProgrammer);
-        //this.rest.fileUploadMainForm(this.base64ImageProgrammer, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_programmer", this.programmerImages);
         this.progressUploads(tag);
+
     } else if ( tag == 'BathRoom') {
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_bathroom", this.base64ImageBathRoom);
-        //this.rest.fileUploadMainForm(this.base64ImageBathRoom, 'Image', tag);
+        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_bathroom", this.bathRoomImages);
         this.progressUploads(tag);
     }
 
@@ -662,126 +758,153 @@ export class ImageUploadSurveyorComponent {
   progressUploads(tag){
     for(var i = 0; i <= 100; i+=10){
 
-      if(tag == 'Kitchen'){
+      if(tag == 'Bedroom'){
+        this.progressBedroom.percentage = i;
+        if(i == 100){
+          this.progressBedroomStatus = "Completed";
+          this.colorBedroom = "secondary";
+        }
+
+      } else if ( tag == 'Kitchen'){
         this.progressKitchen.percentage = i;
         if(i == 100){
           this.progressKitchenStatus = "Completed";
           this.colorKitchen = "secondary";
         }
+
       } else if ( tag == 'DinningRoom'){
         this.progressDinningRoom.percentage = i;
         if(i == 100){
           this.progressDinningRoomStatus = "Completed";
           this.colorDinningRoom = "secondary";
         }
+
       } else if ( tag == 'LivingRoom') {
         this.progressLivingRoom.percentage = i;
         if(i == 100){
           this.progressLivingRoomStatus = "Completed";
           this.colorLivingRoom = "secondary";
         }
+
       } else if ( tag == 'Hallway') {
         this.progressHallway.percentage = i;
         if(i == 100){
           this.progressHallwayStatus = "Completed";
           this.colorHallway = "secondary";
         }
+
       } else if ( tag == 'LandingUpstairs') {
         this.progressLandingUpstairs.percentage = i;
         if(i == 100){
           this.progressLandingUpstairsStatus = "Completed";
           this.colorLandingUpstairs = "secondary";
         }
+
       }  else if ( tag == 'FrontElevation') {
         this.progressFrontElevation.percentage = i;
         if(i == 100){
           this.progressFrontElevationStatus = "Completed";
           this.colorFrontElevation = "secondary";
         }
+
       }  else if ( tag == 'LeftElevation') {
         this.progressLeftElevation.percentage = i;
         if(i == 100){
           this.progressLeftElevationStatus = "Completed";
           this.colorLeftElevation = "secondary";
         }
+
       }  else if ( tag == 'RearElevation') {
         this.progressRearElevation.percentage = i;
         if(i == 100){
           this.progressRearElevationStatus = "Completed";
           this.colorRearElevation = "secondary";
         }
+
       }  else if ( tag == 'SideElevation') {
         this.progressSideElevation.percentage = i;
         if(i == 100){
           this.progressSideElevationStatus = "Completed";
           this.colorSideElevation = "secondary";
         }
+
       }  else if ( tag == 'Utility') {
         this.progressUtility.percentage = i;
         if(i == 100){
           this.progressUtilityStatus = "Completed";
           this.colorUtility = "secondary";
         }
+
       }  else if ( tag == 'HeatingSource') {
         this.progressHeatingSource.percentage = i;
         if(i == 100){
           this.progressHeatingSourceStatus = "Completed";
           this.colorHeatingSource = "secondary";
         }
+
       }  else if ( tag == 'BathRoom') {
         this.progressBathRoom.percentage = i;
         if(i == 100){
           this.progressBathRoomStatus = "Completed";
           this.colorBathRoom = "secondary";
         }
+
       }  else if ( tag == 'AiringCupboard') {
         this.progressAiringCupboard.percentage = i;
         if(i == 100){
           this.progressAiringCupboardStatus = "Completed";
           this.colorAiringCupboard = "secondary";
         }
+
       }  else if ( tag == 'Conservatory') {
         this.progressConservatory.percentage = i;
         if(i == 100){
           this.progressConservatoryStatus = "Completed";
           this.colorConservatory = "secondary";
         }
+
       }  else if ( tag == 'Other') {
         this.progressOther.percentage = i;
         if(i == 100){
           this.progressOtherStatus = "Completed";
           this.colorOther = "secondary";
         }
+
       }  else if ( tag == 'Stairs') {
         this.progressStairs.percentage = i;
         if(i == 100){
           this.progressStairsStatus = "Completed";
           this.colorStairs = "secondary";
         }
+
       }  else if ( tag == 'Garage') {
         this.progressGarage.percentage = i;
         if(i == 100){
           this.progressGarageStatus = "Completed";
           this.colorGarage = "secondary";
         }
+
       }  else if ( tag == 'WallThickness') {
         this.progressWallThickness.percentage = i;
         if(i == 100){
           this.progressWallThicknessStatus = "Completed";
           this.colorWallThickness = "secondary";
         }
+
       }  else if ( tag == 'FusedSpur') {
         this.progressFusedSpur.percentage = i;
         if(i == 100){
           this.progressFusedSpurStatus = "Completed";
           this.colorFusedSpur = "secondary";
         }
+
       }  else if ( tag == 'RoomStat') {
         this.progressRoomStat.percentage = i;
         if(i == 100){
           this.progressRoomStatStatus = "Completed";
           this.colorRoomStat = "secondary";
         }
+
       }  else if ( tag == 'Programmer') {
         this.progressProgrammer.percentage = i;
         if(i == 100){
@@ -791,6 +914,11 @@ export class ImageUploadSurveyorComponent {
       }
 
     }
+  }
+
+  presentImageUploads(){
+    let profileModal = this.modalCtrl.create(UploadedImagesComponent, { userId: 8675309 });
+    profileModal.present();
   }
 
 

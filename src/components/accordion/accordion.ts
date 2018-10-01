@@ -74,7 +74,10 @@ export class AccordionComponent {
           this.heatingSource = this.mainFormData.heatingSource;
           this.other = this.mainFormData.other;
           this.notes = this.mainFormData.notes;
-          this.drawing = this.mainFormData.drawing;
+          // this.drawing = this.mainFormData.drawing;
+          this.sharedObject.setSharedSelectedBedrooms(this.bedrooms);
+          this.sharedObject.setSharedMainForm(formData);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_genForm", formData);
         }
     });
 
@@ -132,7 +135,7 @@ export class AccordionComponent {
       drawing: this.drawing
     };
 
-
+    this.sharedObject.setSharedSelectedBedrooms(this.bedrooms);
     this.sharedObject.setSharedMainForm(dataMainForm);
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_genForm", dataMainForm);
     this.presentToastMainForm();

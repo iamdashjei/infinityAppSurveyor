@@ -57,6 +57,7 @@ export class AccordionEshBoilerComponent {
         this.newSystemHeatBool = data.newSystemHeatBool;
         this.eshUnroundedPOPT = data.eshUnroundedPOPT;
         this.eshRoundedPOPT = data.eshRoundedPOPT;
+        this.sharedObject.setSharedEshBoilerObject(formData);
       }
     });
   }

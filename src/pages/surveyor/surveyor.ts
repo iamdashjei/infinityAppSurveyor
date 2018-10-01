@@ -87,33 +87,34 @@ export class SurveyorPage {
   solidWallData: any;
   cavityWallData: any;
 
+  bedrooms: any = [];
   bedroom: any;
-  kitchen: any;
-  dinningroom: any;
-  livingroom: any;
-  hallway: any;
-  landingupstair: any;
-  frontelevation: any;
-  leftelevation: any;
-  rearelevation: any;
-  sideelevation: any;
-  utility: any;
-  heatingsource: any;
-  airingcupboard: any;
-  conservatory: any;
-  other: any;
-  garage: any;
-  wallthickness: any;
-  fusedspur: any;
-  roomstat: any;
-  programmer: any;
-  bathroom: any;
-  kitchenImg: any;
-  stairs: any;
+  kitchen: any = [];
+  dinningroom: any = [];
+  livingroom: any = [];
+  hallway: any = [];
+  landingupstair: any = [];
+  frontelevation: any = [];
+  leftelevation: any = [];
+  rearelevation: any = [];
+  sideelevation: any = [];
+  utility: any = [];
+  heatingsource: any = [];
+  airingcupboard: any = [];
+  conservatory: any = [];
+  other: any = [];
+  garage: any = [];
+  wallthickness: any = [];
+  fusedspur: any = [];
+  roomstat: any = [];
+  programmer: any = [];
+  bathroom: any = [];
+  kitchenImg: any = [];
+  stairs: any = [];
 
-  ubil: any;
-  tenancyAgreement: any;
-  landlordPerm: any;
+  ubil: any = [];
+  tenancyAgreement: any = [];
+  landlordPerm: any = [];
   custSign: any;
   floorPlan: any;
   floorPlan2: any;
@@ -300,100 +301,104 @@ export class SurveyorPage {
     //   this.bedroom = bedroom;
     // });
 
-    this.storage.get('kitchen').then((kitchen) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_bedroom').then((bedroom) => {
+      this.bedrooms = bedroom;
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_kitchen').then((kitchen) => {
         this.kitchen = kitchen;
     });
 
-    this.storage.get('dinningroom').then((dinningroom) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_dinningroom').then((dinningroom) => {
         this.dinningroom = dinningroom;
     });
 
-    this.storage.get('livingroom').then((livingroom) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_livingroom').then((livingroom) => {
         this.livingroom = livingroom;
     });
 
-    this.storage.get('hallway').then((hallway) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_hallway').then((hallway) => {
         this.hallway = hallway;
     });
 
-    this.storage.get('landingupstair').then((landingupstair) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_landingupstair').then((landingupstair) => {
         this.landingupstair = landingupstair;
     });
 
-    this.storage.get('frontelevation').then((frontelevation) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_frontelevation').then((frontelevation) => {
         this.frontelevation = frontelevation;
     });
 
-    this.storage.get('leftelevation').then((leftelevation) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_leftelevation').then((leftelevation) => {
         this.leftelevation = leftelevation;
     });
 
-    this.storage.get('rearelevation').then((rearelevation) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_rearelevation').then((rearelevation) => {
         this.rearelevation = rearelevation;
     });
 
-    this.storage.get('sideelevation').then((sideelevation) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_sideelevation').then((sideelevation) => {
         this.sideelevation = sideelevation;
     });
 
-    this.storage.get('utility').then((utility) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_utility').then((utility) => {
         this.utility = utility;
     });
 
-    this.storage.get('heatingsource').then((heatingsource) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_heatingsource').then((heatingsource) => {
         this.heatingsource = heatingsource;
     });
 
-    this.storage.get('airingcupboard').then((airingcupboard) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_airingcupboard').then((airingcupboard) => {
         this.airingcupboard = airingcupboard;
     });
 
-    this.storage.get('conservatory').then((conservatory) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_conservatory').then((conservatory) => {
         this.conservatory = conservatory;
     });
 
-    this.storage.get('other').then((other) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_other').then((other) => {
         this.other = other;
     });
 
-    this.storage.get('garage').then((garage) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_garage').then((garage) => {
         this.garage = garage;
     });
 
-    this.storage.get('wallthickness').then((wallthickness) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_wallthickness').then((wallthickness) => {
         this.wallthickness = wallthickness;
     });
 
-    this.storage.get('fusedspur').then((fusedspur) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_fusedspur').then((fusedspur) => {
         this.fusedspur = fusedspur;
     });
 
-    this.storage.get('roomstat').then((roomstat) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_roomstat').then((roomstat) => {
         this.roomstat = roomstat;
     });
 
-    this.storage.get('programmer').then((programmer) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_programmer').then((programmer) => {
         this.programmer = programmer;
     });
 
-    this.storage.get('bathroom').then((bathroom) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_bathroom').then((bathroom) => {
         this.bathroom = bathroom;
     });
 
 
-    this.storage.get('stairs').then((stairs) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_stairs').then((stairs) => {
         this.stairs = stairs;
     });
 
-    this.storage.get('eshUBIL').then((ubil) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshUBIL').then((ubil) => {
         this.ubil = ubil;
     });
 
-    this.storage.get('eshTenancyAgreement').then((tenancyAgreement) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshTenancyAgreement').then((tenancyAgreement) => {
         this.tenancyAgreement = tenancyAgreement;
     });
 
-    this.storage.get('eshLandLordPerm').then((landlordPerm) => {
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_eshLandLordPerm').then((landlordPerm) => {
         this.landlordPerm = landlordPerm;
     });
 
@@ -421,6 +426,7 @@ export class SurveyorPage {
 
   saveImageObject(){
     const imgObj = {
+    bedrooms: this.bedrooms,
     kitchen: this.kitchen,
     diningroom:  this.dinningroom,
     livingroom:  this.livingroom,
@@ -445,7 +451,10 @@ export class SurveyorPage {
     landlordPerm: this.landlordPerm,
     tenancyAgreement: this.tenancyAgreement,
     custSign: this.custSign,
-    floorPlan: this.floorPlan
+    floorPlan: this.floorPlan,
+    floorPlan2: this.floorPlan2,
+    floorPlan3: this.floorPlan3,
+    engSign: this.engSign
    };
 
      this.rest.fileUploadMainForm('Image', imgObj);
@@ -628,6 +637,36 @@ export class SurveyorPage {
     } else if (tag == 'engSign') {
       this.signaturePadEngSign.clear();
     }
+    
+  }
+
+  drawUndo(tag){
+    if(tag == 'floorPlan'){
+      let data = this.signaturePadFloorPlan.toData();
+      data.pop();
+      this.signaturePadFloorPlan.fromData(data);
+    } else if (tag == 'floorPlan2') {
+      let data = this.signaturePadFloorPlan2.toData();
+      data.pop();
+      this.signaturePadFloorPlan2.fromData(data);
+
+    } else if (tag == 'floorPlan3') {
+      let data = this.signaturePadFloorPlan3.toData();
+      data.pop();
+      this.signaturePadFloorPlan3.fromData(data);
+
+    } else if (tag == 'declaration') {
+      let data = this.signaturePadDeclaration.toData();
+      data.pop();
+      this.signaturePadDeclaration.fromData(data);
+      
+    } else if (tag == 'engSign') {
+      let data = this.signaturePadEngSign.toData();
+      data.pop();
+      this.signaturePadEngSign.fromData(data);
+      
+    }
+
     
   }
 

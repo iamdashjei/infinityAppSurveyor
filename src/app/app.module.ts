@@ -47,6 +47,7 @@ import { EshUploadSurveyorComponent } from '../components/esh-upload-surveyor/es
 import { CavityWallComponentUploadComponent } from '../components/cavity-wall-component-upload/cavity-wall-component-upload';
 import { BoilerImageUploadComponent } from '../components/boiler-image-upload/boiler-image-upload';
 import { LoftImageUploadComponent } from '../components/loft-image-upload/loft-image-upload';
+import { UploadedImagesComponent } from '../components/uploaded-images/uploaded-images';
 
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { RestProvider } from '../providers/rest/rest';
@@ -80,6 +81,7 @@ import { NotificationPage } from '../pages/notification/notification';
     CavityWallComponentUploadComponent,
     BoilerImageUploadComponent,
     LoftImageUploadComponent,
+    UploadedImagesComponent,
 
   ],
   imports: [
@@ -106,6 +108,7 @@ import { NotificationPage } from '../pages/notification/notification';
     NotificationPage,
     SurveyorPage,
     AccordionComponent,
+    UploadedImagesComponent
   ],
   providers: [
     StatusBar,

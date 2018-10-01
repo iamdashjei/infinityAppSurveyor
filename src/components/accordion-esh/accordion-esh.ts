@@ -67,6 +67,7 @@ export class AccordionEshComponent {
       this.eshQeshRepairSlimline = data.eshQeshRepairSlimline;
       this.eshQeshRepairFanAsst = data.eshQeshRepairFanAsst;
       this.eshQeshRepairHighHeatRet = data.eshQeshRepairHighHeatRet;
+      this.sharedObject.setSharedEshObject(formData);
     });
   }
 

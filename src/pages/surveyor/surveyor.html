@@ -67,6 +67,7 @@
   </ion-card-header>
 
   <ion-card-content #signatureForm>
+      <img src="assets/imgs/floorplan_legend.jpg"/>
   <signature-pad [options]="signaturePadOptions"  id="signatureCanvas"></signature-pad>
   <ion-grid>
     <ion-row>
@@ -75,6 +76,9 @@
       </ion-col>
       <ion-col col-4>
         <button ion-button full color="secondary" (click)="drawComplete('floorPlan')">Done</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button full color="light" (click)="drawUndo('floorPlan')">Undo</button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -93,7 +97,9 @@
       </ion-list>
     </ion-card-header>
   
+    
     <ion-card-content #signatureForm2>
+        <img src="assets/imgs/floorplan_legend.jpg"/>
     <signature-pad [options]="signaturePadOptions"  id="signatureCanvas" #floorPlan2></signature-pad>
     <ion-grid>
       <ion-row>
@@ -102,6 +108,9 @@
         </ion-col>
         <ion-col col-4>
           <button ion-button full color="secondary" (click)="drawComplete('floorPlan2')">Done</button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button full color="light" (click)="drawUndo('floorPlan2')">Undo</button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -119,8 +128,9 @@
           </ion-item>
         </ion-list>
       </ion-card-header>
-    
+      
       <ion-card-content #signatureForm3>
+      <img src="assets/imgs/floorplan_legend.jpg"/>
       <signature-pad [options]="signaturePadOptions3"  id="signatureCanvas" #floorPlan3></signature-pad>
       <ion-grid>
         <ion-row>
@@ -129,6 +139,9 @@
           </ion-col>
           <ion-col col-4>
             <button ion-button full color="secondary" (click)="drawComplete('floorPlan3')">Done</button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button full color="light" (click)="drawUndo('floorPlan3')">Undo</button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -178,6 +191,9 @@
             <ion-col col-4>
               <button ion-button full color="secondary" (click)="drawComplete('declaration')">Done</button>
             </ion-col>
+            <ion-col col-4>
+              <button ion-button full color="light" (click)="drawUndo('declaration')">Undo</button>
+            </ion-col>
           </ion-row>
         </ion-grid>
         </ion-card-content>
@@ -195,6 +211,9 @@
       </ion-col>
       <ion-col col-4>
         <button ion-button full color="secondary" (click)="drawComplete('engSign')">Done</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button full color="light" (click)="drawUndo('engSign')">Undo</button>
       </ion-col>
     </ion-row>
   </ion-grid>

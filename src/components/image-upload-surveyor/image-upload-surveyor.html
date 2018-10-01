@@ -11,74 +11,81 @@
     </ion-list>
   </ion-card-header>
 
-  <ion-card-content #surveyorForms>
+<ion-card-content #surveyorForms>
+<ion-grid>
 
-    <!-- <ion-item *ngFor="let att of anArray; let idx = index">
-     <ion-label color="primary">{{att.label}}{{idx+1}}</ion-label>
-     <ion-input type="text"  text-right  [(ngModel)]="anArray[idx].value"></ion-input>
-   </ion-item>
-   <button ion-button   (click)="Add()">Add More</button>
-   <button ion-button full  (click)="goTo()" >let's go</button>
+  <!-- <ion-row *ngFor="let item of numberOfBedroom; let i = index">
+     
+    <ion-col>
+      <div class="progress" style="width:300px">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar" attr.aria-valuenow="{{progressBedroom.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progressBedroom.percentage+'%'}">
+            {{progressBedroom.percentage}}%
+          </div>
+      </div>
+    </ion-col>
+    <ion-col>
+     <ion-label color="{{ colorBedroom }}">{{ progressBedroomStatus }}</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-label color="primary">Bedroom {{ item }} </ion-label>
+      
+      
+    </ion-col>
 
-   <ion-card *ngIf="data">
-     <ion-item *ngFor="let att of anArray;">
-       <div class="card-title">{{att.value}}</div>
-     </ion-item>
-   </ion-card> -->
-   <ion-grid>
-     <!-- <ion-row>
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progress.percentage+'%'}">
-               {{progress.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary">Bedroom</ion-label>
-       </ion-col>
+    <ion-col>
+      <button ion-button (click)="openGallery('Bedroom', i)"> Choose File </button>
+      <button ion-button (click)="capture('Bedroom')"> Take Photo </button>
+      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages"> Upload Image </button>
+    </ion-col>
 
-       <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
+    <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of bedroomImages">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
+    
+</ion-row> -->
 
-         <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button>
+<ion-row>
+     
+    <ion-col>
+      <div class="progress" style="width:300px">
+        <div class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar" attr.aria-valuenow="{{progressBedroom.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progressBedroom.percentage+'%'}">
+            {{progressBedroom.percentage}}%
+          </div>
+      </div>
+    </ion-col>
+    <ion-col>
+     <ion-label color="{{ colorBedroom }}">{{ progressBedroomStatus }}</ion-label>
+    </ion-col>
+    <ion-col>
+      <ion-label color="primary">Bedroom </ion-label>
+    </ion-col>
 
-       </ion-col>
-     </ion-row> -->
+    <ion-col>
+      <button ion-button (click)="openGallery('Bedroom')"> Choose File </button>
+      <button ion-button (click)="capture('Bedroom')"> Take Photo </button>
+      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages"> Upload Image </button>
+    </ion-col>
 
+    <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of bedroomImages">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
+    
+</ion-row>
 
-       <!-- <ion-row *ngFor="let item of forLoopArray(bedroom); let i = index">
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progress.percentage+'%'}">
-               {{progress.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary" >Bedroom - {{ i + 1 }}</ion-label>
-       </ion-col>
-
-       <ion-col>
-         <button ion-button (click)="openGallery('Bedroom')"> Choose File </button>
-         <button ion-button (click)="uploadImage('Bedroom')"> Upload Image </button>
-
-       </ion-col>
-      </ion-row>
-
--->
   <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -95,16 +102,23 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Kitchen</ion-label>
-         <img [src]="base64ImageKitchen" width="80" height="80" *ngIf="base64ImageKitchen"/>
-       </ion-col>
+         </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Kitchen')"> Choose File </button>
          <button ion-button (click)="capture('Kitchen')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Kitchen')" *ngIf="base64ImageKitchen"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Kitchen')" *ngIf="kitchenImages"> Upload Image </button>
 
        </ion-col>
-     </ion-row>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of kitchenImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
+  </ion-row>
 
      <ion-row>
        <ion-col>
@@ -122,15 +136,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Dining Room</ion-label>
-         <img [src]="base64ImageDinningRoom" width="80" height="80" *ngIf="base64ImageDinningRoom"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('DinningRoom')"> Choose File </button>
          <button ion-button (click)="capture('DinningRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="base64ImageDinningRoom"> Upload Image </button>
+         <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="diningRoomImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of diningRoomImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -149,15 +170,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Living Room</ion-label>
-         <img [src]="base64ImageLivingRoom" width="80" height="80" *ngIf="base64ImageLivingRoom"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('LivingRoom')"> Choose File </button>
          <button ion-button (click)="capture('LivingRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="base64ImageLivingRoom"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="livingRoomImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of livingRoomImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -176,15 +204,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Hallway</ion-label>
-         <img [src]="base64ImageHallway" width="80" height="80" *ngIf="base64ImageHallway"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Hallway')"> Choose File </button>
          <button ion-button (click)="capture('Hallway')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Hallway')" *ngIf="base64ImageHallway"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Hallway')" *ngIf="hallwayImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of hallwayImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -203,14 +238,21 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Landing Upstairs</ion-label>
-         <img [src]="base64ImageLandingUpstairs" width="80" height="80" *ngIf="base64ImageLandingUpstairs"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('LandingUpstairs')"> Choose File </button>
          <button ion-button (click)="capture('LandingUpstairs')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="base64ImageLandingUpstairs"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="landingUpstairsImages"> Upload Image </button>
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of landingUpstairsImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -229,14 +271,21 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Front Elevation</ion-label>
-         <img [src]="base64ImageFrontElevation" width="80" height="80" *ngIf="base64ImageFrontElevation"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('FrontElevation')"> Choose File </button>
          <button ion-button (click)="capture('FrontElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="base64ImageFrontElevation"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="frontElevationImages"> Upload Image </button>
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of frontElevationImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -255,15 +304,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Left Elevation</ion-label>
-         <img [src]="base64ImageLeftElevation" width="80" height="80" *ngIf="base64ImageLeftElevation"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('LeftElevation')"> Choose File </button>
          <button ion-button (click)="capture('LeftElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="base64ImageLeftElevation"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="leftElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of leftElevationImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -282,15 +338,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Rear Elevation</ion-label>
-         <img [src]="base64ImageRearElevation" width="80" height="80" *ngIf="base64ImageRearElevation"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('RearElevation')"> Choose File </button>
          <button ion-button (click)="capture('RearElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('RearElevation')" *ngIf="base64ImageRearElevation"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RearElevation')" *ngIf="rearElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of rearElevationImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -309,15 +372,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Side Elevation</ion-label>
-         <img [src]="base64ImageSideElevation" width="80" height="80" *ngIf="base64ImageSideElevation"/>
+    
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('SideElevation')"> Choose File </button>
          <button ion-button (click)="capture('SideElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('SideElevation')" *ngIf="base64ImageSideElevation"> Upload Image </button>
+         <button ion-button (click)="uploadImage('SideElevation')" *ngIf="sideElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of sideElevationImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -336,15 +406,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Utility</ion-label>
-         <img [src]="base64ImageUtility" width="80" height="80" *ngIf="base64ImageUtility"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Utility')"> Choose File </button>
          <button ion-button (click)="capture('Utility')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Utility')" *ngIf="base64ImageUtility"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Utility')" *ngIf="utilityImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of utilityImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -363,15 +440,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Heating Source</ion-label>
-         <img [src]="base64ImageHeatingSource" width="80" height="80" *ngIf="base64ImageHeatingSource"/>
+         
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('HeatingSource')"> Choose File </button>
          <button ion-button (click)="capture('HeatingSource')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="base64ImageHeatingSource"> Upload Image </button>
+         <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="heatingSourceImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of heatingSourceImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -390,15 +474,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Bathroom</ion-label>
-         <img [src]="base64ImageBathRoom" width="80" height="80" *ngIf="base64ImageBathRoom"/>
+      
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('BathRoom')"> Choose File </button>
          <button ion-button (click)="capture('BathRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('BathRoom')" *ngIf="base64ImageBathRoom"> Upload Image </button>
+         <button ion-button (click)="uploadImage('BathRoom')" *ngIf="bathRoomImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of bathRoomImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -417,15 +508,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Airing Cupboard</ion-label>
-         <img [src]="base64ImageAiringCupboard" width="80" height="80" *ngIf="base64ImageAiringCupboard"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('AiringCupboard')"> Choose File </button>
          <button ion-button (click)="capture('AiringCupboard')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="base64ImageAiringCupboard"> Upload Image </button>
+         <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="cupboardImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of cupboardImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -444,15 +542,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Conservatory</ion-label>
-         <img [src]="base64ImageConservatory" width="80" height="80" *ngIf="base64ImageConservatory"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Conservatory')"> Choose File </button>
          <button ion-button (click)="capture('Conservatory')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Conservatory')" *ngIf="base64ImageConservatory"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Conservatory')" *ngIf="conservatoryImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of conservatoryImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -471,15 +576,23 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Other</ion-label>
-         <img [src]="base64ImageOther" width="80" height="80" *ngIf="base64ImageOther"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Other')"> Choose File </button>
          <button ion-button (click)="capture('Other')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Other')" *ngIf="base64ImageOther"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Other')" *ngIf="othersImages"> Upload Image </button>
 
        </ion-col>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of othersImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -498,14 +611,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Stairs</ion-label>
-         <img [src]="base64ImageStairs" width="80" height="80" *ngIf="base64ImageStairs"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Stairs')"> Choose File </button>
          <button ion-button (click)="capture('Stairs')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Stairs')" *ngIf="base64ImageStairs"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Stairs')" *ngIf="stairsImages"> Upload Image </button>
        </ion-col>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of stairsImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -524,15 +645,23 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Garage</ion-label>
-         <img [src]="base64ImageGarage" width="80" height="80" *ngIf="base64ImageGarage"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Garage')"> Choose File </button>
          <button ion-button (click)="capture('Garage')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Garage')" *ngIf="base64ImageGarage"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Garage')" *ngIf="garageImages"> Upload Image </button>
 
        </ion-col>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of garageImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -551,15 +680,23 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Wall Thickness</ion-label>
-         <img [src]="base64ImageWallThickness" width="80" height="80" *ngIf="base64ImageWallThickness"/>
+       
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('WallThickness')"> Choose File </button>
          <button ion-button (click)="capture('WallThickness')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('WallThickness')" *ngIf="base64ImageWallThickness"> Upload Image </button>
+         <button ion-button (click)="uploadImage('WallThickness')" *ngIf="wallthicknessImages"> Upload Image </button>
 
        </ion-col>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of wallthicknessImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -578,15 +715,23 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Fused Spur</ion-label>
-         <img [src]="base64ImageFusedSpur" width="80" height="80" *ngIf="base64ImageFusedSpur"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('FusedSpur')"> Choose File </button>
          <button ion-button (click)="capture('FusedSpur')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('FusedSpur')" *ngIf="base64ImageFusedSpur"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FusedSpur')" *ngIf="fusedSpurImages"> Upload Image </button>
 
        </ion-col>
+       
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of fusedSpurImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -605,15 +750,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Room Stat</ion-label>
-         <img [src]="base64ImageRoomStat" width="80" height="80" *ngIf="base64ImageRoomStat"/>
+        
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('RoomStat')"> Choose File </button>
          <button ion-button (click)="capture('RoomStat')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('RoomStat')" *ngIf="base64ImageRoomStat"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RoomStat')" *ngIf="roomStatImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of roomStatImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -632,15 +784,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Programmer</ion-label>
-         <img [src]="base64ImageProgrammer" width="80" height="80" *ngIf="base64ImageProgrammer"/>
+      
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('Programmer')"> Choose File </button>
          <button ion-button (click)="capture('Programmer')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Programmer')" *ngIf="base64ImageProgrammer"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Programmer')" *ngIf="programmerImages"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of programmerImages">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
    </ion-grid>
 

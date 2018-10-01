@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class SharedobjectserviceProvider {
-
+  /// The Term 'shared' means it is being used by other classes. 
   // Campaign Measures
   sharedEshObject: any;
   sharedEshBoilerObject: any;
@@ -28,6 +28,9 @@ export class SharedobjectserviceProvider {
 
   // Current Campaign Measure
   sharedCampaignMeasure: string;
+
+  // Selected Bedrooms
+  sharedBedrooms: number;
 
   // User ID
   userId: any;
@@ -191,6 +194,14 @@ export class SharedobjectserviceProvider {
 
   getSharedSelectedLeadObject(){
     return this.sharedSelectedLeadObject;
+  }
+
+  setSharedSelectedBedrooms(sharedValue){
+    this.sharedBedrooms = sharedValue;
+  }
+
+  getSharedSelectedBedrooms(){
+    return this.sharedBedrooms;
   }
 
 

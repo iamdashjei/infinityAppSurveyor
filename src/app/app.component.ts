@@ -1,24 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
+import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { Storage } from '@ionic/storage';
 
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { LoginPage } from '../pages/login/login';
 import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
-import { NotificationPage } from '../pages/notification/notification';
-import { SurveyorPage } from '../pages/surveyor/surveyor';
-import { SignaturePage } from '../pages/signature/signature';
 
 import { Subject } from 'rxjs';
 import { AppState } from './app.global';
-import { tap } from 'rxjs/operators';
 
 import firebase from 'firebase';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireModule } from 'angularfire2';
 
 import { RestProvider } from '../providers/rest/rest';
 
@@ -148,9 +141,9 @@ export class MyApp {
             this.rootPage = 'LoginPage';
           }
 
-      }, (err) => {
-        this.rootPage = 'LoginPage';
-      });
+      }, () => {
+          this.rootPage = 'LoginPage';
+        });
 
     });
   }

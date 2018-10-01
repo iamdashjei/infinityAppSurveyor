@@ -30,18 +30,26 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">UBIL</ion-label>
-         <img [src]="base64ImageUBIL" width="80" height="80" *ngIf="base64ImageUBIL"/>
        </ion-col>
 
        <ion-col>
 
          <button ion-button (click)="openGallery('UBIL')"> Choose File </button>
-         <button ion-button (click)="uploadImage('UBIL')" *ngIf="base64ImageUBIL"> Upload Image </button>
+         <button ion-button (click)="capture('UBIL')"> Take Photo </button>
+         <button ion-button (click)="uploadImage('UBIL')" *ngIf="UBILImage"> Upload Image </button>
+         
          <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
 
          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of UBILImage">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -60,14 +68,22 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary"> Tenancy Agreement</ion-label>
-         <img [src]="base64ImageTenancyAgreement" width="80" height="80" *ngIf="base64ImageTenancyAgreement"/>
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('TenancyAgreement')"> Choose File </button>
-         <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="base64ImageTenancyAgreement"> Upload Image </button>
+         <button ion-button (click)="capture('TenancyAgreement')"> Take Photo </button>
+         <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="tenancyAgrmtImage"> Upload Image </button>
 
        </ion-col>
+
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of tenancyAgrmtImage">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
 
      <ion-row>
@@ -86,14 +102,21 @@
        </ion-col>
        <ion-col>
          <ion-label color="primary">Landlord Permission</ion-label>
-         <img [src]="base64ImageLandLordPerm" width="80" height="80" *ngIf="base64ImageLandLordPerm"/>
        </ion-col>
 
        <ion-col>
          <button ion-button (click)="openGallery('LandLordPerm')"> Choose File </button>
-         <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="base64ImageLandLordPerm"> Upload Image </button>
+         <button ion-button (click)="capture('LandLordPerm')"> Take Photo </button>
+         <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="landlordPermImage"> Upload Image </button>
 
        </ion-col>
+       <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of landlordPermImage">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
      </ion-row>
    </ion-grid>
 

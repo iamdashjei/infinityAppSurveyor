@@ -6,6 +6,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Storage } from '@ionic/storage';
 import { SignaturesPage } from '../../pages/signatures/signatures';
 import {  NavController, NavParams } from 'ionic-angular';
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { ImagePicker } from '@ionic-native/image-picker';
 /**
  * Generated class for the EshUploadSurveyorComponent component.
  *
@@ -25,6 +27,7 @@ export class EshUploadSurveyorComponent {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
 
+  UBILImage: any = [];
   progressUBIL: {percentage: number} = {percentage: 0};
   progressUBILStatus: string = "Not yet completed";
   colorUBIL: string = "danger";
@@ -37,10 +40,12 @@ export class EshUploadSurveyorComponent {
   progressFloorPlanStatus: string = "Not yet completed";
   colorFloorPlan: string = "danger";
 
+  tenancyAgrmtImage: any =[];
   progressTenancyAgrmt: {percentage: number} = {percentage: 0};
   progressTenancyAgrmtStatus: string = "Not yet completed";
   colorTenancyAgrmt: string = "danger";
 
+  landlordPermImage: any = [];
   progressLandlordPerm: {percentage: number} = {percentage: 0};
   progressLandlordPermStatus: string = "Not yet completed";
   colorLandlordPerm: string = "danger";
@@ -59,16 +64,49 @@ export class EshUploadSurveyorComponent {
   icon: string = "arrow-forward";
 
   constructor(public renderer: Renderer,
+              public sharedObject: SharedobjectserviceProvider,
               private uploadService: UploadFileServiceProvider,
               public rest: RestProvider,
               public navCtrl: NavController,
               public storage: Storage,
-              private camera: Camera
+              private camera: Camera,
+              public imagePicker: ImagePicker
    ) {}
 
   ionViewDidLoad(){
     console.log(this.eshsurveyorFormContent.nativeElement);
     this.renderer.setElementStyle(this.eshsurveyorFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshUBIL").then((UBIL) => {
+      if(UBIL != null){
+        this.UBILImage = UBIL;
+        this.progressUBIL.percentage = 100;
+        this.progressUBILStatus = "Completed";
+        this.colorUBIL = "secondary";
+      } 
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshTenancyAgreement").then((tenancyAgrmt) => {
+      if(tenancyAgrmt != null){
+        this.tenancyAgrmtImage = tenancyAgrmt;
+        this.progressTenancyAgrmt.percentage = 100;
+        this.progressTenancyAgrmtStatus = "Completed";
+        this.colorTenancyAgrmt = "secondary";
+      } 
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_eshLandLordPerm").then((landlordPerm) => {
+      if(landlordPerm != null){
+        this.landlordPermImage = landlordPerm;
+        this.progressLandlordPerm.percentage = 100;
+        this.progressLandlordPermStatus = "Completed";
+        this.colorLandlordPerm = "secondary";
+      } 
+    });
   }
 
   toggleAccordionEshSurveyor() {
@@ -96,27 +134,35 @@ export class EshUploadSurveyorComponent {
     }
 
     openGallery(tag) {
-      const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-      }
+      const options = {
+        maximumImagesCount: 5,
+        quality: 50,
+        width: 512,
+        height: 512,
+        outputType: 1
+        }
 
-      this.camera.getPicture(options).then((imageData) => {
+        this.imagePicker.getPictures(options).then( imageData =>{
       console.log("This tag: " + tag);
 
         if( tag == 'UBIL'){
-           this.base64ImageUBIL = 'data:image/jpeg;base64,' + imageData;
+          for(let i=0; i < imageData.length;i++){
+            this.UBILImage.push('data:image/jpeg;base64,' + imageData[i]);
+          };
+           
         } else if(tag == 'CustSignature'){
           this.base64ImageCustSignature = 'data:image/jpeg;base64,' + imageData;
         } else if(tag == 'FloorPlan'){
           this.base64ImageFloorPlan = 'data:image/jpeg;base64,' + imageData;
         } else if(tag == 'TenancyAgreement'){
-          this.base64ImageTenancyAgreement = 'data:image/jpeg;base64,' + imageData;
+          for(let i=0; i < imageData.length;i++){
+            this.tenancyAgrmtImage.push('data:image/jpeg;base64,' + imageData[i]);
+          };
+
         } else if(tag == 'LandLordPerm'){
-          this.base64ImageLandLordPerm = 'data:image/jpeg;base64,' + imageData;
+          for(let i=0; i < imageData.length;i++){
+            this.landlordPermImage.push('data:image/jpeg;base64,' + imageData[i]);
+          };
         }
 
 
@@ -129,11 +175,11 @@ export class EshUploadSurveyorComponent {
     uploadImage(tag){
       console.log("Upload Image: " + tag)
       if(tag == 'UBIL'){
-          this.storage.set("eshUBIL", this.base64ImageUBIL);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshUBIL", this.UBILImage);
           //this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'CustSignature'){
-           this.storage.set("eshCustSignature", this.base64ImageCustSignature);
+           this.storage.set("_eshCustSignature", this.base64ImageCustSignature);
            //this.rest.fileUpload(this.base64ImageCustSignature, 'Image', tag);
            this.progressUploads(tag);
       } else if ( tag == 'FloorPlan') {
@@ -141,11 +187,11 @@ export class EshUploadSurveyorComponent {
           //this.rest.fileUpload(this.base64ImageFloorPlan, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'TenancyAgreement') {
-          this.storage.set("eshTenancyAgreement", this.base64ImageTenancyAgreement);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM()  + "_eshTenancyAgreement", this.tenancyAgrmtImage);
           //this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'LandLordPerm') {
-          this.storage.set("eshLandLordPerm", this.base64ImageLandLordPerm);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshLandLordPerm", this.landlordPermImage);
           //this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
           this.progressUploads(tag);
       }
