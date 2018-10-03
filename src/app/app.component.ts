@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, MenuController } from 'ionic-angular';
+import { Platform, Nav, MenuController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -35,6 +35,7 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public global: AppState,
+              public toastCtrl: ToastController,
               public menuCtrl: MenuController,
               public afs: AngularFirestoreModule,
               public storage: Storage,
@@ -59,13 +60,14 @@ export class MyApp {
 
     FCMPlugin.onNotification(function(data){
     if(data.wasTapped){
+      
       this.isLoggedIn();
       //Notification was received on device tray and tapped by the user.
     //  navCtrl.setRoot(DashboardPage);
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
 
-      alert("You have new leads");
+      this.presentNotif();
       location.reload();
       this.isLoggedIn();
       }
@@ -129,6 +131,7 @@ export class MyApp {
           if(phone != null){
             this.rest.fetchUserByPhoneNumber(phone, this.token).then((result) => {
                     console.log(result);
+                   
                     //this.rootPage = NotificationPage;
                     //this.rootPage = SurveyorPage;
                     this.rootPage = DashboardPage;
@@ -149,7 +152,19 @@ export class MyApp {
   }
 
 
-
+  presentNotif(){
+    let toast = this.toastCtrl.create({
+      message: 'You have New Lead assigned.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
 
 
 }

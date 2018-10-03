@@ -50,7 +50,7 @@
       </ion-col>
     
 </ion-row> -->
-
+<ion-item-divider>Bedroom Uploads</ion-item-divider>
 <ion-row>
      
     <ion-col>
@@ -76,16 +76,18 @@
       <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages"> Upload Image </button>
     </ion-col>
 
+ <ion-row>
     <ion-col>
         <ion-slides>
             <ion-slide *ngFor="let image of bedroomImages">
-                <img src="{{image}}"/>
+                <img src="{{image}}" height="300px" width="300px"/>
             </ion-slide>
         </ion-slides>
       </ion-col>
-    
+ </ion-row>
 </ion-row>
 
+<ion-item-divider>Kitchen Uploads</ion-item-divider>
   <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -110,16 +112,19 @@
          <button ion-button (click)="uploadImage('Kitchen')" *ngIf="kitchenImages"> Upload Image </button>
 
        </ion-col>
-
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of kitchenImages">
-                  <img src="{{image}}"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
+       
+      
   </ion-row>
-
+  <ion-row>
+      <ion-col>
+         <ion-slides>
+             <ion-slide *ngFor="let image of kitchenImages">
+                 <img src="{{image}}"/>
+             </ion-slide>
+         </ion-slides>
+       </ion-col>
+  </ion-row>
+  <ion-item-divider>Dining Room Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -145,15 +150,17 @@
          <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="diningRoomImages"> Upload Image </button>
 
        </ion-col>
+     <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of diningRoomImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Living Room Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -179,15 +186,18 @@
          <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="livingRoomImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of livingRoomImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
-     </ion-row>
+      </ion-row>
 
+     </ion-row>
+     <ion-item-divider>Hallway Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -213,15 +223,17 @@
          <button ion-button (click)="uploadImage('Hallway')" *ngIf="hallwayImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of hallwayImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Landing Upstair Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -246,15 +258,17 @@
          <button ion-button (click)="capture('LandingUpstairs')"> Take Photo </button>
          <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="landingUpstairsImages"> Upload Image </button>
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of landingUpstairsImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Front Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -279,15 +293,17 @@
          <button ion-button (click)="capture('FrontElevation')"> Take Photo </button>
          <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="frontElevationImages"> Upload Image </button>
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of frontElevationImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Left Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -313,15 +329,17 @@
          <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="leftElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of leftElevationImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Rear Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -347,15 +365,17 @@
          <button ion-button (click)="uploadImage('RearElevation')" *ngIf="rearElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of rearElevationImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Side Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -381,15 +401,18 @@
          <button ion-button (click)="uploadImage('SideElevation')" *ngIf="sideElevationImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of sideElevationImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
-     </ion-row>
+      </ion-row>
 
+     </ion-row>
+     <ion-item-divider>Utility Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -415,15 +438,17 @@
          <button ion-button (click)="uploadImage('Utility')" *ngIf="utilityImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of utilityImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Heating Source Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -449,15 +474,17 @@
          <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="heatingSourceImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of heatingSourceImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Bathroom Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -483,15 +510,17 @@
          <button ion-button (click)="uploadImage('BathRoom')" *ngIf="bathRoomImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of bathRoomImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Airing Cupboard Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -517,15 +546,17 @@
          <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="cupboardImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of cupboardImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Conservatory Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -551,15 +582,17 @@
          <button ion-button (click)="uploadImage('Conservatory')" *ngIf="conservatoryImages"> Upload Image </button>
 
        </ion-col>
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of conservatoryImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Other Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -585,16 +618,17 @@
          <button ion-button (click)="uploadImage('Other')" *ngIf="othersImages"> Upload Image </button>
 
        </ion-col>
-
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of othersImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Stairs Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -620,15 +654,17 @@
          <button ion-button (click)="uploadImage('Stairs')" *ngIf="stairsImages"> Upload Image </button>
        </ion-col>
 
+      <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of stairsImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Garage Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -655,15 +691,17 @@
 
        </ion-col>
 
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of garageImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Wall Thickness Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -690,15 +728,17 @@
 
        </ion-col>
 
+      <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of wallthicknessImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Fused Spur Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -725,15 +765,17 @@
 
        </ion-col>
        
+      <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of fusedSpurImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="300px" width="300px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Room Stat Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
@@ -759,15 +801,18 @@
          <button ion-button (click)="uploadImage('RoomStat')" *ngIf="roomStatImages"> Upload Image </button>
 
        </ion-col>
+
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of roomStatImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="20px" width="20px"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
-
+     <ion-item-divider>Programmer Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
          <div  class="progress" style="width:300px">
@@ -793,13 +838,16 @@
          <button ion-button (click)="uploadImage('Programmer')" *ngIf="programmerImages"> Upload Image </button>
 
        </ion-col>
+
+       <ion-row>
        <ion-col>
           <ion-slides>
               <ion-slide *ngFor="let image of programmerImages">
-                  <img src="{{image}}"/>
+                  <img src="{{image}}" height="20" width="20"/>
               </ion-slide>
           </ion-slides>
         </ion-col>
+      </ion-row>
      </ion-row>
    </ion-grid>
 

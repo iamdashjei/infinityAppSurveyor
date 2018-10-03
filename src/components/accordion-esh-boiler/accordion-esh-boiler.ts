@@ -41,14 +41,7 @@ export class AccordionEshBoilerComponent {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    // if(this.sharedObject.getSharedSelectedLeadObject()){
-    //   let data = this.sharedObject.getSharedSelectedLeadObject();
-    //   data = JSON.parse(data["additional_fields"]);
-    //   this.newHeatingSystemUsing =  data.newHeatingSystemUsing;
-    //   this.newSystemHeatBool = data.newSystemHeatBool;
-    //   this.eshUnroundedPOPT = data.eshUnroundedPOPT;
-    //   this.eshRoundedPOPT = data.eshRoundedPOPT;
-    // }
+    
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_EshFormData").then((formData) => {
       if(formData != null){

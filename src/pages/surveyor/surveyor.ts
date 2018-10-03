@@ -548,7 +548,7 @@ export class SurveyorPage {
       submitData.addressInstall,
       submitData.name_of_customer).then((result) => {
             console.log(result);
-
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_isSubmitted", "Yes");
           this.saveImageObject();
           //this.navCtrl.setRoot(DashboardPage);
 
@@ -619,7 +619,7 @@ export class SurveyorPage {
      
     } else if (tag == 'engSign') {
       this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_engSign", this.signaturePadEngSign.toDataURL());
-      this.presentToast("Engineer Signature");
+      this.presentToast("Surveyor Signature");
       
     }
      
