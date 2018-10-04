@@ -2,6 +2,10 @@ import { Component, ViewChild, Renderer, Input  } from '@angular/core';
 import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { CameraOptions, Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Storage } from '@ionic/storage';
+import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 /**
  * Generated class for the CavityWallComponentUploadComponent component.
  *
@@ -26,9 +30,29 @@ export class CavityWallComponentUploadComponent {
   signature = '';
   isDrawing = false;
 
+  UBILImage: any = [];
+  progressUBIL: {percentage: number} = {percentage: 0};
+  progressUBILStatus: string = "Not yet completed";
+  colorUBIL: string = "danger";
+
+  tenancyAgrmtImage: any =[];
+  progressTenancyAgrmt: {percentage: number} = {percentage: 0};
+  progressTenancyAgrmtStatus: string = "Not yet completed";
+  colorTenancyAgrmt: string = "danger";
+
+  landlordPermImage: any = [];
+  progressLandlordPerm: {percentage: number} = {percentage: 0};
+  progressLandlordPermStatus: string = "Not yet completed";
+  colorLandlordPerm: string = "danger";
+
   icon: string = "arrow-forward";
 
-  constructor(public renderer: Renderer, private uploadService: UploadFileServiceProvider) {}
+  constructor(private renderer: Renderer, 
+              private uploadService: UploadFileServiceProvider,
+              private imagePicker: ImagePicker,  
+              private sharedObject: SharedobjectserviceProvider,
+              private storage: Storage,
+              public camera: Camera) {}
 
   ionViewDidLoad(){
     console.log(this.cwsurveyorFormContent.nativeElement);
@@ -50,7 +74,7 @@ export class CavityWallComponentUploadComponent {
 
   // This will select file Cavity Wall Surveyor
   selectFileCWSurveyor(event){
-        this.selectedFiles = event.target.files;
+      this.selectedFiles = event.target.files;
   }
 
   // Upload Cavity Wall Image Upload Surveyor
@@ -58,5 +82,108 @@ export class CavityWallComponentUploadComponent {
     const file = this.selectedFiles.item(0);
     this.currentFileUpload = new FileUpload(file);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+  }
+
+  openGallery(tag){
+    const options = {
+      maximumImagesCount: 5,
+      quality: 50,
+      width: 512,
+      height: 512,
+      outputType: 1
+    }
+
+      this.imagePicker.getPictures(options).then( imageData =>{
+    console.log("This tag: " + tag);
+
+      if( tag == 'UBIL'){
+        for(let i=0; i < imageData.length;i++){
+          this.UBILImage.push('data:image/jpeg;base64,' + imageData[i]);
+        };
+         
+      } else if(tag == 'TenancyAgreement'){
+        for(let i=0; i < imageData.length;i++){
+          this.tenancyAgrmtImage.push('data:image/jpeg;base64,' + imageData[i]);
+        };
+
+      } else if(tag == 'LandLordPerm'){
+        for(let i=0; i < imageData.length;i++){
+          this.landlordPermImage.push('data:image/jpeg;base64,' + imageData[i]);
+        };
+      }
+
+
+    }, (err) => {
+      console.log(err);
+
+    });
+  }
+
+  capture(tag){
+    const cameraOptions: CameraOptions = {
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(cameraOptions).then((imageData) => {
+      if( tag == 'UBIL'){
+         this.UBILImage.push('data:image/jpeg;base64,' + imageData);
+        
+      } else if(tag == 'TenancyAgreement'){
+         this.tenancyAgrmtImage.push('data:image/jpeg;base64,' + imageData);
+      
+      } else if(tag == 'LandLordPerm'){
+         this.landlordPermImage.push('data:image/jpeg;base64,' + imageData);
+       
+      }
+
+    }, (err) => {
+      // Handle Error
+    });
+  }
+
+  uploadImage(tag){
+    console.log("Upload Image: " + tag)
+      if(tag == 'UBIL'){
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshUBIL", this.UBILImage);
+          //this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
+          this.progressUploads(tag);
+      }  else if ( tag == 'TenancyAgreement') {
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM()  + "_eshTenancyAgreement", this.tenancyAgrmtImage);
+          //this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
+          this.progressUploads(tag);
+      } else if ( tag == 'LandLordPerm') {
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshLandLordPerm", this.landlordPermImage);
+          //this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
+          this.progressUploads(tag);
+      }
+  }
+
+  progressUploads(tag){
+    for(var i = 0; i <= 100; i+=10){
+
+      if(tag == 'UBIL'){
+        this.progressUBIL.percentage = i;
+        if(i == 100){
+          this.progressUBILStatus = "Completed";
+          this.colorUBIL = "secondary";
+        }
+      }  else if ( tag == 'TenancyAgreement') {
+        this.progressTenancyAgrmt.percentage = i;
+        if(i == 100){
+          this.progressTenancyAgrmtStatus = "Completed";
+          this.colorTenancyAgrmt = "secondary";
+        }
+      } else if ( tag == 'LandLordPerm') {
+        this.progressLandlordPerm.percentage = i;
+        if(i == 100){
+          this.progressLandlordPermStatus = "Completed";
+          this.colorLandlordPerm = "secondary";
+        }
+      }
+
+    }
   }
 }

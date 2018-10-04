@@ -159,11 +159,12 @@ export class RestProvider {
       lead_slug: lead_slug,
       otp_user_id: id,
       status: status,
+      custName: this.sharedObject.getSharedCustName(),
       remarks: remarks
     });
 
     return new Promise((resolve, reject) => {
-      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-LeadsByInstaller', data, this.options)
+      this.http.post('https://app.infinityenergyorganisation.co.uk/v1/app/api/update-LeadsBySurveyor', data, this.options)
       .toPromise()
       .then((response) =>
       {

@@ -14,6 +14,7 @@ import { File } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
 import { Sim } from '@ionic-native/sim';
+import { Network } from '@ionic-native/network';
 
 import { MyApp } from './app.component';
 import { AppState } from './app.global';
@@ -124,6 +125,7 @@ import { NotificationPage } from '../pages/notification/notification';
     ImagePicker,
     Base64,
     Sim,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Firebase,
     UploadFileServiceProvider,

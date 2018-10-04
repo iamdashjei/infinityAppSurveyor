@@ -14,6 +14,7 @@ import firebase from 'firebase';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { RestProvider } from '../providers/rest/rest';
+import { Network } from '@ionic-native/network';
 
 
 @Component({
@@ -31,15 +32,16 @@ export class MyApp {
   user_name: string;
   token: any;
 
-  constructor(public platform: Platform,
-              public statusBar: StatusBar,
-              public splashScreen: SplashScreen,
-              public global: AppState,
-              public toastCtrl: ToastController,
-              public menuCtrl: MenuController,
-              public afs: AngularFirestoreModule,
-              public storage: Storage,
-              public rest: RestProvider
+  constructor(private platform: Platform,
+              private statusBar: StatusBar,
+              private splashScreen: SplashScreen,
+              private global: AppState,
+              private toastCtrl: ToastController,
+              private menuCtrl: MenuController,
+              private afs: AngularFirestoreModule,
+              private storage: Storage,
+              private network: Network,
+              private rest: RestProvider
           ) {
 
     const firebaseConfig = {
@@ -73,7 +75,25 @@ export class MyApp {
       }
     });
 
+    // watch network for a disconnect
+    network.onDisconnect().subscribe(() => {
+      this.presentMessage("Disconnected to Internet");
+    });
 
+    // watch network for a connection
+    this.network.onConnect().subscribe(() => {
+      this.presentMessage('Network connected!');
+      // We just got a connection but we need to wait briefly
+       // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === 'wifi') {
+          this.presentMessage('Wifi Connected. Proceeding now to uploads.');
+        } else if(this.network.type === 'Cell 4G connection'){
+          this.presentMessage('Cellular Data Connected. Proceeding now to uploads.');
+        }
+      }, 3000);
+    });
 
     platform.ready().then(() => {
       this.global.set('theme', '');
@@ -155,6 +175,20 @@ export class MyApp {
   presentNotif(){
     let toast = this.toastCtrl.create({
       message: 'You have New Lead assigned.',
+      duration: 3000,
+      position: 'top'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
+  presentMessage(tag){
+    let toast = this.toastCtrl.create({
+      message: tag,
       duration: 3000,
       position: 'top'
     });

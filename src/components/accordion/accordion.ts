@@ -131,8 +131,8 @@ export class AccordionComponent {
       tenure: this.tenure,
       heatingSource: this.heatingSource,
       other: this.other,
-      notes: this.notes,
-      drawing: this.drawing
+      notes: this.notes
+     
     };
 
     this.sharedObject.setSharedSelectedBedrooms(this.bedrooms);

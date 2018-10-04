@@ -14,42 +14,7 @@
 <ion-card-content #surveyorForms>
 <ion-grid>
 
-  <!-- <ion-row *ngFor="let item of numberOfBedroom; let i = index">
-     
-    <ion-col>
-      <div class="progress" style="width:300px">
-        <div class="progress-bar progress-bar-info progress-bar-striped"
-          role="progressbar" attr.aria-valuenow="{{progressBedroom.percentage}}"
-            aria-valuemin="0" aria-valuemax="100"
-            [ngStyle]="{width:progressBedroom.percentage+'%'}">
-            {{progressBedroom.percentage}}%
-          </div>
-      </div>
-    </ion-col>
-    <ion-col>
-     <ion-label color="{{ colorBedroom }}">{{ progressBedroomStatus }}</ion-label>
-    </ion-col>
-    <ion-col>
-      <ion-label color="primary">Bedroom {{ item }} </ion-label>
-      
-      
-    </ion-col>
-
-    <ion-col>
-      <button ion-button (click)="openGallery('Bedroom', i)"> Choose File </button>
-      <button ion-button (click)="capture('Bedroom')"> Take Photo </button>
-      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages"> Upload Image </button>
-    </ion-col>
-
-    <ion-col>
-        <ion-slides>
-            <ion-slide *ngFor="let image of bedroomImages">
-                <img src="{{image}}"/>
-            </ion-slide>
-        </ion-slides>
-      </ion-col>
-    
-</ion-row> -->
+  
 <ion-item-divider>Bedroom Uploads</ion-item-divider>
 <ion-row>
      
@@ -73,10 +38,12 @@
     <ion-col>
       <button ion-button (click)="openGallery('Bedroom')"> Choose File </button>
       <button ion-button (click)="capture('Bedroom')"> Take Photo </button>
-      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages"> Upload Image </button>
+      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages.length"> Save Image </button>
     </ion-col>
 
- <ion-row>
+ 
+</ion-row>
+<ion-row>
     <ion-col>
         <ion-slides>
             <ion-slide *ngFor="let image of bedroomImages">
@@ -85,7 +52,7 @@
         </ion-slides>
       </ion-col>
  </ion-row>
-</ion-row>
+ 
 
 <ion-item-divider>Kitchen Uploads</ion-item-divider>
   <ion-row>
@@ -109,7 +76,7 @@
        <ion-col>
          <button ion-button (click)="openGallery('Kitchen')"> Choose File </button>
          <button ion-button (click)="capture('Kitchen')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Kitchen')" *ngIf="kitchenImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Kitchen')" *ngIf="kitchenImages.length"> Save Image </button>
 
        </ion-col>
        
@@ -147,19 +114,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('DinningRoom')"> Choose File </button>
          <button ion-button (click)="capture('DinningRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="diningRoomImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('DinningRoom')" *ngIf="diningRoomImages.length"> Save Image </button>
 
        </ion-col>
-     <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of diningRoomImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+     
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of diningRoomImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Living Room Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -183,7 +152,7 @@
        <ion-col>
          <button ion-button (click)="openGallery('LivingRoom')"> Choose File </button>
          <button ion-button (click)="capture('LivingRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="livingRoomImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LivingRoom')" *ngIf="livingRoomImages.length"> Save Image </button>
 
        </ion-col>
        <ion-row>
@@ -220,19 +189,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('Hallway')"> Choose File </button>
          <button ion-button (click)="capture('Hallway')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Hallway')" *ngIf="hallwayImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Hallway')" *ngIf="hallwayImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of hallwayImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of hallwayImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Landing Upstair Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -256,18 +227,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('LandingUpstairs')"> Choose File </button>
          <button ion-button (click)="capture('LandingUpstairs')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="landingUpstairsImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LandingUpstairs')" *ngIf="landingUpstairsImages.length"> Save Image </button>
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of landingUpstairsImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of landingUpstairsImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Front Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -291,18 +265,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('FrontElevation')"> Choose File </button>
          <button ion-button (click)="capture('FrontElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="frontElevationImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FrontElevation')" *ngIf="frontElevationImages.length"> Save Image </button>
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of frontElevationImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of frontElevationImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+    </ion-row>
+
+
      <ion-item-divider>Left Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -326,19 +304,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('LeftElevation')"> Choose File </button>
          <button ion-button (click)="capture('LeftElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="leftElevationImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('LeftElevation')" *ngIf="leftElevationImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of leftElevationImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of leftElevationImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Rear Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -362,19 +342,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('RearElevation')"> Choose File </button>
          <button ion-button (click)="capture('RearElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('RearElevation')" *ngIf="rearElevationImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RearElevation')" *ngIf="rearElevationImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of rearElevationImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of rearElevationImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Side Elevation Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -398,20 +380,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('SideElevation')"> Choose File </button>
          <button ion-button (click)="capture('SideElevation')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('SideElevation')" *ngIf="sideElevationImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('SideElevation')" *ngIf="sideElevationImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of sideElevationImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
 
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of sideElevationImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Utility Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -435,19 +419,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('Utility')"> Choose File </button>
          <button ion-button (click)="capture('Utility')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Utility')" *ngIf="utilityImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Utility')" *ngIf="utilityImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of utilityImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of utilityImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Heating Source Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -471,19 +457,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('HeatingSource')"> Choose File </button>
          <button ion-button (click)="capture('HeatingSource')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="heatingSourceImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('HeatingSource')" *ngIf="heatingSourceImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of heatingSourceImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of heatingSourceImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Bathroom Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -507,19 +495,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('BathRoom')"> Choose File </button>
          <button ion-button (click)="capture('BathRoom')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('BathRoom')" *ngIf="bathRoomImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('BathRoom')" *ngIf="bathRoomImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of bathRoomImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of bathRoomImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Airing Cupboard Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -543,19 +533,23 @@
        <ion-col>
          <button ion-button (click)="openGallery('AiringCupboard')"> Choose File </button>
          <button ion-button (click)="capture('AiringCupboard')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="cupboardImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('AiringCupboard')" *ngIf="cupboardImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of cupboardImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of cupboardImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
+
      <ion-item-divider>Conservatory Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -579,19 +573,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('Conservatory')"> Choose File </button>
          <button ion-button (click)="capture('Conservatory')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Conservatory')" *ngIf="conservatoryImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Conservatory')" *ngIf="conservatoryImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of conservatoryImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of conservatoryImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Other Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -615,19 +611,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('Other')"> Choose File </button>
          <button ion-button (click)="capture('Other')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Other')" *ngIf="othersImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Other')" *ngIf="othersImages.length"> Save Image </button>
 
        </ion-col>
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of othersImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of othersImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Stairs Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -651,19 +649,21 @@
        <ion-col>
          <button ion-button (click)="openGallery('Stairs')"> Choose File </button>
          <button ion-button (click)="capture('Stairs')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Stairs')" *ngIf="stairsImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Stairs')" *ngIf="stairsImages.length"> Save Image </button>
        </ion-col>
 
-      <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of stairsImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of stairsImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Garage Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -687,20 +687,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('Garage')"> Choose File </button>
          <button ion-button (click)="capture('Garage')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Garage')" *ngIf="garageImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Garage')" *ngIf="garageImages.length"> Save Image </button>
 
        </ion-col>
 
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of garageImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of garageImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+      </ion-row>
+
      <ion-item-divider>Wall Thickness Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -724,20 +726,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('WallThickness')"> Choose File </button>
          <button ion-button (click)="capture('WallThickness')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('WallThickness')" *ngIf="wallthicknessImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('WallThickness')" *ngIf="wallthicknessImages.length"> Save Image </button>
 
        </ion-col>
 
-      <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of wallthicknessImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of wallthicknessImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Fused Spur Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -761,20 +765,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('FusedSpur')"> Choose File </button>
          <button ion-button (click)="capture('FusedSpur')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('FusedSpur')" *ngIf="fusedSpurImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('FusedSpur')" *ngIf="fusedSpurImages.length"> Save Image </button>
 
        </ion-col>
        
-      <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of fusedSpurImages">
-                  <img src="{{image}}" height="300px" width="300px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+      
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of fusedSpurImages">
+                   <img src="{{image}}" height="300px" width="300px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Room Stat Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -798,20 +804,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('RoomStat')"> Choose File </button>
          <button ion-button (click)="capture('RoomStat')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('RoomStat')" *ngIf="roomStatImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('RoomStat')" *ngIf="roomStatImages.length"> Save Image </button>
 
        </ion-col>
 
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of roomStatImages">
-                  <img src="{{image}}" height="20px" width="20px"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of roomStatImages">
+                   <img src="{{image}}" height="20px" width="20px"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
      <ion-item-divider>Programmer Uploads</ion-item-divider>
      <ion-row>
        <ion-col>
@@ -835,20 +843,22 @@
        <ion-col>
          <button ion-button (click)="openGallery('Programmer')"> Choose File </button>
          <button ion-button (click)="capture('Programmer')"> Take Photo </button>
-         <button ion-button (click)="uploadImage('Programmer')" *ngIf="programmerImages"> Upload Image </button>
+         <button ion-button (click)="uploadImage('Programmer')" *ngIf="programmerImages.length"> Save Image </button>
 
        </ion-col>
 
-       <ion-row>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of programmerImages">
-                  <img src="{{image}}" height="20" width="20"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
-      </ion-row>
+       
      </ion-row>
+     <ion-row>
+        <ion-col>
+           <ion-slides>
+               <ion-slide *ngFor="let image of programmerImages">
+                   <img src="{{image}}" height="20" width="20"/>
+               </ion-slide>
+           </ion-slides>
+         </ion-col>
+       </ion-row>
+
    </ion-grid>
 
   </ion-card-content>

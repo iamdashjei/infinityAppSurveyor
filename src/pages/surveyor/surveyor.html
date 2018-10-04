@@ -39,18 +39,19 @@
         </ion-item>
   </ion-row>
   <accordion title="Main Form (Surveyor)"> Main Form (Surveyor) </accordion>
-  <image-upload-surveyor title="Surveyor Image Upload">Surveyor Image Upload</image-upload-surveyor>
+  
   <accordion-loft title="Loft Insulation Measures" *ngIf="isViewedLoft()">Loft Insulation Measures</accordion-loft>
   <accordion-boiler title="Boiler Replacement Measures" *ngIf="isViewedBoiler()">Boiler Replacement Measures</accordion-boiler>
   <accordion-esh title="Electric Storage Heater Replacement Measures" *ngIf="isViewedESH()">Electric Storage Heater Replacement Measures</accordion-esh>
   <esh-upload-surveyor title="Electric Storage Heater Replacement Measures Image Uploads" *ngIf="isViewedESH()">Electric Storage Heater Replacement Measures Image Uploads</esh-upload-surveyor>
   <accordion-esh-boiler title="Electric Storage Heater and Boiler Replacement Measures" *ngIf="isViewedESH()">Electric Storage Heater and Boiler Replacement Measures</accordion-esh-boiler>
-  <accordion-cavity-solid-wall title="Cavity and Solid Wall Insulation" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation</accordion-cavity-solid-wall>
-  <accordion-cavity-solid-wall title="Cavity and Solid Wall Insulation" *ngIf="isViewedSolidWall()">Cavity and Solid Wall Insulation</accordion-cavity-solid-wall>
+  <accordion-cavity-solid-wall title="Cavity Wall Insulation" *ngIf="isViewedCavityWall()">Cavity Wall Insulation</accordion-cavity-solid-wall>
+  <accordion-cavity-solid-wall title="Solid Wall Insulation" *ngIf="isViewedSolidWall()">Solid Wall Insulation</accordion-cavity-solid-wall>
 
-  <image-upload title="Cavity and Solid Insulation Uploads" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation Uploads</image-upload>
-  <cavity-wall-component-upload title="Cavity and Solid Wall Insulation Image Uploads" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation Image Uploads</cavity-wall-component-upload>
-  <cavity-wall-component-upload title="Cavity and Solid Wall Insulation Image Uploads" *ngIf="isViewedSolidWall()">Cavity and Solid Wall Insulation Image Uploads</cavity-wall-component-upload>
+  <image-upload-surveyor title="Surveyor Image Upload">Surveyor Image Upload</image-upload-surveyor>
+  <image-upload title="Cavity and Solid Wall Insulation Uploads" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation Uploads</image-upload>
+  <cavity-wall-component-upload title="Cavity Wall Insulation Image Uploads" *ngIf="isViewedCavityWall()">Cavity Wall Insulation Image Uploads</cavity-wall-component-upload>
+  <cavity-wall-component-upload title="Solid Wall Insulation Image Uploads" *ngIf="isViewedSolidWall()">Solid Wall Insulation Image Uploads</cavity-wall-component-upload>
   <boiler-image-upload title="Boiler Image Upload" *ngIf="isViewedBoiler()">Boiler Image Upload</boiler-image-upload>
   <loft-image-upload title="Loft Insulation Measures Image Upload" *ngIf="isViewedLoft()">Loft Insulation Measures Image Upload</loft-image-upload>
 
@@ -92,7 +93,7 @@
           <button ion-button clear small icon-only item-right>
             <ion-icon color="light" [name]="icon2"></ion-icon>
           </button>
-          Floor Plan II
+          2nd Level Floor Plan
         </ion-item>
       </ion-list>
     </ion-card-header>
@@ -124,7 +125,7 @@
             <button ion-button clear small icon-only item-right>
               <ion-icon color="light" [name]="icon3"></ion-icon>
             </button>
-            Floor Plan III
+            3rd Level Floor Plan
           </ion-item>
         </ion-list>
       </ion-card-header>
@@ -155,7 +156,7 @@
               <button ion-button clear small icon-only item-right>
                 <ion-icon color="light" [name]="icon4"></ion-icon>
               </button>
-             Declaration
+             Customer Declaration
             </ion-item>
           </ion-list>
         </ion-card-header>
@@ -199,10 +200,14 @@
         </ion-card-content>
         </ion-card>
 
-
-
-  <ion-item>
-    <ion-item-divider>Surveyor Signature</ion-item-divider>
+  <ion-grid>
+  <ion-row>
+  <button ion-button color="primary" (click)="toggleSignature()" *ngIf="!signatureStatus">Hide Signature</button>
+  <button ion-button color="primary" (click)="toggleSignature()" *ngIf="signatureStatus">Show Signature</button>
+  </ion-row>
+  </ion-grid>
+  <ion-item-divider *ngIf="!signatureStatus">Surveyor Signature</ion-item-divider>
+  <ion-item *ngIf="!signatureStatus">
   <signature-pad [options]="signaturePadOptions2"  id="signatureCanvas2" #imageCanvas></signature-pad>
   <ion-grid>
     <ion-row>

@@ -50,7 +50,7 @@ export class DashboardPage {
 
     listSubmitted: any = [];
 
-
+    iconMeasures: any;
     // Dashboard Custom Menu
     MENU = {
       DEFAULT: 'menu-components',
@@ -138,9 +138,9 @@ export class DashboardPage {
       this.user_id = val;
       this.rest.fetchLeadAssigned(val).then((result) => {
 
-        this.leadsNew = result['New Leads'];
-        this.leadsInProgress = result['In Progress'];
-        this.leadsCompleted = result['Completed'];
+        this.leadsNew = result['New Leads Surveyor'];
+        this.leadsInProgress = result['In Progress Surveyor'];
+        this.leadsCompleted = result['Completed Surveyor'];
 
         console.log("All Leads: " +   JSON.stringify(this.leadsNew));
       }, (err) => {
@@ -215,8 +215,10 @@ export class DashboardPage {
 
   }
 
-  updateLeads(lead_slug, remarks){
-    this.rest.updateLeadsFromActionBtn(lead_slug, this.user_id, 'In Progress', remarks).then((result) => {
+  updateLeads(lead_slug, remarks, custName){
+    this.sharedObject.setSharedCustName(custName);
+    console.log("Cust name => " + custName);
+    this.rest.updateLeadsFromActionBtn(lead_slug, this.user_id, 'In Progress Surveyor', remarks).then((result) => {
       console.log(result);
       this.getLeadsAssigned();
 
@@ -239,20 +241,45 @@ export class DashboardPage {
     });
   }
 
-  isSubmit(lead_slug){
+  isSubmit(lead_slug, measure){
     if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") === -1){
+      if(measure.includes("ESH")){
+        this.iconMeasures = "assets/imgs/misc/esh.png";
+      } else if(measure.includes("Cavity") || measure.includes("CAVITY")){
+        this.iconMeasures = "assets/imgs/misc/wall insulation.png";
+      } else if(measure.includes("Loft") || measure.includes("LOFT")){
+        this.iconMeasures = "assets/imgs/misc/loft insulation.png";
+      } else if(measure.includes("Boiler") || measure.includes("BOILER")){
+        this.iconMeasures = "assets/imgs/misc/boiler.png";
+      } else if(measure.includes("Solid") || measure.includes("SOLID")){
+        this.iconMeasures = "assets/imgs/misc/solid wall insulatin.png";
+      }
+      
       return true;
     } else {
       return false;
     } 
   }
 
-  isSubmit2(lead_slug){
+  isSubmit2(lead_slug, measure){
     if(this.listSubmitted.indexOf(lead_slug + "_isSubmitted") !== -1){
+      if(measure.includes("ESH")){
+        this.iconMeasures = "assets/imgs/misc/esh.png";
+      } else if(measure.includes("Cavity") || measure.includes("CAVITY")){
+        this.iconMeasures = "assets/imgs/misc/wall insulation.png";
+      } else if(measure.includes("Loft") || measure.includes("LOFT")){
+        this.iconMeasures = "assets/imgs/misc/loft insulation.png";
+      } else if(measure.includes("Boiler") || measure.includes("BOILER")){
+        this.iconMeasures = "assets/imgs/misc/boiler.png";
+      } else if(measure.includes("Solid") || measure.includes("SOLID")){
+        this.iconMeasures = "assets/imgs/misc/solid wall insulatin.png";
+      }
       return true;
     } else {
       return false;
     }
   }
+
+  
 
 }

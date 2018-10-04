@@ -96,14 +96,17 @@
      <ion-item *ngFor="let l of leadsInProgress">
           <ion-item (click)="openLeads(l.lead_slug, l.c_campaign_name, l, l.created_at, l.name_of_customer)">
          <ion-thumbnail item-left>
-          <img src="assets/imgs/orange-send-file-64.png">
+          <img [src]="iconMeasures">
         </ion-thumbnail>
 
         <p>{{l.c_campaign_name}}</p>
         <p>{{l.lead_slug}}</p>
-        <label style="color: red;" *ngIf="isSubmit(l.lead_slug)">Not Submitted</label>
-        <label style="color: green;" *ngIf="isSubmit2(l.lead_slug)">Submitted</label>
-        <p clear item-right>{{ l.created_at | timeAgo }}</p>
+        <label style="color: red;" *ngIf="isSubmit(l.lead_slug, l.c_campaign_name)">Not Submitted</label>
+        <label style="color: green;" *ngIf="isSubmit2(l.lead_slug, l.c_campaign_name)">Submitted</label>
+        <div clear item-right>
+          <p>{{ l.created_at | timeAgo }}</p>
+          <!-- <p>Status Of Upload</p> -->
+        </div>
 
           </ion-item>
       </ion-item>
@@ -121,13 +124,13 @@
          <ion-item *ngFor="let l of leadsNew">
            <ion-item>
          <ion-thumbnail item-left>
-          <img src="assets/imgs/orange-send-file-64.png">
+          <img [src]="iconMeasures">
         </ion-thumbnail>
 
-        <h4>{{l.c_campaign_name}}</h4>
+        <p>{{l.c_campaign_name}}</p>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
-        <button ion-button (click)="updateLeads(l.lead_slug, 'Accept')"> Accept </button>
-        <button ion-button (click)="updateLeads(l.lead_slug, 'Decline')"> Decline </button>
+        <button ion-button (click)="updateLeads(l.lead_slug, 'Accept', l.name_of_customer)"> Accept </button>
+        <button ion-button (click)="updateLeads(l.lead_slug, 'Decline', l.name_of_customer)"> Decline </button>
           </ion-item>
        </ion-item>
 

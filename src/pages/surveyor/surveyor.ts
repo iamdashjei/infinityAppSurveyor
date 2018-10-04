@@ -121,6 +121,8 @@ export class SurveyorPage {
   floorPlan3: any;
   engSign: any;
 
+  signatureStatus: boolean = false;
+
   customerAgreement: any;
 
   img: any;
@@ -668,6 +670,10 @@ export class SurveyorPage {
     }
 
     
+  }
+
+  toggleSignature(){
+    this.signatureStatus = !this.signatureStatus;
   }
 
   presentToast(tag){

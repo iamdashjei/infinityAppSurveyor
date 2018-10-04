@@ -407,7 +407,7 @@ export class ImageUploadSurveyorComponent {
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "5200px");
+      this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "9000px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "13px 16px");
     }
 
