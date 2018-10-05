@@ -22,7 +22,6 @@ import { AppState } from './app.global';
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { LoginPage } from '../pages/login/login';
-import { SurveyorFormPage } from '../pages/surveyor-form/surveyor-form';
 import { SignaturePage } from '../pages/signature/signature';
 import { SignaturesPage } from '../pages/signatures/signatures';
 import { SurveyorPage } from '../pages/surveyor/surveyor';

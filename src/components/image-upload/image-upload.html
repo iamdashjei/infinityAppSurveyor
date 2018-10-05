@@ -20,25 +20,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressPropSectMain.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressPropSectMain.percentage+'%'}">
+                {{progressPropSectMain.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+         <ion-label color="{{ colorPropSectMain }}">{{progressPropSectMainStatus}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Property Section - Main</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('Main')"> Choose File </button>
+          <button ion-button (click)="capture('Main')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('Main')" *ngIf="propSectMain.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of propSectMain">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -46,25 +55,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressPropSectExt1.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressPropSectExt1.percentage+'%'}">
+                {{progressPropSectExt1.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+         <ion-label color="{{ colorPropSectExt1 }}">{{ progressPropSectExt1Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Property Section - Ext 1</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('Ext1')"> Choose File </button>
+          <button ion-button (click)="capture('Ext1')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('Ext1')" *ngIf="propSectExt1.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of propSectExt1">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -72,25 +90,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressPropSectExt2.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressPropSectExt2.percentage+'%'}">
+                {{progressPropSectExt2.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+         <ion-label color="{{ colorPropSectExt2 }}">{{ progressPropSectExt2Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Property Section - Ext 2</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('Ext2')"> Choose File </button>
+          <button ion-button (click)="capture('Ext2')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('Ext2')" *ngIf="propSectExt2.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of propSectExt2">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -98,25 +125,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressPropSectExt3.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressPropSectExt3.percentage+'%'}">
+                {{progressPropSectExt3.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{colorPropSectExt3 }}">{{ progressPropSectExt3Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Property Section - Ext 3</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('Ext3')"> Choose File </button>
+          <button ion-button (click)="capture('Ext3')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('Ext3')" *ngIf="propSectExt3.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of propSectExt3">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -124,51 +160,70 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressPropSectExt4.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressPropSectExt4.percentage+'%'}">
+                {{progressPropSectExt4.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorPropSectExt4 }}">{{progressPropSectExt4Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Property Section - Ext 4</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('Ext4')"> Choose File </button>
+          <button ion-button (click)="capture('Ext4')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('Ext4')" *ngIf="propSectExt4.length"> Save Image </button>
+          
         </ion-col>
       </ion-row>
-      <ion-item-divider></ion-item-divider>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of propSectExt4">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>Floor Construction</ion-item-divider>
       <ion-row>
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressFloorConstMain.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressFloorConstMain.percentage+'%'}">
+                {{progressFloorConstMain.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{colorFloorConstMain }}">{{progressFloorConstMainStatus}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Floor Construction - Main</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('FloorMain')"> Choose File </button>
+          <button ion-button (click)="capture('FloorMain')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('FloorMain')" *ngIf="floorConstMain.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of floorConstMain">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -176,25 +231,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressFloorConstExt1.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressFloorConstExt1.percentage+'%'}">
+                {{progressFloorConstExt1.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{colorFloorConstExt1 }}">{{progressFloorConstExt1Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Floor Construction - Ext 1</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('FloorExt1')"> Choose File </button>
+          <button ion-button (click)="capture('FloorExt1')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('FloorExt1')" *ngIf="floorConstExt1.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of floorConstExt1">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -202,25 +266,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressFloorConstExt2.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressFloorConstExt2.percentage+'%'}">
+                {{progressFloorConstExt2.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorFloorConstExt2}}">{{ progressFloorConstExt2Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Floor Construction - Ext 2</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('FloorExt2')"> Choose File </button>
+          <button ion-button (click)="capture('FloorExt2')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('FloorExt2')" *ngIf="floorConstExt2.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of floorConstExt2">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -228,78 +301,106 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressFloorConstExt3.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressFloorConstExt3.percentage+'%'}">
+                {{progressFloorConstExt3.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorFloorConstExt3 }}">{{progressFloorConstExt3Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Floor Construction - Ext 3</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('FloorExt3')"> Choose File </button>
+          <button ion-button (click)="capture('FloorExt3')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('FloorExt3')" *ngIf="floorConstExt3.length"> Save Image </button>
+          
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of floorConstExt3">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+      
 
       <ion-row>
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressFloorConstExt4.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressFloorConstExt4.percentage+'%'}">
+                {{progressFloorConstExt4.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{colorFloorConstExt4}}">{{progressFloorConstExt4Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Floor Construction - Ext 4</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('FloorExt4')"> Choose File </button>
+          <button ion-button (click)="capture('FloorExt4')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('FloorExt4')" *ngIf="floorConstExt4.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of floorConstExt4">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
-      <ion-item-divider></ion-item-divider>
+      <ion-item-divider>Area</ion-item-divider>
       <ion-row>
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressAreaMain.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressAreaMain.percentage+'%'}">
+                {{progressAreaMain.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorAreaMain}}">{{progressAreaMainStatus}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Area - Main</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('AreaMain')"> Choose File </button>
+          <button ion-button (click)="capture('AreaMain')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('AreaMain')" *ngIf="areaMain.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of areaMain">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -307,25 +408,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressAreaExt1.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressAreaExt1.percentage+'%'}">
+                {{progressAreaExt1.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorAreaExt1}}">{{ progressAreaExt1Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Area - Ext 1</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('AreaExt1')"> Choose File </button>
+          <button ion-button (click)="capture('AreaExt1')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('AreaExt1')" *ngIf="areaExt1.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of areaExt1">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -333,25 +443,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressAreaExt2.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressAreaExt2.percentage+'%'}">
+                {{progressAreaExt2.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorAreaExt2 }}">{{progressAreaExt2Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Area - Ext 2</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('AreaExt2')"> Choose File </button>
+          <button ion-button (click)="capture('AreaExt2')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('AreaExt2')" *ngIf="areaExt2.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of areaExt2">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -359,25 +478,34 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressAreaExt3.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressAreaExt3.percentage+'%'}">
+                {{progressAreaExt3.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{colorAreaExt3 }}">{{progressAreaExt3Status}}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Area - Ext 3</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('AreaExt3')"> Choose File </button>
+          <button ion-button (click)="capture('AreaExt3')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('AreaExt3')" *ngIf="areaExt3.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of areaExt3">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
@@ -385,53 +513,71 @@
         <ion-col>
           <div class="progress" style="width:300px">
             <div class="progress-bar progress-bar-info progress-bar-striped"
-              role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+              role="progressbar" attr.aria-valuenow="{{progressAreaExt4.percentage}}"
                 aria-valuemin="0" aria-valuemax="100"
-                [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%
+                [ngStyle]="{width:progressAreaExt4.percentage+'%'}">
+                {{progressAreaExt4.percentage}}%
               </div>
           </div>
         </ion-col>
         <ion-col>
-         <ion-label color="danger">Not yet Uploaded</ion-label>
+          <ion-label color="{{ colorAreaExt4 }}">{{ progressAreaExt4Status }}</ion-label>
         </ion-col>
         <ion-col>
           <ion-label color="primary">Area - Ext 4</ion-label>
         </ion-col>
 
         <ion-col>
-          <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+          <button ion-button (click)="openGallery('AreaExt4')"> Choose File </button>
+          <button ion-button (click)="capture('AreaExt4')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('AreaExt4')" *ngIf="areaExt4.length"> Save Image </button>
+          
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+              <ion-slide *ngFor="let image of areaExt4">
+                  <img src="{{image}}"/>
+              </ion-slide>
+          </ion-slides>
         </ion-col>
       </ion-row>
 
 
-      <ion-item-divider></ion-item-divider>
+      <ion-item-divider>Insulation</ion-item-divider>
             <ion-row>
               <ion-col>
                 <div class="progress" style="width:300px">
                   <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    role="progressbar" attr.aria-valuenow="{{progressInsulationMain.percentage}}"
                       aria-valuemin="0" aria-valuemax="100"
-                      [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%
+                      [ngStyle]="{width:progressInsulationMain.percentage+'%'}">
+                      {{progressInsulationMain.percentage}}%
                     </div>
                 </div>
               </ion-col>
               <ion-col>
-               <ion-label color="danger">Not yet Uploaded</ion-label>
+                <ion-label color="{{colorInsulationMain}}">{{progressInsulationMainStatus}}</ion-label>
               </ion-col>
               <ion-col>
-                <ion-label color="primary">Total Floor Area A</ion-label>
+                <ion-label color="primary">Insulation to be installed - Main</ion-label>
               </ion-col>
 
               <ion-col>
-                <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-                <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+                <button ion-button (click)="openGallery('InsulationMain')"> Choose File </button>
+                <button ion-button (click)="capture('InsulationMain')"> Take Photo </button>
+                <button ion-button (click)="uploadImage('InsulationMain')" *ngIf="insulationMain.length"> Save Image </button>
+                
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of insulationMain">
+                        <img src="{{image}}"/>
+                    </ion-slide>
+                </ion-slides>
               </ion-col>
             </ion-row>
 
@@ -439,25 +585,34 @@
               <ion-col>
                 <div class="progress" style="width:300px">
                   <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    role="progressbar" attr.aria-valuenow="{{progressInsulationExt1.percentage}}"
                       aria-valuemin="0" aria-valuemax="100"
-                      [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%
+                      [ngStyle]="{width:progressInsulationExt1.percentage+'%'}">
+                      {{progressInsulationExt1.percentage}}%
                     </div>
                 </div>
               </ion-col>
               <ion-col>
-               <ion-label color="danger">Not yet Uploaded</ion-label>
+                <ion-label color="{{colorInsulationExt1}}">{{progressInsulationExt1Status}}</ion-label>
               </ion-col>
               <ion-col>
                 <ion-label color="primary">Insulation to be installed - Ext 1</ion-label>
               </ion-col>
 
               <ion-col>
-                <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-                <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+                <button ion-button (click)="openGallery('InsulationExt1')"> Choose File </button>
+                <button ion-button (click)="capture('InsulationExt1')"> Take Photo </button>
+                <button ion-button (click)="uploadImage('InsulationExt1')" *ngIf="insulationExt1.length"> Save Image </button>
+                
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of insulationExt1">
+                        <img src="{{image}}"/>
+                    </ion-slide>
+                </ion-slides>
               </ion-col>
             </ion-row>
 
@@ -465,25 +620,34 @@
               <ion-col>
                 <div class="progress" style="width:300px">
                   <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    role="progressbar" attr.aria-valuenow="{{progressInsulationExt2.percentage}}"
                       aria-valuemin="0" aria-valuemax="100"
-                      [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%
+                      [ngStyle]="{width:progressInsulationExt2.percentage+'%'}">
+                      {{progressInsulationExt2.percentage}}%
                     </div>
                 </div>
               </ion-col>
               <ion-col>
-               <ion-label color="danger">Not yet Uploaded</ion-label>
+                <ion-label color="{{ colorInsulationExt2 }}">{{progressInsulationExt2Status}}</ion-label>
               </ion-col>
               <ion-col>
                 <ion-label color="primary">Insulation to be installed - Ext 2</ion-label>
               </ion-col>
 
               <ion-col>
-                <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-                <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+                <button ion-button (click)="openGallery('InsulationExt2')"> Choose File </button>
+                <button ion-button (click)="capture('InsulationExt2')"> Take Photo </button>
+                <button ion-button (click)="uploadImage('InsulationExt2')" *ngIf="insulationExt2.length"> Save Image </button>
+                
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of insulationExt2">
+                        <img src="{{image}}"/>
+                    </ion-slide>
+                </ion-slides>
               </ion-col>
             </ion-row>
 
@@ -491,25 +655,34 @@
               <ion-col>
                 <div class="progress" style="width:300px">
                   <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    role="progressbar" attr.aria-valuenow="{{progressInsulationExt3.percentage}}"
                       aria-valuemin="0" aria-valuemax="100"
-                      [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%
+                      [ngStyle]="{width:progressInsulationExt3.percentage+'%'}">
+                      {{progressInsulationExt3.percentage}}%
                     </div>
                 </div>
               </ion-col>
               <ion-col>
-               <ion-label color="danger">Not yet Uploaded</ion-label>
+                <ion-label color="{{ colorInsulationExt3 }}">{{progressInsulationExt3Status}}</ion-label>
               </ion-col>
               <ion-col>
                 <ion-label color="primary">Insulation to be installed - Ext 3</ion-label>
               </ion-col>
 
               <ion-col>
-                <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-                <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+                <button ion-button (click)="openGallery('InsulationExt3')"> Choose File </button>
+                <button ion-button (click)="capture('InsulationExt3')"> Take Photo </button>
+                <button ion-button (click)="uploadImage('InsulationExt3')" *ngIf="insulationExt3.length"> Save Image </button>
+                
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of insulationExt3">
+                        <img src="{{image}}"/>
+                    </ion-slide>
+                </ion-slides>
               </ion-col>
             </ion-row>
 
@@ -517,28 +690,36 @@
               <ion-col>
                 <div class="progress" style="width:300px">
                   <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    role="progressbar" attr.aria-valuenow="{{progressInsulationExt4.percentage}}"
                       aria-valuemin="0" aria-valuemax="100"
-                      [ngStyle]="{width:progress.percentage+'%'}">
-                      {{progress.percentage}}%
+                      [ngStyle]="{width:progressInsulationExt4.percentage+'%'}">
+                      {{progressInsulationExt4.percentage}}%
                     </div>
                 </div>
               </ion-col>
               <ion-col>
-               <ion-label color="danger">Not yet Uploaded</ion-label>
+               <ion-label color="{{colorInsulationExt4}}">{{progressInsulationExt4Status}}</ion-label>
               </ion-col>
               <ion-col>
                 <ion-label color="primary">Insulation to be installed - Ext 4</ion-label>
               </ion-col>
 
               <ion-col>
-                <ion-label color="primary"> <input type="file" (change)="selectFile($event)"/></ion-label>
-
-                <button ion-button class="primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
+                <button ion-button (click)="openGallery('InsulationExt4')"> Choose File </button>
+                <button ion-button (click)="capture('InsulationExt4')"> Take Photo </button>
+                <button ion-button (click)="uploadImage('InsulationExt4')" *ngIf="insulationExt4.length"> Save Image </button>
+                
               </ion-col>
             </ion-row>
-
+            <ion-row>
+              <ion-col>
+                <ion-slides>
+                    <ion-slide *ngFor="let image of insulationExt4">
+                        <img src="{{image}}"/>
+                    </ion-slide>
+                </ion-slides>
+              </ion-col>
+            </ion-row>
 
 
     </ion-grid>

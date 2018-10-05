@@ -72,16 +72,35 @@ export class CavityWallComponentUploadComponent {
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
-  // This will select file Cavity Wall Surveyor
-  selectFileCWSurveyor(event){
-      this.selectedFiles = event.target.files;
-  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +"_cavUBIL").then((data) => {
+      if(data != null){
+        this.UBILImage = data;
+        this.progressUBIL.percentage = 100;
+        this.progressUBILStatus = "Completed";
+        this.colorUBIL = "secondary";
+      }
+    });
 
-  // Upload Cavity Wall Image Upload Surveyor
-  uploadCWSurveyor(){
-    const file = this.selectedFiles.item(0);
-    this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +"_cavTenancyAgreement").then((data) => {
+      if(data != null){
+        this.tenancyAgrmtImage = data;
+        this.progressTenancyAgrmt.percentage = 100;
+        this.progressTenancyAgrmtStatus = "Completed";
+        this.colorTenancyAgrmt = "secondary";
+      }
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +"_cavLandLordPerm").then((data) => {
+      if(data != null){
+        this.landlordPermImage = data;
+        this.progressLandlordPerm.percentage = 100;
+        this.progressLandlordPermStatus = "Completed";
+        this.colorLandlordPerm = "secondary";
+      }
+    });
   }
 
   openGallery(tag){
@@ -99,17 +118,17 @@ export class CavityWallComponentUploadComponent {
       if( tag == 'UBIL'){
         for(let i=0; i < imageData.length;i++){
           this.UBILImage.push('data:image/jpeg;base64,' + imageData[i]);
-        };
+        }
          
       } else if(tag == 'TenancyAgreement'){
         for(let i=0; i < imageData.length;i++){
           this.tenancyAgrmtImage.push('data:image/jpeg;base64,' + imageData[i]);
-        };
+        }
 
       } else if(tag == 'LandLordPerm'){
         for(let i=0; i < imageData.length;i++){
           this.landlordPermImage.push('data:image/jpeg;base64,' + imageData[i]);
-        };
+        }
       }
 
 
@@ -147,15 +166,15 @@ export class CavityWallComponentUploadComponent {
   uploadImage(tag){
     console.log("Upload Image: " + tag)
       if(tag == 'UBIL'){
-          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshUBIL", this.UBILImage);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_cavUBIL", this.UBILImage);
           //this.rest.fileUpload(this.base64ImageUBIL, 'Image', tag);
           this.progressUploads(tag);
       }  else if ( tag == 'TenancyAgreement') {
-          this.storage.set(this.sharedObject.getSharedSlugSelectedCM()  + "_eshTenancyAgreement", this.tenancyAgrmtImage);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM()  + "_cavTenancyAgreement", this.tenancyAgrmtImage);
           //this.rest.fileUpload(this.base64ImageTenancyAgreement, 'Image', tag);
           this.progressUploads(tag);
       } else if ( tag == 'LandLordPerm') {
-          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_eshLandLordPerm", this.landlordPermImage);
+          this.storage.set(this.sharedObject.getSharedSlugSelectedCM() +"_cavLandLordPerm", this.landlordPermImage);
           //this.rest.fileUpload(this.base64ImageLandLordPerm, 'Image', tag);
           this.progressUploads(tag);
       }

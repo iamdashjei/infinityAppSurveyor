@@ -47,6 +47,9 @@ export class SharedobjectserviceProvider {
   // Flag Selected Lead
   sharedSelectedLeadObject: any;
 
+  // Tag for Uploads
+  sharedSelectedLeadDir: string;
+
   constructor(public http: HttpClient) {
     console.log('Hello SharedobjectserviceProvider Provider');
   }
@@ -204,5 +207,12 @@ export class SharedobjectserviceProvider {
     return this.sharedBedrooms;
   }
 
+  setSharedSelectedLeadTag(sharedValue){
+    this.sharedSelectedLeadDir = sharedValue;
+  }
+
+  getSharedSelectedLeadTag(){
+    return this.sharedSelectedLeadDir;
+  }
 
 }

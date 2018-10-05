@@ -297,7 +297,53 @@ export class SurveyorPage {
 
   }
 
+  savedImagesCavityWall(){
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_cavUBIL').then((ubil) => {
+      if(ubil != null){
+        this.ubil = ubil;
+      }  
+      
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_cavTenancyAgreement').then((tenancyAgreement) => {
+        
+        if(tenancyAgreement != null){
+          this.tenancyAgreement = tenancyAgreement;
+        }  
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_cavLandLordPerm').then((landlordPerm) => {
+        
+        if(landlordPerm != null){
+          this.landlordPerm = landlordPerm;
+        }  
+    });
+  }
+
   savedImagesEsh(){
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshUBIL').then((ubil) => {
+      if(ubil != null){
+        this.ubil = ubil;
+      }  
+      
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshTenancyAgreement').then((tenancyAgreement) => {
+        
+        if(tenancyAgreement != null){
+          this.tenancyAgreement = tenancyAgreement;
+        }  
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_eshLandLordPerm').then((landlordPerm) => {
+        
+        if(landlordPerm != null){
+          this.landlordPerm = landlordPerm;
+        }  
+    });
+  }
+
+  savedImagesGen(){
 
     // this.storage.get('bedroom').then((bedroom) => {
     //   this.bedroom = bedroom;
@@ -392,18 +438,6 @@ export class SurveyorPage {
         this.stairs = stairs;
     });
 
-    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshUBIL').then((ubil) => {
-        this.ubil = ubil;
-    });
-
-    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_eshTenancyAgreement').then((tenancyAgreement) => {
-        this.tenancyAgreement = tenancyAgreement;
-    });
-
-    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_eshLandLordPerm').then((landlordPerm) => {
-        this.landlordPerm = landlordPerm;
-    });
-
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_declaration').then((custSign) => {
         this.custSign = custSign;
     });
@@ -459,20 +493,79 @@ export class SurveyorPage {
     engSign: this.engSign
    };
 
-     this.rest.fileUploadMainForm('Image', imgObj);
+     this.rest.fileUploadMainForm(imgObj);
 
   }
 
   savedObject(){
 
     this.mainFormData = this.sharedObject.getSharedMainForm();
-
+  
 
     if(this.sharedObject.getSharedBoilerObject()){
       this.boilerData = this.sharedObject.getSharedBoilerObject();
 
     } else if(this.sharedObject.getSharedCavityWallObject()){
       this.cavityWallData = this.sharedObject.getSharedCavityWallObject();
+      const saveCavityWallData = {
+        date_of_survey: this.mainFormData.myDate,
+        property_type: this.mainFormData.propertyType,
+        property_type1: this.mainFormData.propertyType1,
+        property_type2: this.mainFormData.propertyType2,
+        addressInstall: this.mainFormData.addressInstall,
+        notes: this.mainFormData.notes,
+        postCode: this.mainFormData.postCode,
+        bedrooms: this.mainFormData.bedrooms,
+        tenure: this.mainFormData.tenure,
+        heating_source: this.mainFormData.heatingSource,
+        customer_type: this.mainFormData.custType,
+        surveyor_name: this.mainFormData.surveyorName,
+        name_of_customer: this.mainFormData.nameOfCustomer,
+        other: this.mainFormData.other,
+        dob: this.mainFormData.myDate,
+        cwiOnly: this.cavityWallData.cwiOnly,
+        cavWallPropSection1: this.cavityWallData.cavWallPropSection1,
+        cavWallPropSection2: this.cavityWallData.cavWallPropSection2,
+        cavWallPropSection3: this.cavityWallData.cavWallPropSection3,
+        cavWallPropSection4: this.cavityWallData.cavWallPropSection4,
+        cavWallPropSection5: this.cavityWallData.cavWallPropSection5,
+        cavWallWallConstruction1: this.cavityWallData.cavWallWallConstruction1,
+        cavWallWallConstruction2: this.cavityWallData.cavWallWallConstruction2,
+        cavWallWallConstruction3: this.cavityWallData.cavWallWallConstruction3,
+        cavWallWallConstruction4: this.cavityWallData.cavWallWallConstruction4,
+        cavWallWallConstruction5: this.cavityWallData.cavWallWallConstruction5,
+        cavWallWallArea1: this.cavityWallData.cavWallWallArea1,
+        cavWallWallArea2: this.cavityWallData.cavWallWallArea2,
+        cavWallWallArea3: this.cavityWallData.cavWallWallArea3,
+        cavWallWallArea4: this.cavityWallData.cavWallWallArea4,
+        cavWallWallArea5: this.cavityWallData.cavWallWallArea5,
+        m2InsulationInstalledCWI1: this.cavityWallData.m2InsulationInstalledCWI1,
+        m2InsulationInstalledCWI2: this.cavityWallData.m2InsulationInstalledCWI2,
+        m2InsulationInstalledCWI3: this.cavityWallData.m2InsulationInstalledCWI3,
+        m2InsulationInstalledCWI4: this.cavityWallData.m2InsulationInstalledCWI4,
+        m2InsulationInstalledCWI5: this.cavityWallData.m2InsulationInstalledCWI5,
+        m2InsulationInstalledSWI1: this.cavityWallData.m2InsulationInstalledSWI1,
+        m2InsulationInstalledSWI2: this.cavityWallData.m2InsulationInstalledSWI2,
+        m2InsulationInstalledSWI3: this.cavityWallData.m2InsulationInstalledSWI3,
+        m2InsulationInstalledSWI4: this.cavityWallData.m2InsulationInstalledSWI4,
+        m2InsulationInstalledSWI5: this.cavityWallData.m2InsulationInstalledSWI5,
+        cwtotalWallAreasA: this.cavityWallData.cwtotalWallAreasA,
+        cwtotalWallAreasB: this.cavityWallData.cwtotalWallAreasB,
+        cwtotalWallAreasC: this.cavityWallData.cwtotalWallAreasC,
+        cwtotalWallAreasD: this.cavityWallData.cwtotalWallAreasD,
+        cwUnroundedCWIPOPT: this.cavityWallData.cwUnroundedCWIPOPT,
+        cwUnroundedSWIPOPT: this.cavityWallData.cwUnroundedSWIPOPT,
+        cwRoundedCWIPOPT: this.cavityWallData.cwRoundedCWIPOPT,
+        cwRoundedSWIPOPT: this.cavityWallData.cwRoundedSWIPOPT,
+        cwRoundedSWIPOPT2: this.cavityWallData.cwRoundedSWIPOPT2,
+        cwApproxYearAgeReason: this.cavityWallData.cwApproxYearAgeReason,
+        insulateCavParWalls: this.cavityWallData.insulateCavParWalls,
+        cwCavParUnroundedPWIPOPT: this.cavityWallData.cwCavParUnroundedPWIPOPT,
+        cwCavParRoundedPWIPOPT: this.cavityWallData.cwCavParRoundedPWIPOPT
+      }
+      this.savedImagesCavityWall();
+      this.sharedObject.setSharedSelectedLeadTag("cavities");
+      this.sharedObject.setSharedSubmitObject(saveCavityWallData);
 
     } else if(this.sharedObject.getSharedLoftObject()){
       this.loftData = this.sharedObject.getSharedLoftObject();
@@ -483,55 +576,52 @@ export class SurveyorPage {
     } else if(this.sharedObject.getSharedEshObject()) {
       this.eshData = this.sharedObject.getSharedEshObject();
       this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
-
+      const saveData = {
+        date_of_survey: this.mainFormData.myDate,
+        property_type: this.mainFormData.propertyType,
+        property_type1: this.mainFormData.propertyType1,
+        property_type2: this.mainFormData.propertyType2,
+        addressInstall: this.mainFormData.addressInstall,
+        notes: this.mainFormData.notes,
+        postCode: this.mainFormData.postCode,
+        bedrooms: this.mainFormData.bedrooms,
+        tenure: this.mainFormData.tenure,
+        heating_source: this.mainFormData.heatingSource,
+        customer_type: this.mainFormData.custType,
+        surveyor_name: this.mainFormData.surveyorName,
+        name_of_customer: this.mainFormData.nameOfCustomer,
+        other: this.mainFormData.other,
+        dob: this.mainFormData.myDate,
+        newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing,
+        newSystemHeatBool: this.eshBoilerData.newSystemHeatBool,
+        eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT,
+        eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT ,
+        preExttESHSlimline: this.eshData.eshSlimline,
+        preExtEshFanAsst: this.eshData.eshFanAssisted,
+        preExtEshHighHeatRet: this.eshData.eshHighHeatRetention,
+        numberOfEshInstalledQlfySL: this.eshData.eshInstalledQualifyingSlimline,
+        numberOfEshInstalledNQlfySL:this.eshData.eshInstalledNonQualifyingSlimline,
+        numberOfEshInstalledQlfyFA: this.eshData.eshInstalledQualifyingFanAsst,
+        numberOfEshInstalledNQlfyFA: this.eshData.estInstalledNonQualifyingFanAsst,
+        numberOfEshInstalledQlfyHHR: this.eshData.eshInstalledQualHighHeatRet,
+        numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet,
+        qeshRepSL: this.eshData.eshQeshRepairSlimline,
+        qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet,
+        qeshFA: this.eshData.eshQeshRepairFanAsst
+      };
+      this.savedImagesEsh();
+      this.sharedObject.setSharedSelectedLeadTag("esh");
+      this.sharedObject.setSharedSubmitObject(saveData);
     }
 
+    this.savedImagesGen();
 
-    const saveData = {
-      date_of_survey: this.mainFormData.myDate,
-      property_type: this.mainFormData.propertyType,
-      property_type1: this.mainFormData.propertyType1,
-      property_type2: this.mainFormData.propertyType2,
-      addressInstall: this.mainFormData.addressInstall,
-      notes: this.mainFormData.notes,
-      postCode: this.mainFormData.postCode,
-      bedrooms: this.mainFormData.bedrooms,
-      tenure: this.mainFormData.tenure,
-      heating_source: this.mainFormData.heatingSource,
-      customer_type: this.mainFormData.custType,
-      surveyor_name: this.mainFormData.surveyorName,
-      name_of_customer: this.mainFormData.nameOfCustomer,
-      other: this.mainFormData.other,
-      dob: this.mainFormData.myDate,
-      newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing,
-      newSystemHeatBool: this.eshBoilerData.newSystemHeatBool,
-      eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT,
-      eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT ,
-      preExttESHSlimline: this.eshData.eshSlimline,
-      preExtEshFanAsst: this.eshData.eshFanAssisted,
-      preExtEshHighHeatRet: this.eshData.eshHighHeatRetention,
-      numberOfEshInstalledQlfySL: this.eshData.eshInstalledQualifyingSlimline,
-      numberOfEshInstalledNQlfySL:this.eshData.eshInstalledNonQualifyingSlimline,
-      numberOfEshInstalledQlfyFA: this.eshData.eshInstalledQualifyingFanAsst,
-      numberOfEshInstalledNQlfyFA: this.eshData.estInstalledNonQualifyingFanAsst,
-      numberOfEshInstalledQlfyHHR: this.eshData.eshInstalledQualHighHeatRet,
-      numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet,
-      qeshRepSL: this.eshData.eshQeshRepairSlimline,
-      qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet,
-      qeshFA: this.eshData.eshQeshRepairFanAsst
-    };
 
-    this.sharedObject.setSharedSubmitObject(saveData);
-    this.savedImagesEsh();
+    
+   
     alert("Saved Lead Successfully!");
 
-    //console.log(JSON.stringify(this.eshData));
-    //console.log(JSON.stringify(this.mainFormData));
-    //console.log(JSON.stringify(this.eshBoilerData));
-    // console.log(this.mainFormData.notes);
-    // console.log(this.mainFormData.postCode);
-    // console.log(this.mainFormData.addressInstall);
-    // console.log(JSON.stringify(saveData));
+    // Tracking ALl Keys and value for verification to insert to DB
     // this.storage.forEach( (value, key, index) => {
     //    console.log("This is the value", value);
     //    console.log("from the key", key);

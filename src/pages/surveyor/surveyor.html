@@ -207,9 +207,9 @@
   </ion-row>
   </ion-grid>
   <ion-item-divider *ngIf="!signatureStatus">Surveyor Signature</ion-item-divider>
-  <ion-item *ngIf="!signatureStatus">
-  <signature-pad [options]="signaturePadOptions2"  id="signatureCanvas2" #imageCanvas></signature-pad>
-  <ion-grid>
+ 
+  <signature-pad [options]="signaturePadOptions2"  id="signatureCanvas2" #imageCanvas *ngIf="!signatureStatus"></signature-pad>
+  <ion-grid *ngIf="!signatureStatus">
     <ion-row>
       <ion-col col-4>
         <button ion-button full color="light" (click)="drawClear('engSign')">Clear</button>
@@ -222,5 +222,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-item>
+
 </ion-content>

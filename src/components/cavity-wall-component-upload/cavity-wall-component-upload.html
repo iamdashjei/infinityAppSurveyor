@@ -38,6 +38,15 @@
         <button ion-button (click)="uploadImage('UBIL')" *ngIf="UBILImage.length"> Save Image </button>
        </ion-col>
      </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of UBILImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
+     </ion-row>
 
      <ion-row>
        <ion-col>
@@ -60,8 +69,17 @@
        <ion-col>
         <button ion-button (click)="openGallery('TenancyAgreement')"> Choose File </button>
         <button ion-button (click)="capture('TenancyAgreement')"> Take Photo </button>
-        <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="UBILImage.length"> Save Image </button>
+        <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="tenancyAgrmtImage.length"> Save Image </button>
        </ion-col>
+     </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of tenancyAgrmtImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
      </ion-row>
 
      <ion-row>
@@ -83,12 +101,20 @@
        </ion-col>
 
        <ion-col>
-        <button ion-button (click)="openGallery('LandlordPerm')"> Choose File </button>
+        <button ion-button (click)="openGallery('LandLordPerm')"> Choose File </button>
         <button ion-button (click)="capture('LandLordPerm')"> Take Photo </button>
-        <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="UBILImage.length"> Save Image </button>
+        <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="landlordPermImage.length"> Save Image </button>
        </ion-col>
      </ion-row>
-
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of landlordPermImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
+     </ion-row>
      
    </ion-grid>
 

@@ -188,6 +188,7 @@ export class RestProvider {
       postCode: postCode,
       addressInstall: addressInstall,
       nameOfCustomer: nameOfCustomer,
+      type: this.sharedObject.getSharedSelectedLeadTag(),
       user_id: this.sharedObject.getSharedUserId()
     });
 
@@ -219,9 +220,9 @@ export class RestProvider {
     this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-esh', data);
   }
 
-  fileUploadMainForm(type, imgObj){
+  fileUploadMainForm(imgObj){
     let data = JSON.stringify({
-      type: type,
+      type: this.sharedObject.getSharedSelectedLeadTag(),
       imgObj: imgObj,
       lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });

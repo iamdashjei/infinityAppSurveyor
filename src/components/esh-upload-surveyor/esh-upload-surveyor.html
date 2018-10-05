@@ -43,13 +43,16 @@
          <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
 
        </ion-col>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of UBILImage">
-                  <img src="{{image}}"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
+       
+     </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of UBILImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
      </ion-row>
 
      <ion-row>

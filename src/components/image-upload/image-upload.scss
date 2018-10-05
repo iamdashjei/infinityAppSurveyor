@@ -28,4 +28,9 @@ image-upload {
       border-radius: 10px;
       background-color: map-get($colors, primary);
   }
+
+  ion-slides{
+    height: 60%;
+    width: 50%;
+  }
 }
