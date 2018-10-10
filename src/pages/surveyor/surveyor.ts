@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
 import { RestProvider} from '../../providers/rest/rest';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { DashboardPage } from '../dashboard/dashboard';
 /**
  * Generated class for the SurveyorPage page.
  *
@@ -111,6 +112,7 @@ export class SurveyorPage {
   bathroom: any = [];
   kitchenImg: any = [];
   stairs: any = [];
+  
 
   ubil: any = [];
   tenancyAgreement: any = [];
@@ -120,6 +122,7 @@ export class SurveyorPage {
   floorPlan2: any;
   floorPlan3: any;
   engSign: any;
+  EPOPImage: any = [];
 
   signatureStatus: boolean = false;
 
@@ -294,7 +297,57 @@ export class SurveyorPage {
   }
 
   savedImagesBoiler(){
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_boilerUBIL').then((ubil) => {
+      if(ubil != null){
+        this.ubil = ubil;
+      }  
+      
+    });
 
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_boilerTenancyAgreement').then((tenancyAgreement) => {
+        
+        if(tenancyAgreement != null){
+          this.tenancyAgreement = tenancyAgreement;
+        }  
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_boilerLandLordPerm').then((landlordPerm) => {
+        
+        if(landlordPerm != null){
+          this.landlordPerm = landlordPerm;
+        }  
+    });
+  }
+
+  savedImagesLoft(){
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_loftUBIL').then((ubil) => {
+      if(ubil != null){
+        this.ubil = ubil;
+      }  
+      
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_loftEPOP").then((EPOP) => {
+      if(EPOP != null){
+        this.EPOPImage = EPOP;
+        
+      } 
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_loftTenancyAgreement').then((tenancyAgreement) => {
+        
+        if(tenancyAgreement != null){
+          this.tenancyAgreement = tenancyAgreement;
+        }  
+    });
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + '_loftLandLordPerm').then((landlordPerm) => {
+        
+        if(landlordPerm != null){
+          this.landlordPerm = landlordPerm;
+        }  
+    });
+  
   }
 
   savedImagesCavityWall(){
@@ -344,10 +397,6 @@ export class SurveyorPage {
   }
 
   savedImagesGen(){
-
-    // this.storage.get('bedroom').then((bedroom) => {
-    //   this.bedroom = bedroom;
-    // });
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() +'_bedroom').then((bedroom) => {
       this.bedrooms = bedroom;
@@ -490,6 +539,7 @@ export class SurveyorPage {
     floorPlan: this.floorPlan,
     floorPlan2: this.floorPlan2,
     floorPlan3: this.floorPlan3,
+    EPOPImage: this.EPOPImage,
     engSign: this.engSign
    };
 
@@ -500,10 +550,43 @@ export class SurveyorPage {
   savedObject(){
 
     this.mainFormData = this.sharedObject.getSharedMainForm();
-  
+    
 
     if(this.sharedObject.getSharedBoilerObject()){
       this.boilerData = this.sharedObject.getSharedBoilerObject();
+      const saveBoilerData =  {
+      date_of_survey: this.mainFormData.myDate,
+      property_type: this.mainFormData.propertyType,
+      property_type1: this.mainFormData.propertyType1,
+      property_type2: this.mainFormData.propertyType2,
+      addressInstall: this.mainFormData.addressInstall,
+      notes: this.mainFormData.notes,
+      postCode: this.mainFormData.postCode,
+      bedrooms: this.mainFormData.bedrooms,
+      tenure: this.mainFormData.tenure,
+      heating_source: this.mainFormData.heatingSource,
+      customer_type: this.mainFormData.custType,
+      surveyor_name: this.mainFormData.surveyorName,
+      name_of_customer: this.mainFormData.nameOfCustomer,
+      other: this.mainFormData.other,
+      dob: this.mainFormData.myDate,  
+      mainWallConstType: this.boilerData.mainWallConstType,
+      preExistHeatControls: this.boilerData.preExistHeatControls,
+      boilerRecordFaults: this.boilerData.boilerRecordFaults,
+      heatControlsCurrent: this.boilerData.heatControlsCurrent,
+      numberNormalRadiators: this.boilerData.numberNormalRadiators,
+      numberTowelRadiators: this.boilerData.numberTowelRadiators,
+      numberTRVs: this.boilerData.numberTRVs,
+      boierRepairNoPreExtHeat: this.boilerData.boierRepairNoPreExtHeat,
+      boierReplaceNoPreExtHeat: this.boilerData.boierReplaceNoPreExtHeat,
+      boierRepairNoPreExtHeatNonQlfy: this.boilerData.boierRepairNoPreExtHeatNonQlfy,
+      boierReplaceNoPreExtHeatNonQlfy: this.boilerData.boierReplaceNoPreExtHeatNonQlfy,
+      boilerHeatingControls: this.boilerData.boilerHeatingControls
+      };
+
+      this.savedImagesBoiler();
+      this.sharedObject.setSharedSelectedLeadTag("boilers");
+      this.sharedObject.setSharedSubmitObject(saveBoilerData);
 
     } else if(this.sharedObject.getSharedCavityWallObject()){
       this.cavityWallData = this.sharedObject.getSharedCavityWallObject();
@@ -562,13 +645,72 @@ export class SurveyorPage {
         insulateCavParWalls: this.cavityWallData.insulateCavParWalls,
         cwCavParUnroundedPWIPOPT: this.cavityWallData.cwCavParUnroundedPWIPOPT,
         cwCavParRoundedPWIPOPT: this.cavityWallData.cwCavParRoundedPWIPOPT
-      }
+      };
       this.savedImagesCavityWall();
       this.sharedObject.setSharedSelectedLeadTag("cavities");
       this.sharedObject.setSharedSubmitObject(saveCavityWallData);
 
     } else if(this.sharedObject.getSharedLoftObject()){
       this.loftData = this.sharedObject.getSharedLoftObject();
+      const saveLoftData = {
+        property_type: this.mainFormData.propertyType,
+        property_type1: this.mainFormData.propertyType1,
+        property_type2: this.mainFormData.propertyType2,
+        addressInstall: this.mainFormData.addressInstall,
+        notes: this.mainFormData.notes,
+        postCode: this.mainFormData.postCode,
+        bedrooms: this.mainFormData.bedrooms,
+        tenure: this.mainFormData.tenure,
+        heating_source: this.mainFormData.heatingSource,
+        customer_type: this.mainFormData.custType,
+        surveyor_name: this.mainFormData.surveyorName,
+        name_of_customer: this.mainFormData.nameOfCustomer,
+        other: this.mainFormData.other,
+        dob: this.mainFormData.myDate,
+        loftPropSectionMain:  this.loftData.loftPropSectionMain,
+        loftRooftype:  this.loftData.loftRooftype,
+        loftRoofArea:  this.loftData.loftRoofArea,
+        loftTypeofinstall:  this.loftData.loftTypeofinstall,
+        loftTypeInstallValue:  this.loftData.loftTypeInstallValue,
+        loftPropSectionExt1:  this.loftData.loftPropSectionExt1,
+        loftRooftypePropExt1:  this.loftData.loftRooftypePropExt1,
+        loftRoofAreaPSExt1:  this.loftData.loftRoofAreaPSExt1,
+        loftTypeofinstallPropExt1:  this.loftData.loftTypeofinstallPropExt1,
+        loftTypeOfInstallValuePSExt1:  this.loftData.loftTypeOfInstallValuePSExt1,
+        loftPropExt2:  this.loftData.loftPropExt2,
+        loftRooftypePropExt2:  this.loftData.loftRooftypePropExt2,
+        loftRoofAreaPropExt2:  this.loftData.loftRoofAreaPropExt2,
+        loftTypeofinstallPropExt2:  this.loftData.loftTypeofinstallPropExt2,
+        loftTypeofinstallValuePropExt2:  this.loftData.loftTypeofinstallValuePropExt2,
+        loftPropSecExt3:  this.loftData.loftPropSecExt3,
+        loftRooftypePropExt3:  this.loftData.loftRooftypePropExt3,
+        loftRoofAreaExt3:  this.loftData.loftRoofAreaExt3,
+        loftTypeOfInstallPropSecExt3:  this.loftData.loftTypeOfInstallPropSecExt3,
+        loftTypeOfInstallValuePropExt3:  this.loftData.loftTypeOfInstallValuePropExt3,
+        loftPropSecExt4:  this.loftData.loftPropSecExt4,
+        loftRooftypePropExt4:  this.loftData.loftRooftypePropExt4,
+        loftRoofAreaPropExt4:  this.loftData.loftRoofAreaPropExt4,
+        loftTypeofinstallPropExt4:  this.loftData.loftTypeofinstallPropExt4,
+        loftTypeofinstallValuePropExt4:  this.loftData.loftTypeofinstallValuePropExt4,
+        loftTotalRoofAreaA:  this.loftData.loftTotalRoofAreaA,
+        loftTotalRoofAreaB:  this.loftData.loftTotalRoofAreaB,
+        loftTotalRoofAreaC:  this.loftData.loftTotalRoofAreaC,
+        loftTotalRoofAreaD:  this.loftData.loftTotalRoofAreaD,
+        loftTotalRoofAreaE:  this.loftData.loftTotalRoofAreaE,
+        loftTotalRoofAreaF:  this.loftData.loftTotalRoofAreaF,
+        // loftUnroundedLess100POPT:  this.loftData.loftUnroundedLess100POPT,
+        // loftUnroundedMore100POPT:  this.loftData.loftUnroundedMore100POPT,
+        // loftUnroundedFRIPOPT:  this.loftData.loftUnroundedFRIPOPT,
+        // loftRoundedLess100POPT:  this.loftData.loftRoundedLess100POPT,
+        // loftRoundedMore100POPT:  this.loftData.loftRoundedMore100POPT,
+        // loftRoundedFRIPOPT:  this.loftData.loftRoundedFRIPOPT,
+        // loftRoundedRIRIPOPT:  this.loftData.loftRoundedRIRIPOPT,
+        loftIfRoomInRoofIns:  this.loftData.loftIfRoomInRoofIns
+      };
+
+      this.savedImagesLoft();
+      this.sharedObject.setSharedSelectedLeadTag("lofts");
+      this.sharedObject.setSharedSubmitObject(saveLoftData);
 
     } else if(this.sharedObject.getSharedSolidWallObject()) {
       this.solidWallData = this.sharedObject.getSharedSolidWallObject();
@@ -615,11 +757,7 @@ export class SurveyorPage {
     }
 
     this.savedImagesGen();
-
-
-    
-   
-    alert("Saved Lead Successfully!");
+    this.presentToastSave();
 
     // Tracking ALl Keys and value for verification to insert to DB
     // this.storage.forEach( (value, key, index) => {
@@ -642,7 +780,7 @@ export class SurveyorPage {
             console.log(result);
           this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_isSubmitted", "Yes");
           this.saveImageObject();
-          //this.navCtrl.setRoot(DashboardPage);
+          this.navCtrl.setRoot(DashboardPage, {uploading : 'Yes', campaignName: this.sharedObject.getSharedCampaignMeasure()});
 
     }, (err) => {
             console.log(err);
@@ -695,12 +833,12 @@ export class SurveyorPage {
       this.toggleFloorPlan2();
     } else if (tag == 'floorPlan2') {
       this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_FloorPlan2", this.signaturePadFloorPlan2.toDataURL());
-      this.presentToast("Floor Plan II");
+      this.presentToast("2nd Level Floor Plan Saved Successfully");
       this.toggleFloorPlan2();
       this.toggleFloorPlan3();
     } else if (tag == 'floorPlan3') {
       this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_FloorPlan3", this.signaturePadFloorPlan3.toDataURL());
-      this.presentToast("Floor Plan III");
+      this.presentToast("3rd Level Floor Plan Saved Successfully");
       this.toggleFloorPlan3();
       this.toggleDeclaration();
      
@@ -711,6 +849,7 @@ export class SurveyorPage {
      
     } else if (tag == 'engSign') {
       this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_engSign", this.signaturePadEngSign.toDataURL());
+      this.toggleSignature();
       this.presentToast("Surveyor Signature");
       
     }
@@ -780,6 +919,21 @@ export class SurveyorPage {
     toast.present();
   }
 
+  presentToastSave(){
+    let toast = this.toastCtrl.create({
+      message: 'Saved Lead Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
+  
 
 }
 

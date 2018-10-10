@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, NavController, ToastController } from 'ionic-angular';
 
 import {Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/catch';
@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
 import { SharedobjectserviceProvider } from '../sharedobjectservice/sharedobjectservice';
+import { DashboardPage } from '../../pages/dashboard/dashboard';
 /*
   Generated class for the RestProvider provider.
 
@@ -34,6 +35,7 @@ export class RestProvider {
 
   constructor(public http: Http,
               private storage: Storage,
+              private toastCtrl: ToastController,
               public sharedObject: SharedobjectserviceProvider,
               public loadingCtrl: LoadingController
               ) {
@@ -188,6 +190,7 @@ export class RestProvider {
       postCode: postCode,
       addressInstall: addressInstall,
       nameOfCustomer: nameOfCustomer,
+      campaignName: this.sharedObject.getSharedCampaignMeasure(),
       type: this.sharedObject.getSharedSelectedLeadTag(),
       user_id: this.sharedObject.getSharedUserId()
     });
@@ -226,7 +229,7 @@ export class RestProvider {
       imgObj: imgObj,
       lead_slug: this.sharedObject.getSharedSlugSelectedCM()
     });
-    this.loading.present();
+    
     this.returnablePromise('https://app.infinityenergyorganisation.co.uk/v1/app/api/file-upload-mainform', data);
   }
 
@@ -274,9 +277,9 @@ export class RestProvider {
       {
         console.log('API Response: ', response.json());
         resolve(response.json());
-        this.loading.dismiss();
-         alert("Successfully Submitted!");
-        // this.navCtrl.push(DashboardPage);
+       
+        this.presentToastUpdate();
+     
       })
       .catch((error) =>
       {
@@ -285,6 +288,20 @@ export class RestProvider {
         reject(error.json());
       });
     });
+  }
+
+  presentToastUpdate(){
+    let toast = this.toastCtrl.create({
+      message: 'Uploading to CRM!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }

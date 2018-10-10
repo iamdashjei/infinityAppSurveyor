@@ -1,5 +1,4 @@
 import { Component, ViewChild, Renderer, Input  } from '@angular/core';
-import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
@@ -40,6 +39,7 @@ export class ImageUploadSurveyorComponent {
    signature = '';
    isDrawing = false;
    bedroom: any;
+   listBedroom: any = [];
    numberOfBedroom: any = [];
 
    bedroomImages: any = [];
@@ -179,7 +179,6 @@ export class ImageUploadSurveyorComponent {
 
   constructor(public renderer: Renderer,
               public imagePicker: ImagePicker,
-              private uploadService: UploadFileServiceProvider,
               private storage: Storage,
               public sharedObject: SharedobjectserviceProvider,
               public rest: RestProvider,
@@ -189,7 +188,7 @@ export class ImageUploadSurveyorComponent {
 
   ionViewDidLoad(){
     console.log(this.surveyorFormContent.nativeElement);
-    this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "webkitTransition", "max-height 3600ms, padding 500ms");
+    this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "webkitTransition", "max-height 9000ms, padding 500ms");
   }
 
   ngAfterViewInit(): void {
@@ -417,15 +416,7 @@ export class ImageUploadSurveyorComponent {
 
   }
 
-  selectFileSurveyor(event){
-        this.selectedFiles = event.target.files;
-  }
-
-  uploadSurveyor(){
-    const file = this.selectedFiles.item(0);
-    this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-  }
+  
 
   public setKey(settingName, value){
     return this.storage.set(settingName, value);

@@ -1,5 +1,7 @@
 import { Component,  ViewChild, Renderer, Input } from '@angular/core';
 import { SharedobjectserviceProvider } from '../../providers/sharedobjectservice/sharedobjectservice';
+import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the AccordionLoftComponent component.
@@ -58,11 +60,56 @@ export class AccordionLoftComponent {
   loftRoundedRIRIPOPT: any;
   loftIfRoomInRoofIns: any;
 
-  constructor(public renderer: Renderer, public sharedObject: SharedobjectserviceProvider) {}
+  constructor(private renderer: Renderer, 
+              private sharedObject: SharedobjectserviceProvider,
+              private toastCtrl: ToastController,
+              private storage: Storage) {}
 
   ionViewDidLoad(){
     console.log(this.loftFormContent.nativeElement);
     this.renderer.setElementStyle(this.loftFormContent.nativeElement, "webkitTransition", "max-height 3200ms, padding 500ms");
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_loftForm").then((data) => {
+      const loftForm = data;
+      this.loftPropSectionMain= loftForm.loftPropSectionMain;
+      this.loftRooftype= loftForm.loftRooftype;
+      this.loftRoofArea= loftForm.loftRoofArea;
+      this.loftTypeofinstall= loftForm.loftTypeofinstall;
+      this.loftTypeInstallValue= loftForm.loftTypeInstallValue;
+      this.loftPropSectionExt1= loftForm.loftPropSectionExt1;
+      this.loftRooftypePropExt1= loftForm.loftRooftypePropExt1;
+      this.loftRoofAreaPSExt1= loftForm.loftRoofAreaPSExt1;
+      this.loftTypeofinstallPropExt1= loftForm.loftTypeofinstallPropExt1;
+      this.loftTypeOfInstallValuePSExt1= loftForm.loftTypeOfInstallValuePSExt1;
+      this.loftPropExt2= loftForm.loftPropExt2;
+      this.loftRooftypePropExt2= loftForm.loftRooftypePropExt2;
+      this.loftRoofAreaPropExt2= loftForm.loftRoofAreaPropExt2;
+      this.loftTypeofinstallPropExt2= loftForm.loftTypeofinstallPropExt2;
+      this.loftTypeofinstallValuePropExt2= loftForm.loftTypeofinstallValuePropExt2 ;
+      this.loftPropSecExt3 = loftForm.loftPropSecExt3;
+      this.loftRooftypePropExt3= loftForm.loftRooftypePropExt3;
+      this.loftRoofAreaExt3= loftForm.loftRoofAreaExt3;
+      this.loftTypeOfInstallPropSecExt3= loftForm.loftTypeOfInstallPropSecExt3;
+      this.loftTypeOfInstallValuePropExt3= loftForm.loftTypeOfInstallValuePropExt3;
+      this.loftPropSecExt4= loftForm.loftPropSecExt4;
+      this.loftRooftypePropExt4= loftForm.loftRooftypePropExt4;
+      this.loftRoofAreaPropExt4= loftForm.loftRoofAreaPropExt4;
+      this.loftTypeofinstallPropExt4= loftForm.loftTypeofinstallPropExt4;
+      this.loftTypeofinstallValuePropExt4= loftForm.loftTypeofinstallValuePropExt4;
+      this.loftTotalRoofAreaA= loftForm.loftTotalRoofAreaA;
+      this.loftTotalRoofAreaB= loftForm.loftTotalRoofAreaB;
+      this.loftTotalRoofAreaC= loftForm.loftTotalRoofAreaC;
+      this.loftTotalRoofAreaD= loftForm.loftTotalRoofAreaD;
+      this.loftTotalRoofAreaE= loftForm.loftTotalRoofAreaE;
+      this.loftTotalRoofAreaF= loftForm.loftTotalRoofAreaF;
+      this.loftIfRoomInRoofIns = loftForm.loftIfRoomInRoofIns;
+
+      this.sharedObject.setSharedLoftObject(loftForm);
+    });
   }
 
   // Toggle Form for Loft
@@ -112,18 +159,33 @@ export class AccordionLoftComponent {
       loftTotalRoofAreaD: this.loftTotalRoofAreaD,
       loftTotalRoofAreaE: this.loftTotalRoofAreaE,
       loftTotalRoofAreaF: this.loftTotalRoofAreaF,
-      loftUnroundedLess100POPT: this.loftUnroundedLess100POPT,
-      loftUnroundedMore100POPT: this.loftUnroundedMore100POPT,
-      loftUnroundedFRIPOPT: this.loftUnroundedFRIPOPT,
-      loftRoundedLess100POPT: this.loftRoundedLess100POPT,
-      loftRoundedMore100POPT: this.loftRoundedMore100POPT,
-      loftRoundedFRIPOPT: this.loftRoundedFRIPOPT,
-      loftRoundedRIRIPOPT: this.loftRoundedRIRIPOPT,
+      // loftUnroundedLess100POPT: this.loftUnroundedLess100POPT,
+      // loftUnroundedMore100POPT: this.loftUnroundedMore100POPT,
+      // loftUnroundedFRIPOPT: this.loftUnroundedFRIPOPT,
+      // loftRoundedLess100POPT: this.loftRoundedLess100POPT,
+      // loftRoundedMore100POPT: this.loftRoundedMore100POPT,
+      // loftRoundedFRIPOPT: this.loftRoundedFRIPOPT,
+      // loftRoundedRIRIPOPT: this.loftRoundedRIRIPOPT,
       loftIfRoomInRoofIns: this.loftIfRoomInRoofIns,
     };
-
+    this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_loftForm", data);
     this.sharedObject.setSharedLoftObject(data);
-    alert("Saved Successfully!")
+    this.toggleAccordionLoft();
+    this.presentToastSave();
+  }
+
+  presentToastSave(){
+    let toast = this.toastCtrl.create({
+      message: 'Saved Loft Successfully!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }

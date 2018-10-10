@@ -11,7 +11,6 @@ import { Subject } from 'rxjs';
 import { AppState } from './app.global';
 
 import firebase from 'firebase';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { RestProvider } from '../providers/rest/rest';
 import { Network } from '@ionic-native/network';
@@ -38,7 +37,6 @@ export class MyApp {
               private global: AppState,
               private toastCtrl: ToastController,
               private menuCtrl: MenuController,
-              private afs: AngularFirestoreModule,
               private storage: Storage,
               private network: Network,
               private rest: RestProvider
@@ -53,6 +51,7 @@ export class MyApp {
       messagingSenderId: "39340397583"
     };
     this.isLoggedIn();
+    FCMPlugin.subscribeToTopic('all');
     firebase.initializeApp(firebaseConfig);
     FCMPlugin.getToken(
       (token) => {
@@ -60,16 +59,17 @@ export class MyApp {
         this.token = token;
     });
 
-    FCMPlugin.onNotification(function(data){
+    FCMPlugin.onNotification((data) => {
     if(data.wasTapped){
-      
+      //this.presentNotif();
+      alert("New Leads");
       this.isLoggedIn();
       //Notification was received on device tray and tapped by the user.
     //  navCtrl.setRoot(DashboardPage);
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
-
-      this.presentNotif();
+      alert("New Leads");
+      //this.presentNotif();
       location.reload();
       this.isLoggedIn();
       }

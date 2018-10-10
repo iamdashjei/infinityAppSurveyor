@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, MenuController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, LoadingController, ToastController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { RestProvider } from '../../providers/rest/rest';
 import { DatasourceProvider } from '../../providers/datasource/datasource';
@@ -66,6 +66,7 @@ export class DashboardPage {
               public storage: Storage,
               public rest: RestProvider,
               private camera: Camera,
+              private navParam: NavParams,
               public sim: Sim,
               private transfer: FileTransfer,
               public imagePicker: ImagePicker,
@@ -74,7 +75,9 @@ export class DashboardPage {
               public sharedObject: SharedobjectserviceProvider,
               public datasource: DatasourceProvider) {
       this.menuCtrl.enable(true, 'menu-material');
-
+                if(navParam.get('uploading') == 'Yes'){
+                  this.presentToastUpload(navParam.get('campaignName'));
+                }
   }
 
   ionViewDidLoad() {
@@ -278,6 +281,20 @@ export class DashboardPage {
     } else {
       return false;
     }
+  }
+
+  presentToastUpload(tag){
+    let toast = this.toastCtrl.create({
+      message: tag + ' - Uploading to CRM!',
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
   

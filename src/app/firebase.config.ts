@@ -1,11 +1,11 @@
 export const FIREBASE_CONFIG = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyC6m-aOof-E-s1AyM0GfgJARfaLHYECRDI",
-    authDomain: "infinityapp-fe5c6.firebaseapp.com",
-    databaseURL: "https://infinityapp-fe5c6.firebaseio.com",
-    projectId: "infinityapp-fe5c6",
-    storageBucket: "infinityapp-fe5c6.appspot.com",
-    messagingSenderId: "918580267251"
+    apiKey: "AIzaSyAxzWpx6j3-CgyKb_6kfDqLhKSk5gkrLkk",
+    authDomain: "infinityappv2.firebaseapp.com",
+    databaseURL: "https://infinityappv2.firebaseio.com",
+    projectId: "infinityappv2",
+    storageBucket: "infinityappv2.appspot.com",
+    messagingSenderId: "39340397583"
    }
   };

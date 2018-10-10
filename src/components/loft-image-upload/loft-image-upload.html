@@ -18,53 +18,38 @@
        <ion-col>
          <div class="progress" style="width:300px">
            <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressUBILLoft.percentage}}"
+             role="progressbar" attr.aria-valuenow="{{progressUBIL.percentage}}"
                aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressUBILLoft.percentage+'%'}">
-               {{progressUBILLoft.percentage}}%
+               [ngStyle]="{width:progressUBIL.percentage+'%'}">
+               {{progressUBIL.percentage}}%
              </div>
          </div>
        </ion-col>
        <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
+        <ion-label color="{{ colorUBIL }}">{{ progressUBILStatus}}</ion-label>
        </ion-col>
        <ion-col>
          <ion-label color="primary">UBIL</ion-label>
        </ion-col>
 
        <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'UBIL')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesUBILLoft" (click)="uploadLoftSurveyor('UBIL')">Upload</button>
-
-       </ion-col>
+          <button ion-button (click)="openGallery('UBIL')"> Choose File </button>
+          <button ion-button (click)="capture('UBIL')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('UBIL')" *ngIf="UBILImage.length"> Save Image </button>
+        </ion-col>
+    
+     
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-slides>
+                <ion-slide *ngFor="let image of UBILImage">
+                    <img src="{{image}}" height="300px" width="300px"/>
+                </ion-slide>
+            </ion-slides>
+          </ion-col>
      </ion-row>
 
-     <ion-row>
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressCustomerSignature.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressCustomerSignature.percentage+'%'}">
-               {{progressCustomerSignature.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary">Customer Signature</ion-label>
-       </ion-col>
-
-       <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'CustomerSignature')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesCustomerSignature" (click)="uploadLoftSurveyor('CustSignature')">Upload</button>
-
-       </ion-col>
-     </ion-row>
 
      <ion-row>
        <ion-col>
@@ -78,96 +63,102 @@
          </div>
        </ion-col>
        <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
+        <ion-label color="{{colorEPOP}}">{{progressEPOPStatus}}</ion-label>
        </ion-col>
        <ion-col>
          <ion-label color="primary">External Photo of Property</ion-label>
        </ion-col>
 
        <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'EPOP')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesEPOP" (click)="uploadLoftSurveyor('EPOP')">Upload</button>
-
-       </ion-col>
+          <button ion-button (click)="openGallery('EPOP')"> Choose File </button>
+          <button ion-button (click)="capture('EPOP')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('EPOP')" *ngIf="EPOPImage.length"> Save Image </button>
+        </ion-col>
+    
+     
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-slides>
+                <ion-slide *ngFor="let image of EPOPImage">
+                    <img src="{{image}}" height="300px" width="300px"/>
+                </ion-slide>
+            </ion-slides>
+          </ion-col>
      </ion-row>
+
+    
 
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
            <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressFloorPlan.percentage}}"
+             role="progressbar" attr.aria-valuenow="{{progressTenancyAgrmt.percentage}}"
                aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressFloorPlan.percentage+'%'}">
-               {{progressFloorPlan.percentage}}%
+               [ngStyle]="{width:progressTenancyAgrmt.percentage+'%'}">
+               {{progressTenancyAgrmt.percentage}}%
              </div>
          </div>
        </ion-col>
        <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
-       </ion-col>
-       <ion-col>
-         <ion-label color="primary">Floor Plan</ion-label>
-       </ion-col>
-
-       <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'FloorPlan')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesFloorPlan" (click)="uploadLoftSurveyor('Floor Plan')">Upload</button>
-
-       </ion-col>
-     </ion-row>
-
-     <ion-row>
-       <ion-col>
-         <div class="progress" style="width:300px">
-           <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressTenancyAgreement.percentage}}"
-               aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressTenancyAgreement.percentage+'%'}">
-               {{progressTenancyAgreement.percentage}}%
-             </div>
-         </div>
-       </ion-col>
-       <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
+        <ion-label color="{{colorTenancyAgrmt}}">{{progressTenancyAgrmtStatus}}</ion-label>
        </ion-col>
        <ion-col>
          <ion-label color="primary">Tenancy Agreement</ion-label>
        </ion-col>
 
        <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'Tenancy Agreement')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesTenancyAgreement" (click)="uploadLoftSurveyor('Tenancy Agreement')">Upload</button>
-
-       </ion-col>
+          <button ion-button (click)="openGallery('TenancyAgreement')"> Choose File </button>
+          <button ion-button (click)="capture('TenancyAgreement')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('TenancyAgreement')" *ngIf="tenancyAgrmtImage.length"> Save Image </button>
+        </ion-col>
+    
+     
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-slides>
+                <ion-slide *ngFor="let image of tenancyAgrmtImage">
+                    <img src="{{image}}" height="300px" width="300px"/>
+                </ion-slide>
+            </ion-slides>
+          </ion-col>
      </ion-row>
 
      <ion-row>
        <ion-col>
          <div class="progress" style="width:300px">
            <div class="progress-bar progress-bar-info progress-bar-striped"
-             role="progressbar" attr.aria-valuenow="{{progressLandLordPerm.percentage}}"
+             role="progressbar" attr.aria-valuenow="{{progressLandlordPerm.percentage}}"
                aria-valuemin="0" aria-valuemax="100"
-               [ngStyle]="{width:progressLandLordPerm.percentage+'%'}">
-               {{progressLandLordPerm.percentage}}%
+               [ngStyle]="{width:progressLandlordPerm.percentage+'%'}">
+               {{progressLandlordPerm.percentage}}%
              </div>
          </div>
        </ion-col>
        <ion-col>
-        <ion-label color="danger">Not yet Uploaded</ion-label>
+        <ion-label color="{{colorLandlordPerm}}">{{progressLandlordPermStatus}}</ion-label>
        </ion-col>
        <ion-col>
          <ion-label color="primary">Landlord Permission</ion-label>
        </ion-col>
 
        <ion-col>
-         <ion-label color="primary"> <input type="file" (change)="selectFileLoftSurveyor($event, 'LandlordPerm')"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFilesLandlordPerm" (click)="uploadLoftSurveyor('Landlord Permission')">Upload</button>
-
-       </ion-col>
+          <button ion-button (click)="openGallery('LandLordPerm')"> Choose File </button>
+          <button ion-button (click)="capture('LandLordPerm')"> Take Photo </button>
+          <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="landlordPermImage.length"> Save Image </button>
+        </ion-col>
+    
+     
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-slides>
+                <ion-slide *ngFor="let image of landlordPermImage">
+                    <img src="{{image}}" height="300px" width="300px"/>
+                </ion-slide>
+            </ion-slides>
+          </ion-col>
      </ion-row>
    </ion-grid>
 

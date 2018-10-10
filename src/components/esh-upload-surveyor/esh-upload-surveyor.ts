@@ -172,6 +172,40 @@ export class EshUploadSurveyorComponent {
       });
     }
 
+    capture(tag){
+      const cameraOptions: CameraOptions = {
+        quality: 50,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      };
+
+      this.camera.getPicture(cameraOptions).then( imageData =>{
+        console.log("This tag: " + tag);
+  
+          if( tag == 'UBIL'){
+           
+              this.UBILImage.push('data:image/jpeg;base64,' + imageData);
+        
+             
+          } else if(tag == 'TenancyAgreement'){
+            
+              this.tenancyAgrmtImage.push('data:image/jpeg;base64,' + imageData);
+          
+  
+          } else if(tag == 'LandLordPerm'){
+          
+              this.landlordPermImage.push('data:image/jpeg;base64,' + imageData);
+            
+          }
+  
+  
+        }, (err) => {
+          console.log(err);
+  
+        });
+    }
+
     uploadImage(tag){
       console.log("Upload Image: " + tag)
       if(tag == 'UBIL'){

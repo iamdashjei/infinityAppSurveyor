@@ -88,9 +88,6 @@ import { NotificationPage } from '../pages/notification/notification';
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(FIREBASE_CONFIG.firebase),
     IonicModule.forRoot(MyApp),
     SignaturePadModule, // Signature Pad (E-Signature)
     IonicStorageModule.forRoot({

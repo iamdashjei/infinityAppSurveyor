@@ -1,5 +1,5 @@
 import { Component, ViewChild, Renderer, Input  } from '@angular/core';
-import { UploadFileServiceProvider } from '../../providers/upload-file-service/upload-file-service';
+
 import { FileUpload } from '../../providers/upload-file-service/fileupload';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { CameraOptions, Camera } from '@ionic-native/camera';
