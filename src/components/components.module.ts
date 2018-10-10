@@ -2,13 +2,16 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { MultipleImageUploadComponent } from './multiple-image-upload/multiple-image-upload';
 import { SignaturePadComponent } from './signature-pad/signature-pad';
 import { UploadedImagesComponent } from './uploaded-images/uploaded-images';
+import { SolidWallComponent } from './solid-wall/solid-wall';
 @NgModule({
 	declarations: [MultipleImageUploadComponent,
     SignaturePadComponent,
-    UploadedImagesComponent],
+    UploadedImagesComponent,
+    SolidWallComponent],
 	imports: [],
 	exports: [MultipleImageUploadComponent,
     SignaturePadComponent,
-    UploadedImagesComponent]
+    UploadedImagesComponent,
+    SolidWallComponent]
 })
 export class ComponentsModule {}

@@ -550,12 +550,13 @@ export class SurveyorPage {
   savedObject(){
 
     this.mainFormData = this.sharedObject.getSharedMainForm();
-    
+    this.boilerData = this.sharedObject.getSharedBoilerObject();
+    this.cavityWallData = this.sharedObject.getSharedCavityWallObject();
+    this.loftData = this.sharedObject.getSharedLoftObject();
+    this.eshData = this.sharedObject.getSharedEshObject();
+    this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
 
-    if(this.sharedObject.getSharedBoilerObject()){
-      this.boilerData = this.sharedObject.getSharedBoilerObject();
-      const saveBoilerData =  {
-      date_of_survey: this.mainFormData.myDate,
+    const submitDataAll = {
       property_type: this.mainFormData.propertyType,
       property_type1: this.mainFormData.propertyType1,
       property_type2: this.mainFormData.propertyType2,
@@ -570,192 +571,136 @@ export class SurveyorPage {
       name_of_customer: this.mainFormData.nameOfCustomer,
       other: this.mainFormData.other,
       dob: this.mainFormData.myDate,  
-      mainWallConstType: this.boilerData.mainWallConstType,
-      preExistHeatControls: this.boilerData.preExistHeatControls,
-      boilerRecordFaults: this.boilerData.boilerRecordFaults,
-      heatControlsCurrent: this.boilerData.heatControlsCurrent,
-      numberNormalRadiators: this.boilerData.numberNormalRadiators,
-      numberTowelRadiators: this.boilerData.numberTowelRadiators,
-      numberTRVs: this.boilerData.numberTRVs,
-      boierRepairNoPreExtHeat: this.boilerData.boierRepairNoPreExtHeat,
-      boierReplaceNoPreExtHeat: this.boilerData.boierReplaceNoPreExtHeat,
-      boierRepairNoPreExtHeatNonQlfy: this.boilerData.boierRepairNoPreExtHeatNonQlfy,
-      boierReplaceNoPreExtHeatNonQlfy: this.boilerData.boierReplaceNoPreExtHeatNonQlfy,
-      boilerHeatingControls: this.boilerData.boilerHeatingControls
-      };
+      newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing != "undefined" ? this.eshBoilerData.newHeatingSystemUsing : "",
+      newSystemHeatBool: this.eshBoilerData.newSystemHeatBool != "undefined" ? this.eshBoilerData.newSystemHeatBool : "",
+      eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT != "undefined" ? this.eshBoilerData.eshUnroundedPOPT : "",
+      eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT != "undefined" ? this.eshBoilerData.eshRoundedPOPT : "" ,
+      preExttESHSlimline: this.eshData.eshSlimline != "undefined" ? this.eshBoilerData.eshSlimline : "",
+      preExtEshFanAsst: this.eshData.eshFanAssisted != "undefined" ? this.eshData.eshFanAssisted : "",
+      preExtEshHighHeatRet: this.eshData.eshHighHeatRetention != "undefined" ? this.eshData.eshHighHeatRetention : "",
+      numberOfEshInstalledQlfySL: this.eshData.eshInstalledQualifyingSlimline != "undefined" ? this.eshData.eshInstalledQualifyingSlimline : "",
+      numberOfEshInstalledNQlfySL:this.eshData.eshInstalledNonQualifyingSlimline != "undefined" ? this.eshData.eshInstalledNonQualifyingSlimline : "",
+      numberOfEshInstalledQlfyFA: this.eshData.eshInstalledQualifyingFanAsst != "undefined" ? this.eshData.eshInstalledQualifyingFanAsst : "",
+      numberOfEshInstalledNQlfyFA: this.eshData.estInstalledNonQualifyingFanAsst != "undefined" ? this.eshData.estInstalledNonQualifyingFanAsst : "",
+      numberOfEshInstalledQlfyHHR: this.eshData.eshInstalledQualHighHeatRet != "undefined" ? this.eshData.eshInstalledQualHighHeatRet : "",
+      numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet != "undefined" ? this.eshData.eshInstalledNonQualHighHeatRet : "",
+      qeshRepSL: this.eshData.eshQeshRepairSlimline != "undefined" ? this.eshData.eshQeshRepairSlimline : "",
+      qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet != "undefined" ? this.eshData.eshQeshRepairHighHeatRet : "",
+      qeshFA: this.eshData.eshQeshRepairFanAsst != "undefined" ? this.eshData.eshQeshRepairFanAsst : "",  
+      loftPropSectionMain:  this.loftData.loftPropSectionMain != "undefined" ? this.loftData.loftPropSectionMain : "",
+      loftRooftype:  this.loftData.loftRooftype != "undefined" ? this.loftData.loftRooftype : "",
+      loftRoofArea:  this.loftData.loftRoofArea != "undefined" ? this.loftData.loftRoofArea : "",
+      loftTypeofinstall:  this.loftData.loftTypeofinstall != "undefined" ? this.loftData.loftTypeofinstall : "",
+      loftTypeInstallValue:  this.loftData.loftTypeInstallValue != "undefined" ? this.loftData.loftTypeInstallValue : "",
+      loftPropSectionExt1:  this.loftData.loftPropSectionExt1 != "undefined" ? this.loftData.loftPropSectionExt1 : "",
+      loftRooftypePropExt1:  this.loftData.loftRooftypePropExt1 != "undefined" ? this.loftData.loftRooftypePropExt1 : "",
+      loftRoofAreaPSExt1:  this.loftData.loftRoofAreaPSExt1 != "undefined" ? this.loftData.loftRoofAreaPSExt1 : "",
+      loftTypeofinstallPropExt1:  this.loftData.loftTypeofinstallPropExt1 != "undefined" ? this.loftData.loftTypeofinstallPropExt1 : "",
+      loftTypeOfInstallValuePSExt1:  this.loftData.loftTypeOfInstallValuePSExt1 != "undefined" ? this.loftData.loftTypeOfInstallValuePSExt1 : "",
+      loftPropExt2:  this.loftData.loftPropExt2 != "undefined" ? this.loftData.loftPropExt2 : "",
+      loftRooftypePropExt2:  this.loftData.loftRooftypePropExt2 != "undefined" ? this.loftData.loftRooftypePropExt2 : "",
+      loftRoofAreaPropExt2:  this.loftData.loftRoofAreaPropExt2 != "undefined" ? this.loftData.loftRoofAreaPropExt2 : "",
+      loftTypeofinstallPropExt2:  this.loftData.loftTypeofinstallPropExt2 != "undefined" ? this.loftData.loftTypeofinstallPropExt2 : "",
+      loftTypeofinstallValuePropExt2:  this.loftData.loftTypeofinstallValuePropExt2 != "undefined" ? this.loftData.loftTypeofinstallValuePropExt2 : "",
+      loftPropSecExt3:  this.loftData.loftPropSecExt3 != "undefined" ? this.loftData.loftPropSecExt3 : "",
+      loftRooftypePropExt3:  this.loftData.loftRooftypePropExt3 != "undefined" ? this.loftData.loftRooftypePropExt3 : "",
+      loftRoofAreaExt3:  this.loftData.loftRoofAreaExt3 != "undefined" ? this.loftData.loftRoofAreaExt3 : "",
+      loftTypeOfInstallPropSecExt3:  this.loftData.loftTypeOfInstallPropSecExt3 != "undefined" ? this.loftData.loftTypeOfInstallPropSecExt3 : "",
+      loftTypeOfInstallValuePropExt3:  this.loftData.loftTypeOfInstallValuePropExt3 != "undefined" ? this.loftData.loftTypeOfInstallValuePropExt3 : "",
+      loftPropSecExt4:  this.loftData.loftPropSecExt4 != "undefined" ? this.loftData.loftPropSecExt4 : "",
+      loftRooftypePropExt4:  this.loftData.loftRooftypePropExt4 != "undefined" ? this.loftData.loftRooftypePropExt4 : "",
+      loftRoofAreaPropExt4:  this.loftData.loftRoofAreaPropExt4 != "undefined" ? this.loftData.loftRoofAreaPropExt4 : "",
+      loftTypeofinstallPropExt4:  this.loftData.loftTypeofinstallPropExt4 != "undefined" ? this.loftData.loftTypeofinstallPropExt4 : "",
+      loftTypeofinstallValuePropExt4:  this.loftData.loftTypeofinstallValuePropExt4 != "undefined" ? this.loftData.loftTypeofinstallValuePropExt4 : "",
+      loftTotalRoofAreaA:  this.loftData.loftTotalRoofAreaA != "undefined" ? this.loftData.loftTotalRoofAreaA : "",
+      loftTotalRoofAreaB:  this.loftData.loftTotalRoofAreaB != "undefined" ? this.loftData.loftTotalRoofAreaB : "",
+      loftTotalRoofAreaC:  this.loftData.loftTotalRoofAreaC != "undefined" ? this.loftData.loftTotalRoofAreaC : "",
+      loftTotalRoofAreaD:  this.loftData.loftTotalRoofAreaD != "undefined" ? this.loftData.loftTotalRoofAreaD : "",
+      loftTotalRoofAreaE:  this.loftData.loftTotalRoofAreaE != "undefined" ? this.loftData.loftTotalRoofAreaE : "",
+      loftTotalRoofAreaF:  this.loftData.loftTotalRoofAreaF != "undefined" ? this.loftData.loftTotalRoofAreaF : "",
+      loftIfRoomInRoofIns:  this.loftData.loftIfRoomInRoofIns != "undefined" ? this.loftData.loftIfRoomInRoofIns : "",
+      cwiOnly: this.cavityWallData.cwiOnly != "undefined" ? this.cavityWallData.cwiOnly : "",
+      cavWallPropSection1: this.cavityWallData.cavWallPropSection1 != "undefined" ? this.cavityWallData.cavWallPropSection1 : "",
+      cavWallPropSection2: this.cavityWallData.cavWallPropSection2 != "undefined" ? this.cavityWallData.cavWallPropSection2 : "",
+      cavWallPropSection3: this.cavityWallData.cavWallPropSection3 != "undefined" ? this.cavityWallData.cavWallPropSection3 : "",
+      cavWallPropSection4: this.cavityWallData.cavWallPropSection4 != "undefined" ? this.cavityWallData.cavWallPropSection4 : "",
+      cavWallPropSection5: this.cavityWallData.cavWallPropSection5 != "undefined" ? this.cavityWallData.cavWallPropSection5 : "",
+      cavWallWallConstruction1: this.cavityWallData.cavWallWallConstruction1 != "undefined" ? this.cavityWallData.cavWallWallConstruction1 : "",
+      cavWallWallConstruction2: this.cavityWallData.cavWallWallConstruction2 != "undefined" ? this.cavityWallData.cavWallWallConstruction2 : "",
+      cavWallWallConstruction3: this.cavityWallData.cavWallWallConstruction3 != "undefined" ? this.cavityWallData.cavWallWallConstruction3 : "",
+      cavWallWallConstruction4: this.cavityWallData.cavWallWallConstruction4 != "undefined" ? this.cavityWallData.cavWallWallConstruction4 : "",
+      cavWallWallConstruction5: this.cavityWallData.cavWallWallConstruction5 != "undefined" ? this.cavityWallData.cavWallWallConstruction5 : "",
+      cavWallWallArea1: this.cavityWallData.cavWallWallArea1 != "undefined" ? this.cavityWallData.cavWallWallArea1 : "",
+      cavWallWallArea2: this.cavityWallData.cavWallWallArea2 != "undefined" ? this.cavityWallData.cavWallWallArea2 : "",
+      cavWallWallArea3: this.cavityWallData.cavWallWallArea3 != "undefined" ? this.cavityWallData.cavWallWallArea3 : "",
+      cavWallWallArea4: this.cavityWallData.cavWallWallArea4 != "undefined" ? this.cavityWallData.cavWallWallArea4 : "",
+      cavWallWallArea5: this.cavityWallData.cavWallWallArea5 != "undefined" ? this.cavityWallData.cavWallWallArea5 : "",
+      m2InsulationInstalledCWI1: this.cavityWallData.m2InsulationInstalledCWI1 != "undefined" ? this.cavityWallData.m2InsulationInstalledCWI1 : "",
+      m2InsulationInstalledCWI2: this.cavityWallData.m2InsulationInstalledCWI2 != "undefined" ? this.cavityWallData.m2InsulationInstalledCWI2 : "",
+      m2InsulationInstalledCWI3: this.cavityWallData.m2InsulationInstalledCWI3 != "undefined" ? this.cavityWallData.m2InsulationInstalledCWI3 : "",
+      m2InsulationInstalledCWI4: this.cavityWallData.m2InsulationInstalledCWI4 != "undefined" ? this.cavityWallData.m2InsulationInstalledCWI4 : "",
+      m2InsulationInstalledCWI5: this.cavityWallData.m2InsulationInstalledCWI5 != "undefined" ? this.cavityWallData.m2InsulationInstalledCWI5 : "",
+      m2InsulationInstalledSWI1: this.cavityWallData.m2InsulationInstalledSWI1 != "undefined" ? this.cavityWallData.m2InsulationInstalledSWI1 : "",
+      m2InsulationInstalledSWI2: this.cavityWallData.m2InsulationInstalledSWI2 != "undefined" ? this.cavityWallData.m2InsulationInstalledSWI2 : "",
+      m2InsulationInstalledSWI3: this.cavityWallData.m2InsulationInstalledSWI3 != "undefined" ? this.cavityWallData.m2InsulationInstalledSWI3 : "",
+      m2InsulationInstalledSWI4: this.cavityWallData.m2InsulationInstalledSWI4 != "undefined" ? this.cavityWallData.m2InsulationInstalledSWI4 : "",
+      m2InsulationInstalledSWI5: this.cavityWallData.m2InsulationInstalledSWI5 != "undefined" ? this.cavityWallData.m2InsulationInstalledSWI5 : "",
+      cwtotalWallAreasA: this.cavityWallData.cwtotalWallAreasA != "undefined" ? this.cavityWallData.cwtotalWallAreasA : "",
+      cwtotalWallAreasB: this.cavityWallData.cwtotalWallAreasB != "undefined" ? this.cavityWallData.cwtotalWallAreasB : "",
+      cwtotalWallAreasC: this.cavityWallData.cwtotalWallAreasC != "undefined" ? this.cavityWallData.cwtotalWallAreasC : "",
+      cwtotalWallAreasD: this.cavityWallData.cwtotalWallAreasD != "undefined" ? this.cavityWallData.cwtotalWallAreasD : "",
+      cwUnroundedCWIPOPT: this.cavityWallData.cwUnroundedCWIPOPT != "undefined" ? this.cavityWallData.cwUnroundedCWIPOPT : "",
+      cwUnroundedSWIPOPT: this.cavityWallData.cwUnroundedSWIPOPT != "undefined" ? this.cavityWallData.cwUnroundedSWIPOPT : "",
+      cwRoundedCWIPOPT: this.cavityWallData.cwRoundedCWIPOPT != "undefined" ? this.cavityWallData.cwRoundedCWIPOPT : "",
+      cwRoundedSWIPOPT: this.cavityWallData.cwRoundedSWIPOPT != "undefined" ? this.cavityWallData.cwRoundedSWIPOPT : "",
+      cwRoundedSWIPOPT2: this.cavityWallData.cwRoundedSWIPOPT2 != "undefined" ? this.cavityWallData.cwRoundedSWIPOPT2 : "",
+      cwApproxYearAgeReason: this.cavityWallData.cwApproxYearAgeReason != "undefined" ? this.cavityWallData.cwApproxYearAgeReason : "",
+      insulateCavParWalls: this.cavityWallData.insulateCavParWalls != "undefined" ? this.cavityWallData.insulateCavParWalls : "",
+      cwCavParUnroundedPWIPOPT: this.cavityWallData.cwCavParUnroundedPWIPOPT != "undefined" ? this.cavityWallData.cwCavParUnroundedPWIPOPT : "",
+      cwCavParRoundedPWIPOPT: this.cavityWallData.cwCavParRoundedPWIPOPT != "undefined" ? this.cavityWallData.cwCavParRoundedPWIPOPT : "",
+      mainWallConstType: this.boilerData.mainWallConstType != "undefined" ? this.boilerData.mainWallConstType : "",
+      preExistHeatControls: this.boilerData.preExistHeatControls != "undefined" ? this.boilerData.preExistHeatControls : "",
+      boilerRecordFaults: this.boilerData.boilerRecordFaults != "undefined" ? this.boilerData.boilerRecordFaults : "",
+      heatControlsCurrent: this.boilerData.heatControlsCurrent != "undefined" ? this.boilerData.heatControlsCurrent : "",
+      numberNormalRadiators: this.boilerData.numberNormalRadiators != "undefined" ? this.boilerData.numberNormalRadiators : "",
+      numberTowelRadiators: this.boilerData.numberTowelRadiators != "undefined" ? this.boilerData.numberTowelRadiators : "",
+      numberTRVs: this.boilerData.numberTRVs != "undefined" ? this.boilerData.numberTRVs : "",
+      boierRepairNoPreExtHeat: this.boilerData.boierRepairNoPreExtHeat != "undefined" ? this.boilerData.boierRepairNoPreExtHeat : "",
+      boierReplaceNoPreExtHeat: this.boilerData.boierReplaceNoPreExtHeat != "undefined" ? this.boilerData.boierReplaceNoPreExtHeat : "",
+      boierRepairNoPreExtHeatNonQlfy: this.boilerData.boierRepairNoPreExtHeatNonQlfy != "undefined" ? this.boilerData.boierRepairNoPreExtHeatNonQlfy : "",
+      boierReplaceNoPreExtHeatNonQlfy: this.boilerData.boierReplaceNoPreExtHeatNonQlfy != "undefined" ? this.boilerData.boierReplaceNoPreExtHeatNonQlfy : "",
+      boilerHeatingControls: this.boilerData.boilerHeatingControls != "undefined" ? this.eshBoilerData.newHeatingSystemUsing : ""
+    };
 
+    
+
+    if(this.sharedObject.getSharedBoilerObject()){
       this.savedImagesBoiler();
       this.sharedObject.setSharedSelectedLeadTag("boilers");
-      this.sharedObject.setSharedSubmitObject(saveBoilerData);
+      this.sharedObject.setSharedSubmitObject(submitDataAll);
 
     } else if(this.sharedObject.getSharedCavityWallObject()){
-      this.cavityWallData = this.sharedObject.getSharedCavityWallObject();
-      const saveCavityWallData = {
-        date_of_survey: this.mainFormData.myDate,
-        property_type: this.mainFormData.propertyType,
-        property_type1: this.mainFormData.propertyType1,
-        property_type2: this.mainFormData.propertyType2,
-        addressInstall: this.mainFormData.addressInstall,
-        notes: this.mainFormData.notes,
-        postCode: this.mainFormData.postCode,
-        bedrooms: this.mainFormData.bedrooms,
-        tenure: this.mainFormData.tenure,
-        heating_source: this.mainFormData.heatingSource,
-        customer_type: this.mainFormData.custType,
-        surveyor_name: this.mainFormData.surveyorName,
-        name_of_customer: this.mainFormData.nameOfCustomer,
-        other: this.mainFormData.other,
-        dob: this.mainFormData.myDate,
-        cwiOnly: this.cavityWallData.cwiOnly,
-        cavWallPropSection1: this.cavityWallData.cavWallPropSection1,
-        cavWallPropSection2: this.cavityWallData.cavWallPropSection2,
-        cavWallPropSection3: this.cavityWallData.cavWallPropSection3,
-        cavWallPropSection4: this.cavityWallData.cavWallPropSection4,
-        cavWallPropSection5: this.cavityWallData.cavWallPropSection5,
-        cavWallWallConstruction1: this.cavityWallData.cavWallWallConstruction1,
-        cavWallWallConstruction2: this.cavityWallData.cavWallWallConstruction2,
-        cavWallWallConstruction3: this.cavityWallData.cavWallWallConstruction3,
-        cavWallWallConstruction4: this.cavityWallData.cavWallWallConstruction4,
-        cavWallWallConstruction5: this.cavityWallData.cavWallWallConstruction5,
-        cavWallWallArea1: this.cavityWallData.cavWallWallArea1,
-        cavWallWallArea2: this.cavityWallData.cavWallWallArea2,
-        cavWallWallArea3: this.cavityWallData.cavWallWallArea3,
-        cavWallWallArea4: this.cavityWallData.cavWallWallArea4,
-        cavWallWallArea5: this.cavityWallData.cavWallWallArea5,
-        m2InsulationInstalledCWI1: this.cavityWallData.m2InsulationInstalledCWI1,
-        m2InsulationInstalledCWI2: this.cavityWallData.m2InsulationInstalledCWI2,
-        m2InsulationInstalledCWI3: this.cavityWallData.m2InsulationInstalledCWI3,
-        m2InsulationInstalledCWI4: this.cavityWallData.m2InsulationInstalledCWI4,
-        m2InsulationInstalledCWI5: this.cavityWallData.m2InsulationInstalledCWI5,
-        m2InsulationInstalledSWI1: this.cavityWallData.m2InsulationInstalledSWI1,
-        m2InsulationInstalledSWI2: this.cavityWallData.m2InsulationInstalledSWI2,
-        m2InsulationInstalledSWI3: this.cavityWallData.m2InsulationInstalledSWI3,
-        m2InsulationInstalledSWI4: this.cavityWallData.m2InsulationInstalledSWI4,
-        m2InsulationInstalledSWI5: this.cavityWallData.m2InsulationInstalledSWI5,
-        cwtotalWallAreasA: this.cavityWallData.cwtotalWallAreasA,
-        cwtotalWallAreasB: this.cavityWallData.cwtotalWallAreasB,
-        cwtotalWallAreasC: this.cavityWallData.cwtotalWallAreasC,
-        cwtotalWallAreasD: this.cavityWallData.cwtotalWallAreasD,
-        cwUnroundedCWIPOPT: this.cavityWallData.cwUnroundedCWIPOPT,
-        cwUnroundedSWIPOPT: this.cavityWallData.cwUnroundedSWIPOPT,
-        cwRoundedCWIPOPT: this.cavityWallData.cwRoundedCWIPOPT,
-        cwRoundedSWIPOPT: this.cavityWallData.cwRoundedSWIPOPT,
-        cwRoundedSWIPOPT2: this.cavityWallData.cwRoundedSWIPOPT2,
-        cwApproxYearAgeReason: this.cavityWallData.cwApproxYearAgeReason,
-        insulateCavParWalls: this.cavityWallData.insulateCavParWalls,
-        cwCavParUnroundedPWIPOPT: this.cavityWallData.cwCavParUnroundedPWIPOPT,
-        cwCavParRoundedPWIPOPT: this.cavityWallData.cwCavParRoundedPWIPOPT
-      };
       this.savedImagesCavityWall();
       this.sharedObject.setSharedSelectedLeadTag("cavities");
-      this.sharedObject.setSharedSubmitObject(saveCavityWallData);
+      this.sharedObject.setSharedSubmitObject(submitDataAll);
 
     } else if(this.sharedObject.getSharedLoftObject()){
-      this.loftData = this.sharedObject.getSharedLoftObject();
-      const saveLoftData = {
-        property_type: this.mainFormData.propertyType,
-        property_type1: this.mainFormData.propertyType1,
-        property_type2: this.mainFormData.propertyType2,
-        addressInstall: this.mainFormData.addressInstall,
-        notes: this.mainFormData.notes,
-        postCode: this.mainFormData.postCode,
-        bedrooms: this.mainFormData.bedrooms,
-        tenure: this.mainFormData.tenure,
-        heating_source: this.mainFormData.heatingSource,
-        customer_type: this.mainFormData.custType,
-        surveyor_name: this.mainFormData.surveyorName,
-        name_of_customer: this.mainFormData.nameOfCustomer,
-        other: this.mainFormData.other,
-        dob: this.mainFormData.myDate,
-        loftPropSectionMain:  this.loftData.loftPropSectionMain,
-        loftRooftype:  this.loftData.loftRooftype,
-        loftRoofArea:  this.loftData.loftRoofArea,
-        loftTypeofinstall:  this.loftData.loftTypeofinstall,
-        loftTypeInstallValue:  this.loftData.loftTypeInstallValue,
-        loftPropSectionExt1:  this.loftData.loftPropSectionExt1,
-        loftRooftypePropExt1:  this.loftData.loftRooftypePropExt1,
-        loftRoofAreaPSExt1:  this.loftData.loftRoofAreaPSExt1,
-        loftTypeofinstallPropExt1:  this.loftData.loftTypeofinstallPropExt1,
-        loftTypeOfInstallValuePSExt1:  this.loftData.loftTypeOfInstallValuePSExt1,
-        loftPropExt2:  this.loftData.loftPropExt2,
-        loftRooftypePropExt2:  this.loftData.loftRooftypePropExt2,
-        loftRoofAreaPropExt2:  this.loftData.loftRoofAreaPropExt2,
-        loftTypeofinstallPropExt2:  this.loftData.loftTypeofinstallPropExt2,
-        loftTypeofinstallValuePropExt2:  this.loftData.loftTypeofinstallValuePropExt2,
-        loftPropSecExt3:  this.loftData.loftPropSecExt3,
-        loftRooftypePropExt3:  this.loftData.loftRooftypePropExt3,
-        loftRoofAreaExt3:  this.loftData.loftRoofAreaExt3,
-        loftTypeOfInstallPropSecExt3:  this.loftData.loftTypeOfInstallPropSecExt3,
-        loftTypeOfInstallValuePropExt3:  this.loftData.loftTypeOfInstallValuePropExt3,
-        loftPropSecExt4:  this.loftData.loftPropSecExt4,
-        loftRooftypePropExt4:  this.loftData.loftRooftypePropExt4,
-        loftRoofAreaPropExt4:  this.loftData.loftRoofAreaPropExt4,
-        loftTypeofinstallPropExt4:  this.loftData.loftTypeofinstallPropExt4,
-        loftTypeofinstallValuePropExt4:  this.loftData.loftTypeofinstallValuePropExt4,
-        loftTotalRoofAreaA:  this.loftData.loftTotalRoofAreaA,
-        loftTotalRoofAreaB:  this.loftData.loftTotalRoofAreaB,
-        loftTotalRoofAreaC:  this.loftData.loftTotalRoofAreaC,
-        loftTotalRoofAreaD:  this.loftData.loftTotalRoofAreaD,
-        loftTotalRoofAreaE:  this.loftData.loftTotalRoofAreaE,
-        loftTotalRoofAreaF:  this.loftData.loftTotalRoofAreaF,
-        // loftUnroundedLess100POPT:  this.loftData.loftUnroundedLess100POPT,
-        // loftUnroundedMore100POPT:  this.loftData.loftUnroundedMore100POPT,
-        // loftUnroundedFRIPOPT:  this.loftData.loftUnroundedFRIPOPT,
-        // loftRoundedLess100POPT:  this.loftData.loftRoundedLess100POPT,
-        // loftRoundedMore100POPT:  this.loftData.loftRoundedMore100POPT,
-        // loftRoundedFRIPOPT:  this.loftData.loftRoundedFRIPOPT,
-        // loftRoundedRIRIPOPT:  this.loftData.loftRoundedRIRIPOPT,
-        loftIfRoomInRoofIns:  this.loftData.loftIfRoomInRoofIns
-      };
-
       this.savedImagesLoft();
       this.sharedObject.setSharedSelectedLeadTag("lofts");
-      this.sharedObject.setSharedSubmitObject(saveLoftData);
+      this.sharedObject.setSharedSubmitObject(submitDataAll);
 
     } else if(this.sharedObject.getSharedSolidWallObject()) {
       this.solidWallData = this.sharedObject.getSharedSolidWallObject();
 
     } else if(this.sharedObject.getSharedEshObject()) {
-      this.eshData = this.sharedObject.getSharedEshObject();
-      this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
-      const saveData = {
-        date_of_survey: this.mainFormData.myDate,
-        property_type: this.mainFormData.propertyType,
-        property_type1: this.mainFormData.propertyType1,
-        property_type2: this.mainFormData.propertyType2,
-        addressInstall: this.mainFormData.addressInstall,
-        notes: this.mainFormData.notes,
-        postCode: this.mainFormData.postCode,
-        bedrooms: this.mainFormData.bedrooms,
-        tenure: this.mainFormData.tenure,
-        heating_source: this.mainFormData.heatingSource,
-        customer_type: this.mainFormData.custType,
-        surveyor_name: this.mainFormData.surveyorName,
-        name_of_customer: this.mainFormData.nameOfCustomer,
-        other: this.mainFormData.other,
-        dob: this.mainFormData.myDate,
-        newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing,
-        newSystemHeatBool: this.eshBoilerData.newSystemHeatBool,
-        eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT,
-        eshRoundedPOPT: this.eshBoilerData.eshRoundedPOPT ,
-        preExttESHSlimline: this.eshData.eshSlimline,
-        preExtEshFanAsst: this.eshData.eshFanAssisted,
-        preExtEshHighHeatRet: this.eshData.eshHighHeatRetention,
-        numberOfEshInstalledQlfySL: this.eshData.eshInstalledQualifyingSlimline,
-        numberOfEshInstalledNQlfySL:this.eshData.eshInstalledNonQualifyingSlimline,
-        numberOfEshInstalledQlfyFA: this.eshData.eshInstalledQualifyingFanAsst,
-        numberOfEshInstalledNQlfyFA: this.eshData.estInstalledNonQualifyingFanAsst,
-        numberOfEshInstalledQlfyHHR: this.eshData.eshInstalledQualHighHeatRet,
-        numberOfEshInstalledNQlfyHHR:this.eshData.eshInstalledNonQualHighHeatRet,
-        qeshRepSL: this.eshData.eshQeshRepairSlimline,
-        qeshRepHHR: this.eshData.eshQeshRepairHighHeatRet,
-        qeshFA: this.eshData.eshQeshRepairFanAsst
-      };
+     
       this.savedImagesEsh();
       this.sharedObject.setSharedSelectedLeadTag("esh");
-      this.sharedObject.setSharedSubmitObject(saveData);
+      this.sharedObject.setSharedSubmitObject(submitDataAll);
     }
 
+    
+    console.log("This submit object => " + submitDataAll);
     this.savedImagesGen();
     this.presentToastSave();
 
