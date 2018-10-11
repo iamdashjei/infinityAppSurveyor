@@ -17,42 +17,47 @@
     <ion-scroll scrollY="true">
   
 <ion-item-divider>Bedroom Uploads</ion-item-divider>
+<div *ngFor="let item of numberOfBedroom; let i = index">
 <ion-row>
      
     <ion-col>
       <div class="progress" style="width:300px">
         <div class="progress-bar progress-bar-info progress-bar-striped"
-          role="progressbar" attr.aria-valuenow="{{progressBedroom.percentage}}"
+          role="progressbar" attr.aria-valuenow="{{progressBedroom[i].percentage}}"
             aria-valuemin="0" aria-valuemax="100"
-            [ngStyle]="{width:progressBedroom.percentage+'%'}">
-            {{progressBedroom.percentage}}%
+            [ngStyle]="{width:progressBedroom[i].percentage+'%'}">
+            {{progressBedroom[i].percentage}}%
           </div>
       </div>
     </ion-col>
     <ion-col>
-     <ion-label color="{{ colorBedroom }}">{{ progressBedroomStatus }}</ion-label>
+     <ion-label color="{{ colorBedroom[i] }}">{{ progressBedroomStatus[i] }}</ion-label>
     </ion-col>
     <ion-col>
-      <ion-label color="primary">Bedroom </ion-label>
+      <ion-label color="primary">Bedroom {{ item }}</ion-label>
     </ion-col>
 
     <ion-col>
-      <button ion-button (click)="openGallery('Bedroom')"> Choose File </button>
-      <button ion-button (click)="capture('Bedroom')"> Take Photo </button>
-      <button ion-button (click)="uploadImage('Bedroom')" *ngIf="bedroomImages.length"> Save Image </button>
+      <button ion-button (click)="addToGallery('Bedroom', i)"> Choose File </button>
+      <button ion-button (click)="captureBedrooms(i)"> Take Photo </button>
+      <button ion-button (click)="uploadImageBedroom(i)" *ngIf="checkItemInList(i)"> Save Image </button>
     </ion-col>
-
- 
+    
+    
+    
 </ion-row>
-<ion-row>
+  <ion-row>
     <ion-col>
-        <ion-slides>
-            <ion-slide *ngFor="let image of bedroomImages">
-                <img src="{{image}}" height="300px" width="300px"/>
-            </ion-slide>
-        </ion-slides>
-      </ion-col>
- </ion-row>
+      <ion-slides>
+        <ion-slide *ngFor="let image of bedroomImages[i]">
+            <img src="{{image}}" />
+           
+        </ion-slide>
+    </ion-slides>
+    </ion-col>
+  </ion-row>
+</div>
+
  
 
 <ion-item-divider>Kitchen Uploads</ion-item-divider>

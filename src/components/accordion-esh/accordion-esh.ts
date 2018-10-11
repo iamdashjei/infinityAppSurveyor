@@ -54,20 +54,38 @@ export class AccordionEshComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_EshMainFormData").then((formData) => {
+      if(formData != null){
       let data = formData;
-      this.eshSlimline = data.eshSlimline;
-      this.eshFanAssisted = data.eshFanAssisted;
-      this.eshHighHeatRetention = data.eshHighHeatRetention;
-      this.eshInstalledQualifyingSlimline = data.eshInstalledQualifyingSlimline;
-      this.eshInstalledNonQualifyingSlimline = data.eshInstalledNonQualifyingSlimline;
-      this.eshInstalledQualifyingFanAsst = data.eshInstalledQualifyingFanAsst;
-      this.estInstalledNonQualifyingFanAsst = data.estInstalledNonQualifyingFanAsst;
-      this.eshInstalledQualHighHeatRet = data.eshInstalledQualHighHeatRet;
-      this.eshInstalledNonQualHighHeatRet = data.eshInstalledNonQualHighHeatRet;
-      this.eshQeshRepairSlimline = data.eshQeshRepairSlimline;
-      this.eshQeshRepairFanAsst = data.eshQeshRepairFanAsst;
-      this.eshQeshRepairHighHeatRet = data.eshQeshRepairHighHeatRet;
+      this.eshSlimline = data.eshSlimline != null ? data.eshSlimline : null;
+      this.eshFanAssisted = data.eshFanAssisted != null ? data.eshFanAssisted : null;
+      this.eshHighHeatRetention = data.eshHighHeatRetention != null ? data.eshHighHeatRetention : null;
+      this.eshInstalledQualifyingSlimline = data.eshInstalledQualifyingSlimline != null ? data.eshInstalledQualifyingSlimline : null;
+      this.eshInstalledNonQualifyingSlimline = data.eshInstalledNonQualifyingSlimline != null ? data.eshInstalledNonQualifyingSlimline : null;
+      this.eshInstalledQualifyingFanAsst = data.eshInstalledQualifyingFanAsst != null ? data.eshInstalledQualifyingFanAsst : null;
+      this.estInstalledNonQualifyingFanAsst = data.estInstalledNonQualifyingFanAsst != null ? data.estInstalledNonQualifyingFanAsst : null;
+      this.eshInstalledQualHighHeatRet = data.eshInstalledQualHighHeatRet != null ? data.eshInstalledQualHighHeatRet : null;
+      this.eshInstalledNonQualHighHeatRet = data.eshInstalledNonQualHighHeatRet != null ? data.eshInstalledNonQualHighHeatRet : null;
+      this.eshQeshRepairSlimline = data.eshQeshRepairSlimline != null ? data.eshQeshRepairSlimline : null;
+      this.eshQeshRepairFanAsst = data.eshQeshRepairFanAsst != null ? data.eshQeshRepairFanAsst : null;
+      this.eshQeshRepairHighHeatRet = data.eshQeshRepairHighHeatRet != null ? data.eshQeshRepairHighHeatRet : null;
       this.sharedObject.setSharedEshObject(formData);
+      } else {
+        let data = {
+          eshSlimline: null,
+          eshFanAssisted: null,
+          eshHighHeatRetention: null, 
+          eshInstalledQualifyingSlimline: null,
+          eshInstalledNonQualifyingSlimline: null,
+          eshInstalledQualifyingFanAsst: null,
+          estInstalledNonQualifyingFanAsst: null,
+          eshInstalledQualHighHeatRet: null,
+          eshInstalledNonQualHighHeatRet: null,
+          eshQeshRepairSlimline: null,
+          eshQeshRepairFanAsst: null,
+          eshQeshRepairHighHeatRet: null
+        }; 
+        this.sharedObject.setSharedEshObject(data);
+      }
     });
   }
 
@@ -91,18 +109,18 @@ export class AccordionEshComponent {
 
   saveEsh(){
     const data = {
-      eshSlimline: this.eshSlimline,
-      eshFanAssisted:this.eshFanAssisted,
-      eshHighHeatRetention: this.eshHighHeatRetention,
-      eshInstalledQualifyingSlimline: this.eshInstalledQualifyingSlimline,
-      eshInstalledNonQualifyingSlimline: this.eshInstalledNonQualifyingSlimline,
-      eshInstalledQualifyingFanAsst: this.eshInstalledQualifyingFanAsst,
-      estInstalledNonQualifyingFanAsst: this.estInstalledNonQualifyingFanAsst,
-      eshInstalledQualHighHeatRet: this.eshInstalledQualHighHeatRet,
-      eshInstalledNonQualHighHeatRet: this.eshInstalledNonQualHighHeatRet,
-      eshQeshRepairSlimline: this.eshQeshRepairSlimline,
-      eshQeshRepairFanAsst: this.eshQeshRepairFanAsst,
-      eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet
+      eshSlimline: this.eshSlimline != null ? this.eshSlimline : null,
+      eshFanAssisted:this.eshFanAssisted != null ? this.eshFanAssisted : null,
+      eshHighHeatRetention: this.eshHighHeatRetention != null ? this.eshHighHeatRetention : null, 
+      eshInstalledQualifyingSlimline: this.eshInstalledQualifyingSlimline != null ? this.eshInstalledQualifyingSlimline : null,
+      eshInstalledNonQualifyingSlimline: this.eshInstalledNonQualifyingSlimline != null ? this.eshInstalledNonQualifyingSlimline : null,
+      eshInstalledQualifyingFanAsst: this.eshInstalledQualifyingFanAsst != null ? this.eshInstalledQualifyingFanAsst : null,
+      estInstalledNonQualifyingFanAsst: this.estInstalledNonQualifyingFanAsst != null ? this.estInstalledNonQualifyingFanAsst : null,
+      eshInstalledQualHighHeatRet: this.eshInstalledQualHighHeatRet != null ? this.eshInstalledQualHighHeatRet : null,
+      eshInstalledNonQualHighHeatRet: this.eshInstalledNonQualHighHeatRet != null ? this.eshInstalledNonQualHighHeatRet : null,
+      eshQeshRepairSlimline: this.eshQeshRepairSlimline != null ? this.eshQeshRepairSlimline : null,
+      eshQeshRepairFanAsst: this.eshQeshRepairFanAsst != null ? this.eshQeshRepairFanAsst : null,
+      eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet != null ? this.eshQeshRepairHighHeatRet : null
     };
     this.sharedObject.setSharedEshObject(data);
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_EshMainFormData", data);

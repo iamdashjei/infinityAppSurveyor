@@ -78,6 +78,26 @@ export class AccordionComponent {
           this.sharedObject.setSharedSelectedBedrooms(this.bedrooms);
           this.sharedObject.setSharedMainForm(formData);
           this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_genForm", formData);
+        } else {
+          let noFormData = {
+            myDate: null,
+            myDOB: null,
+            surveyorName: null,
+            nameOfCustomer: null,
+            postCode: null,
+            addressInstall: null,
+            custType: null,
+            propertyType: null,
+            propertyType1: null,
+            propertyType2: null,
+            bedrooms: null,
+            tenure: null,
+            heatingSource: null,
+            other: null,
+            notes: null
+          };
+
+          this.sharedObject.setSharedMainForm(noFormData);
         }
     });
 
@@ -117,21 +137,21 @@ export class AccordionComponent {
 
   saveMainForm(){
     const dataMainForm = {
-      myDate: this.myDate,
-      myDOB: this.myDOB,
-      surveyorName: this.surveyorName,
-      nameOfCustomer: this.nameOfCustomer,
-      postCode: this.postCode,
-      addressInstall: this.addressInstall,
-      custType: this.custType,
-      propertyType: this.propertyType,
-      propertyType1: this.propertyType1,
-      propertyType2: this.propertyType2,
-      bedrooms: this.bedrooms,
-      tenure: this.tenure,
-      heatingSource: this.heatingSource,
-      other: this.other,
-      notes: this.notes
+      myDate: this.myDate != null ? this.myDate : null,
+      myDOB: this.myDOB != null ? this.myDOB : null,
+      surveyorName: this.surveyorName != null ? this.surveyorName : null,
+      nameOfCustomer: this.nameOfCustomer != null ? this.nameOfCustomer : null,
+      postCode: this.postCode != null ? this.postCode : null,
+      addressInstall: this.addressInstall != null ? this.addressInstall : null,
+      custType: this.custType != null ? this.custType : null,
+      propertyType: this.propertyType != null ? this.propertyType : null,
+      propertyType1: this.propertyType1 != null ? this.propertyType1 : null,
+      propertyType2: this.propertyType2 != null ? this.propertyType2 : null,
+      bedrooms: this.bedrooms != null ? this.bedrooms : null,
+      tenure: this.tenure != null ? this.tenure : null,
+      heatingSource: this.heatingSource != null ? this.heatingSource : null,
+      other: this.other != null ? this.other : null,
+      notes: this.notes != null ? this.notes : null
      
     };
 

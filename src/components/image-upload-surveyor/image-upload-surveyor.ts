@@ -41,11 +41,14 @@ export class ImageUploadSurveyorComponent {
    bedroom: any;
    listBedroom: any = [];
    numberOfBedroom: any = [];
-
+   
+   bedroomImages2: any = [];
    bedroomImages: any = [];
-   progressBedroom: {percentage: number} = {percentage: 0};
-   progressBedroomStatus: string = "Not yet uploaded";
-   colorBedroom: string = "danger";
+   progressBedroomStatus: string[] = [];
+   colorBedroom: string[]  = [];
+   progressBedroom: {percentage: number} [] = [];
+   //{percentage: 0}
+   
 
    kitchenImages: any = [];
    progressKitchen: {percentage: number} = {percentage: 0};
@@ -195,13 +198,31 @@ export class ImageUploadSurveyorComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     //this.storage.get().then(() => {});
-    
+    this.numberOfBedroom = [];
+    this.progressBedroomStatus = [];
+    this.colorBedroom = [];
+    this.progressBedroom = [];
+    for(let i = 1; i <= this.sharedObject.getSharedSelectedBedrooms(); i++){
+      this.numberOfBedroom.push(i);
+      this.progressBedroomStatus.push("Not yet uploaded");
+      this.colorBedroom.push("danger");
+      this.progressBedroom.push({percentage: 0});
+      console.log("Number of Bedrooms => " + this.numberOfBedroom);
+    }
+
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom").then((bedroom) => {
+      console.log("Saved Bedrooms"+ bedroom.length);
       if(bedroom != null){
-        this.bedroomImages = bedroom;
-        this.progressBedroom.percentage = 100;
-        this.progressBedroomStatus = "Completed";
-        this.colorBedroom = "secondary";
+       
+        for(var i = 0; i < bedroom.length; i++){
+          let temp = bedroom[i];
+          for(var y = 0; y < temp.length; y++){
+            this.progressBedroom[y].percentage = 100;
+            this.progressBedroomStatus[y] = "Completed";
+            this.colorBedroom[y] = "secondary"; 
+          }
+        }
+        
       }
     });
 
@@ -397,11 +418,7 @@ export class ImageUploadSurveyorComponent {
   }
 
   toggleAccordionSurveyor() {
-    this.numberOfBedroom = [];
-    for(let i = 1; i <= this.sharedObject.getSharedSelectedBedrooms(); i++){
-      this.numberOfBedroom.push(i);
-      console.log("Number of Bedrooms => " + this.numberOfBedroom);
-    }
+    
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "0px 16px");
@@ -532,13 +549,7 @@ export class ImageUploadSurveyorComponent {
     this.imagePicker.getPictures(options).then( imageData =>{
       console.log(imageData);
       
-      if( tag == 'Bedroom'){
-        //this.base64ImageBedroom = 'data:image/jpeg;base64,' + imageData;
-        for(let i=0; i < imageData.length;i++){
-          this.bedroomImages.push('data:image/jpeg;base64,' + imageData[i]);
-        };
-
-     } else if(tag == 'Kitchen'){
+     if(tag == 'Kitchen'){
         for(let i=0; i < imageData.length;i++){
         this.kitchenImages.push('data:image/jpeg;base64,' + imageData[i]);
       };
@@ -650,14 +661,67 @@ export class ImageUploadSurveyorComponent {
     
   }
 
+ addToGallery(tag, number){
+  const options = {
+    maximumImagesCount: 5,
+    quality: 50,
+    width: 512,
+    height: 512,
+    outputType: 1
+    }
+    this.imagePicker.getPictures(options).then( imageData =>{ 
+      for(let i=0; i < imageData.length;i++){
+        this.bedroomImages2.push('data:image/jpeg;base64,' + imageData[i]);
+        console.log("Count => " + i);
+        // this.bedroomImages.push('data:image/jpeg;base64,' + imageData[i]);
+      }
+
+      this.bedroomImages[number] = this.bedroomImages2;
+      console.log("BEDROOM " + number + ": = " + this.bedroomImages[number]);
+      this.bedroomImages2 = [];
+    });
+ }
+
+ captureBedrooms(number){
+  const cameraOptions: CameraOptions = {
+    quality: 50,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  };
+
+  this.camera.getPicture(cameraOptions).then((imageData) => {
+    let arrayImages = this.bedroomImages[number];
+     arrayImages.push('data:image/jpeg;base64,' + imageData);
+     this.bedroomImages[number] = arrayImages;
+  });
+ }
+
+ uploadImageBedroom(number){
+  for(var i = 0; i <= 100; i+=10){
+    this.progressBedroom[number].percentage = i;
+    if(i == 100){
+      this.progressBedroomStatus[number] = "Completed";
+      this.colorBedroom[number] = "secondary";
+    }
+  }
+
+  this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom", this.bedroomImages);
+ }
+
+ checkItemInList(number){
+  
+  if(this.bedroomImages[number]){
+    return true;
+  } else {
+    return false;
+  }
+ }
+
 
   uploadImage(tag){
     console.log("Upload Image: " + tag)
-    if(tag == 'Bedroom'){
-        this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom", this.bedroomImages);
-        this.progressUploads(tag);
-
-    } else if ( tag == 'Kitchen'){
+     if ( tag == 'Kitchen'){
       this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_kitchen", this.kitchenImages);
       this.progressUploads(tag);
 
@@ -749,14 +813,7 @@ export class ImageUploadSurveyorComponent {
   progressUploads(tag){
     for(var i = 0; i <= 100; i+=10){
 
-      if(tag == 'Bedroom'){
-        this.progressBedroom.percentage = i;
-        if(i == 100){
-          this.progressBedroomStatus = "Completed";
-          this.colorBedroom = "secondary";
-        }
-
-      } else if ( tag == 'Kitchen'){
+     if ( tag == 'Kitchen'){
         this.progressKitchen.percentage = i;
         if(i == 100){
           this.progressKitchenStatus = "Completed";

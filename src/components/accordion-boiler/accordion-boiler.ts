@@ -48,6 +48,7 @@ export class AccordionBoilerComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_boilerForm").then((data) => {
+      if(data != null){
       const boilerData = data;
       this.mainWallConstType = boilerData.mainWallConstType ;
       this.preExistHeatControls = boilerData.preExistHeatControls ;
@@ -62,6 +63,24 @@ export class AccordionBoilerComponent {
       this.boierReplaceNoPreExtHeatNonQlfy = boilerData.boierReplaceNoPreExtHeatNonQlfy ;
       this.boilerHeatingControls  = boilerData.boilerHeatingControls ;
       this.sharedObject.setSharedBoilerObject(boilerData);
+      } else {
+        let boilerData = {
+          mainWallConstType: this.mainWallConstType != null ? this.mainWallConstType : null,
+          preExistHeatControls: this.preExistHeatControls != null ? this.mainWallConstType : null,
+          boilerRecordFaults: this.boilerRecordFaults != null ? this.mainWallConstType : null,
+          heatControlsCurrent: this.heatControlsCurrent != null ? this.mainWallConstType : null,
+          numberNormalRadiators: this.numberNormalRadiators != null ? this.mainWallConstType : null,
+          numberTowelRadiators: this.numberTowelRadiators != null ? this.mainWallConstType : null,
+          numberTRVs: this.numberTRVs != null ? this.mainWallConstType : null,
+          boierRepairNoPreExtHeat: this.boierRepairNoPreExtHeat != null ? this.mainWallConstType : null,
+          boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat != null ? this.mainWallConstType : null,
+          boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
+          boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
+          boilerHeatingControls: this.boilerHeatingControls != null ? this.mainWallConstType : null
+        };
+
+        this.sharedObject.setSharedBoilerObject(boilerData);
+      }
     });
   }
   // Toggle List For Boiler Form
@@ -79,19 +98,19 @@ export class AccordionBoilerComponent {
   }
 
   saveBoiler(){
-    const data = {
-      mainWallConstType: this.mainWallConstType,
-      preExistHeatControls: this.preExistHeatControls,
-      boilerRecordFaults: this.boilerRecordFaults,
-      heatControlsCurrent: this.heatControlsCurrent,
-      numberNormalRadiators: this.numberNormalRadiators,
-      numberTowelRadiators: this.numberTowelRadiators,
-      numberTRVs: this.numberTRVs,
-      boierRepairNoPreExtHeat: this.boierRepairNoPreExtHeat,
-      boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat,
-      boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy,
-      boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy,
-      boilerHeatingControls: this.boilerHeatingControls
+    const data = { 
+      mainWallConstType: this.mainWallConstType != null ? this.mainWallConstType : null,
+      preExistHeatControls: this.preExistHeatControls != null ? this.mainWallConstType : null,
+      boilerRecordFaults: this.boilerRecordFaults != null ? this.mainWallConstType : null,
+      heatControlsCurrent: this.heatControlsCurrent != null ? this.mainWallConstType : null,
+      numberNormalRadiators: this.numberNormalRadiators != null ? this.mainWallConstType : null,
+      numberTowelRadiators: this.numberTowelRadiators != null ? this.mainWallConstType : null,
+      numberTRVs: this.numberTRVs != null ? this.mainWallConstType : null,
+      boierRepairNoPreExtHeat: this.boierRepairNoPreExtHeat != null ? this.mainWallConstType : null,
+      boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat != null ? this.mainWallConstType : null,
+      boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
+      boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
+      boilerHeatingControls: this.boilerHeatingControls != null ? this.mainWallConstType : null
     };
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_boilerForm", data);
     this.sharedObject.setSharedBoilerObject(data);

@@ -74,6 +74,7 @@ export class AccordionLoftComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_loftForm").then((data) => {
+      if(data != null){
       const loftForm = data;
       this.loftPropSectionMain= loftForm.loftPropSectionMain;
       this.loftRooftype= loftForm.loftRooftype;
@@ -109,6 +110,43 @@ export class AccordionLoftComponent {
       this.loftIfRoomInRoofIns = loftForm.loftIfRoomInRoofIns;
 
       this.sharedObject.setSharedLoftObject(loftForm);
+      } else {
+        let loftForm =  {
+          loftPropSectionMain: null ,
+          loftRooftype: null,
+          loftRoofArea: null,
+          loftTypeofinstall: null,
+          loftTypeInstallValue: null,
+          loftPropSectionExt1: null,
+          loftRooftypePropExt1: null, 
+          loftRoofAreaPSExt1: null,
+          loftTypeofinstallPropExt1: null,
+          loftTypeOfInstallValuePSExt1: null,
+          loftPropExt2: null,
+          loftRooftypePropExt2: null,
+          loftRoofAreaPropExt2: null,
+          loftTypeofinstallPropExt2: null,
+          loftTypeofinstallValuePropExt2: null,
+          loftPropSecExt3: null,
+          loftRooftypePropExt3: null,
+          loftRoofAreaExt3: null,
+          loftTypeOfInstallPropSecExt3: null,
+          loftTypeOfInstallValuePropExt3: null,
+          loftPropSecExt4: null,
+          loftRooftypePropExt4: null,
+          loftRoofAreaPropExt4: null,
+          loftTypeofinstallPropExt4: null,
+          loftTypeofinstallValuePropExt4: null,
+          loftTotalRoofAreaA: null,
+          loftTotalRoofAreaB: null,
+          loftTotalRoofAreaC: null,
+          loftTotalRoofAreaD: null,
+          loftTotalRoofAreaE: null,
+          loftTotalRoofAreaF: null,
+          loftIfRoomInRoofIns: null     
+        };
+        this.sharedObject.setSharedLoftObject(loftForm);
+      }
     });
   }
 
@@ -128,45 +166,38 @@ export class AccordionLoftComponent {
 
   saveLoft(){
     const data = {
-      loftPropSectionMain: this.loftPropSectionMain,
-      loftRooftype: this.loftRooftype,
-      loftRoofArea: this.loftRoofArea,
-      loftTypeofinstall: this.loftTypeofinstall,
-      loftTypeInstallValue: this.loftTypeInstallValue,
-      loftPropSectionExt1: this.loftPropSectionExt1,
-      loftRooftypePropExt1: this.loftRooftypePropExt1,
-      loftRoofAreaPSExt1: this.loftRoofAreaPSExt1,
-      loftTypeofinstallPropExt1: this.loftTypeofinstallPropExt1,
-      loftTypeOfInstallValuePSExt1: this.loftTypeOfInstallValuePSExt1,
-      loftPropExt2: this.loftPropExt2,
-      loftRooftypePropExt2: this.loftRooftypePropExt2,
-      loftRoofAreaPropExt2: this.loftRoofAreaPropExt2,
-      loftTypeofinstallPropExt2: this.loftTypeofinstallPropExt2,
-      loftTypeofinstallValuePropExt2: this.loftTypeofinstallValuePropExt2,
-      loftPropSecExt3: this.loftPropSecExt3,
-      loftRooftypePropExt3: this.loftRooftypePropExt3,
-      loftRoofAreaExt3: this.loftRoofAreaExt3,
-      loftTypeOfInstallPropSecExt3: this.loftTypeOfInstallPropSecExt3,
-      loftTypeOfInstallValuePropExt3: this.loftTypeOfInstallValuePropExt3,
-      loftPropSecExt4: this.loftPropSecExt4,
-      loftRooftypePropExt4: this.loftRooftypePropExt4,
-      loftRoofAreaPropExt4: this.loftRoofAreaPropExt4,
-      loftTypeofinstallPropExt4: this.loftTypeofinstallPropExt4,
-      loftTypeofinstallValuePropExt4: this.loftTypeofinstallValuePropExt4,
-      loftTotalRoofAreaA: this.loftTotalRoofAreaA,
-      loftTotalRoofAreaB: this.loftTotalRoofAreaB,
-      loftTotalRoofAreaC: this.loftTotalRoofAreaC,
-      loftTotalRoofAreaD: this.loftTotalRoofAreaD,
-      loftTotalRoofAreaE: this.loftTotalRoofAreaE,
-      loftTotalRoofAreaF: this.loftTotalRoofAreaF,
-      // loftUnroundedLess100POPT: this.loftUnroundedLess100POPT,
-      // loftUnroundedMore100POPT: this.loftUnroundedMore100POPT,
-      // loftUnroundedFRIPOPT: this.loftUnroundedFRIPOPT,
-      // loftRoundedLess100POPT: this.loftRoundedLess100POPT,
-      // loftRoundedMore100POPT: this.loftRoundedMore100POPT,
-      // loftRoundedFRIPOPT: this.loftRoundedFRIPOPT,
-      // loftRoundedRIRIPOPT: this.loftRoundedRIRIPOPT,
-      loftIfRoomInRoofIns: this.loftIfRoomInRoofIns,
+      loftPropSectionMain: this.loftPropSectionMain != null ? this.loftPropSectionMain : null ,
+      loftRooftype: this.loftRooftype != null ? this.loftRooftype : null,
+      loftRoofArea: this.loftRoofArea != null ? this.loftRoofArea : null,
+      loftTypeofinstall: this.loftTypeofinstall != null ? this.loftTypeofinstall : null,
+      loftTypeInstallValue: this.loftTypeInstallValue != null ? this.loftTypeInstallValue : null,
+      loftPropSectionExt1: this.loftPropSectionExt1 != null ? this.loftPropSectionExt1 : null,
+      loftRooftypePropExt1: this.loftRooftypePropExt1 != null ? this.loftRooftypePropExt1 : null, 
+      loftRoofAreaPSExt1: this.loftRoofAreaPSExt1 != null ? this.loftRoofAreaPSExt1 : null,
+      loftTypeofinstallPropExt1: this.loftTypeofinstallPropExt1 != null ? this.loftTypeofinstallPropExt1 : null,
+      loftTypeOfInstallValuePSExt1: this.loftTypeOfInstallValuePSExt1 != null ? this.loftTypeOfInstallValuePSExt1 : null,
+      loftPropExt2: this.loftPropExt2 != null ? this.loftPropExt2 : null,
+      loftRooftypePropExt2: this.loftRooftypePropExt2 != null ? this.loftRooftypePropExt2 : null,
+      loftRoofAreaPropExt2: this.loftRoofAreaPropExt2 != null ? this.loftRoofAreaPropExt2 : null,
+      loftTypeofinstallPropExt2: this.loftTypeofinstallPropExt2 != null ? this.loftTypeofinstallPropExt2 : null,
+      loftTypeofinstallValuePropExt2: this.loftTypeofinstallValuePropExt2 != null ? this.loftTypeofinstallValuePropExt2 : null,
+      loftPropSecExt3: this.loftPropSecExt3 != null ? this.loftPropSecExt3 : null,
+      loftRooftypePropExt3: this.loftRooftypePropExt3 != null ? this.loftRooftypePropExt3 : null,
+      loftRoofAreaExt3: this.loftRoofAreaExt3 != null ? this.loftRoofAreaExt3 : null,
+      loftTypeOfInstallPropSecExt3: this.loftTypeOfInstallPropSecExt3 != null ? this.loftTypeOfInstallPropSecExt3 : null,
+      loftTypeOfInstallValuePropExt3: this.loftTypeOfInstallValuePropExt3 != null ? this.loftTypeOfInstallValuePropExt3 : null,
+      loftPropSecExt4: this.loftPropSecExt4 != null ? this.loftPropSecExt4 : null,
+      loftRooftypePropExt4: this.loftRooftypePropExt4 != null ? this.loftRooftypePropExt4 : null,
+      loftRoofAreaPropExt4: this.loftRoofAreaPropExt4 != null ? this.loftRoofAreaPropExt4 : null,
+      loftTypeofinstallPropExt4: this.loftTypeofinstallPropExt4 != null ? this.loftTypeofinstallPropExt4 : null,
+      loftTypeofinstallValuePropExt4: this.loftTypeofinstallValuePropExt4 != null ? this.loftTypeofinstallValuePropExt4 : null,
+      loftTotalRoofAreaA: this.loftTotalRoofAreaA != null ? this.loftTotalRoofAreaA : null,
+      loftTotalRoofAreaB: this.loftTotalRoofAreaB != null ? this.loftTotalRoofAreaB : null,
+      loftTotalRoofAreaC: this.loftTotalRoofAreaC != null ? this.loftTotalRoofAreaC : null,
+      loftTotalRoofAreaD: this.loftTotalRoofAreaD != null ? this.loftTotalRoofAreaD : null,
+      loftTotalRoofAreaE: this.loftTotalRoofAreaE != null ? this.loftTotalRoofAreaE : null,
+      loftTotalRoofAreaF: this.loftTotalRoofAreaF != null ? this.loftTotalRoofAreaF : null,
+      loftIfRoomInRoofIns: this.loftIfRoomInRoofIns != null ? this.loftIfRoomInRoofIns : null
     };
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_loftForm", data);
     this.sharedObject.setSharedLoftObject(data);

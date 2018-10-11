@@ -51,6 +51,14 @@ export class AccordionEshBoilerComponent {
         this.eshUnroundedPOPT = data.eshUnroundedPOPT;
         this.eshRoundedPOPT = data.eshRoundedPOPT;
         this.sharedObject.setSharedEshBoilerObject(formData);
+      } else {
+        let noData = {
+          newHeatingSystemUsing: null,
+          newSystemHeatBool: null,
+          eshUnroundedPOPT: null,
+          eshRoundedPOPT: null
+        };
+        this.sharedObject.setSharedEshBoilerObject(noData);
       }
     });
   }
@@ -76,10 +84,10 @@ export class AccordionEshBoilerComponent {
   saveEshBoiler(){
 
     const dataFromEshForm = {
-      newHeatingSystemUsing: this.newHeatingSystemUsing,
-      newSystemHeatBool: this.newSystemHeatBool,
-      eshUnroundedPOPT: this.eshUnroundedPOPT,
-      eshRoundedPOPT: this.eshRoundedPOPT
+      newHeatingSystemUsing: this.newHeatingSystemUsing != null ? this.newHeatingSystemUsing : null,
+      newSystemHeatBool: this.newSystemHeatBool != null ? this.newSystemHeatBool : null,
+      eshUnroundedPOPT: this.eshUnroundedPOPT != null ? this.eshUnroundedPOPT : null,
+      eshRoundedPOPT: this.eshRoundedPOPT != null ? this.eshRoundedPOPT : null
     };
 
 
