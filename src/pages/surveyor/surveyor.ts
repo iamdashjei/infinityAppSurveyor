@@ -155,25 +155,27 @@ export class SurveyorPage {
               this.campaignMeasureView === 'Boiler April 2018' ||
               this.campaignMeasureView === 'INFINITY BOILER MARCH' ||
               this.campaignMeasureView === 'JUNE BOILER') {
-              storage.set("boiler", true);
+                this.sharedObject.setSharedSelectedLeadTag("boilers");
 
     } else if(this.campaignMeasureView === 'CAVITY July 2018' ||
               this.campaignMeasureView === 'Cavity Wall April 2018' ||
               this.campaignMeasureView === 'INFINITY CAVITY MARCH' ||
               this.campaignMeasureView === 'JUNE CAVITY WALL'){
-              this.storage.set("cavitywall", true);
+                this.sharedObject.setSharedSelectedLeadTag("cavities");
 
     } else if(this.campaignMeasureView === 'JUNE ESH' ||
               this.campaignMeasureView === 'ESH July 2018' ||
               this.campaignMeasureView === 'ESH April 2018' ||
               this.campaignMeasureView === 'INFINITY ESH MARCH'){
-              this.storage.set("esh", true);
+                this.sharedObject.setSharedSelectedLeadTag("esh");
 
     } else if(this.campaignMeasureView === 'INFINITY SOLID WALL' ||
               this.campaignMeasureView === 'SOLID July 2018' ||
               this.campaignMeasureView === 'JUNE SOLID WALL' ) {
-              this.storage.set("solidwall", true);
-    }
+                this.sharedObject.setSharedSelectedLeadTag("sw");
+    } else if(this.campaignMeasureView === 'JUNE LOFT' ) {
+              this.sharedObject.setSharedSelectedLeadTag("lofts");
+    } 
 
 
   }
@@ -558,6 +560,7 @@ export class SurveyorPage {
 
    
     const submitDataAll = {
+      date_of_survey: this.mainFormData.myDate,
       property_type: this.mainFormData.propertyType,
       property_type1: this.mainFormData.propertyType1,
       property_type2: this.mainFormData.propertyType2,
@@ -675,17 +678,17 @@ export class SurveyorPage {
 
     
 
-    if(this.sharedObject.getSharedBoilerObject()){
+    if(this.sharedObject.getSharedSelectedLeadTag() == "boilers"){
       this.savedImagesBoiler();
       this.sharedObject.setSharedSelectedLeadTag("boilers");
       this.sharedObject.setSharedSubmitObject(submitDataAll);
 
-    } else if(this.sharedObject.getSharedCavityWallObject()){
+    } else if(this.sharedObject.getSharedSelectedLeadTag() == "cavities"){
       this.savedImagesCavityWall();
       this.sharedObject.setSharedSelectedLeadTag("cavities");
       this.sharedObject.setSharedSubmitObject(submitDataAll);
 
-    } else if(this.sharedObject.getSharedLoftObject()){
+    } else if(this.sharedObject.getSharedSelectedLeadTag() == "lofts"){
       this.savedImagesLoft();
       this.sharedObject.setSharedSelectedLeadTag("lofts");
       this.sharedObject.setSharedSubmitObject(submitDataAll);
@@ -693,7 +696,7 @@ export class SurveyorPage {
     } else if(this.sharedObject.getSharedSolidWallObject()) {
       this.solidWallData = this.sharedObject.getSharedSolidWallObject();
 
-    } else if(this.sharedObject.getSharedEshObject()) {
+    } else if(this.sharedObject.getSharedSelectedLeadTag() == "esh") {
      
       this.savedImagesEsh();
       this.sharedObject.setSharedSelectedLeadTag("esh");

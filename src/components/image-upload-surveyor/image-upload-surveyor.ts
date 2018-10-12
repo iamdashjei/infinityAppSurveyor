@@ -198,33 +198,7 @@ export class ImageUploadSurveyorComponent {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     //this.storage.get().then(() => {});
-    this.numberOfBedroom = [];
-    this.progressBedroomStatus = [];
-    this.colorBedroom = [];
-    this.progressBedroom = [];
-    for(let i = 1; i <= this.sharedObject.getSharedSelectedBedrooms(); i++){
-      this.numberOfBedroom.push(i);
-      this.progressBedroomStatus.push("Not yet uploaded");
-      this.colorBedroom.push("danger");
-      this.progressBedroom.push({percentage: 0});
-      console.log("Number of Bedrooms => " + this.numberOfBedroom);
-    }
-
-    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom").then((bedroom) => {
-      console.log("Saved Bedrooms"+ bedroom.length);
-      if(bedroom != null){
-       
-        for(var i = 0; i < bedroom.length; i++){
-          let temp = bedroom[i];
-          for(var y = 0; y < temp.length; y++){
-            this.progressBedroom[y].percentage = 100;
-            this.progressBedroomStatus[y] = "Completed";
-            this.colorBedroom[y] = "secondary"; 
-          }
-        }
-        
-      }
-    });
+    
 
     this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_kitchen").then((kitchen) => {
       if(kitchen != null){
@@ -418,7 +392,32 @@ export class ImageUploadSurveyorComponent {
   }
 
   toggleAccordionSurveyor() {
-    
+    this.numberOfBedroom = [];
+    this.progressBedroomStatus = [];
+    this.colorBedroom = [];
+    this.progressBedroom = [];
+    for(let i = 1; i <= this.sharedObject.getSharedSelectedBedrooms(); i++){
+      this.numberOfBedroom.push(i);
+      this.progressBedroomStatus.push("Not yet uploaded");
+      this.colorBedroom.push("danger");
+      this.progressBedroom.push({percentage: 0});
+      console.log("Number of Bedrooms => " + this.numberOfBedroom);
+    }
+
+    this.storage.get(this.sharedObject.getSharedSlugSelectedCM() + "_bedroom").then((bedroom) => {
+      console.log("Saved Bedrooms"+ bedroom.length);
+      
+      if(bedroom != null){
+        this.bedroomImages = [];
+        this.bedroomImages = bedroom;
+        for(var i = 0; i < bedroom.length; i++){
+          
+          this.progressBedroom[i].percentage = 100;
+          this.progressBedroomStatus[i] = "Completed";
+          this.colorBedroom[i] = "secondary";
+        }
+      }
+    });
     if(this.accordionExpanded){
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.surveyorFormContent.nativeElement, "padding", "0px 16px");
