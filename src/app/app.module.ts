@@ -48,6 +48,7 @@ import { CavityWallComponentUploadComponent } from '../components/cavity-wall-co
 import { BoilerImageUploadComponent } from '../components/boiler-image-upload/boiler-image-upload';
 import { LoftImageUploadComponent } from '../components/loft-image-upload/loft-image-upload';
 import { UploadedImagesComponent } from '../components/uploaded-images/uploaded-images';
+import { PoptAnnexComponent } from '../components/popt-annex/popt-annex';
 
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { RestProvider } from '../providers/rest/rest';
@@ -82,6 +83,7 @@ import { NotificationPage } from '../pages/notification/notification';
     BoilerImageUploadComponent,
     LoftImageUploadComponent,
     UploadedImagesComponent,
+    PoptAnnexComponent,
 
   ],
   imports: [
@@ -105,7 +107,8 @@ import { NotificationPage } from '../pages/notification/notification';
     NotificationPage,
     SurveyorPage,
     AccordionComponent,
-    UploadedImagesComponent
+    UploadedImagesComponent,
+    PoptAnnexComponent
   ],
   providers: [
     StatusBar,

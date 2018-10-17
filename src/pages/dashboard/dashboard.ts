@@ -51,6 +51,8 @@ export class DashboardPage {
     listSubmitted: any = [];
 
     iconMeasures: any;
+    iconMeasuresAdded: any;
+    iconMeasuresCompleted: any;
     // Dashboard Custom Menu
     MENU = {
       DEFAULT: 'menu-components',
@@ -78,6 +80,7 @@ export class DashboardPage {
                 if(navParam.get('uploading') == 'Yes'){
                   this.presentToastUpload(navParam.get('campaignName'));
                 }
+
   }
 
   ionViewDidLoad() {
@@ -145,7 +148,7 @@ export class DashboardPage {
         this.leadsInProgress = result['In Progress Surveyor'];
         this.leadsCompleted = result['Completed Surveyor'];
 
-        console.log("All Leads: " +   JSON.stringify(this.leadsNew));
+        console.log("All Leads: " +   JSON.stringify(this.leadsCompleted));
       }, (err) => {
         console.log(err);
 
@@ -262,6 +265,36 @@ export class DashboardPage {
     } else {
       return false;
     } 
+  }
+
+  isAdded(measure){
+      if(measure.includes("ESH")){
+        this.iconMeasuresAdded = "assets/imgs/misc/esh.png";
+      } else if(measure.includes("Cavity") || measure.includes("CAVITY")){
+        this.iconMeasuresAdded = "assets/imgs/misc/wall insulation.png";
+      } else if(measure.includes("Loft") || measure.includes("LOFT")){
+        this.iconMeasuresAdded = "assets/imgs/misc/loft insulation.png";
+      } else if(measure.includes("Boiler") || measure.includes("BOILER")){
+        this.iconMeasuresAdded = "assets/imgs/misc/boiler.png";
+      } else if(measure.includes("Solid") || measure.includes("SOLID")){
+        this.iconMeasuresAdded = "assets/imgs/misc/solid wall insulatin.png";
+      }
+      return true;
+  }
+
+  isCompleted(measure){
+    if(measure.includes("ESH")){
+      this.iconMeasuresCompleted = "assets/imgs/misc/esh.png";
+    } else if(measure.includes("Cavity") || measure.includes("CAVITY")){
+      this.iconMeasuresCompleted = "assets/imgs/misc/wall insulation.png";
+    } else if(measure.includes("Loft") || measure.includes("LOFT")){
+      this.iconMeasuresCompleted = "assets/imgs/misc/loft insulation.png";
+    } else if(measure.includes("Boiler") || measure.includes("BOILER")){
+      this.iconMeasuresCompleted = "assets/imgs/misc/boiler.png";
+    } else if(measure.includes("Solid") || measure.includes("SOLID")){
+      this.iconMeasuresCompleted = "assets/imgs/misc/solid wall insulatin.png";
+    }
+    return true;
   }
 
   isSubmit2(lead_slug, measure){

@@ -54,16 +54,14 @@
 
         </ion-item>
   </ion-row>
-  <accordion title="Main Form (Surveyor) - Questions 1 - 8"> Main Form (Surveyor) - Questions 1 - 8 </accordion>
-  <accordion-esh title="Electric Storage Heater Replacement Measures">Electric Storage Heater Replacement Measures</accordion-esh>
-  <accordion-cavity-solid-wall title="Cavity Wall Insulation">Cavity Wall Insulation</accordion-cavity-solid-wall>
-  <!-- <accordion-cavity-solid-wall title="Solid Wall Insulation">Solid Wall Insulation</accordion-cavity-solid-wall> -->
-  <accordion-loft title="Loft Insulation Measures">Loft Insulation Measures</accordion-loft>
-  <accordion-boiler title="Boiler Replacement Measures">Boiler Replacement Measures</accordion-boiler>
+  <accordion title="Main Form (Surveyor) - Questions 1 - 9"> Main Form (Surveyor) - Questions 1 - 8 </accordion>
+  <popt-annex title="Relevant POPT (where any measure is <67% complete annex 1)">Relevant POPT (where any measure is <67% complete annex 1)</popt-annex>
+  <accordion-boiler title="Heating Measures Only (Main Construction Type)">Heating Measures Only (Main Construction Type)</accordion-boiler> <!-- Boiler Replacement Measures -->
+  <!-- <accordion-esh title="Heating Measures Only (ESH)">Heating Measures Only (ESH)</accordion-esh> Electric Storage Heater Replacement Measures -->
+  <!-- <accordion-esh-boiler title="Electric Storage Heater and Boiler Replacement Measures">Electric Storage Heater and Boiler Replacement Measures</accordion-esh-boiler> -->
+  <accordion-cavity-solid-wall title="Wall Insulation Mesaures Only">Wall Insulation Mesaures Only</accordion-cavity-solid-wall> <!--Cavity Wall Insulation-->
+  <accordion-loft title="Annex 1 - POPT Calculations">Annex 1 - POPT Calculations</accordion-loft> <!-- Loft Insulation Measures -->
   
-  <accordion-esh-boiler title="Electric Storage Heater and Boiler Replacement Measures">Electric Storage Heater and Boiler Replacement Measures</accordion-esh-boiler>
-
-
   <image-upload-surveyor title="Surveyor Image Upload">Surveyor Image Upload</image-upload-surveyor>
   <esh-upload-surveyor title="Electric Storage Heater Replacement Measures Image Uploads" *ngIf="isViewedESH()">Electric Storage Heater Replacement Measures Image Uploads</esh-upload-surveyor>
   <image-upload title="Cavity and Solid Wall Insulation Uploads" *ngIf="isViewedCavityWall()">Cavity and Solid Wall Insulation Uploads</image-upload>
@@ -117,7 +115,7 @@
   
     
     <ion-card-content #signatureForm2>
-        <img src="assets/imgs/floorplan_legend.PNG" height="400" width="400"/>
+        <img src="assets/imgs/floorplan_legend.PNG"/>
     <signature-pad [options]="signaturePadOptions"  id="signatureCanvas" #floorPlan2></signature-pad>
     <ion-grid>
       <ion-row>
@@ -148,7 +146,7 @@
       </ion-card-header>
       
       <ion-card-content #signatureForm3>
-      <img src="assets/imgs/floorplan_legend.PNG" height="400" width="400"/>
+      <img src="assets/imgs/floorplan_legend.PNG"/>
       <signature-pad [options]="signaturePadOptions3"  id="signatureCanvas" #floorPlan3></signature-pad>
       <ion-grid>
         <ion-row>

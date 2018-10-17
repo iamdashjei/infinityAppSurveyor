@@ -13,13 +13,34 @@
 
   <ion-card-content #cavitysolidwallForms>
     <ion-item>
-      <ion-label color="primary" stacked>CWI only – Are the walls already partially insulated?</ion-label>
+      <ion-label color="primary" stacked>14. CWI only – Are the walls already partially insulated?</ion-label>
       <ion-select [(ngModel)]="cwiOnly">
         <ion-option value="Yes">Yes</ion-option>
         <ion-option value="No">No</ion-option>
+        <ion-option value="Unknown">Unknown</ion-option>
       </ion-select>
     </ion-item>
 
+    
+    <ion-item>
+      <ion-label color="primary" stacked>Approximate build year or age band, & reasoning</ion-label>
+      <ion-input clearInput [(ngModel)]="cwApproxYearAgeReason"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>Are you proposing to insulate any cavity party walls?</ion-label>
+      <ion-select [(ngModel)]="insulateCavParWalls">
+        <ion-option value="Yes">Yes</ion-option>
+        <ion-option value="No">No</ion-option>
+        <ion-option value="No">Not Applicable</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="primary" stacked>Please state wall type for SWI measure - eg solid, cavity, system build:</ion-label>
+        <ion-input clearInput [(ngModel)]="cwSWIMeasure"> </ion-input>
+    </ion-item>
+<!-- 
     <ion-item-divider>Property Section</ion-item-divider>
     <ion-item>
       <ion-label color="primary" stacked>Property Section 1 (eg, main property, extension, front walls etc)</ion-label>
@@ -206,19 +227,6 @@
 
     <ion-item-divider></ion-item-divider>
 
-    <ion-item>
-      <ion-label color="primary" stacked>Approximate build year or age band, & reasoning</ion-label>
-      <ion-input clearInput [(ngModel)]="cwApproxYearAgeReason"> </ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label color="primary" stacked>Are you proposing to insulate any cavity party walls?</ion-label>
-      <ion-select [(ngModel)]="insulateCavParWalls">
-        <ion-option value="Yes">Yes</ion-option>
-        <ion-option value="No">No</ion-option>
-        <ion-option value="No">Not Applicable</ion-option>
-      </ion-select>
-    </ion-item>
 
     <ion-item>
       <ion-label color="primary" stacked>Unrounded PWI POPT</ion-label>
@@ -228,10 +236,10 @@
     <ion-item>
       <ion-label color="primary" stacked>Rounded PWI POPT</ion-label>
       <ion-input clearInput [(ngModel)]="cwCavParRoundedPWIPOPT"> </ion-input>
-    </ion-item>
+    </ion-item> -->
 
     <br/>
-        <button ion-button (click)="saveCavityWallSolidWall()"> Save Boiler Measurements </button>
+        <button ion-button (click)="saveCavityWallSolidWall()"> Save Cavity Wall Measurements </button>
   
   </ion-card-content>
 </ion-card>

@@ -72,10 +72,11 @@
       <ion-item *ngFor="let l of leadsCompleted">
           <ion-item>
           <ion-thumbnail item-left>
-           <img src="assets/imgs/orange-send-file-64.png">
+            <img [src]="iconMeasuresCompleted">
          </ion-thumbnail>
 
-         <h5>{{l.c_campaign_name}}</h5>
+         <p *ngIf="isCompleted(l.c_campaign_name)">{{l.c_campaign_name}}</p>
+         <label style="color: green;">Submitted</label>
          <p clear item-right>{{ l.created_at | timeAgo }}</p>
        </ion-item>
 
@@ -124,10 +125,10 @@
          <ion-item *ngFor="let l of leadsNew">
            <ion-item>
          <ion-thumbnail item-left>
-          <img [src]="iconMeasures">
+          <img [src]="iconMeasuresAdded">
         </ion-thumbnail>
 
-        <p>{{l.c_campaign_name}}</p>
+        <p *ngIf="isAdded(l.c_campaign_name)">{{l.c_campaign_name}}</p>
         <p clear item-right>{{ l.created_at | timeAgo }}</p>
         <button ion-button (click)="updateLeads(l.lead_slug, 'Accept', l.name_of_customer)"> Accept </button>
         <button ion-button (click)="updateLeads(l.lead_slug, 'Decline', l.name_of_customer)"> Decline </button>

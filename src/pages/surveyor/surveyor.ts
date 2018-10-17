@@ -87,6 +87,7 @@ export class SurveyorPage {
   boilerData: any;
   solidWallData: any;
   cavityWallData: any;
+  poptData: any;
 
   bedrooms: any = [];
   bedroom: any;
@@ -181,10 +182,10 @@ export class SurveyorPage {
   }
 
   ionViewDidLoad(){
-      this.renderer.setElementStyle(this.signatureForms.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
-      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
-      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
-      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "webkitTransition", "max-height 1200ms, padding 500ms");
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "webkitTransition", "max-height 2600ms, padding 500ms");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "webkitTransition", "max-height 2600ms, padding 500ms");
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "webkitTransition", "max-height 2600ms, padding 500ms");
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "webkitTransition", "max-height 2600ms, padding 500ms");
      
     
   }
@@ -196,7 +197,7 @@ export class SurveyorPage {
       this.renderer.setElementStyle(this.signatureForms.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.signatureForms.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.signatureForms.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms.nativeElement, "max-height", "2600px");
       this.renderer.setElementStyle(this.signatureForms.nativeElement, "padding", "13px 16px");
     }
 
@@ -210,7 +211,7 @@ export class SurveyorPage {
       this.renderer.setElementStyle(this.signatureForms2.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.signatureForms2.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms2.nativeElement, "max-height", "2600px");
       this.renderer.setElementStyle(this.signatureForms2.nativeElement, "padding", "13px 16px");
     }
 
@@ -223,7 +224,7 @@ export class SurveyorPage {
       this.renderer.setElementStyle(this.signatureForms3.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.signatureForms3.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.signatureForms3.nativeElement, "max-height", "2600px");
       this.renderer.setElementStyle(this.signatureForms3.nativeElement, "padding", "13px 16px");
     }
 
@@ -236,7 +237,7 @@ export class SurveyorPage {
       this.renderer.setElementStyle(this.declaractionForm.nativeElement, "max-height", "0px");
       this.renderer.setElementStyle(this.declaractionForm.nativeElement, "padding", "0px 16px");
     } else {
-      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "max-height", "1200px");
+      this.renderer.setElementStyle(this.declaractionForm.nativeElement, "max-height", "2600px");
       this.renderer.setElementStyle(this.declaractionForm.nativeElement, "padding", "13px 16px");
     }
 
@@ -557,6 +558,7 @@ export class SurveyorPage {
     this.loftData = this.sharedObject.getSharedLoftObject();
     this.eshData = this.sharedObject.getSharedEshObject();
     this.eshBoilerData = this.sharedObject.getSharedEshBoilerObject();
+    this.poptData = this.sharedObject.getSharedSelectedPOPT();
 
    
     const submitDataAll = {
@@ -574,7 +576,7 @@ export class SurveyorPage {
       surveyor_name: this.mainFormData.surveyorName,
       name_of_customer: this.mainFormData.nameOfCustomer,
       other: this.mainFormData.other,
-      dob: this.mainFormData.myDate ,  
+      dob: this.mainFormData.myDate , 
       newHeatingSystemUsing: this.eshBoilerData.newHeatingSystemUsing != null ? this.eshBoilerData.newHeatingSystemUsing : "",
       newSystemHeatBool: this.eshBoilerData.newSystemHeatBool != null ? this.eshBoilerData.newSystemHeatBool : "",
       eshUnroundedPOPT: this.eshBoilerData.eshUnroundedPOPT != null ? this.eshBoilerData.eshUnroundedPOPT : "",
@@ -624,6 +626,7 @@ export class SurveyorPage {
       loftTotalRoofAreaF:  this.loftData.loftTotalRoofAreaF != null ? this.loftData.loftTotalRoofAreaF : "",
       loftIfRoomInRoofIns:  this.loftData.loftIfRoomInRoofIns != null ? this.loftData.loftIfRoomInRoofIns : "",
       cwiOnly: this.cavityWallData.cwiOnly != null ? this.cavityWallData.cwiOnly : "",
+      cwSWIMeasure: this.cavityWallData.cwSWIMeasure != null ? this.cavityWallData.cwSWIMeasure : "",
       cavWallPropSection1: this.cavityWallData.cavWallPropSection1 != null ? this.cavityWallData.cavWallPropSection1 : "",
       cavWallPropSection2: this.cavityWallData.cavWallPropSection2 != null ? this.cavityWallData.cavWallPropSection2 : "",
       cavWallPropSection3: this.cavityWallData.cavWallPropSection3 != null ? this.cavityWallData.cavWallPropSection3 : "",
@@ -668,12 +671,51 @@ export class SurveyorPage {
       heatControlsCurrent: this.boilerData.heatControlsCurrent != null ? this.boilerData.heatControlsCurrent : "",
       numberNormalRadiators: this.boilerData.numberNormalRadiators != null ? this.boilerData.numberNormalRadiators : "",
       numberTowelRadiators: this.boilerData.numberTowelRadiators != null ? this.boilerData.numberTowelRadiators : "",
+      heatMeasureCurrent: this.boilerData.heatMeasureCurrent != null ? this.boilerData.heatMeasureCurrent : "",
+      accompanyingInstMeasure: this.boilerData.accompanyingInstMeasure != null ? this.boilerData.accompanyingInstMeasure : "",
       numberTRVs: this.boilerData.numberTRVs != null ? this.boilerData.numberTRVs : "",
+      eshSlimline: this.boilerData.eshSlimline != null ? this.boilerData.eshSlimline : "",
+      eshFanAssisted: this.boilerData.eshFanAssisted != null ? this.boilerData.eshFanAssisted : "",
+      eshHighHeatRetention: this.boilerData.eshHighHeatRetention != null ? this.boilerData.eshHighHeatRetention : "",
+      eshInstalledQualifyingSlimline: this.boilerData.eshInstalledQualifyingSlimline != null ? this.boilerData.eshInstalledQualifyingSlimline : "",
+      eshInstalledBrokenFanAsst: this.boilerData.eshInstalledBrokenFanAsst != null ? this.boilerData.eshInstalledBrokenFanAsst : null,
+      eshInstalledUpgradeFanAsst: this.boilerData.eshInstalledUpgradeFanAsst != null ? this.boilerData.eshInstalledUpgradeFanAsst : "",
+      eshInstalledBrokenHighHeatRet: this.boilerData.eshInstalledBrokenHighHeatRet != null ? this.boilerData.eshInstalledBrokenHighHeatRet : "",
+      eshInstalledUpgradeHighHeatRet: this.boilerData.eshInstalledUpgradeHighHeatRet != null ? this.boilerData.eshInstalledUpgradeHighHeatRet : "",
+      eshInstalledNonQualifyingSlimline: this.boilerData.eshInstalledNonQualifyingSlimline != null ? this.boilerData.eshInstalledNonQualifyingSlimline : "",
+      estInstalledNonQualifyingFanAsst: this.boilerData.estInstalledNonQualifyingFanAsst != null ? this.boilerData.estInstalledNonQualifyingFanAsst : "",
+      eshInstalledNonQualHighHeatRet: this.boilerData.eshInstalledNonQualHighHeatRet != null ? this.boilerData.eshInstalledNonQualHighHeatRet : "",
+      eshQeshRepairSlimline: this.boilerData.eshQeshRepairSlimline != null ? this.boilerData.eshQeshRepairSlimline : "",
+      eshQeshRepairFanAsst: this.boilerData.eshQeshRepairFanAsst != null ? this.boilerData.eshQeshRepairFanAsst : "",
+      eshQeshRepairHighHeatRet: this.boilerData.eshQeshRepairHighHeatRet != null ? this.boilerData.eshQeshRepairHighHeatRet : "",
       boierRepairNoPreExtHeat: this.boilerData.boierRepairNoPreExtHeat != null ? this.boilerData.boierRepairNoPreExtHeat : "",
       boierReplaceNoPreExtHeat: this.boilerData.boierReplaceNoPreExtHeat != null ? this.boilerData.boierReplaceNoPreExtHeat : "",
       boierRepairNoPreExtHeatNonQlfy: this.boilerData.boierRepairNoPreExtHeatNonQlfy != null ? this.boilerData.boierRepairNoPreExtHeatNonQlfy : "",
       boierReplaceNoPreExtHeatNonQlfy: this.boilerData.boierReplaceNoPreExtHeatNonQlfy != null ? this.boilerData.boierReplaceNoPreExtHeatNonQlfy : "",
-      boilerHeatingControls: this.boilerData.boilerHeatingControls != null ? this.eshBoilerData.newHeatingSystemUsing : ""
+      boilerHeatingControls: this.boilerData.boilerHeatingControls != null ? this.eshBoilerData.newHeatingSystemUsing : "",
+      cwiInsulationMeasure: this.poptData.cwiInsulationMeasure != null ? this.poptData.cwiInsulationMeasure : null,
+      cwInsulationAnnex: this.poptData.cwInsulationAnnex != null ? this.poptData.cwInsulationAnnex : null,
+      loftInsulationMeasure: this.poptData.loftInsulationMeasure != null ? this.poptData.loftInsulationMeasure : null,
+      loftInsulationAnnex: this.poptData.loftInsulationAnnex != null ? this.poptData.loftInsulationAnnex : null,
+      boilerMeasure: this.poptData.boilerMeasure != null ? this.poptData.boilerMeasure : null,
+      boilerAnnex: this.poptData.boilerAnnex != null ? this.poptData.boilerAnnex : null,
+      heatingControlsItem: this.poptData.heatingControlsItem != null ? this.poptData.heatingControlsItem : null,
+      eshHHR: this.poptData.eshHHR != null ? this.poptData.eshHHR : null,
+      eshHHRAnnex: this.poptData.eshHHRAnnex != null ? this.poptData.eshHHRAnnex : null,
+      eshFan: this.poptData.eshFan != null ? this.poptData.eshFan : null,
+      eshFanAnnex: this.poptData.eshFanAnnex != null ? this.poptData.eshFanAnnex : null,
+      ftchAnnex: this.poptData.ftchAnnex != null ? this.poptData.ftchAnnex : null,
+      extInsAnnex: this.poptData.extInsAnnex != null ? this.poptData.extInsAnnex : null,
+      internalInstAnnex: this.poptData.internalInstAnnex != null ? this.poptData.internalInstAnnex : null,
+      roomInRoofInst: this.poptData.roomInRoofInst != null ? this.poptData.roomInRoofInst : null,
+      roomInRoofInstAnnex: this.poptData.roomInRoofInstAnnex != null ? this.poptData.roomInRoofInstAnnex : null,
+      flatRoofInstAnnex: this.poptData.flatRoofInstAnnex != null ? this.poptData.flatRoofInstAnnex : null,
+      undFloorInstAnnex: this.poptData.undFloorInstAnnex != null ? this.poptData.undFloorInstAnnex : null,
+      PartyCavWallInstAnnex: this.poptData.PartyCavWallInstAnnex != null ? this.poptData.PartyCavWallInstAnnex : null,
+      draughtProofingAnnex: this.poptData.draughtProofingAnnex != null ? this.poptData.draughtProofingAnnex : null,
+      otherAnnex: this.poptData.otherAnnex != null ? this.poptData.otherAnnex : null,
+      other2Annex: this.poptData.other2Annex != null ? this.poptData.other2Annex : null, 
+      postHeatingFuel: this.poptData.postHeatingFuel != null ? this.poptData.postHeatingFuel : null
     };
 
     
@@ -719,7 +761,7 @@ export class SurveyorPage {
 
 
   submitObject(){
-
+    this.savedImagesGen();
     const submitData = this.sharedObject.getSharedSubmitObject();
     this.rest.updateLeadData(this.lead_slug,submitData,
       submitData.notes,

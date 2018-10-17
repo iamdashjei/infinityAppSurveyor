@@ -68,6 +68,8 @@ export class AccordionCavitySolidWallComponent {
   cwCavParUnroundedPWIPOPT: any;
   cwCavParRoundedPWIPOPT: any;
 
+  cwSWIMeasure: any;
+
   constructor(private renderer: Renderer,
               private storage: Storage,
               private sharedObject: SharedobjectserviceProvider,
@@ -129,7 +131,8 @@ export class AccordionCavitySolidWallComponent {
           this.cwApproxYearAgeReason= data.cwApproxYearAgeReason;
           this.insulateCavParWalls= data.insulateCavParWalls;
           this.cwCavParUnroundedPWIPOPT= data.cwCavParUnroundedPWIPOPT;
-          this.cwCavParRoundedPWIPOPT= data.cwCavParRoundedPWIPOPT;        
+          this.cwCavParRoundedPWIPOPT= data.cwCavParRoundedPWIPOPT; 
+          this.cwSWIMeasure = data.cwSWIMeasure;       
           this.sharedObject.setSharedCavityWallObject(data);
         } else {
           let data = {
@@ -172,7 +175,8 @@ export class AccordionCavitySolidWallComponent {
             cwApproxYearAgeReason: null,
             insulateCavParWalls: null,
             cwCavParUnroundedPWIPOPT: null,
-            cwCavParRoundedPWIPOPT: null
+            cwCavParRoundedPWIPOPT: null,
+            cwSWIMeasure: null
           };
           this.sharedObject.setSharedCavityWallObject(data);
         }
@@ -233,7 +237,8 @@ export class AccordionCavitySolidWallComponent {
       cwApproxYearAgeReason: this.cwApproxYearAgeReason != null ? this.cwApproxYearAgeReason : "",
       insulateCavParWalls: this.insulateCavParWalls != null ? this.insulateCavParWalls : "",
       cwCavParUnroundedPWIPOPT: this.cwCavParUnroundedPWIPOPT != null ? this.cwCavParUnroundedPWIPOPT : "",
-      cwCavParRoundedPWIPOPT: this.cwCavParRoundedPWIPOPT != null ? this.cwCavParRoundedPWIPOPT : ""
+      cwCavParRoundedPWIPOPT: this.cwCavParRoundedPWIPOPT != null ? this.cwCavParRoundedPWIPOPT : "",
+      cwSWIMeasure: this.cwSWIMeasure != null ? this.cwSWIMeasure : null
     };
 
     this.sharedObject.setSharedCavityWallObject(data);

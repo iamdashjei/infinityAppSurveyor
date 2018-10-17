@@ -33,6 +33,23 @@ export class AccordionBoilerComponent {
   boierRepairNoPreExtHeatNonQlfy: any;
   boierReplaceNoPreExtHeatNonQlfy: any;
   boilerHeatingControls: any;
+  heatMeasureCurrent: any;
+  accompanyingInstMeasure: any;
+
+  eshSlimline: any;
+  eshFanAssisted: any;
+  eshHighHeatRetention: any;
+  eshInstalledQualifyingSlimline: any;
+  eshInstalledBrokenFanAsst: any;
+  eshInstalledUpgradeFanAsst: any;
+  eshInstalledBrokenHighHeatRet: any;
+  eshInstalledUpgradeHighHeatRet: any;
+  eshInstalledNonQualifyingSlimline: any;
+  estInstalledNonQualifyingFanAsst: any;
+  eshInstalledNonQualHighHeatRet: any;
+  eshQeshRepairSlimline: any;
+  eshQeshRepairFanAsst: any;
+  eshQeshRepairHighHeatRet: any;
 
   constructor(private renderer: Renderer,
               private storage: Storage,
@@ -62,6 +79,8 @@ export class AccordionBoilerComponent {
       this.boierRepairNoPreExtHeatNonQlfy = boilerData.boierRepairNoPreExtHeatNonQlfy ;
       this.boierReplaceNoPreExtHeatNonQlfy = boilerData.boierReplaceNoPreExtHeatNonQlfy ;
       this.boilerHeatingControls  = boilerData.boilerHeatingControls ;
+      this.heatMeasureCurrent = boilerData.heatMeasureCurrent;
+      this.accompanyingInstMeasure = boilerData.accompanyingInstMeasure;
       this.sharedObject.setSharedBoilerObject(boilerData);
       } else {
         let boilerData = {
@@ -76,7 +95,23 @@ export class AccordionBoilerComponent {
           boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat != null ? this.mainWallConstType : null,
           boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
           boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy != null ? this.mainWallConstType : null,
-          boilerHeatingControls: this.boilerHeatingControls != null ? this.mainWallConstType : null
+          boilerHeatingControls: this.boilerHeatingControls != null ? this.mainWallConstType : null,
+          heatMeasureCurrent: this.heatMeasureCurrent != null ? this.heatMeasureCurrent : null,
+          accompanyingInstMeasure: this.accompanyingInstMeasure != null ? this.accompanyingInstMeasure : null,
+          eshSlimline: this.eshSlimline != null ? this.eshSlimline : null,
+          eshFanAssisted: this.eshFanAssisted != null ? this.eshFanAssisted : null,
+          eshHighHeatRetention: this.eshHighHeatRetention != null ? this.eshHighHeatRetention : null,
+          eshInstalledQualifyingSlimline: this.eshInstalledQualifyingSlimline != null ? this.eshInstalledQualifyingSlimline : null,
+          eshInstalledBrokenFanAsst: this.eshInstalledBrokenFanAsst != null ? this.eshInstalledBrokenFanAsst : null,
+          eshInstalledUpgradeFanAsst: this.eshInstalledUpgradeFanAsst != null ? this.eshInstalledUpgradeFanAsst : null,
+          eshInstalledBrokenHighHeatRet: this.eshInstalledBrokenHighHeatRet != null ? this.eshInstalledBrokenHighHeatRet : null,
+          eshInstalledUpgradeHighHeatRet: this.eshInstalledUpgradeHighHeatRet != null ? this.eshInstalledUpgradeHighHeatRet : null,
+          eshInstalledNonQualifyingSlimline: this.eshInstalledNonQualifyingSlimline != null ? this.eshInstalledNonQualifyingSlimline : null,
+          estInstalledNonQualifyingFanAsst: this.estInstalledNonQualifyingFanAsst != null ? this.estInstalledNonQualifyingFanAsst : null,
+          eshInstalledNonQualHighHeatRet: this.eshInstalledNonQualHighHeatRet != null ? this.eshInstalledNonQualHighHeatRet : null,
+          eshQeshRepairSlimline: this.eshQeshRepairSlimline != null ? this.eshQeshRepairSlimline : null,
+          eshQeshRepairFanAsst: this.eshQeshRepairFanAsst != null ? this.eshQeshRepairFanAsst : null,
+          eshQeshRepairHighHeatRet: this.eshQeshRepairHighHeatRet != null ? this.eshQeshRepairHighHeatRet : null
         };
 
         this.sharedObject.setSharedBoilerObject(boilerData);
@@ -110,13 +145,32 @@ export class AccordionBoilerComponent {
       boierReplaceNoPreExtHeat: this.boierReplaceNoPreExtHeat != null ? this.boierReplaceNoPreExtHeat : null,
       boierRepairNoPreExtHeatNonQlfy: this.boierRepairNoPreExtHeatNonQlfy != null ? this.boierRepairNoPreExtHeatNonQlfy : null,
       boierReplaceNoPreExtHeatNonQlfy: this.boierReplaceNoPreExtHeatNonQlfy != null ? this.boierReplaceNoPreExtHeatNonQlfy : null,
-      boilerHeatingControls: this.boilerHeatingControls != null ? this.boilerHeatingControls : null
+      boilerHeatingControls: this.boilerHeatingControls != null ? this.boilerHeatingControls : null,
+      heatMeasureCurrent: this.heatMeasureCurrent != null ? this.heatMeasureCurrent : null,
+      accompanyingInstMeasure: this.accompanyingInstMeasure != null ? this.accompanyingInstMeasure : null
+
     };
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_boilerForm", data);
     this.sharedObject.setSharedBoilerObject(data);
     this.toggleAccordionBoiler();
     this.presentSave();
     
+  }
+
+  ifTRVs(){
+    if(this.heatControlsCurrent.includes("TRV")){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  ifInefficientBoiler(){
+    if(this.heatMeasureCurrent.includes("Inefficient/broken")){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   presentSave(){

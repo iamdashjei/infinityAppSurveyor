@@ -17,6 +17,7 @@ export class SharedobjectserviceProvider {
   sharedBoilerObject: any;
   sharedCavityWallObject: any;
   sharedSolidWallObject: any;
+  sharedPOPTObject: any;
 
   // Lead Object by Status
   sharedNewLeadsObject: any;
@@ -199,6 +200,7 @@ export class SharedobjectserviceProvider {
     return this.sharedSelectedLeadObject;
   }
 
+  // Set Selected Bedrooms
   setSharedSelectedBedrooms(sharedValue){
     this.sharedBedrooms = sharedValue;
   }
@@ -207,6 +209,7 @@ export class SharedobjectserviceProvider {
     return this.sharedBedrooms;
   }
 
+  // Set Selected Lead Tag :" Campaign Measure "
   setSharedSelectedLeadTag(sharedValue){
     this.sharedSelectedLeadDir = sharedValue;
   }
@@ -215,4 +218,12 @@ export class SharedobjectserviceProvider {
     return this.sharedSelectedLeadDir;
   }
 
+  // Set Selected POPT
+  setSharedSelectedPOPT(sharedValue){
+    this.sharedPOPTObject = sharedValue;
+  }
+
+  getSharedSelectedPOPT(){
+    return this.sharedPOPTObject;
+  }
 }

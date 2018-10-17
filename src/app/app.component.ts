@@ -31,9 +31,9 @@ export class MyApp {
   user_name: string;
   token: any;
 
-  constructor(private platform: Platform,
-              private statusBar: StatusBar,
-              private splashScreen: SplashScreen,
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
               private global: AppState,
               private toastCtrl: ToastController,
               private menuCtrl: MenuController,
@@ -51,7 +51,7 @@ export class MyApp {
       messagingSenderId: "39340397583"
     };
     this.isLoggedIn();
-    FCMPlugin.subscribeToTopic('all');
+    
     firebase.initializeApp(firebaseConfig);
     FCMPlugin.getToken(
       (token) => {
@@ -68,9 +68,8 @@ export class MyApp {
     //  navCtrl.setRoot(DashboardPage);
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
-      alert("New Leads");
       //this.presentNotif();
-      location.reload();
+      alert("New Leads");
       this.isLoggedIn();
       }
     });

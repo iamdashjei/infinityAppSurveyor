@@ -682,6 +682,7 @@ export class ImageUploadSurveyorComponent {
  }
 
  captureBedrooms(number){
+  this.bedroomImages2 = [];
   const cameraOptions: CameraOptions = {
     quality: 50,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -690,9 +691,9 @@ export class ImageUploadSurveyorComponent {
   };
 
   this.camera.getPicture(cameraOptions).then((imageData) => {
-    let arrayImages = this.bedroomImages[number];
-     arrayImages.push('data:image/jpeg;base64,' + imageData);
-     this.bedroomImages[number] = arrayImages;
+    
+    this.bedroomImages2.push('data:image/jpeg;base64,' + imageData);
+     this.bedroomImages[number] =  this.bedroomImages2;
   });
  }
 

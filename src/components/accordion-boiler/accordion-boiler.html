@@ -13,7 +13,7 @@
 
   <ion-card-content #boilerForms>
     <ion-item>
-      <ion-label color="primary" stacked>Main Wall Construction Type</ion-label>
+      <ion-label color="primary" stacked>10. Main Wall Construction Type</ion-label>
       <ion-select [(ngModel)]="mainWallConstType">
         <ion-option value="> 50% Cavity Wall">> 50% Cavity Wall</ion-option>
         <ion-option value="> 50% Solid Wall">> 50% Solid Wall</ion-option>
@@ -21,7 +21,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" stacked>Are there a full set of functioning pre-existing heating controls?</ion-label>
+      <ion-label color="primary" stacked>11. Are there a full set of functioning pre-existing heating controls?</ion-label>
       <ion-select [(ngModel)]="preExistHeatControls">
         <ion-option value="Yes">Yes</ion-option>
         <ion-option value="No">No</ion-option>
@@ -34,27 +34,49 @@
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" stacked>What heating controls currently exist? (Tick all that apply) - Programmer</ion-label>
+      <ion-label color="primary" stacked>12. What heating controls currently exist? (Tick all that apply)</ion-label>
       <ion-select [(ngModel)]="heatControlsCurrent" multiple>
         <ion-option value="Room Thermostat">Room Thermostat</ion-option>
         <ion-option value="TRV">TRV</ion-option>
+        <ion-option value="Programmer">Programmer</ion-option>
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" stacked>Existing number of Normal Radiators</ion-label>
+    <ion-item *ngIf="ifTRVs()">
+      <ion-label color="primary" stacked>Please record the existing number of Radiators</ion-label>
       <ion-input clearInput [(ngModel)]="numberNormalRadiators"> </ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label color="primary" stacked>Existing number of Towel Radiators</ion-label>
       <ion-input clearInput [(ngModel)]="numberTowelRadiators"> </ion-input>
+    </ion-item> -->
+
+    <ion-item *ngIf="ifTRVs()">
+      <ion-label color="primary" stacked>Please record the existing number of TRV's</ion-label>
+      <ion-input clearInput [(ngModel)]="numberTRVs"> </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" stacked>Existing number of TRV's</ion-label>
-      <ion-input clearInput [(ngModel)]="numberTRVs"> </ion-input>
-    </ion-item>
+        <ion-label color="primary" stacked>13. What heating measure(s) is or are being installed? (Tick all that apply)</ion-label>
+        <ion-select [(ngModel)]="heatMeasureCurrent" multiple>
+          <ion-option value="Broken boiler repair no pre-existing heating controls">Broken boiler repair no pre-existing heating controls</ion-option>
+          <ion-option value="Broken boiler replace no pre-existing heating controls">Broken boiler replace no pre-existing heating controls</ion-option>
+          <ion-option value="Broken boiler repair pre-existing heating controls">Broken boiler repair pre-existing heating controls</ion-option>
+          <ion-option value="Broken boiler replace pre-existing heating controls">Broken boiler replace pre-existing heating controls</ion-option>
+          <ion-option value="Inefficient/broken boiler (Please specify accompanying insulation measure)">Inefficient/broken boiler (Please specify accompanying insulation measure)</ion-option>
+          <ion-option value="Heating Controls">Heating Controls</ion-option>
+          <ion-option value="First time central heating">First time central heating</ion-option>
+        </ion-select>
+
+        
+      </ion-item>
+      <ion-item *ngIf="ifInefficientBoiler()">
+          <ion-label color="primary" stacked>(Please specify accompanying insulation measure)</ion-label>
+          <ion-input clearInput [(ngModel)]="accompanyingInstMeasure"> </ion-input>
+      </ion-item>
+
+    
 
     <ion-item>
       <ion-label color="primary" stacked>Boiler REPAIR no pre-existing heating controls</ion-label>
@@ -66,7 +88,7 @@
       <ion-input clearInput [(ngModel)]="boierReplaceNoPreExtHeat"> </ion-input>
     </ion-item>
 
-    <ion-item-divider>Non-qualifying Boiler</ion-item-divider>
+    <!-- <ion-item-divider>Non-qualifying Boiler</ion-item-divider>
       <ion-item>
         <ion-label color="primary" stacked>Boiler REPAIR no pre-existing heating controls</ion-label>
         <ion-input clearInpu [(ngModel)]="boierRepairNoPreExtHeatNonQlfy"> </ion-input>
@@ -75,12 +97,125 @@
       <ion-item>
         <ion-label color="primary" stacked>Boiler REPLACE no pre-existing heating controls</ion-label>
         <ion-input clearInput [(ngModel)]="boierReplaceNoPreExtHeatNonQlfy"> </ion-input>
-      </ion-item>
+      </ion-item> -->
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label color="primary" stacked>Heating Controls</ion-label>
         <ion-input clearInput [(ngModel)]="boilerHeatingControls"> </ion-input>
-      </ion-item>
+      </ion-item> -->
+      <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label color="primary">Pre-existing ESH:</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary" stacked>Slimline</ion-label>
+            <ion-input type="text" [(ngModel)]="eshSlimline"> </ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary" stacked>Fan Assisted</ion-label>
+            <ion-input type="text" clearInput [(ngModel)]="eshFanAssisted"> </ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary" stacked>High heat retention</ion-label>
+            <ion-input clearInput [(ngModel)]="eshHighHeatRetention"> </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary" stacked>Number of ESH being installed:
+      Slimline</ion-label>
+            <ion-input type="number" clearInput [(ngModel)]="eshInstalledQualifyingSlimline"> </ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>Broken Fan Assisted
+          Fan assisted</ion-label>
+                <ion-input type="number" clearInput [(ngModel)]="eshInstalledBrokenFanAsst"> </ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label color="primary" stacked>Upgrade Fan Assisted
+            Fan assisted</ion-label>
+                  <ion-input type="number" clearInput [(ngModel)]="eshInstalledUpgradeFanAsst"> </ion-input>
+                </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>Broken High heat retention</ion-label>
+                <ion-input type="number" clearInput [(ngModel)]="eshInstalledBrokenHighHeatRet"> </ion-input>
+              </ion-item>
+            <ion-item>
+                <ion-label color="primary" stacked>Upgrade High heat retention</ion-label>
+                <ion-input type="number" clearInput [(ngModel)]="eshInstalledUpgradeHighHeatRet"> </ion-input>
+              </ion-item>
+        </ion-col>
+
+        
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label color="primary" stacked>Inefficient/broken ESH(Please specify accompanying insulation measure)</ion-label>
+            <ion-input type="number" clearInput [(ngModel)]="eshInstalledNonQualifyingSlimline"> </ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>Fan assisted</ion-label>
+                <ion-input type="number" clearInput [(ngModel)]="estInstalledNonQualifyingFanAsst"> </ion-input>
+              </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>High heat retention</ion-label>
+                <ion-input type="number" clearInput [(ngModel)]="eshInstalledNonQualHighHeatRet"> </ion-input>
+              </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>ESH repair: Slimline</ion-label>
+                <ion-input clearInput [(ngModel)]="eshQeshRepairSlimline"> </ion-input>
+              </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>Fan Assisted</ion-label>
+                <ion-input clearInput [(ngModel)]="eshQeshRepairFanAsst"> </ion-input>
+              </ion-item>
+          
+              
+        </ion-col>
+
+        <ion-col>
+            <ion-item>
+                <ion-label color="primary" stacked>High heat retention</ion-label>
+                <ion-input clearInput [(ngModel)]="eshQeshRepairHighHeatRet"> </ion-input>
+              </ion-item>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+         
      <br/>
       <button ion-button (click)="saveBoiler()"> Save Boiler Measurements </button>
       

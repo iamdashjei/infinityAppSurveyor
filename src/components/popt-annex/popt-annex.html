@@ -1,0 +1,387 @@
+<!-- Generated template for the PoptAnnexComponent component -->
+<ion-card>
+  <ion-card-header (click)="toggleAccordionPOPT()">
+    <ion-list>
+      <ion-item color="primary">
+        <button ion-button clear small icon-only item-right>
+          <ion-icon color="light" [name]="icon"></ion-icon>
+        </button>
+        {{ title }}
+      </ion-item>
+    </ion-list>
+  </ion-card-header>
+
+  <ion-card-content #poptForms>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Cavity Wall Insulation</ion-label>
+          <ion-list radio-group [(ngModel)]="cwiInsulationMeasure">
+              <ion-item>
+                <ion-label>0.027</ion-label>
+                <ion-radio value="0.027"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>0.033</ion-label>
+                  <ion-radio value="0.033"></ion-radio>
+                </ion-item>
+
+              <ion-item>
+                  <ion-label>0.04</ion-label>
+                  <ion-radio value="0.04"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Unknown</ion-label>
+                  <ion-radio value="Unknown"></ion-radio>
+              </ion-item>
+        
+          </ion-list>
+          <ion-item>
+              <ion-label color="primary">Measure</ion-label>
+          <ion-select [(ngModel)]="cwInsulationAnnex">
+              <ion-option value="<67%"><67%</ion-option>
+              <ion-option value=">=67%">>=67%</ion-option>
+          </ion-select>
+        </ion-item>
+        </ion-col>
+
+        <ion-col>
+            <ion-label>Loft Insulation</ion-label>
+            <ion-list radio-group [(ngModel)]="loftInsulationMeasure">
+                <ion-item>
+                  <ion-label><=100mm</ion-label>
+                  <ion-radio value="<=100mm"></ion-radio>
+                </ion-item>
+  
+                <ion-item>
+                    <ion-label>>100mm</ion-label>
+                    <ion-radio value=">100mm"></ion-radio>
+                </ion-item>
+  
+            </ion-list>
+            <ion-item>
+            <ion-label color="primary">Measure</ion-label>
+            <ion-select [(ngModel)]="loftInsulationAnnex">
+                <ion-option value="<67%"><67%</ion-option>
+                <ion-option value=">=67%">>=67%</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-item-divider></ion-item-divider>
+      <ion-row>
+          <ion-col>
+            <ion-label>Boiler</ion-label>
+            <ion-list radio-group [(ngModel)]="boilerMeasure">
+                <ion-item>
+                  <ion-label>Broken</ion-label>
+                  <ion-radio value="Broken"></ion-radio>
+                </ion-item>
+  
+                <ion-item>
+                    <ion-label>Upgrade</ion-label>
+                    <ion-radio value="Upgrade"></ion-radio>
+                  </ion-item>
+  
+                <ion-item>
+                    <ion-label>Repair</ion-label>
+                    <ion-radio value="Repair"></ion-radio>
+                </ion-item>
+          
+            </ion-list>
+
+            <ion-item>
+            <ion-label color="primary">Measure</ion-label>
+            <ion-select [(ngModel)]="boilerAnnex">
+                <ion-option value="<67%"><67%</ion-option>
+                <ion-option value=">=67%">>=67%</ion-option>
+            </ion-select>
+            </ion-item>
+          </ion-col>
+  
+          <ion-col>
+              <ion-label>Heating Controls</ion-label>
+              
+              <ion-item>
+              <ion-label color="primary">Measure</ion-label>
+              <ion-select [(ngModel)]="heatingControlsItem">
+                  <ion-option value="100%">100%</ion-option>
+                  <ion-option value="N/A">N/A</ion-option>
+              </ion-select>
+              </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-item-divider></ion-item-divider>
+        <ion-row>
+            <ion-col>
+              <ion-label>Electric Storage Heaters HHR</ion-label>
+              <ion-list radio-group [(ngModel)]="eshHHR">
+                  <ion-item>
+                      <ion-label>Broken</ion-label>
+                      <ion-radio value="Broken"></ion-radio>
+                    </ion-item>
+      
+                    <ion-item>
+                        <ion-label>Upgrade</ion-label>
+                        <ion-radio value="Upgrade"></ion-radio>
+                      </ion-item>
+      
+                    <ion-item>
+                        <ion-label>Repair</ion-label>
+                        <ion-radio value="Repair"></ion-radio>
+                    </ion-item>
+            
+              </ion-list>
+
+              <ion-item>
+              <ion-label color="primary">Measure</ion-label>
+              <ion-select [(ngModel)]="eshHHRAnnex">
+                  <ion-option value="<67%"><67%</ion-option>
+                  <ion-option value=">=67%">>=67%</ion-option>
+              </ion-select>
+              </ion-item>
+            </ion-col>
+    
+            <ion-col>
+                <ion-label>Electric Storage Heaters Fan</ion-label>
+              <ion-list radio-group [(ngModel)]="eshFan">
+                  <ion-item>
+                      <ion-label>Broken</ion-label>
+                      <ion-radio value="Broken"></ion-radio>
+                    </ion-item>
+      
+                    <ion-item>
+                        <ion-label>Upgrade</ion-label>
+                        <ion-radio value="Upgrade"></ion-radio>
+                      </ion-item>
+      
+                    <ion-item>
+                        <ion-label>Repair</ion-label>
+                        <ion-radio value="Repair"></ion-radio>
+                    </ion-item>
+            
+              </ion-list>
+
+              <ion-item>
+              <ion-label color="primary">Measure</ion-label>
+              <ion-select [(ngModel)]="eshFanAnnex">
+                  <ion-option value="<67%"><67%</ion-option>
+                  <ion-option value=">=67%">>=67%</ion-option>
+              </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-item-divider></ion-item-divider>
+          <ion-row>
+              <ion-col>
+                <ion-label>First Time Central Heating</ion-label>
+
+                <ion-item>
+                <ion-label color="primary">Measure</ion-label>
+                <ion-select [(ngModel)]="ftchAnnex">
+                    <ion-option value="100%">100%</ion-option>
+                    <ion-option value="N/A">N/A</ion-option>
+                </ion-select>
+                </ion-item>
+              </ion-col>
+      
+              <ion-col>
+                  <ion-label>External Wall Insulation</ion-label>
+
+                  <ion-item>
+                  <ion-label color="primary">Measure</ion-label>
+                  <ion-select [(ngModel)]="extInsAnnex">
+                      <ion-option value="<67%"><67%</ion-option>
+                      <ion-option value=">=67%">>=67%</ion-option>
+                  </ion-select>
+                  </ion-item>
+
+                </ion-col>
+            </ion-row>
+            <ion-item-divider></ion-item-divider>
+            <ion-row>
+                <ion-col>
+                  <ion-label>Internal Wall Insulation</ion-label>
+                 
+                  <ion-item>
+                  <ion-label color="primary">Measure</ion-label>
+                  <ion-select [(ngModel)]="internalInstAnnex">
+                      <ion-option value="<67%"><67%</ion-option>
+                      <ion-option value="N/A">N/A</ion-option>
+                  </ion-select>
+                  </ion-item>
+                </ion-col>
+        
+                <ion-col>
+                    <ion-label>Room-in-roof Insulation</ion-label>
+                    <i>Residual area insulated</i>
+                      <ion-list radio-group [(ngModel)]="roomInRoofInst">
+                    
+                   <ion-item>
+                      <ion-label>Yes</ion-label>
+                      <ion-radio value="Yes"></ion-radio>
+                    </ion-item>
+      
+                    <ion-item>
+                        <ion-label>No</ion-label>
+                        <ion-radio value="No"></ion-radio>
+                      </ion-item>
+            
+              </ion-list>
+             
+              <ion-item>
+              <ion-label color="primary">Measure</ion-label>
+              <ion-select [(ngModel)]="roomInRoofInstAnnex">
+                  <ion-option value="<67%"><67%</ion-option>
+                  <ion-option value=">=67%">>=67%</ion-option>
+              </ion-select>
+              </ion-item>
+                  </ion-col>
+              </ion-row>
+              <ion-item-divider></ion-item-divider>
+              <ion-row>
+                  <ion-col>
+                    <ion-label>Flat Roof Insulation</ion-label>
+                   
+                    <ion-item>
+                    <ion-label color="primary">Measure</ion-label>
+                    <ion-select [(ngModel)]="flatRoofInstAnnex">
+                        <ion-option value="<67%"><67%</ion-option>
+                        <ion-option value=">=67%">>=67%</ion-option>
+                    </ion-select>
+                    </ion-item>
+                  </ion-col>
+          
+                  <ion-col>
+                      <ion-label>Under Floor Insulation</ion-label>
+                   
+                    <ion-item>
+                    <ion-label color="primary">Measure</ion-label>
+                    <ion-select [(ngModel)]="undFloorInstAnnex">
+                        <ion-option value="<67%"><67%</ion-option>
+                        <ion-option value=">=67%">>=67%</ion-option>
+                    </ion-select>
+                    </ion-item>
+                    </ion-col>
+              </ion-row>
+              <ion-item-divider></ion-item-divider>
+              <ion-row>
+                  <ion-col>
+                    <ion-label>Party Cavity Wall Insulation</ion-label>
+                   
+                    <ion-item>
+                    <ion-label color="primary">Measure</ion-label>
+                    <ion-select [(ngModel)]="PartyCavWallInstAnnex">
+                        <ion-option value="<67%"><67%</ion-option>
+                        <ion-option value=">=67%">>=67%</ion-option>
+                    </ion-select>
+                    </ion-item>
+                  </ion-col>
+          
+                  <ion-col>
+                      <ion-label>Draught Proofing</ion-label>
+                   
+                    <ion-item>
+                    <ion-label color="primary">Measure</ion-label>
+                    <ion-select [(ngModel)]="draughtProofingAnnex">
+                        <ion-option value="<67%"><67%</ion-option>
+                        <ion-option value=">=67%">>=67%</ion-option>
+                    </ion-select>
+                    </ion-item>
+                    </ion-col>
+              </ion-row>
+              <ion-item-divider></ion-item-divider>
+              <ion-row>
+                  <ion-col>
+                    <ion-label>Other (Please Specify)</ion-label>
+                   
+                    <ion-item>
+                    <ion-label color="primary">Measure</ion-label>
+                    <ion-select [(ngModel)]="otherAnnex">
+                        <ion-option value="<67%"><67%</ion-option>
+                        <ion-option value=">=67%">>=67%</ion-option>
+                    </ion-select>
+                    </ion-item>
+                  </ion-col>
+          
+                  <ion-col>
+                      <ion-label>Other (Please Specify)</ion-label>
+                     
+                      <ion-item>
+                      <ion-label color="primary">Measure</ion-label>
+                      <ion-select [(ngModel)]="other2Annex">
+                          <ion-option value="<67%"><67%</ion-option>
+                          <ion-option value=">=67%">>=67%</ion-option>
+                      </ion-select>
+                      </ion-item>
+                    </ion-col>
+              </ion-row>
+              <ion-item-divider></ion-item-divider>
+              <ion-row>
+              
+                    
+              
+                  
+          
+                  <ion-col>
+                      <ion-label>Boiler/FTCH poost-heating fuel</ion-label>
+                      <ion-list radio-group [(ngModel)]="postHeatingFuel">
+                    
+                          <ion-item>
+                             <ion-label>Gas</ion-label>
+                             <ion-radio value="Gas"></ion-radio>
+                           </ion-item>
+             
+                          <ion-item>
+                              <ion-label>LPG</ion-label>
+                              <ion-radio value="LPG"></ion-radio>
+                          </ion-item>
+
+
+                          <ion-item>
+                              <ion-label>DHS</ion-label>
+                              <ion-radio value="DHS"></ion-radio>
+                          </ion-item>
+
+
+                          <ion-item>
+                              <ion-label>ASHP</ion-label>
+                              <ion-radio value="ASHP"></ion-radio>
+                          </ion-item>
+
+
+                          <ion-item>
+                              <ion-label>GSHP</ion-label>
+                              <ion-radio value="GSHP"></ion-radio>
+                          </ion-item>
+
+                          <ion-item>
+                              <ion-label>Biomass</ion-label>
+                              <ion-radio value="Biomass"></ion-radio>
+                          </ion-item>
+
+
+                          <ion-item>
+                              <ion-label>Oil</ion-label>
+                              <ion-radio value="Oil"></ion-radio>
+                          </ion-item>
+                   
+                      </ion-list>
+                    </ion-col>
+
+                    <ion-col>
+                    <ion-item></ion-item>
+                    </ion-col>
+              </ion-row>
+
+    </ion-grid>
+   
+
+    
+      <br/>
+    <button ion-button (click)="savePOPT()"> Save POPT</button>
+
+  </ion-card-content>
+</ion-card>

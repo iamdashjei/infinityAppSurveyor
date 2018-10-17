@@ -38,10 +38,6 @@
          <button ion-button (click)="capture('UBIL')"> Take Photo </button>
          <button ion-button (click)="uploadImage('UBIL')" *ngIf="UBILImage.length"> Save Image </button>
          
-         <!-- <ion-label color="primary"> <input type="file" (change)="selectFileSurveyor($event)"/></ion-label>
-
-         <button ion-button class="primary" [disabled]="!selectedFiles" (click)="uploadSurveyor()">Upload</button> -->
-
        </ion-col>
        
      </ion-row>
@@ -80,13 +76,16 @@
 
        </ion-col>
 
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of tenancyAgrmtImage">
-                  <img src="{{image}}"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
+      
+     </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of tenancyAgrmtImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
      </ion-row>
 
      <ion-row>
@@ -113,13 +112,16 @@
          <button ion-button (click)="uploadImage('LandLordPerm')" *ngIf="landlordPermImage.length"> Save Image </button>
 
        </ion-col>
-       <ion-col>
-          <ion-slides>
-              <ion-slide *ngFor="let image of landlordPermImage">
-                  <img src="{{image}}"/>
-              </ion-slide>
-          </ion-slides>
-        </ion-col>
+       
+     </ion-row>
+     <ion-row>
+      <ion-col>
+        <ion-slides>
+            <ion-slide *ngFor="let image of landlordPermImage">
+                <img src="{{image}}"/>
+            </ion-slide>
+        </ion-slides>
+      </ion-col>
      </ion-row>
    </ion-grid>
 
