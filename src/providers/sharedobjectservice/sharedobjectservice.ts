@@ -18,6 +18,8 @@ export class SharedobjectserviceProvider {
   sharedCavityWallObject: any;
   sharedSolidWallObject: any;
   sharedPOPTObject: any;
+  sharedLoftCavObject: any;
+  sharedFloorObject: any;
 
   // Lead Object by Status
   sharedNewLeadsObject: any;
@@ -107,6 +109,24 @@ export class SharedobjectserviceProvider {
 
   getSharedSolidWallObject(){
     return this.sharedSolidWallObject;
+  }
+
+  // For Annex 1 - Wall Insulation
+  setSharedLoftCavObject(sharedValue){
+    this.sharedLoftCavObject = sharedValue;
+  }
+
+  getSharedLoftCavObject(){
+    return this.sharedLoftCavObject;
+  }
+
+  // For Annex - Floor Insulation 
+  setSharedFloorObject(sharedValue){
+    this.sharedFloorObject = sharedValue;
+  }
+
+  getSharedFloorObject(){
+    return this.sharedFloorObject;
   }
 
 

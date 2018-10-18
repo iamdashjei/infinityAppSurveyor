@@ -42,7 +42,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item *ngIf="ifTRVs()">
+    <ion-item *ngIf="ifTRVs(heatControlsCurrent)">
       <ion-label color="primary" stacked>Please record the existing number of Radiators</ion-label>
       <ion-input clearInput [(ngModel)]="numberNormalRadiators"> </ion-input>
     </ion-item>
@@ -52,7 +52,7 @@
       <ion-input clearInput [(ngModel)]="numberTowelRadiators"> </ion-input>
     </ion-item> -->
 
-    <ion-item *ngIf="ifTRVs()">
+    <ion-item *ngIf="ifTRVs(heatControlsCurrent)">
       <ion-label color="primary" stacked>Please record the existing number of TRV's</ion-label>
       <ion-input clearInput [(ngModel)]="numberTRVs"> </ion-input>
     </ion-item>
@@ -71,7 +71,7 @@
 
         
       </ion-item>
-      <ion-item *ngIf="ifInefficientBoiler()">
+      <ion-item *ngIf="ifInefficientBoiler(heatMeasureCurrent)">
           <ion-label color="primary" stacked>(Please specify accompanying insulation measure)</ion-label>
           <ion-input clearInput [(ngModel)]="accompanyingInstMeasure"> </ion-input>
       </ion-item>

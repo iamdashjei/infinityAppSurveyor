@@ -157,20 +157,28 @@ export class AccordionBoilerComponent {
     
   }
 
-  ifTRVs(){
-    if(this.heatControlsCurrent.includes("TRV")){
-      return true;
-    } else {
-      return false;
+  ifTRVs(value){ 
+    if(this.heatControlsCurrent){
+      if(value.includes("TRV")){
+        return true;
+       
+      } else{
+        return false;
+      }
     }
+    return false;
   }
 
-  ifInefficientBoiler(){
-    if(this.heatMeasureCurrent.includes("Inefficient/broken")){
-      return true;
-    } else {
-      return false;
+  ifInefficientBoiler(value){
+    if(this.heatMeasureCurrent){
+      if(value.includes("Inefficient/broken")){
+        return true;
+       
+      } else{
+        return false;
+      }
     }
+    return false;
   }
 
   presentSave(){
