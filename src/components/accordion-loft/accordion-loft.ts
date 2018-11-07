@@ -78,6 +78,32 @@ export class AccordionLoftComponent {
   loftRoundedRIRIPOPT: any;
   loftIfRoomInRoofIns: any;
 
+  looftM2InsulationLess100mm1: number = 0;
+  looftM2InsulationGreater100mm1: number = 0;
+  looftM2InsulationFRI1: number = 0;
+  looftM2InsulationRIRI1: number = 0;
+
+  looftM2InsulationLess100mm2: number = 0;
+  looftM2InsulationGreater100mm2: number = 0;
+  looftM2InsulationFRI2: number = 0;
+  looftM2InsulationRIRI2: number = 0;
+
+  looftM2InsulationLess100mm3: number = 0;
+  looftM2InsulationGreater100mm3: number = 0;
+  looftM2InsulationFRI3: number = 0;
+  looftM2InsulationRIRI3: number = 0;
+
+  looftM2InsulationLess100mm4: number = 0;
+  looftM2InsulationGreater100mm4: number = 0;
+  looftM2InsulationFRI4: number = 0;
+  looftM2InsulationRIRI4: number = 0;
+
+  looftM2InsulationLess100mm5: number = 0;
+  looftM2InsulationGreater100mm5: number = 0;
+  looftM2InsulationFRI5: number = 0;
+  looftM2InsulationRIRI5: number = 0;
+
+
   cavWallPropSection1: any;
   cavWallPropSection2: any;
   cavWallPropSection3: any;
@@ -108,6 +134,7 @@ export class AccordionLoftComponent {
   m2InsulationInstalledSWI4: any;
   m2InsulationInstalledSWI5: any;
 
+
   cwtotalWallAreasA: any;
   cwtotalWallAreasB: any;
   cwtotalWallAreasC: any;
@@ -124,6 +151,7 @@ export class AccordionLoftComponent {
   insulateCavParWalls: any;
   cwCavParUnroundedPWIPOPT: any;
   cwCavParRoundedPWIPOPT: any;
+  
 
   heatingPOPTPercentage: any;
 
@@ -199,6 +227,26 @@ export class AccordionLoftComponent {
       this.loftTotalRoofAreaE= loftForm.loftTotalRoofAreaE;
       this.loftTotalRoofAreaF= loftForm.loftTotalRoofAreaF;
       this.loftIfRoomInRoofIns = loftForm.loftIfRoomInRoofIns;
+      this.looftM2InsulationLess100mm1 = loftForm.looftM2InsulationLess100mm1;
+      this.looftM2InsulationGreater100mm1 = loftForm.looftM2InsulationGreater100mm1;
+      this.looftM2InsulationFRI1 = loftForm.looftM2InsulationFRI1;
+      this.looftM2InsulationRIRI1 = loftForm.looftM2InsulationRIRI1;
+      this.looftM2InsulationLess100mm2 = loftForm.looftM2InsulationLess100mm2;
+      this.looftM2InsulationGreater100mm2 = loftForm.looftM2InsulationGreater100mm2;
+      this.looftM2InsulationFRI2 = loftForm.looftM2InsulationFRI2;
+      this.looftM2InsulationRIRI2 = loftForm.looftM2InsulationRIRI2;
+      this.looftM2InsulationLess100mm3 = loftForm.looftM2InsulationLess100mm3;
+      this.looftM2InsulationGreater100mm3 = loftForm.looftM2InsulationGreater100mm3;
+      this.looftM2InsulationFRI3 = loftForm.looftM2InsulationFRI3;
+      this.looftM2InsulationRIRI3 = loftForm.looftM2InsulationRIRI3;
+      this.looftM2InsulationLess100mm4 = loftForm.looftM2InsulationLess100mm4;
+      this.looftM2InsulationGreater100mm4 = loftForm.looftM2InsulationGreater100mm4;
+      this.looftM2InsulationFRI4 = loftForm.looftM2InsulationFRI4;
+      this.looftM2InsulationRIRI4 =  loftForm.looftM2InsulationRIRI4;
+      this.looftM2InsulationLess100mm5 = loftForm.looftM2InsulationLess100mm5;
+      this.looftM2InsulationGreater100mm5 = loftForm.looftM2InsulationGreater100mm5;
+      this.looftM2InsulationFRI5 = loftForm.looftM2InsulationFRI5;
+      this.looftM2InsulationRIRI5 = loftForm.looftM2InsulationRIRI5;
 
       this.sharedObject.setSharedLoftObject(loftForm);
       } else {
@@ -234,7 +282,27 @@ export class AccordionLoftComponent {
           loftTotalRoofAreaD: null,
           loftTotalRoofAreaE: null,
           loftTotalRoofAreaF: null,
-          loftIfRoomInRoofIns: null     
+          loftIfRoomInRoofIns: null,
+          looftM2InsulationLess100mm1: 0,
+          looftM2InsulationGreater100mm1: 0,
+          looftM2InsulationFRI1: 0,
+          looftM2InsulationRIRI1: 0,
+          looftM2InsulationLess100mm2: 0,
+          looftM2InsulationGreater100mm2: 0,
+          looftM2InsulationFRI2: 0,
+          looftM2InsulationRIRI2: 0,
+          looftM2InsulationLess100mm3: 0,
+          looftM2InsulationGreater100mm3: 0,
+          looftM2InsulationFRI3: 0,
+          looftM2InsulationRIRI3: 0,
+          looftM2InsulationLess100mm4: 0,
+          looftM2InsulationGreater100mm4: 0,
+          looftM2InsulationFRI4: 0,
+          looftM2InsulationRIRI4: 0, 
+          looftM2InsulationLess100mm5: 0,
+          looftM2InsulationGreater100mm5: 0,
+          looftM2InsulationFRI5: 0,
+          looftM2InsulationRIRI5: 0
         };
         this.sharedObject.setSharedLoftObject(loftForm);
       }
@@ -468,7 +536,27 @@ export class AccordionLoftComponent {
       loftTotalRoofAreaD: this.loftTotalRoofAreaD != null ? this.loftTotalRoofAreaD : null,
       loftTotalRoofAreaE: this.loftTotalRoofAreaE != null ? this.loftTotalRoofAreaE : null,
       loftTotalRoofAreaF: this.loftTotalRoofAreaF != null ? this.loftTotalRoofAreaF : null,
-      loftIfRoomInRoofIns: this.loftIfRoomInRoofIns != null ? this.loftIfRoomInRoofIns : null
+      loftIfRoomInRoofIns: this.loftIfRoomInRoofIns != null ? this.loftIfRoomInRoofIns : null,
+      looftM2InsulationLess100mm1: this.looftM2InsulationLess100mm1 != null ? this.looftM2InsulationLess100mm1 : 0,
+      looftM2InsulationGreater100mm1: this.looftM2InsulationGreater100mm1 != null ? this.looftM2InsulationGreater100mm1 : 0,
+      looftM2InsulationFRI1: this.looftM2InsulationFRI1 != null ? this.looftM2InsulationFRI1 : null,
+      looftM2InsulationRIRI1: this.looftM2InsulationRIRI1 != null ? this.looftM2InsulationRIRI1 : null,
+      looftM2InsulationLess100mm2: this.looftM2InsulationLess100mm2 != null ? this.looftM2InsulationLess100mm2 : 0,
+      looftM2InsulationGreater100mm2: this.looftM2InsulationGreater100mm2 != null ? this.looftM2InsulationGreater100mm2 : 0,
+      looftM2InsulationFRI2: this.looftM2InsulationFRI2 != null ? this.looftM2InsulationFRI2 : null,
+      looftM2InsulationRIRI2: this.looftM2InsulationRIRI2 != null ? this.looftM2InsulationRIRI2 : null,
+      looftM2InsulationLess100mm3: this.looftM2InsulationLess100mm3 != null ? this.looftM2InsulationLess100mm3 : 0,
+      looftM2InsulationGreater100mm3: this.looftM2InsulationGreater100mm3 != null ? this.looftM2InsulationGreater100mm3 : 0,
+      looftM2InsulationFRI3: this.looftM2InsulationFRI3 != null ? this.looftM2InsulationFRI3 : null,
+      looftM2InsulationRIRI3: this.looftM2InsulationRIRI3 != null ? this.looftM2InsulationRIRI3 : null,
+      looftM2InsulationLess100mm4: this.looftM2InsulationLess100mm4 != null ? this.looftM2InsulationLess100mm4 : 0,
+      looftM2InsulationGreater100mm4: this.looftM2InsulationGreater100mm4 != null ? this.looftM2InsulationGreater100mm4 : 0,
+      looftM2InsulationFRI4: this.looftM2InsulationFRI4 != null ? this.looftM2InsulationFRI4 : 0,
+      looftM2InsulationRIRI4: this.looftM2InsulationRIRI4 != null ? this.looftM2InsulationRIRI4 : 0, 
+      looftM2InsulationLess100mm5: this.looftM2InsulationLess100mm5 != null ? this.looftM2InsulationLess100mm5 : 0,
+      looftM2InsulationGreater100mm5: this.looftM2InsulationGreater100mm5 != null ? this.looftM2InsulationGreater100mm5 : 0,
+      looftM2InsulationFRI5: this.looftM2InsulationFRI5 != null ? this.looftM2InsulationFRI5 : 0,
+      looftM2InsulationRIRI5: this.looftM2InsulationRIRI5 != null ? this.looftM2InsulationRIRI5 : 0
     };
     this.storage.set(this.sharedObject.getSharedSlugSelectedCM() + "_loftForm", data);
     this.sharedObject.setSharedLoftObject(data);
@@ -558,40 +646,133 @@ export class AccordionLoftComponent {
     this.presentToastSave("Saved Floor Insulation Measures Successfully!");
   }
 
-  calculatePOPT(){
-    if(this.loftTypeOfInstallValuePSExt1 != undefined &&
-      this.loftTypeofinstallValuePropExt2 != undefined &&
-      this.loftTypeOfInstallValuePropExt3 != undefined &&
-      this.loftTypeofinstallValuePropExt4 != undefined &&
-      this.loftTypeofinstallValuePropExt5 != undefined){
-        let sumB = parseInt(this.loftTypeOfInstallValuePSExt1) + 
-        parseInt(this.loftTypeofinstallValuePropExt2) +
-        parseInt(this.loftTypeOfInstallValuePropExt3) + 
-        parseInt(this.loftTypeofinstallValuePropExt4) + 
-        parseInt(this.loftTypeofinstallValuePropExt5);
+  calculateTotalAreaA(){
+    let totalAreaA = parseInt(this.loftRoofAreaPSExt1) > 0 ? parseInt(this.loftRoofAreaPSExt1) : 0 +
+    parseInt(this.loftRoofAreaPropExt2) > 0 ? parseInt(this.loftRoofAreaPropExt2) : 0 +
+    parseInt(this.loftRoofAreaExt3) > 0 ? parseInt(this.loftRoofAreaExt3) : 0 +
+    parseInt(this.loftRoofAreaPropExt4) > 0 ? parseInt(this.loftRoofAreaPropExt4) : 0 +
+    parseInt(this.loftRoofAreaPropExt5) > 0 ? parseInt(this.loftRoofAreaPropExt5) : 0;
 
-        let sumA = parseInt(this.loftRoofAreaPSExt1) + parseInt(this.loftRoofAreaPropExt2) +  
-        parseInt(this.loftRoofAreaExt3) + parseInt(this.loftRoofAreaPropExt4) + parseInt(this.loftRoofAreaPropExt5);
-        this.loftUnroundedLess100POPT = (sumB / sumA);
-      return true;
-    }
-    return false;
+    this.loftTotalRoofAreaA = totalAreaA;
+  }
+
+  calculateTotalAreaB(){
+    let totalAreaB = this.looftM2InsulationLess100mm1 +
+    this.looftM2InsulationLess100mm2 +
+    this.looftM2InsulationLess100mm3 +
+    this.looftM2InsulationLess100mm4+
+    this.looftM2InsulationLess100mm5;
+
+    this.loftTotalRoofAreaB = totalAreaB;
+  }
+
+  calculateTotalAreaC(){
+    let totalAreaC = this.looftM2InsulationGreater100mm1 +
+    this.looftM2InsulationGreater100mm2 +
+    this.looftM2InsulationGreater100mm3 +
+    this.looftM2InsulationGreater100mm4 +
+    this.looftM2InsulationGreater100mm5;
+
+    this.loftTotalRoofAreaC = totalAreaC;
+  }
+
+  calculateTotalAreaD(){
+    let totalAreaD = this.looftM2InsulationFRI1 +
+    this.looftM2InsulationFRI2+
+    this.looftM2InsulationFRI3+
+    this.looftM2InsulationFRI4+
+    this.looftM2InsulationFRI5;
+
+    this.loftTotalRoofAreaD = totalAreaD;
+  }
+
+  calculateTotalAreaE(){
+    let totalAreaE = this.looftM2InsulationGreater100mm1 +
+    this.looftM2InsulationGreater100mm2 +
+    this.looftM2InsulationGreater100mm3 +
+    this.looftM2InsulationGreater100mm4 +
+    this.looftM2InsulationGreater100mm5;
+
+    this.loftTotalRoofAreaE = totalAreaE;
+  }
+
+  calculatePOPT(){
+   
+        let sumB = this.looftM2InsulationLess100mm1+ 
+        this.looftM2InsulationLess100mm2 +
+        this.looftM2InsulationLess100mm3 + 
+        this.looftM2InsulationLess100mm4 + 
+        this.looftM2InsulationLess100mm5;
+
+        let sumA = this.loftRoofAreaPSExt1 + 
+        this.loftRoofAreaPropExt2 +  
+        this.loftRoofAreaExt3 + 
+        this.loftRoofAreaPropExt4 + 
+        this.loftRoofAreaPropExt5;
+        this.loftUnroundedLess100POPT = (sumB / sumA) * 100;
+  
+  }
+
+  calculatePOPT2(){
+      let sumC = this.looftM2InsulationGreater100mm1 +
+     this.looftM2InsulationGreater100mm2 +
+      this.looftM2InsulationGreater100mm3+
+      this.looftM2InsulationGreater100mm4 +
+      this.looftM2InsulationGreater100mm5;
+
+      let sumA = parseInt(this.loftRoofAreaPSExt1) >  0  ?  parseInt(this.loftRoofAreaPSExt1) : 0 + 
+      parseInt(this.loftRoofAreaPropExt2) >  0  ?  parseInt(this.loftRoofAreaPropExt2) : 0 +  
+      parseInt(this.loftRoofAreaExt3) >  0  ?  parseInt(this.loftRoofAreaExt3) : 0 + 
+      parseInt(this.loftRoofAreaPropExt4) >  0  ?  parseInt(this.loftRoofAreaPropExt4) : 0 + 
+      parseInt(this.loftRoofAreaPropExt5) >  0  ?  parseInt(this.loftRoofAreaPropExt5) : 0;
+
+      this.loftUnroundedMore100POPT = (sumC / sumA) * 100;
   }
 
   calculateCWIPOPT(){
+    let sumB = 
+    parseInt(this.m2InsulationInstalledCWI1) > 0  ? parseInt(this.m2InsulationInstalledCWI1) : 0 + 
+    parseInt(this.m2InsulationInstalledCWI2) > 0  ? parseInt(this.m2InsulationInstalledCWI2) : 0 + 
+    parseInt(this.m2InsulationInstalledCWI3) > 0  ? parseInt(this.m2InsulationInstalledCWI3) : 0 + 
+    parseInt(this.m2InsulationInstalledCWI4) > 0  ? parseInt(this.m2InsulationInstalledCWI4) : 0 + 
+    parseInt(this.m2InsulationInstalledCWI5) > 0  ? parseInt(this.m2InsulationInstalledCWI5) : 0 ;
 
+    let sumA = 
+    parseInt(this.cavWallWallArea1) > 0 ?  parseInt(this.cavWallWallArea1) : 0 +
+    parseInt(this.cavWallWallArea2) > 0 ?  parseInt(this.cavWallWallArea2) : 0 +
+    parseInt(this.cavWallWallArea3) > 0 ?  parseInt(this.cavWallWallArea3) : 0 +
+    parseInt(this.cavWallWallArea4) > 0 ?  parseInt(this.cavWallWallArea4) : 0 +
+    parseInt(this.cavWallWallArea5) > 0 ?  parseInt(this.cavWallWallArea5) : 0;
+
+
+    let CWIPOPT = (sumB / sumA) * 100;
   }
 
   calculateSWIPOPT(){
+    let sumA = 
+    this.cavWallWallArea1 +
+    this.cavWallWallArea2 +
+    this.cavWallWallArea3 +
+    this.cavWallWallArea4 +
+    this.cavWallWallArea5;
+
+    let sumC = 
+    this.m2InsulationInstalledSWI1 +
+    this.m2InsulationInstalledSWI2 +
+    this.m2InsulationInstalledSWI3 +
+    this.m2InsulationInstalledSWI4 +
+    this.m2InsulationInstalledSWI5;
+
+    let SWIPOPT = (sumC / sumA) * 100;
 
   }
 
   calculateSWIPOPT2(){
-
+    
   }
 
   calculatePWIPOPT(){
-    
+
   }
 
 
